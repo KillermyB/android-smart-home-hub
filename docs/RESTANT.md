@@ -6,6 +6,10 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## En-tête v0.3.2
+
+- [x] Nom et logo retirés de l’en-tête à la demande de l’utilisateur.
+
 ## Lettrage v0.3.1
 
 - [x] Police du mot Hub. remplacée par Geist SemiBold, tracés plus compacts, point iris conservé. Licence du paquet officiel `geist` jointe.
