@@ -1,11 +1,18 @@
 # Reprise sur la tour Windows
 
+## Contrôle USB du 20 octobre 2026
+
+- Détection USB et accès ADB depuis le Mac désormais confirmés, avec shell `uid=0(root)`. Aucun rootage ou changement du firmware effectué pendant ce contrôle.
+- Lectures : matériel `sun8i`, Android 6.0.1, architecture `armeabi-v7a`, modèle logiciel `AEEZO`, build `20260529`, écran 1280 × 800. La date de build correspond au firmware photographié.
+- WebView actuel : `44.0.2403.119`. Au premier contrôle, aucun autre paquet de navigateur identifié ; Hub. vise Chrome/WebView 106 ou plus récent.
+- Suite de la session : sauvegardes données/boot/bootloader vérifiées, Firefox 143.0.4 et SimpleSSHD 27 installés. Hub v0.7.0 affiché en plein écran ; tactile de base confirmé par l’utilisateur. Pas de flash ni de remplacement du launcher. Voir [MAINTENANCE-CADRE.md](MAINTENANCE-CADRE.md) pour l’état actuel ; les constats réseau ci-dessous sont historiques.
+
 ## Matériel identifié sur la photo
 
 - À propos : PF1007.
 - Firmware : `YHK.F-null-A33-1001-D1024-PF1007L-V10-1680.0.20260529`.
-- Famille correspondante documentée : Allwinner A33 / PF1007L. Android 6.0.1, ARMv7 et 1280 × 800 sont rapportés sur le même firmware, **à confirmer par ADB sur cet exemplaire**.
-- « IS OPEN » a été activé par l’utilisateur. L’accès USB n’a pas pu être établi sur le Mac, malgré plusieurs branchements.
+- Famille correspondante documentée : Allwinner A33 / PF1007L. Android 6.0.1, ARMv7 et 1280 × 800 sont rapportés sur le même firmware, **confirmés par ADB sur cet exemplaire**.
+- « IS OPEN » a été activé par l’utilisateur. L’accès USB a ensuite été établi sur le Mac avec un câble de données ; les premiers essais ci-dessous étaient infructueux.
 - AiMOR répondait sur TCP 8086 ; TCP 5555 était fermé. **8086 est un service de fichiers AiMOR, pas ADB.**
 
 Sources principales : [guide PF1007L](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/pf1007l-start-here.md), [rapport du menu de test sur le firmware exact](https://github.com/wesbos/photo-frame-dashboard/issues/135), [méthode Wi-Fi sur ce firmware](https://github.com/wesbos/photo-frame-dashboard/issues/117).
@@ -49,9 +56,9 @@ La suite dépend des résultats réels. Le WebView stock est rapporté comme Chr
 
 Avant toute modification système, suivre les sauvegardes du [guide matériel](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/allwinner-a33-pf1007l.md). Sur Windows, **ne pas copier une image binaire avec `adb ... > fichier.img` dans Windows PowerShell 5** : cette redirection peut corrompre le contenu. Utiliser une méthode binaire contrôlée et vérifier les tailles et empreintes.
 
-Pour le premier essai, privilégier une application navigateur utilisateur compatible plutôt qu’une réécriture du système. Ne remplacer le launcher ou WebView qu’après sauvegarde vérifiée et identification du matériel. Le choix du navigateur/APK et son fonctionnement physique restent à valider.
+Pour le premier essai, privilégier une application navigateur utilisateur compatible plutôt qu’une réécriture du système. Ne remplacer le launcher ou WebView qu’après sauvegarde vérifiée et identification du matériel. Firefox 143.0.4 ARMv7 est désormais installé et son affichage physique est vérifié.
 
-Une fois le navigateur disponible, il ouvre l’adresse LAN du serveur de la tour. La tour doit rester allumée pendant l’utilisation. Vérifier par toucher réel : navigation, défilement, clavier, sortie vers les réglages Android et retour à AiMOR. Ne pas désactiver AiMOR avant d’avoir confirmé un chemin de retour et un accès de maintenance durable.
+La copie actuellement installée ouvre 127.0.0.1:4173 directement sur le cadre, sans tour allumée. L’adresse LAN de la tour reste une option pour les anciens connecteurs Node ; elle exige alors que la tour soit allumée. Vérifier par toucher réel : navigation, défilement, clavier, sortie vers les réglages Android et retour à AiMOR. Ne pas désactiver AiMOR avant d’avoir confirmé un chemin de retour et un accès de maintenance durable.
 
 ## 4. Wi-Fi et limites constatées
 
@@ -59,4 +66,4 @@ L’IP et les derniers octets de la MAC ont changé plusieurs fois après redém
 
 La box identifiée est une **Sunrise Connect Box 3 Fiber F5685LGB** ; le menu AiMOR vu par l’utilisateur n’expose pas de modification IP/DNS. La tentative de préparer un relais DNS n’a donc pas été appliquée au cadre. Aucun paquet de commande ADB n’a été envoyé. Aucun firmware n’a été flashé, aucun compte externe autorisé et aucun service de la box modifié.
 
-La [méthode réseau](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/pf1007l-20260410-network-adb.md) repose sur une redirection DNS temporaire. Elle n’est pas automatiquement disponible dans cette configuration ; ne pas toucher au DHCP de toute la maison pour contourner ce point. L’accès USB sur la tour est le prochain essai retenu.
+La [méthode réseau](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/pf1007l-20260410-network-adb.md) repose sur une redirection DNS temporaire. Elle n’est pas automatiquement disponible dans cette configuration ; ne pas toucher au DHCP de toute la maison pour contourner ce point. Cette tentative précède l’accès USB réussi sur le Mac et n’est plus le parcours actuel.

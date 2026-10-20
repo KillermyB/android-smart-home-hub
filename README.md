@@ -2,9 +2,11 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.6.0.** L’interface est vérifiable en navigateur ; l’installation, le tactile et les performances sur le cadre physique restent à valider. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
+**Version : v0.7.0.** Hub est installé et affiché sur le cadre physique dans Firefox 143.0.4. Le tactile Cuisine → recette → Maison a été confirmé par l’utilisateur. Le redémarrage, les performances prolongées et les comptes réels restent à vérifier. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.6.0`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.0`.
+
+Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
 
 ## Récupérer et lancer sur Windows
 
@@ -46,7 +48,7 @@ Les jetons Courses Todoist et Spotify restent dans la session du navigateur. Le 
 
 ## Services et limites
 
-Le [site privé HTTPS](https://smart-hub-maison.kbo1.chatgpt.site/) évite de garder la tour allumée pour les fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify. Les calendriers Perso/Myrak/Travail restent à autoriser et à vérifier séparément ; les flux calendriers existants nécessitent encore le serveur Node. Choisir une couleur ou un nom de source ne connecte pas un compte.
+La copie autonome du cadre et le [site privé HTTPS](https://smart-hub-maison.kbo1.chatgpt.site/) évitent de garder la tour allumée pour les fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify. Les calendriers Perso/Myrak/Travail restent à autoriser et à vérifier séparément ; les flux calendriers existants nécessitent encore le serveur Node. Choisir une couleur ou un nom de source ne connecte pas un compte.
 
 La domotique exige une instance Home Assistant existante, accessible depuis le navigateur. Depuis Hub. en HTTPS, son adresse doit également être HTTPS. Aucun serveur domotique n’est installé par cette app et aucun appareil réel n’a encore été testé. Voir [DOMOTIQUE.md](docs/DOMOTIQUE.md).
 
@@ -63,6 +65,6 @@ npm test
 
 Les tests de code, les contrôles visuels en navigateur, les autorisations de vrais comptes, le push GitHub et le fonctionnement physique sont des validations distinctes. Les résultats de chaque livraison sont consignés dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-L’accès ADB n’a pas été obtenu pendant la session Mac initiale. Sur la tour, commencer par un câble USB-A → USB-C de données, lire l’identité réelle de l’appareil et vérifier les sauvegardes avant toute installation. Ne flasher aucun firmware et ne remplacer aucun launcher pour le premier essai. Voir [INSTALLATION-CADRE.md](docs/INSTALLATION-CADRE.md), puis [CADRE-WINDOWS.md](docs/CADRE-WINDOWS.md).
+L’accès USB/ADB root a été confirmé sur le Mac, les sauvegardes données/boot/bootloader sont vérifiées et Firefox est installé. Le WebView stock et AiMOR sont conservés. Pour un autre ordinateur, commencer par les lectures d’identité et ne pas utiliser les anciennes adresses IP. Le démarrage automatique et le retour physique aux réglages Android restent à valider. Voir [INSTALLATION-CADRE.md](docs/INSTALLATION-CADRE.md), puis [CADRE-WINDOWS.md](docs/CADRE-WINDOWS.md).
 
 La liste des étapes restantes est dans [RESTANT.md](docs/RESTANT.md).

@@ -1,9 +1,9 @@
 # Smart Hub handoff
 
-Start by reading `README.md`, `docs/RESTANT.md` and, for hardware work, `docs/CADRE-WINDOWS.md`. The user wants to copy this project to a Windows tower with USB-A, then finish setup on their own AiMOR frame.
+Start by reading `README.md`, `docs/RESTANT.md` and, for hardware work, `docs/CADRE-WINDOWS.md`. The user’s AiMOR frame is now installed from the Mac; preserve the Windows handoff as a recovery option.
 
-- The UI is a working browser prototype, not a proven on-device installation. No physical ADB access was obtained during the initial Mac session. Never infer deployment from a successful browser test.
-- Read the current Git status/history/remotes before changing or publishing. GitHub creation was deferred until the user reviews the first UI. Keep human-readable English commits and logical semantic versions based on existing history.
+- On 2026-10-20, USB ADB root and the documented sun8i/Android 6.0.1/ARMv7/1280x800 identity were verified on the Mac. Data/boot/bootloader backups were verified before installing Firefox 143.0.4 and SimpleSSHD 27. Hub v0.7.0 is served on-device at 127.0.0.1:4173; real rendering/fullscreen and the user's basic touchscreen check passed. Reboot/autostart, physical Settings recovery and long-running performance remain unverified. Read docs/MAINTENANCE-CADRE.md; never infer those checks from browser QA.
+- Read the current Git status/history/remotes before changing or publishing. The private GitHub repository already exists and main is the publication branch. Keep human-readable English commits and logical semantic versions based on existing history.
 - Preserve user data. `.env`, `.data`, firmware backups, diagnostic dumps, account credentials and private device identifiers must stay out of Git. Never log OAuth tokens or API secrets.
 - Device IP and MAC changed on reboot. Re-read the current IP; historic values are not defaults. Port 8086 is the AiMOR file service, not ADB.
 - Start with the USB and network read-only checks, and stop if identity differs from the documented device. Verify backups before device writes. Do not flash boot/system or disable the only working launcher/access path as a routine setup step.

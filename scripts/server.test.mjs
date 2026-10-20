@@ -27,7 +27,7 @@ test('private local server rejects secret files, foreign hosts and cross-origin 
   assert.equal((await fetch(base + '/auth/google')).status,400);
   assert.equal((await fetch(base + '/auth/callback/google?state=forged&code=forged')).status,400);
   for(const asset of ['lyrics.js','home-assistant.js']){const response=await fetch(base+'/'+asset);assert.equal(response.status,200,asset);assert.match(response.headers.get('content-type'),/javascript/);}
-  const font=await fetch(base+'/fonts/manrope.woff2');assert.equal(font.status,200);assert.match(font.headers.get('content-type'),/font\/woff2/);
+  for(const name of ['manrope.woff2','manrope-600.woff2','dm-sans-400.woff2']){const font=await fetch(base+'/fonts/'+name);assert.equal(font.status,200,name);assert.match(font.headers.get('content-type'),/font\/woff2/);}
   const source=await (await fetch(base+'/app.js')).text();assert.equal(source.includes(secret),false);
 });
 

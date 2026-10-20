@@ -93,3 +93,42 @@
 
 .music-info .music-controls .music-play{width:72px;height:72px;min-height:72px}
 @media(max-width:720px){.music-info .music-controls .music-play{width:62px;height:62px;min-height:62px}}
+
+/* Larger text and controls for the physical 10-inch frame. */
+@media(min-width:901px){
+  .nav-button{font-size:15px;min-height:46px;padding:0 19px}
+  .nav-button svg{width:19px;height:19px}
+  .header-actions{gap:8px}.header .icon-button{width:48px;height:48px}.header .icon-button svg{width:21px;height:21px}
+  .pill{font-size:14px;min-height:48px}.pill svg{width:20px;height:20px}
+  input,select,textarea{font-size:15px}.page-top h1{font-size:32px}.page-top p{font-size:15px}
+  .dashboard{height:calc(100vh - 139px)}
+  .dashboard-right{grid-template-rows:minmax(0,1.1fr) minmax(164px,1fr)}
+  .dash-clock .home-chip{font-size:12px}.clock-location{font-size:11px}
+  .dash-clock .day{font-size:17px}.dash-clock .clock-time{font-size:clamp(112px,11.6vw,184px)}
+  .dash-clock .clock-greeting{font-size:33px}.clock-foot{font-size:12px}
+  .dash-weather .eyebrow{font-size:11px}.dash-temperature{font-size:62px;line-height:1;margin-top:3px}
+  .dash-weather p{font-size:12px}.dash-forecast small{font-size:11px}.dash-forecast strong{font-size:13px}
+  .dash-forecast>div{padding:8px}.dash-forecast svg{width:19px;height:19px}
+  .dashboard-right>.dash-tasks{padding:10px 20px}
+  .dashboard-right>.dash-tasks .card-title h2,.dashboard-tiles .card-title h2,.dashboard-tiles>.dash-agenda .card-title h2{font-size:15px}
+  .dashboard-right>.dash-tasks .task,.dashboard-right>.dash-tasks .task-toggle{font-size:15px;min-height:34px}
+  .dash-tasks .check-circle{width:19px;height:19px}.dash-tasks .task-toggle{gap:9px}
+  .agenda-event-day{font-size:11px}.agenda-event-time strong{font-size:24px}.agenda-event-time>span{font-size:14px}
+  .agenda-event-title{font-size:14px}.agenda-range-hours,.agenda-source{font-size:10px}
+  .dashboard-tiles>.dash-agenda{gap:5px}
+  .dash-meal strong{font-size:24px}.dash-meal small{font-size:12px}.dash-meal .eyebrow{font-size:11px}
+  .music-mini strong{font-size:14px}.music-mini small{font-size:12px}.music-mini-art{width:48px;height:48px}
+  .dashboard-details .quote-open{font-size:16px}.dashboard-details .quote-author{font-size:11px}
+  .dashboard-details .github-card h2{font-size:15px}.dashboard-details .github-total small{font-size:11px}
+  .dashboard-details .github-footer{font-size:10px}.footer{font-size:10px}
+  .recipe-content h2{font-size:25px}.recipe-content p{font-size:15px}.recipe-meta{font-size:13px}
+  .library-tabs button{font-size:15px}.recipe-count{font-size:13px}.library-banner p{font-size:14px}
+  .task-page .task{font-size:16px}.task-page .info-panel p{font-size:15px}
+  .cook-step>p{font-size:28px}.ingredients label{font-size:16px}.recipe-source{font-size:13px}
+  .calendar-filters label,.calendar-event{font-size:14px}.calendar-event small{font-size:12px}
+  .modal-head h2{font-size:27px}.modal p{font-size:14px}.connection-row h3{font-size:17px}.connection-row p{font-size:13px}
+  .setting-line,.setting-group>h3{font-size:15px}.note p{font-size:13px}
+  .music-artist{font-size:25px}.music-hint{font-size:15px}.music-disclaimer{font-size:12px}
+  .lyrics-line{font-size:24px}.lyrics-plain{font-size:17px}.lyrics-caption{font-size:11px}
+  .ha-layout .ha-device-actions .pill{font-size:14px;min-height:48px}.ha-device h3{font-size:18px}.ha-device p{font-size:14px}
+}

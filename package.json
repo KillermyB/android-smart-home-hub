@@ -1,13 +1,14 @@
 {
   "name": "smart-hub",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node --env-file-if-exists=.env server.mjs",
     "start": "node --env-file-if-exists=.env server.mjs",
-    "check": "node --check dist/app.js && node --check dist/connectors.js && node --check dist/lyrics.js && node --check dist/home-assistant.js && node --check dist/hub-tools.js && node --check dist/budget-recipes.js && node --check dist/data.js && node --check dist/quotes.js && node --check dist/github.js && node --check server.mjs",
-    "test": "node --test scripts/*.test.mjs"
+    "check": "node --check dist/app.js && node --check dist/connectors.js && node --check dist/lyrics.js && node --check dist/home-assistant.js && node --check dist/hub-tools.js && node --check dist/budget-recipes.js && node --check dist/data.js && node --check dist/quotes.js && node --check dist/github.js && node --check server.mjs && node --check scripts/frame.mjs",
+    "test": "node --test scripts/*.test.mjs",
+    "frame": "node scripts/frame.mjs"
   },
   "engines": {
     "node": ">=22.9"

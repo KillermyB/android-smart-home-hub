@@ -197,9 +197,9 @@ const server = http.createServer(async (req, res) => {
     if(path.startsWith('/api/')||path.startsWith('/auth/'))return json(res,404,{error:'Route indisponible.'});
     if(req.method!=='GET'&&req.method!=='HEAD')return json(res,405,{error:'Méthode refusée.'});
     const files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/hub-tools.js':'hub-tools.js','/connectors.js':'connectors.js','/lyrics.js':'lyrics.js','/home-assistant.js':'home-assistant.js','/data.js':'data.js','/budget-recipes.js':'budget-recipes.js','/quotes.js':'quotes.js','/github.js':'github.js','/styles.css':'styles.css','/dashboard.css':'dashboard.css','/home-assistant.css':'home-assistant.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt','/licenses/syne.txt':'licenses/syne.txt','/licenses/geist.txt':'licenses/geist.txt'};
-    if(/^\/fonts\/(dm-sans|manrope)(\.woff2|-OFL\.txt)$/.test(path))files[path]=path.slice(1);
+    if(/^\/fonts\/(dm-sans|manrope)(?:-(400|500|600|700|800))?(\.woff2|-OFL\.txt)$/.test(path))files[path]=path.slice(1);
     if(!files[path])return json(res,404,{error:'Fichier introuvable.'});
-    const font=path.match(/^\/fonts\/(dm-sans|manrope)(\.woff2|-OFL\.txt)$/);
+    const font=path.match(/^\/fonts\/(dm-sans|manrope)(?:-(400|500|600|700|800))?(\.woff2|-OFL\.txt)$/);
     if(font)files[path]=path.slice(1);
     const file=files[path],content=await readFile(join(root,'dist',file));
     res.writeHead(200,{'Content-Type':({'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.woff2':'font/woff2','.txt':'text/plain'}[extname(file)])+'; charset=utf-8','Cache-Control':'no-cache'});res.end(req.method==='HEAD'?undefined:content);

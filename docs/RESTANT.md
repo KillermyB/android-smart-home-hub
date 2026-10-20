@@ -1,5 +1,16 @@
 # Liste de reprise
 
+## Accès physique — 20 octobre 2026
+
+- [x] USB et ADB root confirmés depuis le Mac : sun8i, ARMv7, Android 6.0.1, build 20260529, 1280 × 800.
+- [x] WebView stock identifié : 44.0.2403.119.
+- [x] Sauvegardes privées données/boot/bootloader vérifiées avant installation de Firefox 143.0.4 ARMv7 et SimpleSSHD 27 ; aucun flash système.
+- [x] Hub v0.7.0 copié sur le cadre avec empreintes vérifiées et service local lié uniquement à 127.0.0.1:4173 ; affichage réel et plein écran contrôlés.
+- [x] Tactile Cuisine → recette → Maison confirmé par l’utilisateur ; textes et commandes agrandis ensuite selon son retour.
+- [x] Fuseau Europe/Zurich, heure automatique, fuseau manuel et maintien allumé sur alimentation appliqués avec accord explicite.
+- [x] SSH root par clé sur 2222 testé en Wi-Fi depuis le Mac ; clé privée et clé hôte épinglée hors Git, redirections interdites, autre source refusée par le shell.
+- [ ] Tester la reprise après redémarrage/coupure, la nouvelle IP, le retour physique vers Android Settings et le démarrage automatique de Hub. Voir `MAINTENANCE-CADRE.md`.
+
 ## Livraison v0.6.0
 
 - [x] Contrôles locaux et visuels consignés dans `VERIFICATION.md` : syntaxe, 40 tests et vues cadre/étroites.
@@ -51,7 +62,7 @@ Les recettes personnelles, favoris, plats retirés, courses, notes/photos, citat
 - [x] Brief : prochain rendez-vous en cours/à venir, trois tâches prioritaires, météo et repas prévu ; ouverture matinale facultative.
 - [x] Minuteur global : pause, reprise, +1 minute, persistance et signal visuel, sans sonnerie système garantie.
 - [x] Compagnon sans serveur : notes, photos, liens et recettes dans IndexedDB ; export/import manuel par fichier, sans doublon ni écrasement.
-- [x] Liens de recettes dans un nouvel onglet, avec adresse HTTP(S) validée. Le navigateur Android lui-même reste à installer sur le cadre.
+- [x] Liens de recettes dans un nouvel onglet, avec adresse HTTP(S) validée. Firefox est désormais installé sur le cadre ; ouverture et retour des onglets restent à vérifier physiquement.
 - [x] 20 recettes faciles à petit budget sans porc, portant le carnet initial à 32 ; liens des sources et versions simplifiées indiqués.
 - [x] Cœur et retrait visibles sur les cartes ; favoris et plats retirés persistants, restauration possible. Accueil et sélection du repas excluent les plats retirés.
 - [x] Citations en DM Sans, sans sérif.
@@ -96,9 +107,9 @@ Les recettes personnelles, favoris, plats retirés, courses, notes/photos, citat
 ## Sur la tour
 
 - [ ] Installer Node 22.9+ et lancer `npm start` ; vérifier `npm run check` et `npm test`.
-- [ ] Brancher le cadre en USB-A → USB-C de données, confirmer `adb devices -l` et lire son identité réelle.
-- [ ] Faire les sauvegardes privées nécessaires avant installation sur le cadre.
-- [ ] Choisir et vérifier le navigateur/kiosk compatible ; tester Hub. sur le vrai panneau.
+- [x] Connexion USB et identité réelle confirmées sur le Mac ; répéter les lectures si reprise sur une autre machine.
+- [x] Sauvegardes privées du premier appareil vérifiées sur le Mac ; ne pas les publier.
+- [x] Firefox 143.0.4 installé et Hub affiché sur le vrai panneau ; choix du kiosk permanent encore à valider.
 - [ ] Vérifier le retour aux réglages Android avec un seul doigt et après redémarrage.
 - [ ] Stabiliser l’accès de maintenance et l’adresse du cadre avec une méthode validée pour ce matériel.
 

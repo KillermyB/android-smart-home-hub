@@ -1,8 +1,8 @@
 # Installer Hub. sur le cadre
 
-Guide de reprise pour la livraison **v0.6.0**. Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.6.0`.
+Guide de reprise pour la livraison **v0.7.0**. Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.0`.
 
-Le code peut être récupéré sur la tour Windows. Le cadre, lui, doit ouvrir Hub. dans un navigateur compatible : il n’a pas besoin de Git ou de Node.js. L’installation physique n’a pas encore été validée sur cet exemplaire AiMOR.
+Le code peut être récupéré sur la tour Windows. Le cadre, lui, doit ouvrir Hub. dans un navigateur compatible : il n’a pas besoin de Git ou de Node.js. Firefox et Hub sont maintenant installés sur cet exemplaire AiMOR. La procédure actuelle et la mise à jour Wi-Fi sont dans [MAINTENANCE-CADRE.md](MAINTENANCE-CADRE.md). Les étapes ci-dessous servent aussi à une reprise sur une autre machine.
 
 ## 1. Récupérer le projet sur la tour
 
@@ -37,12 +37,13 @@ Si `git status` affiche des fichiers modifiés, les conserver et les examiner av
 
 | Mode | Ce qui reste nécessaire | Services disponibles |
 | --- | --- | --- |
-| Site privé HTTPS — conseillé sans serveur personnel | Navigateur compatible sur le cadre, accès Internet et compte autorisé sur le site | Fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify après configuration |
+| Copie autonome installée | Firefox sur le cadre, Internet pour les services externes | Interface locale sans Mac/tour, météo et GitHub ; Todoist/Spotify/Home Assistant après configuration |
+| Site privé HTTPS | Navigateur compatible sur le cadre, accès Internet et compte autorisé sur le site | Fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify après configuration |
 | Aperçu sur la tour | Tour allumée, Node et configuration LAN documentée | Même interface, plus anciennes connexions calendriers/tâches du serveur Node après configuration |
 
 Adresse du site privé : **https://smart-hub-maison.kbo1.chatgpt.site/**.
 
-Le premier mode n’impose pas de garder la tour allumée. Copier `dist/` sur le cadre et ouvrir `index.html` en `file://` n’est pas le parcours prévu : le site HTTPS fournit l’origine stable nécessaire aux données locales et aux connexions du navigateur.
+Les deux premiers modes n’imposent pas de garder la tour allumée. Le cadre sert les fichiers statiques uniquement à lui-même sur 127.0.0.1:4173 ; ce service ne synchronise pas les données et n’expose pas de port web au LAN. Copier `dist/` sur le cadre et ouvrir `index.html` en `file://` n’est pas le parcours prévu : l’adresse locale 127.0.0.1:4173 et le site HTTPS fournissent chacun leur origine stable pour les données locales et les connexions du navigateur.
 
 Les fichiers GitHub sont le code de l’application. Ils ne contiennent pas les favoris, recettes personnelles, photos, notes ou jetons d’un navigateur. `localhost`, le site hébergé et chaque appareil gardent des copies différentes. Pour le transfert manuel des notes/photos/recettes, consulter [TRANSFERT-LOCAL.md](TRANSFERT-LOCAL.md). Ne pas effacer les données du navigateur avant d’avoir conservé les exports utiles.
 
@@ -50,7 +51,7 @@ Les fichiers GitHub sont le code de l’application. Ils ne contiennent pas les 
 
 Utiliser un câble **USB-A → USB-C de données connu**, branché directement sur un port USB-A de la tour. Vérifier que le cadre est alimenté et laisse démarrer AiMOR. Un câble de charge seul ne permet pas ADB.
 
-Le menu de test a été passé sur `IS OPEN` pendant la session Mac, sans obtenir d’accès ADB. Vérifier son état après redémarrage en suivant [CADRE-WINDOWS.md](CADRE-WINDOWS.md), qui décrit le menu du firmware photographié.
+Le menu de test a été passé sur `IS OPEN` et l’accès USB/ADB root est désormais confirmé sur le Mac. Vérifier son état après redémarrage en suivant [CADRE-WINDOWS.md](CADRE-WINDOWS.md), qui décrit le menu du firmware photographié.
 
 Télécharger les [Android SDK Platform-Tools officiels pour Windows](https://developer.android.com/tools/releases/platform-tools), extraire l’archive puis ouvrir PowerShell dans le dossier `platform-tools` :
 
@@ -71,13 +72,13 @@ Télécharger les [Android SDK Platform-Tools officiels pour Windows](https://de
 .\adb.exe -d shell dumpsys package com.android.webview
 ```
 
-Comparer ces résultats à [CADRE-WINDOWS.md](CADRE-WINDOWS.md). Le modèle PF1007 et le firmware photographié sont connus ; Android, architecture, résolution et version WebView de cet appareil doivent être confirmés. Si l’identité diffère, ne pas appliquer une procédure destinée à un autre matériel.
+Comparer ces résultats à [CADRE-WINDOWS.md](CADRE-WINDOWS.md). Le modèle PF1007 et le firmware photographié sont connus ; Android 6.0.1, ARMv7, 1280 × 800 et WebView 44 ont été confirmés sur cet appareil ; répéter ces lectures pour une nouvelle session. Si l’identité diffère, ne pas appliquer une procédure destinée à un autre matériel.
 
 Conserver les sorties ADB, numéros de série, adresses réseau et captures de diagnostic dans un dossier privé **hors du dépôt Git**. L’adresse IP peut changer au redémarrage ; aucune ancienne adresse ne doit servir de valeur par défaut. Le port AiMOR 8086 n’est pas ADB.
 
 ## 4. Sauvegarder avant d’installer un navigateur
 
-La cible de l’interface est **Chrome/WebView 106 ou plus récent**. L’accès ADB ne prouve pas que ce navigateur fonctionne sur le cadre. Le choix exact du navigateur et de son APK reste à valider après les lectures ci-dessus ; aucun APK ni commande d’installation non vérifiés ne sont inclus ici.
+La cible de l’interface est **Chrome/WebView 106 ou plus récent**. L’accès ADB ne prouve pas que ce navigateur fonctionne sur le cadre. Firefox 143.0.4 ARMv7 a été installé depuis l’archive officielle Mozilla et affiche Hub sur cet appareil, avec son propre moteur. Le WebView stock est conservé. Les polices sont fournies en graisses statiques pour éviter le rendu variable incorrect observé sur Android 6.
 
 Avant une installation sur l’appareil :
 
@@ -118,6 +119,6 @@ Pour un essai LAN avec la tour, suivre les réglages `HOST`, `HUB_ACCESS_TOKEN` 
 
 ## État de la livraison
 
-La publication du code GitHub, la publication du site, les autorisations des comptes et l’installation physique sont quatre validations distinctes. Ce guide prépare la reprise sur la tour ; il ne constitue pas une preuve d’installation sur le cadre.
+La publication du code GitHub, la publication du site, les autorisations des comptes et l’installation physique sont quatre validations distinctes. Hub est affiché sur le cadre et le parcours tactile de base est confirmé ; les comptes, le démarrage après coupure et le retour physique aux réglages restent distincts.
 
 **Home Assistant** : l’interface est prévue dans Réglages → Domotique. Une instance Home Assistant existante et accessible depuis le cadre est nécessaire ; HTTPS est requis depuis le site HTTPS. Le jeton reste uniquement en mémoire, et aucun appareil réel n’est validé à ce stade. Voir [DOMOTIQUE.md](DOMOTIQUE.md).

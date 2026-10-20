@@ -114,3 +114,16 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Compagnon/météo : contrôles VM ciblés sur préservation des brouillons/photos, sauvegarde asynchrone, erreurs, cache daté et rafraîchissement visible à 30 minutes ; le dernier relevé reste disponible hors réseau. Aucune ville réelle choisie pendant cette vérification.
 - Historique Git inspecté : 121 blobs texte historiques sans motif de credential fort ou identifiant MAC ; les fichiers privés et fixtures restent exclus. Cette recherche ne remplace pas les exclusions et la revue des chemins publiés.
 - Restent distincts : connexion aux comptes réels, Home Assistant de l’utilisateur, clone sur la tour et installation/tactile/performance du cadre physique.
+
+
+## v0.7.0 — Installation réelle et maintenance Wi-Fi
+
+- USB/ADB root confirmé : sun8i, Android 6.0.1, ARMv7, build 20260529, 1280 × 800. Sauvegarde des données relue (332 entrées, packages.xml présent), tailles et SHA-256 de boot/bootloader comparées. Sauvegardes privées hors Git ; aucune sauvegarde complète de toutes les partitions revendiquée.
+- Firefox 143.0.4 ARMv7 installé depuis Mozilla et SimpleSSHD 27 depuis F-Droid. WebView stock et AiMOR conservés ; aucun flash.
+- Fuseau Europe/Zurich, auto_time=1, auto_time_zone=0 et stay_on_while_plugged_in=3 appliqués après accord explicite, puis relus sur le cadre.
+- Clé SSH propre au Mac, clé hôte épinglée via USB, authentification et `uid=0(root)` vérifiés sur le vrai Wi-Fi. Source étrangère refusée par le shell ; redirections désactivées. Pare-feu en mémoire limité à ce Mac/boucle locale et IPv6 bloqué sur 2222. La reprise après redémarrage reste distincte.
+- Copie statique v0.7.0 transférée en Wi-Fi, empreintes relues sur le cadre, manifeste servi par HTTP identique au manifeste local. Service lié uniquement à 127.0.0.1:4173 ; relance manuelle `frame start` vérifiée.
+- Affichage et plein écran contrôlés par capture de l’appareil. L’utilisateur confirme le vrai tactile Cuisine → recette → Maison. Les polices variables affichaient des graisses trop fines : versions statiques dérivées des mêmes sources, licences conservées, puis rendu physique corrigé vérifié.
+- Agrandissement demandé après l’essai réel : navigation 15 px, priorités 15 px, heures d’agenda 24 px, icônes/commandes plus grandes et horloge renforcée. Contrôle 1280 × 800 : document 1280 × 800, trois priorités dans leur carte et prévisions dans la météo. Les exemples restent signalés.
+- Réglages/plein écran et retour vérifiés aussi en navigateur, format 320 px sans débordement. Tests des fichiers statiques (empreintes, refus des fichiers cachés/liens symboliques) et configuration SSH ajoutés. `npm run check`, 42 tests et `git diff --check` passent.
+- À vérifier séparément : réglages Android par toucher physique, autostart après coupure, CPU/mémoire prolongés, vraie ville météo et comptes externes.
