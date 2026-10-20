@@ -6,6 +6,10 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Accueil v0.5.1
+
+- [x] Tuile Courses retirée de l’accueil ; agenda 24 h élargi dans la rangée du bas, priorités sous la météo. Courses accessibles depuis la cuisine et les réglages.
+
 ## Composition et services v0.5.0
 
 - [x] Nouvel accueil : horloge sur une moitié, météo et agenda 24 h à droite, Courses/Priorités/Repas/Spotify en bas ; GitHub, citations et outils existants accessibles.

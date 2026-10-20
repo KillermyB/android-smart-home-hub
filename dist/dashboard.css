@@ -25,3 +25,14 @@
 .dash-tasks .task{font-size:12px}.timeline-caption{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dashboard-tiles .card-title h2{font-size:13px}
 @media(max-width:720px){.dash-forecast>div{min-width:0;flex-direction:column;padding:10px 5px;gap:7px}.dash-forecast strong{font-size:12px}.dash-forecast{gap:6px}}
 .dashboard-tiles .arrow{width:40px;min-height:40px;margin:-6px -5px -6px 0}.dash-weather-top>.arrow{width:40px;min-height:40px;margin:-5px -5px 0 0}
+
+/* Priorities beside the clock; the 24-hour agenda anchors the lower row. */
+.dashboard-right>.dash-tasks{padding:12px 20px;min-height:0;overflow:hidden}
+.dashboard-right>.dash-tasks .card-title h2{display:flex;align-items:center;gap:7px;font-size:13px}
+.dashboard-right>.dash-tasks .card-title h2 svg{width:15px;height:15px;color:var(--muted)}
+.dashboard-right>.dash-tasks .task,.dashboard-right>.dash-tasks .task-toggle{min-height:32px;font-size:13px}
+.dashboard-right>.dash-tasks .task-list{margin-top:5px}
+.dashboard-tiles>.dash-agenda{grid-column:span 2;gap:6px}
+.dashboard-tiles>.dash-agenda .card-title h2{color:var(--ink);font-size:13px;font-weight:600}
+@media(max-width:900px){.dashboard-right>.dash-tasks{min-height:165px}}
+@media(max-width:720px){.dashboard-right>.dash-tasks{padding:18px 20px;min-height:190px}.dashboard-right>.dash-tasks .task,.dashboard-right>.dash-tasks .task-toggle{min-height:37px}.dashboard-tiles>.dash-agenda{grid-column:1/-1;min-height:175px}}

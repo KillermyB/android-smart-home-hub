@@ -85,3 +85,9 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Bibliothèque : 200 citations, police calculée DM Sans / Arial / sans-serif, focus initial sur Fermer dans les fenêtres. Transitions courtes et règles `prefers-reduced-motion` conservées ; pas de nouvel émulateur système de mouvement utilisé.
 - Contrôles CORS non authentifiés de l’API Todoist : origine du site acceptée, autorisation des en-têtes Authorization et Content-Type. Aucun jeton réel fourni, aucune écriture distante réalisée.
 - Spotify sans connexion affiche un état vide explicite et des commandes désactivées. Configuration avec adresse HTTPS/loopback vérifiée dans l’interface. La lecture, les comptes réels, le tactile et le démarrage sur le cadre restent à valider.
+
+## v0.5.1 — Emplacements de l’accueil
+
+- Courses retirées de l’accueil ; agenda 24 h dans la rangée du bas sur deux colonnes, priorités sous la météo à droite de l’horloge.
+- Clair à 1280 × 800 : document de mêmes dimensions, trois tâches entièrement dans leur carte. Sombre à 320 × 740 : aucune tuile Courses, priorités et agenda à leurs emplacements attendus, document sans débordement horizontal.
+- Accès Cuisine → Courses vérifié ; liste locale et ses six éléments de contrôle conservés. `npm run check`, les 13 tests existants et `git diff --check` passent.
