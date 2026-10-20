@@ -76,7 +76,7 @@ test('music UI with automatic lyrics disabled waits for manual action and discar
  const m=musicUI();m.ui.lyricsControls();m.ui.lyricsLifecycle();assert.equal(m.calls,0);assert.equal(m.timers.size,1);
  const pending=m.ui.loadLyrics();assert.equal(m.calls,1);assert.match(m.cover.innerHTML,/Recherche des paroles/);
  m.ui.state.page='home';m.ui.lyricsLifecycle();assert.equal(m.ui.lyricsState.open,false);
- m.finish({status:'plain',plainText:'Synthetic only',lines:[]});await pending;assert.equal(m.ui.lyricsState.result,null);assert.equal(m.timers.size,0);
+ m.finish({status:'plain',plainText:'Synthetic only',lines:[]});await pending;assert.equal(m.ui.lyricsState.result,null);assert.equal(m.timers.size,1);
  m.ui.state.page='music';const next=m.ui.loadLyrics();m.ui.music.data.item={...song,name:'Another synthetic track'};m.ui.lyricsLifecycle();m.finish({status:'plain',plainText:'Old synthetic track',lines:[]});await next;assert.equal(m.ui.lyricsState.result,null);assert.equal(m.calls,2);
 });
 

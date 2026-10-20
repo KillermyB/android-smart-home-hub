@@ -223,3 +223,34 @@
 @media(min-width:1000px) and (max-height:760px){.music-screen{padding:26px 48px 22px}.music-stage{grid-template-columns:290px minmax(0,1fr);padding:22px 0;gap:56px}.music-lyrics-below .lyrics-panel{height:125px}.music-info h1{font-size:46px}.music-info .music-controls{margin-top:26px}}
 @media(max-width:900px){.music-screen{padding:30px}.music-stage{grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:34px}.music-artist{font-size:22px}.music-info h1{font-size:37px}.music-info .music-controls{gap:24px}.music-info .music-play{width:72px;height:72px;min-height:72px}}
 @media(max-width:640px){.music-screen{padding:22px 20px}.music-stage{display:flex;flex-direction:column;gap:30px;padding:30px 0}.music-visual{width:min(100%,340px)}.music-info{width:100%}.music-cover{width:100%;max-width:none}.music-artist{font-size:21px}.music-info h1{font-size:34px;letter-spacing:-1.2px}.music-info .music-controls{justify-content:center;margin:26px 0 10px}.music-destinations{margin:20px 0 24px}.music-lyrics-below .lyrics-panel{height:145px}.music-volume{margin-top:10px}.music-head-actions{gap:4px}.music-head-actions .pill{padding:0 16px}.music-page-head>span{font-size:14px}}
+
+/* The whole tile opens; its native keyboard action has no visible arrow. */
+[data-tile-action]{position:relative}
+.tile-access:focus{outline:none}
+.keyboard-input [data-tile-action]:focus-within{outline:2px solid var(--focus);outline-offset:3px}
+.dash-temperature{font-size:70px;line-height:1;margin-top:0;gap:16px}
+.dash-temperature svg{width:43px;height:43px}
+.dash-weather-top{min-height:94px}
+.dash-weather-top>div{width:100%}
+.music-orbit{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;border-radius:inherit}
+.music-orbit rect{width:calc(100% - 3px);height:calc(100% - 3px);fill:none;stroke:#f4f2ed;stroke-width:2;stroke-linecap:round;opacity:.85}
+.music-screen{background:radial-gradient(ellipse at 0 0,var(--music-tone-a,#29465f),transparent 85%),var(--music-tone-b,#111e27)}
+.music-focused .music-volume{margin-bottom:0}
+.sleep-thought{max-width:1120px;width:100%}
+.screensaver .sleep-quote{text-wrap:pretty;line-height:1.44}
+.sleep-context{display:flex;align-items:center;justify-content:center;gap:0;max-width:100%;margin:18px auto 0;min-height:42px}
+.sleep-context .sleep-weather{margin:0;gap:14px;flex-shrink:0}
+.sleep-context .sleep-weather strong{font-size:30px;line-height:1;letter-spacing:-1px;font-weight:600}
+.sleep-context .sleep-weather-icon{width:38px;height:34px;display:flex;align-items:center;justify-content:center}
+.sleep-context .sleep-weather-icon>svg{width:34px;height:34px}
+.sleep-context .sleep-weather-partly{width:38px;height:34px}
+.sleep-context .sleep-weather-partly svg:first-child{width:25px;height:25px;top:0;left:0}
+.sleep-context .sleep-weather-partly svg:last-child{width:32px;height:25px;right:0;bottom:0}
+.sleep-appointment{display:flex;align-items:center;gap:12px;min-width:0;max-width:720px;color:#9a9ba2;font-size:21px}
+.sleep-appointment[data-with-weather]{border-left:1px solid #ffffff18;margin-left:30px;padding-left:30px}
+.sleep-appointment i{width:9px;height:9px;flex-shrink:0;border-radius:50%}
+.sleep-appointment strong{font-size:21px;font-weight:500;color:#b8b9bf;white-space:nowrap;flex-shrink:0}
+.sleep-appointment>span{white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+@media(max-width:720px){.dash-temperature{font-size:68px}.sleep-context{flex-wrap:wrap;gap:15px;margin-top:18px;max-width:100%}.sleep-context .sleep-weather strong{font-size:26px}.sleep-context .sleep-weather-icon{width:32px;height:30px}.sleep-appointment{max-width:100%;font-size:16px;gap:8px;justify-content:center}.sleep-appointment strong{font-size:16px}.sleep-appointment[data-with-weather]{padding-left:16px;margin-left:0}.sleep-thought{max-width:100%}}
+@media(max-width:520px){.sleep-context{flex-direction:column}.sleep-appointment[data-with-weather]{border-left:0;padding-left:0}.sleep-appointment{font-size:14px}.sleep-appointment strong{font-size:14px}}
+@media(min-width:1000px) and (max-height:760px){.music-lyrics-below .lyrics-panel{height:112px}}

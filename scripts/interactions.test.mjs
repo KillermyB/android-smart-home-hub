@@ -6,6 +6,22 @@ import { readFileSync } from 'node:fs';
 const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
 const section = (start, end) => app.slice(app.indexOf(start), app.indexOf(end, app.indexOf(start)));
 
+test('idle context shows the next visible calendar appointment beside real weather and never invents an event',()=>{
+ let entries=[{date:'2026-10-21',start:'11:00',end:'13:00',source:'work',title:'Ongoing'}, {date:'2026-10-21',start:'12:30',end:'13:00',source:'outlook',title:'Filtered'}, {date:'2026-10-21',start:'13:30',end:'14:00',source:'work',title:'Next meeting'}];
+ const context=vm.createContext({Date,state:{weather:{temperature:15,code:1,city:'Moudon',summary:'Clouds'},demo:false,filters:['work']},events:()=>entries,dateKey:()=> '2026-10-21',timeText:()=> '12:00',shiftDay:()=> '2026-10-22',dateText:()=> 'Jeu. 22',sourceStyles:{work:{color:'#f90'}},icon:()=>'',esc:String});
+ vm.runInContext(section('  function sleepWeather()', '  function renderOverlay()'),context);
+ let markup=context.sleepContext();assert.match(markup,/13:30/);assert.match(markup,/Next meeting/);assert.doesNotMatch(markup,/Filtered|Ongoing/);assert.match(markup,/data-with-weather/);
+ entries=[];markup=context.sleepContext();assert.doesNotMatch(markup,/sleep-appointment/);assert.match(markup,/15°/);
+ context.state.weather=null;assert.doesNotMatch(context.sleepContext(),/sleep-weather/);
+});
+
+test('the Spotify tile outline represents remaining playback time',()=>{
+ const context=vm.createContext({music:{data:{item:{duration_ms:10000}}},musicProgress:()=>3000,musicTime:value=>String(value)});
+ vm.runInContext(section('  function musicOrbit()', '  function musicArtwork()'),context);
+ assert.match(context.musicOrbit(),/stroke-dasharray="70 100"/);assert.match(context.musicOrbit(),/7000 restantes/);
+ context.music.data=null;assert.equal(context.musicOrbit(),'');
+});
+
 test('Home never silently selects a different or restricted Spotify device', async () => {
   let listed = [{ id: 'phone', name: 'Phone' }, { id: 'blocked', name: 'Home', is_restricted: true }];
   const transfers=[],modals=[];

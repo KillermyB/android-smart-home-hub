@@ -1,5 +1,13 @@
 # Liste de reprise
 
+## Accueil et veille v0.11.0
+
+- [x] Ville retirée de l’accueil, degrés agrandis et flèches des tuiles retirées ; actions natives conservées pour le clavier, clic sur chaque contenu vérifié.
+- [x] Citations plus larges ; jour avec majuscule, météo compacte et prochain rendez-vous visible côte à côte, selon les calendriers et filtres réels.
+- [x] Contour blanc du temps restant Spotify, actualisé sans reconstruire la tuile ; arrêt du suivi en veille ou onglet masqué.
+- [x] Fond du lecteur dérivé d’une vignette de pochette de 24 × 24 pixels, une analyse par image et cache limité ; repli neutre sans image exploitable.
+- [x] 64 tests réussis et vues 1280 × 800 / 320 px vérifiées.
+
 ## Focus musique v0.10.0
 
 - [x] Focus allégé, pochette permanente et paroles disponibles en dessous ; détails de connexion déplacés vers les réglages.

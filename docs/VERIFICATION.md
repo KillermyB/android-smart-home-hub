@@ -1,4 +1,11 @@
-# Vérification du 20 octobre 2026
+# Vérifications des 20 et 21 octobre 2026
+
+## v0.11.0 — Accueil, veille et fond adaptatif
+
+- Syntaxe et 64 tests réussis : sélection du prochain rendez-vous en respectant les filtres, absence de faux événement, contour représentant le temps restant et palettes distinctes avec repli neutre.
+- Clics réels en navigateur sur la température, le message des priorités, le texte de l’agenda, le titre musical, l’auteur et le compteur GitHub : destinations attendues ouvertes sans flèche visible. Les boutons internes restent indépendants.
+- Veille 1280 × 800 : citation sur 1120 px, météo réduite à icône/température, rendez-vous à côté, jour avec majuscule. Rendez-vous visuel contrôlé avec les exemples locaux puis exemples désactivés ; les comptes calendrier réels restent à autoriser. Vue 320 × 700 sans débordement horizontal.
+- La pochette publique utilisée annonce les autorisations CORS nécessaires. L’extraction ne traite que 24 × 24 pixels et son cache reste en mémoire, limité à huit images ; aucun service de palette ni traitement de flou permanent.
 
 ## v0.10.0 — Focus musique allégé
 
