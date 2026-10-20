@@ -39,3 +39,16 @@ test('20 budget recipes have no pork ingredient, complete steps and individual s
   assert.equal(recipes.length,32);assert.equal(budget.length,20);assert.equal(new Set(recipes.map(r=>r.id)).size,32);
   budget.forEach(r=>{assert.equal(r.noPork,true);assert.equal(r.easy,true);assert.ok(r.time<=40);assert.equal(r.servings,2);assert.ok(r.ingredients.length>=4);assert.ok(r.steps.length>=2);assert.equal(new URL(r.source).hostname,'www.mangerbouger.fr');assert.ok(!/\b(porc|jambon|lardons?|bacon|chorizo|pancetta|saucisson)\b/i.test(r.ingredients.map(i=>i.name).join(' ')));assert.ok(r.steps.every(s=>s.text.length>20));});
 });
+
+test('24-hour agenda includes current and short events but excludes tomorrow beyond the window',()=>{
+ const now=new Date('2026-10-20T08:30:00Z'),date='2026-10-20';
+ const result=tools.upcoming([
+  {id:'ongoing',date,start:'10:00',end:'11:00'},
+  {id:'short',date,start:'10:45',end:'10:50'},
+  {id:'past',date,start:'09:00',end:'10:00'},
+  {id:'next',date:'2026-10-21',start:'10:00',end:'11:00'},
+  {id:'outside',date:'2026-10-21',start:'23:00',end:'23:30'},
+  {id:'all-day',date,start:'Journée',end:''}
+ ],now,date);
+ assert.deepEqual(Array.from(result,x=>x.event.id),['ongoing','short','next']);assert.equal(result[0].ongoing,true);assert.equal(result[1].endMinutes-result[1].startMinutes,5);assert.equal(result[2].startMinutes,1410);
+});

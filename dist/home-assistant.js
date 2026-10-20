@@ -1,0 +1,129 @@
+/* Direct Home Assistant WebSocket client, Chrome/WebView 106+.
+ * Protocol: https://developers.home-assistant.io/docs/api/websocket/
+ * Credentials are held only in this closure. Commands are never retried.
+ */
+(function (root) {
+  'use strict';
+  function failure(code, message) { var e = new Error(message); e.code = code; return e; }
+  function endpoint(value) {
+    var url;
+    try { url = new URL(String(value || '').trim()); } catch (_) { throw failure('invalid_url', 'Adresse Home Assistant invalide.'); }
+    if (!/^https?:$/.test(url.protocol) || url.username || url.password || url.search || url.hash) throw failure('invalid_url', 'Utilise une adresse HTTP(S), sans identifiants, paramètres ni fragment.');
+    url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+    url.pathname = url.pathname.replace(/\/+$/, '').replace(/\/api\/websocket$/, '') + '/api/websocket';
+    return url.href;
+  }
+  function normalizeURL(value) { var url = new URL(endpoint(value)); url.protocol = url.protocol === 'wss:' ? 'https:' : 'http:'; url.pathname = url.pathname.replace(/\/api\/websocket$/, '') || '/'; return url.href.replace(/\/$/, ''); }
+  // Home Assistant core vacuum/const.py: START=8192, PAUSE=4, STOP=8, RETURN_HOME=16.
+  function supports(value, service) {
+    if (!validState(value) || value.state === 'unavailable' || value.state === 'unknown') return false;
+    var domain = value.entity_id.split('.')[0];
+    if (domain === 'light' || domain === 'switch') return ['turn_on','turn_off','toggle'].indexOf(service) >= 0;
+    if (domain === 'scene') return service === 'turn_on';
+    var bits = {start:8192, pause:4, stop:8, return_to_base:16}, bit = Object.prototype.hasOwnProperty.call(bits,service) ? bits[service] : 0;
+    return domain === 'vacuum' && bit > 0 && (Number(value.attributes.supported_features) & bit) === bit;
+  }
+  function copy(value) { return JSON.parse(JSON.stringify(value)); }
+  function entity(value) { return typeof value === 'string' && /^[a-z][a-z0-9_]*\.[a-z0-9_]+$/.test(value); }
+  function validState(value) { return value && entity(value.entity_id) && typeof value.state === 'string' && value.attributes && typeof value.attributes === 'object' && !Array.isArray(value.attributes); }
+  function create(options) {
+    options = options || {};
+    var address = endpoint(options.url), token = String(options.token || '').trim(), WS = options.WebSocket || root.WebSocket;
+    if (!token || /[\r\n]/.test(token)) throw failure('invalid_token', 'Ajoute un jeton Home Assistant valide.');
+    if (typeof WS !== 'function') throw failure('unsupported', 'WebSocket est indisponible dans ce navigateur.');
+    var timeout = Number(options.timeoutMs) || 12000;
+    options = null;
+    if (!Number.isFinite(timeout) || timeout < 1 || timeout > 60000) throw failure('invalid_timeout', 'Délai de connexion invalide.');
+    var socket = null, phase = 'disconnected', lastError = null, listeners = new Set(), cache = Object.create(null), pending = new Map(), sequence = 0, subscription = null, loading = false, queued = [], authTimer, connecting = null, resolveConnect, rejectConnect;
+    function states() { return copy(Object.keys(cache).sort().map(function (id) { return cache[id]; })); }
+    function status() { return {status:phase, error:lastError}; }
+    function emit() { listeners.forEach(function (listener) { try { listener(states(), status()); } catch (_) { /* A view callback must not break the connection. */ } }); }
+    function close(error, nextPhase, forget) {
+      var previous = socket; socket = null; clearTimeout(authTimer);
+      pending.forEach(function (request) { clearTimeout(request.timer); request.reject(error || failure('disconnected', 'Connexion Home Assistant fermée.')); }); pending.clear();
+      if (rejectConnect) rejectConnect(error || failure('disconnected', 'Connexion Home Assistant fermée.'));
+      connecting = null; resolveConnect = rejectConnect = null; subscription = null; loading = false; queued = []; cache = Object.create(null);
+      phase = nextPhase || 'disconnected'; lastError = error || null; if (forget) token = '';
+      if (previous) { previous.onmessage = previous.onerror = previous.onclose = null; try { previous.close(); } catch (_) {} }
+      emit();
+    }
+    function send(type, fields) {
+      return new Promise(function (resolve, reject) {
+        if (!socket || socket.readyState !== 1) { reject(failure('not_connected', 'Reconnecte Home Assistant avant cette commande.')); return; }
+        var id = ++sequence, message = Object.assign({id:id, type:type}, fields || {});
+        var timer = setTimeout(function () { pending.delete(id); reject(failure('timeout', type === 'call_service' ? 'Réponse non reçue. Vérifie l’appareil avant de réessayer la commande.' : 'Home Assistant ne répond pas.')); }, timeout);
+        pending.set(id, {resolve:resolve, reject:reject, timer:timer});
+        try { socket.send(JSON.stringify(message)); } catch (_) { clearTimeout(timer); pending.delete(id); reject(failure('connection_failed', 'Impossible de communiquer avec Home Assistant.')); }
+      });
+    }
+    function applyEvent(event) {
+      if (!event || event.event_type !== 'state_changed' || !event.data || !entity(event.data.entity_id)) return;
+      var data = event.data;
+      if (data.new_state === null) delete cache[data.entity_id];
+      else if (validState(data.new_state) && data.new_state.entity_id === data.entity_id) cache[data.entity_id] = copy(data.new_state);
+      else return;
+      if (phase === 'connected') emit();
+    }
+    async function initialize(current) {
+      try {
+        loading = true; subscription = sequence + 1;
+        await send('subscribe_events', {event_type:'state_changed'});
+        if (socket !== current) return;
+        var initial = await send('get_states');
+        if (socket !== current) return;
+        if (!Array.isArray(initial) || !initial.every(validState)) throw failure('protocol_error', 'Les états Home Assistant reçus sont invalides.');
+        cache = Object.create(null); initial.forEach(function (value) { cache[value.entity_id] = copy(value); });
+        queued.forEach(applyEvent); queued = []; loading = false; phase = 'connected'; lastError = null;
+        var resolve = resolveConnect; connecting = null; resolveConnect = rejectConnect = null; if (resolve) resolve(states()); emit();
+      } catch (error) { if (socket === current) close(error, 'error'); }
+    }
+    function receive(current, event) {
+      if (socket !== current) return;
+      var message;
+      try { message = JSON.parse(event.data); } catch (_) { close(failure('protocol_error', 'Réponse Home Assistant illisible.'), 'error'); return; }
+      if (!message || typeof message !== 'object' || Array.isArray(message)) { close(failure('protocol_error', 'Réponse Home Assistant invalide.'), 'error'); return; }
+      if (message.type === 'auth_required' && phase === 'connecting') {
+        try { current.send(JSON.stringify({type:'auth', access_token:token})); } catch (_) { close(failure('connection_failed', 'Impossible de joindre Home Assistant.'), 'error'); }
+      } else if (message.type === 'auth_invalid') close(failure('auth_invalid', 'Jeton Home Assistant refusé. Vérifie son accès.'), 'error');
+      else if (message.type === 'auth_ok' && phase === 'connecting' && !loading) { clearTimeout(authTimer); initialize(current); }
+      else if (message.type === 'result' && pending.has(message.id)) {
+        var request = pending.get(message.id); clearTimeout(request.timer); pending.delete(message.id);
+        if (message.success === true) request.resolve(message.result);
+        else { var error = failure('service_error', 'Home Assistant a refusé cette demande.'); error.serverCode = message.error && typeof message.error.code === 'string' ? message.error.code.slice(0,80) : 'unknown_error'; request.reject(error); }
+      } else if (message.type === 'event' && message.id === subscription) { if (loading) queued.push(message.event); else applyEvent(message.event); }
+    }
+    function connect() {
+      if (phase === 'connected') return Promise.resolve(states());
+      if (connecting) return connecting;
+      if (!token) return Promise.reject(failure('invalid_token', 'Renseigne à nouveau ton jeton pour te reconnecter.'));
+      phase = 'connecting'; lastError = null; cache = Object.create(null);
+      var promise = new Promise(function (resolve, reject) { resolveConnect = resolve; rejectConnect = reject; }); connecting = promise;
+      try {
+        var current = new WS(address); socket = current;
+        current.onmessage = function (event) { receive(current, event); };
+        current.onerror = function () { if (socket === current) close(failure('connection_failed', 'Home Assistant est inaccessible. Vérifie l’adresse, le réseau et HTTPS.'), 'error'); };
+        current.onclose = function () { if (socket === current) close(failure('connection_closed', 'Connexion Home Assistant interrompue. Reconnecte-la pour retrouver les appareils.'), 'disconnected'); };
+        authTimer = setTimeout(function () { if (socket === current) close(failure('auth_timeout', 'Home Assistant ne répond pas à la connexion.'), 'error'); }, timeout);
+      } catch (_) { close(failure('connection_failed', 'Impossible d’ouvrir la connexion Home Assistant.'), 'error'); }
+      emit(); return promise;
+    }
+    async function call(domain, service, target, data) {
+      if (phase !== 'connected') throw failure('not_connected', 'Reconnecte Home Assistant avant cette commande.');
+      if (!/^[a-z][a-z0-9_]*$/.test(domain) || !/^[a-z][a-z0-9_]*$/.test(service)) throw failure('invalid_service', 'Commande Home Assistant invalide.');
+      if (!target || typeof target !== 'object' || Array.isArray(target) || Object.keys(target).some(function (key) { return key !== 'entity_id'; })) throw failure('invalid_target', 'Choisis un appareil précis de cette connexion.');
+      var ids = Array.isArray(target.entity_id) ? target.entity_id.slice() : [target.entity_id];
+      if (!ids.length || ids.some(function (id) { return !entity(id) || id.split('.')[0] !== domain || !Object.prototype.hasOwnProperty.call(cache,id); })) throw failure('invalid_target', 'Cet appareil n’appartient pas aux états Home Assistant chargés.');
+      if (ids.some(function (id) { return cache[id].state === 'unavailable' || cache[id].state === 'unknown'; })) throw failure('unavailable', 'Cet appareil est actuellement indisponible.');
+      if (ids.some(function (id) { return !supports(cache[id],service); })) throw failure('unsupported_service', 'Cette commande n’est pas disponible pour cet appareil.');
+      data = data == null ? {} : data;
+      if (typeof data !== 'object' || Array.isArray(data) || ['entity_id','device_id','area_id','floor_id','label_id'].some(function (key) { return Object.prototype.hasOwnProperty.call(data,key); })) throw failure('invalid_data', 'Les paramètres ne peuvent pas changer les appareils ciblés.');
+      var payload; try { payload = copy(data); } catch (_) { throw failure('invalid_data', 'Paramètres Home Assistant invalides.'); }
+      if (!payload || typeof payload !== 'object' || Array.isArray(payload) || ['entity_id','device_id','area_id','floor_id','label_id'].some(function (key) { return Object.prototype.hasOwnProperty.call(payload,key); })) throw failure('invalid_data', 'Paramètres Home Assistant invalides.');
+      return send('call_service', {domain:domain, service:service, target:{entity_id:ids.length === 1 ? ids[0] : ids}, service_data:payload});
+    }
+    return {url:normalizeURL(address.replace(/^ws:/,'http:').replace(/^wss:/,'https:')), connect:connect, states:states, status:status, call:call, subscribe:function (listener) { if (typeof listener !== 'function') throw failure('invalid_listener','Écouteur Home Assistant invalide.'); listeners.add(listener); try { listener(states(),status()); } catch (_) {} return function () { listeners.delete(listener); }; }, disconnect:function () { close(null,'disconnected',true); }};
+  }
+  var api = {create:create, endpoint:endpoint, normalizeURL:normalizeURL, supports:supports};
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  root.HubHA = api;
+})(typeof window !== 'undefined' ? window : globalThis);
