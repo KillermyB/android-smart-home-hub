@@ -16,7 +16,7 @@ test('private local server rejects secret files, foreign hosts and cross-origin 
   const base = `http://127.0.0.1:${port}`;
   const page = await fetch(base);
   assert.equal(page.status,200);
-  assert.match(await page.text(), /Smart Hub/);
+  assert.match(await page.text(), /Hub\./);
   const status = await (await fetch(base + '/api/status')).json();
   assert.equal(status.calendarConnected,false);
   assert.equal(status.todoist.connected,false);

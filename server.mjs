@@ -154,7 +154,7 @@ const server = http.createServer(async (req, res) => {
         return json(res, 200, {ok:true});
       }
       res.writeHead(401, {'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
-      return res.end('<!doctype html><html lang="fr"><meta name="viewport" content="width=device-width"><title>Associer Smart Hub</title><body style="background:#f1eee8;font:18px Arial;padding:10vw"><h1>Smart Hub</h1><p>Associer ce navigateur au serveur de la maison.</p><form><input name="token" type="password" required aria-label="Code d’association" placeholder="Code dans .env"><button>Associer</button></form><p id="message" role="status"></p><script>document.querySelector("form").onsubmit=async function(e){e.preventDefault();var r=await fetch("/pair",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:this.token.value})});if(r.ok)location.reload();else document.getElementById("message").textContent="Code incorrect."}</script></body></html>');
+      return res.end('<!doctype html><html lang="fr"><meta name="viewport" content="width=device-width"><title>Associer Hub.</title><body style="background:#f1eee8;font:18px Arial;padding:10vw"><h1>Hub.</h1><p>Associer ce navigateur au serveur de la maison.</p><form><input name="token" type="password" required aria-label="Code d’association" placeholder="Code dans .env"><button>Associer</button></form><p id="message" role="status"></p><script>document.querySelector("form").onsubmit=async function(e){e.preventDefault();var r=await fetch("/pair",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:this.token.value})});if(r.ok)location.reload();else document.getElementById("message").textContent="Code incorrect."}</script></body></html>');
     }
     if (req.method === 'POST' && req.headers.origin !== origin && req.headers.origin !== `http://${requestHost}`) return json(res, 403, { error: 'Origine refusée.' });
     if (path === '/api/status' && req.method === 'GET') return json(res, 200, { ...Object.fromEntries(Object.keys(providers).map(p => [p, {configured:configured(p), connected:!!accounts[p]}])), calendarConnected:Object.keys(providers).some(p=>!!accounts[p]), todoist:{configured:!!process.env.TODOIST_API_TOKEN,connected:false} });
@@ -196,7 +196,7 @@ const server = http.createServer(async (req, res) => {
     }
     if(path.startsWith('/api/')||path.startsWith('/auth/'))return json(res,404,{error:'Route indisponible.'});
     if(req.method!=='GET'&&req.method!=='HEAD')return json(res,405,{error:'Méthode refusée.'});
-    const files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/data.js':'data.js','/github.js':'github.js','/styles.css':'styles.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt'};
+    const files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/data.js':'data.js','/quotes.js':'quotes.js','/github.js':'github.js','/styles.css':'styles.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt','/licenses/syne.txt':'licenses/syne.txt'};
     if(/^\/fonts\/(dm-sans|manrope)(\.woff2|-OFL\.txt)$/.test(path))files[path]=path.slice(1);
     if(!files[path])return json(res,404,{error:'Fichier introuvable.'});
     const font=path.match(/^\/fonts\/(dm-sans|manrope)(\.woff2|-OFL\.txt)$/);
@@ -205,6 +205,6 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200,{'Content-Type':({'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.woff2':'font/woff2','.txt':'text/plain'}[extname(file)])+'; charset=utf-8','Cache-Control':'no-cache'});res.end(req.method==='HEAD'?undefined:content);
   } catch (e) { if(!res.headersSent)json(res,502,{error:e.message||'Connexion indisponible.'});else res.end(); }
 });
-server.listen(port,host,()=>console.log(`Smart Hub · ${origin}\nÉcoute : ${host}:${port}\nLes comptes externes restent non connectés tant que leur configuration est absente.`));
+server.listen(port,host,()=>console.log(`Hub. · ${origin}\nÉcoute : ${host}:${port}\nLes comptes externes restent non connectés tant que leur configuration est absente.`));
 function stop(){server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),2000).unref();}
 process.on('SIGTERM',stop);process.on('SIGINT',stop);

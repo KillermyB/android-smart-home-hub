@@ -1,12 +1,12 @@
 {
   "name": "smart-hub",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node --env-file-if-exists=.env server.mjs",
     "start": "node --env-file-if-exists=.env server.mjs",
-    "check": "node --check dist/app.js && node --check dist/data.js && node --check dist/github.js && node --check server.mjs",
+    "check": "node --check dist/app.js && node --check dist/data.js && node --check dist/quotes.js && node --check dist/github.js && node --check server.mjs",
     "test": "node --test scripts/*.test.mjs"
   },
   "engines": {

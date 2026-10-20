@@ -6,9 +6,9 @@ window.HUB_DATA = {
     { text: 'Je pense, donc je suis.', author: 'René Descartes', work: 'Discours de la méthode, quatrième partie', category: 'Philosophie', source: 'https://fr.wikisource.org/wiki/Discours_de_la_méthode/Quatrième_partie' }
   ],
   recipes: [
-    { id:'risotto', title:'Risotto de saison', subtitle:'Courge rôtie, sauge & parmesan', time:35, category:'Végétarien', servings:2, art:'pumpkin', color:'#e7c9a6', ingredients:[{qty:180,unit:'g',name:'de riz arborio'},{qty:350,unit:'g',name:'de courge'},{qty:600,unit:'ml',name:'de bouillon de légumes'},{qty:1,unit:'',name:'échalote'},{qty:40,unit:'g',name:'de parmesan'},{qty:1,unit:'c. à s.',name:'d’huile d’olive'},{qty:4,unit:'',name:'feuilles de sauge'}], steps:[{text:'Préchauffe le four à 200 °C. Coupe la courge en petits dés, mélange avec la moitié de l’huile et enfourne environ 25 minutes, jusqu’à ce qu’elle soit tendre.',timer:25},{text:'Fais chauffer le bouillon dans une casserole. Émince l’échalote et fais-la revenir à feu doux dans le reste d’huile. Ajoute le riz et remue pendant 2 minutes.',timer:2},{text:'Ajoute le bouillon chaud une louche à la fois. Remue régulièrement et laisse le riz absorber le liquide avant la louche suivante. Goûte après 18 minutes ; prolonge si nécessaire.',timer:18},{text:'Hors du feu, incorpore la courge rôtie et le parmesan. Ajuste l’assaisonnement, ajoute la sauge et sers sans attendre.',timer:0}], source:'Recette originale Smart Hub' },
-    { id:'pasta',title:'Pâtes au citron',subtitle:'Épinards, citron & ricotta',time:20,category:'Rapide',servings:2,art:'lemon',color:'#d9dfb8',ingredients:[{qty:200,unit:'g',name:'de pâtes'},{qty:120,unit:'g',name:'d’épinards'},{qty:100,unit:'g',name:'de ricotta'},{qty:1,unit:'',name:'citron'},{qty:1,unit:'c. à s.',name:'d’huile d’olive'}],steps:[{text:'Porte une grande casserole d’eau salée à ébullition. Fais cuire les pâtes selon les indications du paquet. Garde une tasse d’eau de cuisson avant d’égoutter.',timer:10},{text:'Fais tomber les épinards dans l’huile à feu moyen. Ajoute la ricotta, le zeste du citron et un peu d’eau de cuisson pour obtenir une sauce souple.',timer:3},{text:'Mélange les pâtes avec la sauce. Ajoute le jus de citron selon ton goût, poivre et sers.',timer:0}],source:'Recette originale Smart Hub'},
-    { id:'bowl',title:'Le bol d’automne',subtitle:'Lentilles, carottes & tahini',time:30,category:'Végétarien',servings:2,art:'bowl',color:'#d9c6bc',ingredients:[{qty:140,unit:'g',name:'de lentilles vertes'},{qty:3,unit:'',name:'carottes'},{qty:2,unit:'c. à s.',name:'de tahini'},{qty:0.5,unit:'',name:'citron'},{qty:1,unit:'c. à s.',name:'d’huile d’olive'}],steps:[{text:'Préchauffe le four à 200 °C. Coupe les carottes en bâtonnets, mélange avec l’huile et enfourne pour environ 25 minutes.',timer:25},{text:'Rince les lentilles et cuis-les dans une casserole d’eau frémissante selon les indications du paquet, jusqu’à ce qu’elles soient tendres. Égoutte-les.',timer:25},{text:'Mélange le tahini et le jus de citron. Ajoute de l’eau petit à petit pour obtenir une sauce. Assemble les lentilles, les carottes et la sauce.',timer:0}],source:'Recette originale Smart Hub'}
+    { id:'risotto', title:'Risotto de saison', subtitle:'Courge rôtie, sauge & parmesan', time:35, category:'Végétarien', servings:2, art:'pumpkin', color:'#e7c9a6', ingredients:[{qty:180,unit:'g',name:'de riz arborio'},{qty:350,unit:'g',name:'de courge'},{qty:600,unit:'ml',name:'de bouillon de légumes'},{qty:1,unit:'',name:'échalote'},{qty:40,unit:'g',name:'de parmesan'},{qty:1,unit:'c. à s.',name:'d’huile d’olive'},{qty:4,unit:'',name:'feuilles de sauge'}], steps:[{text:'Préchauffe le four à 200 °C. Coupe la courge en petits dés, mélange avec la moitié de l’huile et enfourne environ 25 minutes, jusqu’à ce qu’elle soit tendre.',timer:25},{text:'Fais chauffer le bouillon dans une casserole. Émince l’échalote et fais-la revenir à feu doux dans le reste d’huile. Ajoute le riz et remue pendant 2 minutes.',timer:2},{text:'Ajoute le bouillon chaud une louche à la fois. Remue régulièrement et laisse le riz absorber le liquide avant la louche suivante. Goûte après 18 minutes ; prolonge si nécessaire.',timer:18},{text:'Hors du feu, incorpore la courge rôtie et le parmesan. Ajuste l’assaisonnement, ajoute la sauge et sers sans attendre.',timer:0}], source:'Recette originale Hub.' },
+    { id:'pasta',title:'Pâtes au citron',subtitle:'Épinards, citron & ricotta',time:20,category:'Rapide',servings:2,art:'lemon',color:'#d9dfb8',ingredients:[{qty:200,unit:'g',name:'de pâtes'},{qty:120,unit:'g',name:'d’épinards'},{qty:100,unit:'g',name:'de ricotta'},{qty:1,unit:'',name:'citron'},{qty:1,unit:'c. à s.',name:'d’huile d’olive'}],steps:[{text:'Porte une grande casserole d’eau salée à ébullition. Fais cuire les pâtes selon les indications du paquet. Garde une tasse d’eau de cuisson avant d’égoutter.',timer:10},{text:'Fais tomber les épinards dans l’huile à feu moyen. Ajoute la ricotta, le zeste du citron et un peu d’eau de cuisson pour obtenir une sauce souple.',timer:3},{text:'Mélange les pâtes avec la sauce. Ajoute le jus de citron selon ton goût, poivre et sers.',timer:0}],source:'Recette originale Hub.'},
+    { id:'bowl',title:'Le bol d’automne',subtitle:'Lentilles, carottes & tahini',time:30,category:'Végétarien',servings:2,art:'bowl',color:'#d9c6bc',ingredients:[{qty:140,unit:'g',name:'de lentilles vertes'},{qty:3,unit:'',name:'carottes'},{qty:2,unit:'c. à s.',name:'de tahini'},{qty:0.5,unit:'',name:'citron'},{qty:1,unit:'c. à s.',name:'d’huile d’olive'}],steps:[{text:'Préchauffe le four à 200 °C. Coupe les carottes en bâtonnets, mélange avec l’huile et enfourne pour environ 25 minutes.',timer:25},{text:'Rince les lentilles et cuis-les dans une casserole d’eau frémissante selon les indications du paquet, jusqu’à ce qu’elles soient tendres. Égoutte-les.',timer:25},{text:'Mélange le tahini et le jus de citron. Ajoute de l’eau petit à petit pour obtenir une sauce. Assemble les lentilles, les carottes et la sauce.',timer:0}],source:'Recette originale Hub.'}
   ]
 };
 
@@ -68,7 +68,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 6
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "curry",
@@ -130,7 +130,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 3
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "soup",
@@ -187,7 +187,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 0
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "gnocchi",
@@ -239,7 +239,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 0
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "couscous",
@@ -301,7 +301,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 0
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "tartine",
@@ -358,7 +358,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 0
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "porridge",
@@ -410,7 +410,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 0
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "pancakes",
@@ -467,7 +467,7 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 2
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   },
   {
     "id": "crumble",
@@ -519,6 +519,6 @@ HUB_DATA.recipes.push.apply(HUB_DATA.recipes, [
         "timer": 30
       }
     ],
-    "source": "Recette originale Smart Hub"
+    "source": "Recette originale Hub."
   }
 ]);

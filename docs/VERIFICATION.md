@@ -37,7 +37,7 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 
 - Symbole à arcs réguliers, lettrage géométrique gras et ligatures S–M, M–A et H–U en tracés vectoriels contrôlés en mode sombre à 1280 × 800 et clair dans la bibliothèque.
 - En-tête à 320 px : largeur du document 320 px, pas de débordement.
-- Navigation au clavier : focus visible, contour iris de 3 px. Nom accessible du bouton : « Smart Hub — Accueil ».
+- Navigation au clavier : focus visible, contour iris de 3 px. Nom accessible du bouton : « Hub. — Accueil ».
 - Aucun ajout de dépendance ni animation permanente. Favicon SVG et signature téléchargeable assortis.
 
 
@@ -47,3 +47,14 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - 24 SVG officiels de lucide-static 1.60.0 intégrés localement ; seules les icônes utilisées sont conservées. Source : https://lucide.dev/guide/static. Licences jointes.
 - En-tête et pictogrammes vérifiés à 1280 × 800, puis à 320 px. Le bouton Réglages ouvre la fenêtre, le bouton de fermeture ramène à l’accueil.
 - Contrôles de syntaxe et quatre tests existants réussis.
+
+## v0.3.0 — Hub. et bibliothèque de pensées
+
+- Renommage visible Hub., SVG vectoriels autonomes, point iris et favicon H. Pas de changement de clés du stockage local.
+- 200 citations distinctes, 7 auteurs, longueur maximale de 200 caractères et sources HTTPS : contrôles automatiques. Chargement différé après `data.js`, avant `app.js`.
+- Sources principales : Épictète, Manuel (Guyau, 1875) ; Marc Aurèle, Pensées pour moi-même (Barthélemy-Saint-Hilaire, 1876) ; Vauvenargues, Réflexions et Maximes (Gilbert, 1857) ; La Rochefoucauld, Maximes (Hachette, 1868). Passages repris directement des textes, blancs et ponctuation nettoyés ; extraits indiqués pour les passages des stoïciens. Référence complète attachée à chaque entrée dans `dist/quotes.js`.
+- Recherche « courage » filtrée sur Vauvenargues : une citation correspondante, source accessible ; aucun rendu de plus de 12 résultats à la fois.
+- La rotation de veille utilise le réveil d’horloge existant, sans boucle d’animation ni minuteur supplémentaire ; suspendue lorsque le document est masqué.
+- Le profil GitHub public KillermyB est confirmé ; aucun accès aux dépôts privés n’est revendiqué.
+- Contrôle visuel du logo à 1280 × 800 et de l’en-tête à 320 px ; bibliothèque sur mobile sans débordement horizontal. Recherche, filtre auteur, pagination, citation suivante et lien GitHub contrôlés dans le navigateur.
+- `npm run check`, `npm test` (5 tests) et `git diff --check` réussis. La rotation temporisée en veille reste à mesurer sur le vrai cadre.

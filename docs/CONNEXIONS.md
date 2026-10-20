@@ -17,7 +17,7 @@ Le serveur utilise l’[API v1 officielle](https://developer.todoist.com/api/v1/
    - `http://localhost:4173/auth/callback/work`
 4. Ajouter la permission déléguée Microsoft Graph `Calendars.Read`. Le flux demande aussi `offline_access` pour renouveler l’accès.
 5. Renseigner `MICROSOFT_CLIENT_ID` et `MICROSOFT_CLIENT_SECRET` dans `.env`. `MICROSOFT_TENANT=common` convient au cas mixte ; la politique de l’entreprise peut imposer une validation administrateur.
-6. Dans Smart Hub → Réglages → connecter Outlook personnel, puis Outlook travail en choisissant chaque fois le bon compte.
+6. Dans Hub. → Réglages → connecter Outlook personnel, puis Outlook travail en choisissant chaque fois le bon compte.
 
 Le serveur liste les calendriers du compte et leurs événements, avec pagination, entre 60 jours avant et 120 jours après le jour courant. Les récurrences sont développées par [calendarView](https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0). Les événements sur plusieurs jours sont, pour cette première version, affichés sur leur jour de départ uniquement. Les calendriers partagés par délégation ne sont pas encore gérés explicitement.
 

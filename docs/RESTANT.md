@@ -6,6 +6,14 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Hub. v0.3.0
+
+- [x] Nouveau nom Hub., lettrage minimaliste Syne en tracés et point iris ; favicon assorti. Les données locales existantes restent dans le même espace de stockage.
+- [x] 200 citations uniques, 7 auteurs, édition et source conservées. Textes courts issus notamment des éditions du domaine public sur Wikisource.
+- [x] Bibliothèque avec recherche, filtre par auteur, pagination de 12 entrées, lecture complète et lien source.
+- [x] Rotation en veille configurable : quotidienne, 1, 5 ou 15 minutes. Auteurs alternés, sans tirages aléatoires répétés.
+- [x] Profil GitHub confirmé : KillermyB ; accès direct depuis le détail, données publiques uniquement.
+
 ## Identité et icônes v0.2.2
 
 - [x] Base Outfit (graisse 850) en tracés, ligatures S–M et H–U conservées et épaissies.
@@ -31,7 +39,7 @@
 - [ ] Installer Node 22.9+ et lancer `npm start` ; vérifier `npm run check` et `npm test`.
 - [ ] Brancher le cadre en USB-A → USB-C de données, confirmer `adb devices -l` et lire son identité réelle.
 - [ ] Faire les sauvegardes privées nécessaires avant installation sur le cadre.
-- [ ] Choisir et vérifier le navigateur/kiosk compatible ; tester Smart Hub sur le vrai panneau.
+- [ ] Choisir et vérifier le navigateur/kiosk compatible ; tester Hub. sur le vrai panneau.
 - [ ] Vérifier le retour aux réglages Android avec un seul doigt et après redémarrage.
 - [ ] Stabiliser l’accès de maintenance et l’adresse du cadre avec une méthode validée pour ce matériel.
 
@@ -49,7 +57,7 @@
 
 - [ ] Agenda : plage synchronisée explicite, événements sur plusieurs jours, vue trois jours si souhaitée.
 - [ ] Cuisine : extraction automatique depuis une URL, gestion/suppression des recettes et sauvegarde portable du carnet ; les recettes importées gardent leurs quantités textuelles d’origine.
-- [ ] Ajouter une sélection de citations plus large, en vérifiant chaque attribution et la source.
+- [x] Ajouter une sélection de citations plus large, en vérifiant chaque attribution et la source (200 entrées en v0.3.0).
 - [ ] Vérifier qu’un minuteur terminé se signale correctement au milieu d’une longue recette ; la première version fournit une alerte visuelle et pas une sonnerie système garantie.
 - [ ] Choisir le fonctionnement permanent : tour toujours allumée, petit serveur dédié ou autre hébergement privé.
 - [ ] Durcir le transport réseau et la gestion des appareils avant un usage durable au-delà du réseau domestique de confiance.

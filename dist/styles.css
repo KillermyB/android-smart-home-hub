@@ -83,15 +83,22 @@ input[type=checkbox]{accent-color:var(--accent)}
 @media(hover:hover) and (pointer:fine){.brand:hover .brand-symbol{color:var(--ink)}.arrow:hover{background:var(--accent-soft);color:var(--accent)}}
 @media(max-width:720px){.brand{gap:8px}.brand .brand-symbol{width:30px;height:30px}.brand .brand-wordmark{width:125px;height:28px}}
 @media(max-width:360px){.header{gap:6px}.header-actions{gap:4px}.header-actions .icon-button{width:40px;height:40px;min-height:40px}.brand{gap:7px}.brand .brand-symbol{width:27px;height:27px}.brand .brand-wordmark{width:115px;height:27px}}
-/* Solid geometric wordmark; the M carries the organic connection. */
-.brand .brand-wordmark{width:146px;height:30px;fill:currentColor}
-.brand .brand-symbol{width:37px;height:37px}
-.brand .brand-wordmark path{stroke-linecap:butt}
-@media(max-width:720px){.brand .brand-wordmark{width:129px;height:28px}.brand .brand-symbol{width:31px;height:31px}}
-@media(max-width:360px){.brand .brand-wordmark{width:114px;height:25px}.brand .brand-symbol{width:28px;height:28px}}
-/* Lucide geometry, consistent optical weight across interactive controls. */
+/* Hub. — compact outlined wordmark and iris punctuation. */
+.brand .brand-wordmark{width:89px;height:34px;fill:currentColor;stroke:none;overflow:visible}
+.brand .brand-period{fill:var(--accent)}
 .ui-icon{stroke-width:1.8;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .header-actions .ui-icon{width:20px;height:20px;stroke-width:1.8}
-.header .brand-wordmark{width:151px}
-@media(max-width:720px){.header .brand-wordmark{width:129px}}
-@media(max-width:360px){.header .brand-wordmark{width:114px}}
+@media(max-width:720px){.brand .brand-wordmark{width:82px;height:32px}}
+@media(max-width:360px){.brand .brand-wordmark{width:76px;height:29px}}
+
+.quote-open{display:block;text-align:left;padding:0;width:100%;font:inherit;letter-spacing:inherit;line-height:inherit;min-height:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+.quote-card .quote-author{max-width:calc(100% - 72px)}.quote-card-actions{display:flex;flex-shrink:0;gap:2px}
+.quote-feature{margin:22px 0;padding:24px;background:var(--soft);border-radius:22px}
+.quote-feature blockquote{margin:0 0 18px;font:25px/1.5 Georgia,serif;letter-spacing:-.3px}
+.quote-feature figcaption{display:flex;flex-direction:column;gap:7px;font-size:13px}.quote-feature small{line-height:1.6;color:var(--muted)}
+.quote-feature a,.quote-library a{color:var(--accent);font-size:12px;width:fit-content}
+.quote-controls{display:flex;justify-content:flex-end;gap:7px;margin-top:12px}
+.quote-tools{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 16px}.quote-tools input{flex:1;min-width:140px}.quote-tools select{max-width:100%}
+.quote-library{display:grid;gap:12px;margin:16px 0}.quote-library article{padding:19px 20px;border:1px solid var(--line);border-radius:18px}.quote-library blockquote{font:18px/1.5 Georgia,serif;margin:0 0 15px}.quote-library article p{display:flex;flex-direction:column;gap:7px;font-size:12px}.quote-library small{color:var(--muted);line-height:1.6}
+.quote-pagination{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.quote-pagination .pill{gap:4px;padding:0 13px}
+@media(max-width:480px){.quote-feature{padding:20px}.quote-feature blockquote{font-size:22px}.quote-tools input,.quote-tools select{width:100%}.quote-card blockquote{font-size:19px}}
