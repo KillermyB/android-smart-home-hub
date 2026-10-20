@@ -31,3 +31,11 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Curry passé de 2 à 3 portions ; pois chiches cochés avant ajout ; six autres ingrédients ajoutés aux courses. Double appui n’ajoute pas de doublons. Liste conservée après rechargement ; articles de test cochés et retirés ensuite.
 - API GitHub réelle : compte killermyb trouvé, 0 commit public sur 28 jours. Tests synthétiques couvrent les résultats non vides et paginés. Aucun accès aux dépôts privés.
 - La validation physique sur le cadre et les connexions Outlook/Google/Todoist restent à faire.
+
+
+## v0.2.1 — Identité organique
+
+- Logo et lettrage vectoriels contrôlés en mode sombre à 1280 × 800 et clair dans la bibliothèque.
+- En-tête à 320 px : largeur du document 320 px, pas de débordement.
+- Navigation au clavier : focus visible, contour iris de 3 px. Nom accessible du bouton : « Smart Hub — Accueil ».
+- Aucun ajout de dépendance ni animation permanente. Favicon SVG et signature téléchargeable assortis.

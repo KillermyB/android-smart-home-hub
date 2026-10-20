@@ -6,6 +6,12 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Identité v0.2.1
+
+- [x] Symbole organique et lettrage Smart Hub en SVG, favicon assorti.
+- [x] Accent iris pour les actions, sélections et focus ; palette graphite conservée la nuit.
+- [x] Signature vectorielle réutilisable : `dist/logo.svg`.
+
 ## Ajouts v0.2.0
 
 - [x] Surfaces graphite en mode sombre, dégradés légers bleus, mauves et abricot.

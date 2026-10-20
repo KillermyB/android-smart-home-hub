@@ -57,3 +57,29 @@ button{touch-action:manipulation}
 @media(max-width:999px) and (min-width:721px){.home-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:195px 180px 235px 210px}.clock-card{grid-column:1;grid-row:1/3}.weather-card{grid-column:2;grid-row:1}.agenda-card{grid-column:2;grid-row:2}.task-card{grid-column:1;grid-row:3}.recipe-teaser{grid-column:2;grid-row:3}.github-card{grid-column:1;grid-row:4}.quote-card{grid-column:2;grid-row:4;display:flex}.recipe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.weather-hours .hour:nth-child(n+3){display:none}}
 @media(max-width:720px){.github-card{min-height:205px}.commit-map{max-width:360px}.quote-card{padding:23px}.quote-card blockquote{font-size:20px}.recipe-teaser p{font-size:12px}.recipe-teaser h2{font-size:28px}.recipe-teaser .food-art{right:-20px;opacity:.9}.library-banner{padding:22px}.library-banner h2{font-size:23px}.library-banner .eyebrow{font-size:8px}.library-banner>svg{display:none}.library-tabs{gap:20px}.library-tabs button{font-size:12px}.recipe-search input{flex-basis:100%;width:100%}.recipe-search select{flex:1}.recipe-card{display:block}.recipe-open{display:grid;grid-template-columns:100px 1fr}.recipe-visual{height:100%;min-height:185px}.recipe-visual .food-art{width:150px;height:150px}.recipe-content{padding:16px}.recipe-content h2{font-size:19px}.recipe-content p{font-size:11px}.recipe-meta{gap:7px}.favorite-button{right:auto;left:8px;top:8px;width:38px;height:38px;min-height:38px;font-size:23px}.cook-step{padding:24px}.cook-actions .pill{white-space:normal}.library-tabs{justify-content:space-between;gap:8px}}
 @media(min-width:1000px){.recipe-teaser .food-art{width:155px;height:155px;right:-88px;top:68px}.recipe-teaser h2,.recipe-teaser p{max-width:82%;width:82%}}
+
+/* Organic signature and a restrained iris accent. */
+:root{--accent:#6957b7;--accent-ink:#fff;--accent-soft:#ede8fa;--focus:#6957b7}
+.dark{--accent:#bcaaf4;--accent-ink:#211934;--accent-soft:#332d44;--focus:#c8b8ff}
+.brand{gap:11px;padding:0;flex-shrink:0;min-width:0}
+.brand .brand-symbol{width:35px;height:35px;stroke:none;color:var(--accent);overflow:visible}
+.brand .brand-wordmark{width:139px;height:31px;stroke:none;color:var(--ink);overflow:visible}
+.brand svg path{stroke-linecap:round;stroke-linejoin:round}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+.pill.primary,.pill.accent{background:var(--accent);color:var(--accent-ink)}
+.nav-button.active{background:var(--accent-soft);color:var(--accent)}
+.segmented button.active{background:var(--accent);color:var(--accent-ink)}
+.library-tabs button.active{color:var(--accent);border-color:var(--accent)}
+.check-circle.priority,.task .priority{border-color:var(--accent);background:var(--accent-soft)}
+.task.completed .check-circle{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+input[type=checkbox]{accent-color:var(--accent)}
+.step-dot.active,.dark .step-dot.active{background:var(--accent)}
+.timer-chip{background:var(--accent-soft);color:var(--accent)}
+.dark .timer-chip{background:var(--accent-soft);color:var(--accent)}
+.favorite-button[aria-pressed=true],.dark .favorite-button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)}
+.shopping-item.done .check-circle{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.quote-card .quote-mark{color:var(--accent);opacity:.7}
+::selection{background:var(--accent);color:var(--accent-ink)}
+@media(hover:hover) and (pointer:fine){.brand:hover .brand-symbol{color:var(--ink)}.arrow:hover{background:var(--accent-soft);color:var(--accent)}}
+@media(max-width:720px){.brand{gap:8px}.brand .brand-symbol{width:30px;height:30px}.brand .brand-wordmark{width:125px;height:28px}}
+@media(max-width:360px){.header{gap:6px}.header-actions{gap:4px}.header-actions .icon-button{width:40px;height:40px;min-height:40px}.brand{gap:7px}.brand .brand-symbol{width:27px;height:27px}.brand .brand-wordmark{width:115px;height:27px}}
