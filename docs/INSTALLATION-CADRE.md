@@ -1,6 +1,6 @@
 # Installer Hub. sur le cadre
 
-Guide de reprise pour la livraison **v0.6.0**. Dépôt privé créé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub). Le push et le tag `v0.6.0` doivent être vérifiés après leur publication.
+Guide de reprise pour la livraison **v0.6.0**. Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.6.0`.
 
 Le code peut être récupéré sur la tour Windows. Le cadre, lui, doit ouvrir Hub. dans un navigateur compatible : il n’a pas besoin de Git ou de Node.js. L’installation physique n’a pas encore été validée sur cet exemplaire AiMOR.
 

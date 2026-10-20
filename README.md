@@ -4,7 +4,7 @@ Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, 
 
 **Version : v0.6.0.** L’interface est vérifiable en navigateur ; l’installation, le tactile et les performances sur le cadre physique restent à valider. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
 
-Dépôt privé créé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub). Le push et le tag `v0.6.0` doivent être confirmés avant de considérer la publication GitHub comme terminée.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.6.0`.
 
 ## Récupérer et lancer sur Windows
 
