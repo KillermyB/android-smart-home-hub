@@ -1,5 +1,21 @@
 # Vérification du 20 octobre 2026
 
+## v0.7.1 — Réactivité des interactions
+
+- `npm run check` : réussi. `npm test` : 47 tests réussis, dont cinq nouveaux contrôles de régression sur la réutilisation du rendu, le focus, les filtres et les dates autour de minuit à Zurich. Les tests HTTP locaux nécessitent l’autorisation d’ouvrir leur port de test.
+- Navigateur local : recherche « citron » sans perte du focus ni du curseur, favori ajouté puis retiré sur place, fenêtre Réglages fermée avec Échap et retour du focus, navigation semaine/mois. Pas de débordement horizontal à 320 px ; composition 1280 × 800 conservée. Les animations respectent le clavier et la préférence de mouvement réduit.
+- Comparatif dans Firefox 143.0.4 sur le cadre Android réel : ancienne source au commit `815d71f` et source v0.7.1, même navigateur, données d’exemple isolées, API et synchronisations désactivées. Médianes du temps JavaScript et des mutations DOM, mesurées avec `performance.now()` ; six actions pour l’agenda, huit pour les autres. Deux rafraîchissements d’affichage séparent les actions. Ce sont des mesures ponctuelles de traitement, pas une mesure INP, des images par seconde ou du délai physique entre le doigt et l’écran.
+
+| Action | Avant | Après |
+| --- | ---: | ---: |
+| Navigation agenda | 383 ms | 51 ms |
+| Fermeture des réglages | 212 ms | 166 ms |
+| Ajouter/retirer un favori | 179 ms | 6 ms |
+| Filtrer les recettes | 393 ms | 107 ms |
+
+- Le test confirme aussi que l’en-tête reste le même nœud lors des interactions et que le champ de recherche reste en place. Le maximum observé de fermeture après modification était de 298 ms : le coût de mise en page d’une fenêtre et de son focus reste variable sur ce matériel.
+- v0.7.1 transférée en Wi-Fi dans une nouvelle version statique, avec vérification des empreintes et du manifeste HTTP. Firefox affiche la copie locale du cadre ; aucune donnée personnelle ni connexion de compte modifiée. Les tailles tactiles de v0.7.0 sont conservées.
+
 ## Contrôles locaux réussis
 
 - `npm run check` : syntaxe JavaScript et serveur.

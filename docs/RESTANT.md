@@ -1,5 +1,14 @@
 # Liste de reprise
 
+## Fluidité v0.7.1
+
+- [x] Réutiliser l’en-tête et le conteneur principal ; fermeture des fenêtres sans reconstruction de la page, sauf données reçues en arrière-plan.
+- [x] Mettre à jour les favoris sur place et filtrer uniquement les résultats des recettes, en conservant la saisie, son curseur et le clavier.
+- [x] Réutiliser les formats de date et illustrations, limiter les animations aux petits éléments et éviter la peinture des recettes hors écran lorsque le navigateur le permet.
+- [x] Vérifier la syntaxe, 47 tests, les vues 1280 × 800 et 320 px ; comparer le traitement JavaScript avant/après sur le vrai cadre, avec des données isolées et sans compte connecté.
+- [x] Installer v0.7.1 par Wi-Fi avec vérification des empreintes ; conserver les données locales et les grandes commandes de v0.7.0.
+- [ ] Mesurer la fluidité lors d’une utilisation prolongée avec les vrais comptes connectés ; le comparatif ponctuel ne mesure pas le délai tactile complet ni les images par seconde.
+
 ## Accès physique — 20 octobre 2026
 
 - [x] USB et ADB root confirmés depuis le Mac : sun8i, ARMv7, Android 6.0.1, build 20260529, 1280 × 800.

@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.7.0.** Hub est installé et affiché sur le cadre physique dans Firefox 143.0.4. Le tactile Cuisine → recette → Maison a été confirmé par l’utilisateur. Le redémarrage Android a conservé les réglages et fichiers ; le démarrage automatique est bloqué par la politique constructeur. La reprise après coupure, les performances prolongées et les comptes réels restent à vérifier. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
+**Version : v0.7.1.** Hub est installé et affiché sur le cadre physique dans Firefox 143.0.4. La navigation réutilise l’en-tête, les favoris se mettent à jour sur place et la recherche conserve son champ. Un comparatif sur le cadre confirme une réduction du temps de traitement JavaScript ; mesures et limites dans [VERIFICATION.md](docs/VERIFICATION.md). Le tactile Cuisine → recette → Maison a été confirmé par l’utilisateur. Le redémarrage Android a conservé les réglages et fichiers ; le démarrage automatique est bloqué par la politique constructeur. La reprise après coupure, les performances prolongées et les comptes réels restent à vérifier. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.0`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.1`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
 

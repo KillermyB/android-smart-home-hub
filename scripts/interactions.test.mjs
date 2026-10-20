@@ -1,0 +1,79 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import { readFileSync } from 'node:fs';
+
+const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
+const section = (start, end) => app.slice(app.indexOf(start), app.indexOf(end, app.indexOf(start)));
+
+test('date formatting reuses a bounded cache and preserves Zurich dates around midnight', () => {
+  let constructed = 0;
+  const context = vm.createContext({ Date, Intl: { DateTimeFormat: function (...args) { constructed++; return new Intl.DateTimeFormat(...args); } }, dateFormats: new Map() });
+  vm.runInContext(section('  function dateFormatter(', '  function quotePool('), context);
+  const at = new Date('2026-10-20T23:30:00Z');
+  for (let i = 0; i < 100; i++) {
+    assert.equal(context.dateKey(at), '2026-10-21');
+    assert.equal(context.timeText(at), '01:30');
+    assert.equal(context.shiftDay('2026-10-20', 1), '2026-10-21');
+  }
+  assert.equal(constructed, 2);
+  for (let i = 0; i < 40; i++) context.dateFormatter('fr-CH', { year: 'numeric', timeZone: 'Europe/Zurich', fractionalSecondDigits: i % 3 + 1, hour12: !!(i % 2), calendar: ['gregory', 'buddhist', 'iso8601', 'japanese', 'hebrew', 'islamic'][i % 6], numberingSystem: ['latn', 'arab', 'thai', 'hanidec', 'deva'][i % 5] });
+  assert.ok(context.dateFormats.size <= 24);
+});
+
+test('page rendering preserves the shell, navigation, and an open modal', () => {
+  const main = { innerHTML: '' }, footer = { innerHTML: '' }, modal = {};
+  let overlays = 0, themeUpdates = 0;
+  const button = { dataset: { action: 'nav:calendar' }, active: false, classList: { toggle(name, value) { button.active = value; } }, setAttribute() {} };
+  const context = vm.createContext({
+    state: { page: 'home', recipeId: null, demo: true, modal: 'settings' }, inputMode: 'pointer', mainDirty: true,
+    document: { activeElement: null, querySelectorAll: () => [button] },
+    $: selector => ({ '#main': main, '.modal': modal, '.footer [data-action="settings"]': footer })[selector] || null,
+    applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, updateClock() {}, updateKeptFields() {}, lyricsLifecycle() {}, houseUpdate() {}
+  });
+  for (const name of ['home', 'calendar', 'taskPage', 'kitchen', 'briefPage', 'companionPage', 'linksPage', 'shoppingPage', 'musicPage', 'housePage']) context[name] = () => name;
+  vm.runInContext(section('  function render() {', '  function title('), context);
+  context.render(); assert.equal(main.innerHTML, 'home');
+  context.state.page = 'calendar'; context.render();
+  assert.equal(main.innerHTML, 'calendar'); assert.equal(button.active, true);
+  assert.equal(overlays, 0); assert.equal(themeUpdates, 2); assert.equal(context.mainDirty, false);
+});
+
+test('closing an unchanged modal preserves page nodes; deferred data refreshes once', () => {
+  let renders = 0, overlays = 0, focused = 0;
+  const context = vm.createContext({ state: { modal: 'settings' }, mainDirty: false,
+    lastFocus: { isConnected: true, getAttribute: () => 'settings', focus: () => focused++ },
+    render: () => renders++, renderOverlay: () => overlays++, updateClock() {}, renderTimer() {}, resetIdle() {}
+  });
+  vm.runInContext(section('  function closeModal()', '  function sleepWeather()'), context);
+  context.closeModal(); assert.equal(renders, 0); assert.equal(overlays, 1); assert.equal(focused, 1);
+  context.state.modal = 'settings'; context.mainDirty = true; context.closeModal(); assert.equal(renders, 1);
+  context.closeModal(); assert.equal(renders, 1); assert.equal(focused, 2);
+});
+
+test('recipe filtering preserves the search field and excludes hidden or non-favorite dishes', () => {
+  const search = { getAttribute: () => null }, grid = { innerHTML: '', querySelectorAll: () => [] }, counter = { textContent: '' };
+  const recipes = [{ id: 'a', title: 'Citron', subtitle: '', ingredients: [], category: 'Rapide', budget: true }, { id: 'b', title: 'Riz', subtitle: '', ingredients: [], category: 'Rapide' }];
+  const context = vm.createContext({ state: { recipes, search: 'CIT', category: 'Toutes', library: 'all', favorites: [], recipeId: null }, hiddenRecipes: [], inputMode: 'pointer',
+    $: selector => ({ '.recipe-grid': grid, '.recipe-count': counter, '#recipe-search': search })[selector], document: { activeElement: search },
+    esc: String, icon: () => '', foodArt: () => '', action: (name, text) => text
+  });
+  vm.runInContext(section('  function recipeList()', '  function kitchen()'), context);
+  context.refreshRecipes(); assert.equal(counter.textContent, '1 recette'); assert.match(grid.innerHTML, /Citron/); assert.doesNotMatch(grid.innerHTML, /Riz/);
+  assert.equal(context.$('#recipe-search'), search);
+  context.hiddenRecipes.push('a'); context.refreshRecipes(); assert.equal(counter.textContent, '0 recette');
+  context.hiddenRecipes.length = 0; context.state.search = ''; context.state.library = 'favorites'; context.state.favorites = ['b'];
+  assert.deepEqual(Array.from(context.recipeList(), x => x.id), ['b']);
+});
+
+test('navigation renders synchronously without waiting for unrelated service handlers', async () => {
+  let renders = 0;
+  const context = vm.createContext({ state: { page: 'home', recipeId: null },
+    houseAction: () => { throw Error('unrelated home command'); }, serviceAction: () => { throw Error('unrelated service command'); },
+    render: () => renders++, $: () => ({ focus() {} }), window: { scrollTo() {} }, animateEnter() {}, resetIdle() {}
+  });
+  vm.runInContext(section('  async function handle(name)', "  document.addEventListener('click'"), context);
+  const pending = context.handle('nav:calendar');
+  assert.equal(context.state.page, 'calendar'); assert.equal(renders, 1);
+  await pending;
+});
