@@ -1,5 +1,12 @@
 # Vérifications des 20 et 21 octobre 2026
 
+## v0.11.1 — Validation sur le cadre
+
+- v0.11.0 transférée par Wi-Fi, empreintes et HTTP vérifiés, unique onglet actualisé puis plein écran restauré. Météo compacte, flèches retirées et contour blanc Spotify constatés sur le vrai 1280 × 800.
+- Ouverture depuis le corps de la tuile Spotify : vraie pochette conservée, paroles synchronisées en dessous, bouton Home, volume et fond adapté à la pochette constatés. Aucune nouvelle connexion Spotify nécessaire. La progression du contour a été observée entre deux relevés sur le site.
+- La barre de lecture native Firefox était bleue ; v0.11.1 lui donne la même couleur blanche que dans Chromium. Les couleurs de fond ont été vérifiées depuis le style réellement appliqué dans Chrome.
+- Le son de la sono et son réglage physique restent à confirmer avec l’utilisateur. Les calendriers ne sont pas encore connectés : aucun rendez-vous personnel n’a été présenté comme chargé.
+
 ## v0.11.0 — Accueil, veille et fond adaptatif
 
 - Syntaxe et 64 tests réussis : sélection du prochain rendez-vous en respectant les filtres, absence de faux événement, contour représentant le temps restant et palettes distinctes avec repli neutre.

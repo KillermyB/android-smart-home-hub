@@ -254,3 +254,7 @@
 @media(max-width:720px){.dash-temperature{font-size:68px}.sleep-context{flex-wrap:wrap;gap:15px;margin-top:18px;max-width:100%}.sleep-context .sleep-weather strong{font-size:26px}.sleep-context .sleep-weather-icon{width:32px;height:30px}.sleep-appointment{max-width:100%;font-size:16px;gap:8px;justify-content:center}.sleep-appointment strong{font-size:16px}.sleep-appointment[data-with-weather]{padding-left:16px;margin-left:0}.sleep-thought{max-width:100%}}
 @media(max-width:520px){.sleep-context{flex-direction:column}.sleep-appointment[data-with-weather]{border-left:0;padding-left:0}.sleep-appointment{font-size:14px}.sleep-appointment strong{font-size:14px}}
 @media(min-width:1000px) and (max-height:760px){.music-lyrics-below .lyrics-panel{height:112px}}
+.music-screen .playback-progress progress{appearance:none;-webkit-appearance:none;background:#ffffff25;color:#f2f1ec;border:0}
+.music-screen .playback-progress progress::-moz-progress-bar{background:#f2f1ec;border-radius:10px}
+.music-screen .playback-progress progress::-webkit-progress-bar{background:#ffffff25;border-radius:10px}
+.music-screen .playback-progress progress::-webkit-progress-value{background:#f2f1ec;border-radius:10px}
