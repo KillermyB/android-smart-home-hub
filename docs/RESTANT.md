@@ -6,6 +6,10 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Lettrage v0.3.1
+
+- [x] Police du mot Hub. remplacée par Geist SemiBold, tracés plus compacts, point iris conservé. Licence du paquet officiel `geist` jointe.
+
 ## Hub. v0.3.0
 
 - [x] Nouveau nom Hub., lettrage minimaliste Syne en tracés et point iris ; favicon assorti. Les données locales existantes restent dans le même espace de stockage.

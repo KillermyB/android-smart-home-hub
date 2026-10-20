@@ -58,3 +58,8 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Le profil GitHub public KillermyB est confirmé ; aucun accès aux dépôts privés n’est revendiqué.
 - Contrôle visuel du logo à 1280 × 800 et de l’en-tête à 320 px ; bibliothèque sur mobile sans débordement horizontal. Recherche, filtre auteur, pagination, citation suivante et lien GitHub contrôlés dans le navigateur.
 - `npm run check`, `npm test` (5 tests) et `git diff --check` réussis. La rotation temporisée en veille reste à mesurer sur le vrai cadre.
+
+## v0.3.1 — Lettrage Geist
+
+- Syne remplacée par Geist SemiBold, depuis le paquet officiel `geist` 1.8.1. Tracés locaux, sans chargement de police à l’exécution ; point iris conservé. Licence jointe dans `dist/licenses/geist.txt`.
+- Logo autonome et en-tête contrôlés dans le navigateur, en clair et en sombre.

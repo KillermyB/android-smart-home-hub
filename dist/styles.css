@@ -83,13 +83,6 @@ input[type=checkbox]{accent-color:var(--accent)}
 @media(hover:hover) and (pointer:fine){.brand:hover .brand-symbol{color:var(--ink)}.arrow:hover{background:var(--accent-soft);color:var(--accent)}}
 @media(max-width:720px){.brand{gap:8px}.brand .brand-symbol{width:30px;height:30px}.brand .brand-wordmark{width:125px;height:28px}}
 @media(max-width:360px){.header{gap:6px}.header-actions{gap:4px}.header-actions .icon-button{width:40px;height:40px;min-height:40px}.brand{gap:7px}.brand .brand-symbol{width:27px;height:27px}.brand .brand-wordmark{width:115px;height:27px}}
-/* Hub. — compact outlined wordmark and iris punctuation. */
-.brand .brand-wordmark{width:89px;height:34px;fill:currentColor;stroke:none;overflow:visible}
-.brand .brand-period{fill:var(--accent)}
-.ui-icon{stroke-width:1.8;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.header-actions .ui-icon{width:20px;height:20px;stroke-width:1.8}
-@media(max-width:720px){.brand .brand-wordmark{width:82px;height:32px}}
-@media(max-width:360px){.brand .brand-wordmark{width:76px;height:29px}}
 
 .quote-open{display:block;text-align:left;padding:0;width:100%;font:inherit;letter-spacing:inherit;line-height:inherit;min-height:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
 .quote-card .quote-author{max-width:calc(100% - 72px)}.quote-card-actions{display:flex;flex-shrink:0;gap:2px}
@@ -102,3 +95,11 @@ input[type=checkbox]{accent-color:var(--accent)}
 .quote-library{display:grid;gap:12px;margin:16px 0}.quote-library article{padding:19px 20px;border:1px solid var(--line);border-radius:18px}.quote-library blockquote{font:18px/1.5 Georgia,serif;margin:0 0 15px}.quote-library article p{display:flex;flex-direction:column;gap:7px;font-size:12px}.quote-library small{color:var(--muted);line-height:1.6}
 .quote-pagination{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.quote-pagination .pill{gap:4px;padding:0 13px}
 @media(max-width:480px){.quote-feature{padding:20px}.quote-feature blockquote{font-size:22px}.quote-tools input,.quote-tools select{width:100%}.quote-card blockquote{font-size:19px}}
+
+/* Hub. — compact outlined wordmark and iris punctuation. */
+.brand .brand-wordmark{width:89px;height:34px;fill:currentColor;stroke:none;overflow:visible}
+.brand .brand-period{fill:var(--accent)}
+.ui-icon{stroke-width:1.8;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.header-actions .ui-icon{width:20px;height:20px;stroke-width:1.8}
+@media(max-width:720px){.brand .brand-wordmark{width:82px;height:32px}}
+@media(max-width:360px){.brand .brand-wordmark{width:76px;height:29px}}
