@@ -45,3 +45,12 @@ En premier lieu, garder `HOST=127.0.0.1` et vérifier l’interface sur la tour.
 4. Ouvrir `http://ADRESSE_LOCALE_DE_LA_TOUR:4173` sur le cadre, puis saisir le code d’association. Il est conservé dans un cookie HttpOnly, pas dans le JavaScript.
 
 Ce mode LAN HTTP est réservé à un réseau de confiance. Pour un usage permanent, prévoir un transport HTTPS et une gestion des appareils avec révocation. L’aperçu hébergé statique ne contient pas ce serveur privé et ne connecte pas les comptes.
+
+
+## GitHub public (v0.2.0)
+
+La tuile utilise la [recherche de commits GitHub](https://docs.github.com/en/rest/search/search#search-commits) avec `author:<compte>` et une plage de 28 jours UTC. Le compte initial est `killermyb`, indiqué par l’utilisateur. Cliquer sur la flèche pour changer de compte ou ouvrir les derniers commits.
+
+Aucun secret : la requête part du navigateur vers api.github.com. Les données sont mises en cache 30 minutes, la synchronisation s’arrête quand l’onglet est masqué. Une actualisation manuelle est espacée d’au moins une minute. Au maximum 300 résultats sont lus ; si le total est supérieur, ou si GitHub signale un index incomplet, le graphique est explicitement partiel. Les dépôts privés sont exclus. Ce n’est pas le total de contributions du profil GitHub.
+
+Vérification réelle du 20 octobre 2026 : compte trouvé, aucun commit public indexé sur les 28 jours. Ce résultat n’indique pas l’activité privée. Les limites API ou erreurs réseau ne sont pas converties en zéro : les dernières données sont conservées avec un état d’erreur. Les données de cette vérification ne sont pas incluses dans le code.

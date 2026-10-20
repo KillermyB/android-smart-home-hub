@@ -6,6 +6,14 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Ajouts v0.2.0
+
+- [x] Surfaces graphite en mode sombre, dégradés légers bleus, mauves et abricot.
+- [x] Tuile GitHub publique pour killermyb : 28 jours, cache, détail et états d’erreur.
+- [x] Bibliothèque de 12 recettes, recherche par ingrédient et catégories.
+- [x] Favoris persistants et courses adaptées aux portions, sans doublons pour une même recette et quantité.
+- [ ] GitHub privé : ajouter une autorisation côté serveur si l’utilisateur souhaite inclure ses dépôts privés. Aucun jeton GitHub n’est demandé ni enregistré dans le navigateur.
+
 ## Sur la tour
 
 - [ ] Installer Node 22.9+ et lancer `npm start` ; vérifier `npm run check` et `npm test`.
