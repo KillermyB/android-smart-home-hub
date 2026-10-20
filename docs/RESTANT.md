@@ -1,12 +1,19 @@
 # Liste de reprise
 
+## Focus musique v0.10.0
+
+- [x] Focus allégé, pochette permanente et paroles disponibles en dessous ; détails de connexion déplacés vers les réglages.
+- [x] Home : découverte Spotify Connect, choix réel de la sono et volume selon les capacités, sans sélection implicite d’un autre appareil.
+- [x] 60 tests réussis ; focus et sortie vérifiés à 1280 × 800 et 320 px.
+- [ ] Confirmer le son et le volume sur la sono physique de l’utilisateur ; le code et les réponses synthétiques ne prouvent pas ce retour matériel.
+
 ## Connexion Spotify durable v0.9.0
 
 - [x] Mémorisation explicite dans le navigateur et renouvellement via l’API Spotify ; la déconnexion efface session et stockage persistant.
 - [x] Association entre appareils par fichier AES-GCM et code séparé de 256 bits, limitée à 10 minutes ; aucune clé de déchiffrement dans le fichier.
 - [x] 57 tests réussis, dont reprise avec un nouveau stockage de session, renouvellement, déconnexion, échec de stockage sans perte de session, chiffrement, code erroné, fichier modifié et expiration.
 - [x] Écrans de mémorisation et d’association vérifiés à 1280 × 800 et 320 px, sans débordement.
-- [ ] Effectuer l’association réelle après accord sur la copie et la mémorisation du jeton Spotify vers le cadre, puis vérifier une fermeture/reprise de Firefox.
+- [x] Association réelle approuvée et effectuée ; connexion et vrai morceau retrouvés après fermeture/réouverture de Firefox, avec un seul onglet. Fichier chiffré et code temporaires supprimés.
 
 Hub reste une application web ; le portage natif a été écarté à la demande de l’utilisateur. Aucun launcher ni firmware remplacé.
 
@@ -18,7 +25,7 @@ Hub reste une application web ; le portage natif a été écarté à la demande 
 - [x] Déploiements/reprises sans ouverture automatique d’onglets ; trois doublons fermés sur le cadre, un onglet conservé.
 - [x] Retours Spotify ajoutés après autorisation, connexion réelle du site dans Chrome, morceau et paroles synchronisées reçus. Client ID public prérempli ; aucun secret dans Git.
 - [x] Corriger le retour de veille avec données reçues pendant l’inactivité et les accusés de commande Spotify non JSON ; 53 tests réussis.
-- [ ] Terminer l’autorisation Spotify propre au navigateur du cadre, puis tester lecture/pause et paroles sur ce navigateur.
+- [x] Associer Spotify au navigateur du cadre sans nouvelle saisie du mot de passe ; connexion conservée après reprise du navigateur.
 - [ ] Autoriser Todoist pour les courses ; les priorités directes sans Node restent à implémenter séparément.
 - [ ] Enregistrer et autoriser les trois calendriers ; les flux actuels utilisent Node, les flux de navigateur sans serveur personnel restent à implémenter.
 - [ ] Connecter l’instance Home Assistant lorsqu’elle sera prête.

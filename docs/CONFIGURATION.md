@@ -13,15 +13,19 @@ Le cadre et le site privé utilisent des stockages de navigateur distincts. Une 
 1. Sur le cadre, ouvrir la tuile Spotify, puis **Connecter Spotify**.
 2. Pour une autorisation directement sur le cadre, cocher **Rester connecté sur cet appareil**. Le Client ID public de l’application existante est prérempli. Sélectionner **Continuer avec Spotify**, se connecter au bon compte et autoriser la lecture de l’activité et le contrôle de la lecture.
 3. Sur un téléphone, le Mac ou une enceinte, lancer un morceau dans Spotify. Hub affiche son état ; il ne crée pas d’appareil de lecture audio.
-4. Les paroles LRCLIB sont recherchées automatiquement dans le lecteur. Le suivi est estimé à partir de la progression Spotify ; aucune parole n’est inventée si la recherche échoue. Le bouton **Afficher la pochette** permet de masquer les paroles.
+4. Les paroles LRCLIB sont recherchées automatiquement dans le lecteur. Le suivi est estimé à partir de la progression Spotify ; aucune parole n’est inventée si la recherche échoue. La pochette reste visible ; les paroles disponibles apparaissent en dessous. Les options de paroles et de connexion restent dans les réglages du lecteur.
 
 Les deux retours autorisés dans l’application Spotify sont `http://127.0.0.1:4173/` pour le cadre et `https://smart-hub-maison.kbo1.chatgpt.site/` pour le site. L’ancien retour de cette application est conservé. Aucune clé secrète n’est nécessaire avec PKCE. Le compte développeur doit remplir les [conditions du mode de développement Spotify](https://developer.spotify.com/documentation/web-api/concepts/quota-modes).
+
+### Sono Home
+
+Le bouton **Home** utilise Spotify Connect. Si aucun appareil disponible ne porte ce nom, choisir sa sono dans la liste : son nom est mémorisé pour les prochains appuis. Seuls les appareils réellement retournés par Spotify sont proposés ; un appareil absent ou restreint ne peut pas être sélectionné. Le transfert conserve l’état lecture/pause et ne change pas le volume. Le curseur de volume est actif uniquement si l’appareil annonce cette capacité.
 
 ### Associer le cadre depuis le Mac
 
 Après la connexion sur le Mac : **Configurer Spotify → Associer depuis un autre appareil → Créer le fichier d’association**. Le fichier JSON contient uniquement du contenu chiffré AES-GCM ; le code de 256 bits reste séparé. Utiliser **Afficher le code** pour le lire ou le copier, puis **Masquer le code**. L’association expire après 10 minutes. Sur le cadre, ouvrir le même écran, choisir le fichier, saisir le code et garder cochée **Garder la connexion sur cet appareil**. La connexion est conservée dans le stockage privé du navigateur et son accès est renouvelé par l’API Spotify. Ne pas conserver le code avec le fichier ni les publier. Le transfert peut être effectué ponctuellement par la liaison privée du Mac au cadre, sans serveur supplémentaire.
 
-La mémorisation n’est pas un coffre-fort contre un appareil compromis. « Déconnecter » enlève les jetons des stockages de session et persistant. Spotify peut révoquer une autorisation ; dans ce cas seulement, une nouvelle connexion peut être nécessaire. La réussite dans Chrome ne prouve pas la réussite de l’association sur le cadre.
+La mémorisation n’est pas un coffre-fort contre un appareil compromis. « Déconnecter » enlève les jetons des stockages de session et persistant. Spotify peut révoquer une autorisation ; dans ce cas seulement, une nouvelle connexion peut être nécessaire. La réussite dans Chrome ne prouve pas la réussite de l’association sur le cadre. Sur ce cadre, l’import et la reprise après fermeture/réouverture de Firefox ont été vérifiés le 20 octobre 2026.
 
 ## Todoist
 

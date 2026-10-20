@@ -67,13 +67,13 @@ function musicUI(automatic=false){
  const source=app.slice(app.indexOf('  var lyricsClient='),app.indexOf('  paths.bag='));
  let calls=0,cancels=0,resolve,reject;const events={};const timers=new Map();let nextTimer=0;
  const cover={classList:{toggle(){}},innerHTML:''},lines={innerHTML:''},bar={value:0},elapsed={textContent:''};
- const browser={read:()=>automatic,HubLyrics:{...context.module.exports,create:()=>({load:()=>{calls++;return new Promise((done,fail)=>{resolve=done;reject=fail;});},cancel:()=>{cancels++;},clear(){}})},music:{data:{item:song,progress_ms:1000,is_playing:true},updated:Date.now()},state:{page:'music',sleep:false,modal:null},document:{hidden:false,activeElement:null,addEventListener(name,fn){events[name]=fn;}},Date,JSON,Number,Math,Promise,setTimeout:fn=>{const id=++nextTimer;timers.set(id,fn);return id;},clearTimeout:id=>timers.delete(id),$:selector=>selector==='[data-lyrics-cover]'?cover:selector==='.lyrics-lines'?lines:selector==='.playback-progress progress'?bar:selector==='.playback-progress span'?elapsed:null,musicTime:value=>String(Math.floor(value/1000)),action:(name,label)=>'<button>'+label+'</button>',esc:value=>String(value??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'),musicArtwork:()=>'<artwork>'};
+ const browser={read:()=>automatic,HubLyrics:{...context.module.exports,create:()=>({load:()=>{calls++;return new Promise((done,fail)=>{resolve=done;reject=fail;});},cancel:()=>{cancels++;},clear(){}})},music:{data:{item:song,progress_ms:1000,is_playing:true},updated:Date.now()},state:{page:'music',sleep:false,modal:null},document:{hidden:false,activeElement:null,addEventListener(name,fn){events[name]=fn;}},Date,JSON,Number,Math,Promise,setTimeout:fn=>{const id=++nextTimer;timers.set(id,fn);return id;},clearTimeout:id=>timers.delete(id),$:selector=>selector==='[data-lyrics-region]'?cover:selector==='.lyrics-lines'?lines:selector==='.playback-progress progress'?bar:selector==='.playback-progress span'?elapsed:null,musicTime:value=>String(Math.floor(value/1000)),action:(name,label)=>'<button>'+label+'</button>',esc:value=>String(value??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'),musicArtwork:()=>'<artwork>'};
  const ui=vm.createContext(browser);vm.runInContext(source,ui);
  return {ui,cover,lines,bar,elapsed,timers,events,get calls(){return calls;},get cancels(){return cancels;},finish:value=>resolve(value),fail:error=>reject(error)};
 }
 
 test('music UI with automatic lyrics disabled waits for manual action and discards stale results',async()=>{
- const m=musicUI();m.ui.lyricsControls();m.ui.lyricsLifecycle();assert.equal(m.calls,0);assert.equal(m.timers.size,0);
+ const m=musicUI();m.ui.lyricsControls();m.ui.lyricsLifecycle();assert.equal(m.calls,0);assert.equal(m.timers.size,1);
  const pending=m.ui.loadLyrics();assert.equal(m.calls,1);assert.match(m.cover.innerHTML,/Recherche des paroles/);
  m.ui.state.page='home';m.ui.lyricsLifecycle();assert.equal(m.ui.lyricsState.open,false);
  m.finish({status:'plain',plainText:'Synthetic only',lines:[]});await pending;assert.equal(m.ui.lyricsState.result,null);assert.equal(m.timers.size,0);
@@ -91,35 +91,35 @@ test('music lyrics update only the local cue and stop timers when paused, hidden
 });
 
 
-test('returning from a hidden tab or waking restores artwork without relying on a global render',async()=>{
+test('returning from a hidden tab or waking clears the lyrics region without touching the cover',async()=>{
  const m=musicUI();let pending=m.ui.loadLyrics();m.finish({status:'plain',plainText:'Synthetic local text',lines:[]});await pending;assert.match(m.cover.innerHTML,/Synthetic local text/);
- m.ui.document.hidden=true;m.events.visibilitychange();assert.equal(m.ui.lyricsState.open,false);m.ui.document.hidden=false;m.events.visibilitychange();assert.equal(m.cover.innerHTML,'<artwork>');assert.equal(m.calls,1);
- pending=m.ui.loadLyrics();m.finish({status:'plain',plainText:'Synthetic local text',lines:[]});await pending;m.ui.state.sleep=true;m.ui.lyricsLifecycle();assert.equal(m.cover.innerHTML,'<artwork>');assert.equal(m.ui.lyricsState.open,false);assert.equal(m.calls,2);
+ m.ui.document.hidden=true;m.events.visibilitychange();assert.equal(m.ui.lyricsState.open,false);m.ui.document.hidden=false;m.events.visibilitychange();assert.equal(m.cover.innerHTML,'');assert.equal(m.calls,1);
+ pending=m.ui.loadLyrics();m.finish({status:'plain',plainText:'Synthetic local text',lines:[]});await pending;m.ui.state.sleep=true;m.ui.lyricsLifecycle();assert.equal(m.cover.innerHTML,'');assert.equal(m.ui.lyricsState.open,false);assert.equal(m.calls,2);
 });
 
 
 const settle=async()=>{await Promise.resolve();await Promise.resolve();};
 test('automatic music lyrics load once per visible track and never repeat on polls or renders',async()=>{
- const m=musicUI(true);assert.equal(m.calls,0);m.ui.lyricsLifecycle();assert.equal(m.calls,1);assert.equal(m.cover.innerHTML,'<artwork>');
+ const m=musicUI(true);assert.equal(m.calls,0);m.ui.lyricsLifecycle();assert.equal(m.calls,1);assert.equal(m.cover.innerHTML,'');
  for(let i=0;i<10;i++){m.ui.lyricsLifecycle();m.ui.paintLyrics();}assert.equal(m.calls,1);
  m.finish({status:'plain',plainText:'Synthetic automatic lyrics',lines:[]});await settle();assert.equal(m.ui.lyricsState.open,true);assert.match(m.cover.innerHTML,/Synthetic automatic lyrics/);
  for(let i=0;i<10;i++)m.ui.lyricsLifecycle();assert.equal(m.calls,1);
  m.ui.music.data.item={...song,name:'Another synthetic automatic track'};m.ui.lyricsLifecycle();assert.equal(m.calls,2);assert.equal(m.ui.lyricsState.busy,true);
- m.finish({status:'not-found',plainText:'',lines:[]});await settle();assert.equal(m.ui.lyricsState.open,false);assert.equal(m.cover.innerHTML,'<artwork>');assert.match(m.ui.lyricsControls(),/Paroles indisponibles/);assert.match(m.ui.lyricsControls(),/Réessayer les paroles/);
+ m.finish({status:'not-found',plainText:'',lines:[]});await settle();assert.equal(m.ui.lyricsState.open,false);assert.equal(m.cover.innerHTML,'');assert.match(m.ui.lyricsControls(),/Paroles indisponibles/);assert.match(m.ui.lyricsControls(),/Réessayer les paroles/);
  for(let i=0;i<10;i++){m.ui.lyricsLifecycle();m.ui.paintLyrics();}assert.equal(m.calls,2);
 });
 
 test('automatic lyrics respect per-track artwork choice and resume after hidden cancellation',async()=>{
- const m=musicUI(true);m.ui.lyricsLifecycle();m.finish({status:'plain',plainText:'Synthetic automatic lyrics',lines:[]});await settle();m.ui.hideLyrics();assert.equal(m.ui.lyricsState.open,false);assert.equal(m.cover.innerHTML,'<artwork>');
+ const m=musicUI(true);m.ui.lyricsLifecycle();m.finish({status:'plain',plainText:'Synthetic automatic lyrics',lines:[]});await settle();m.ui.hideLyrics();assert.equal(m.ui.lyricsState.open,false);assert.equal(m.cover.innerHTML,'');
  m.ui.state.page='home';m.ui.lyricsLifecycle();m.ui.state.page='music';m.ui.lyricsLifecycle();assert.equal(m.calls,1);
  m.ui.music.data.item={...song,name:'New synthetic track'};m.ui.lyricsLifecycle();assert.equal(m.calls,2);const stale=m.finish;
  m.ui.document.hidden=true;m.events.visibilitychange();assert.equal(m.ui.lyricsState.busy,false);stale({status:'plain',plainText:'Stale synthetic words',lines:[]});await settle();assert.equal(m.ui.lyricsState.result,null);
- m.ui.document.hidden=false;m.events.visibilitychange();assert.equal(m.calls,3);m.finish({status:'instrumental',plainText:'',lines:[]});await settle();assert.equal(m.cover.innerHTML,'<artwork>');assert.match(m.ui.lyricsControls(),/instrumental selon LRCLIB/);assert.equal(m.ui.lyricsState.open,false);
+ m.ui.document.hidden=false;m.events.visibilitychange();assert.equal(m.calls,3);m.finish({status:'instrumental',plainText:'',lines:[]});await settle();assert.equal(m.cover.innerHTML,'');assert.match(m.ui.lyricsControls(),/instrumental selon LRCLIB/);assert.equal(m.ui.lyricsState.open,false);
 });
 
 test('automatic lyric errors keep artwork, allow manual retry and remain dormant behind settings',async()=>{
  const m=musicUI(true);m.ui.state.modal='music-config';m.ui.lyricsLifecycle();assert.equal(m.calls,0);m.ui.state.modal=null;m.ui.lyricsLifecycle();assert.equal(m.calls,1);
- m.fail(new Error('Synthetic service unavailable'));await settle();assert.equal(m.cover.innerHTML,'<artwork>');assert.match(m.ui.lyricsControls(),/Synthetic service unavailable/);m.ui.lyricsLifecycle();assert.equal(m.calls,1);
+ m.fail(new Error('Synthetic service unavailable'));await settle();assert.equal(m.cover.innerHTML,'');assert.match(m.ui.lyricsControls(),/Synthetic service unavailable/);m.ui.lyricsLifecycle();assert.equal(m.calls,1);
  const manual=m.ui.loadLyrics();assert.equal(m.calls,2);m.finish({status:'plain',plainText:'Synthetic retry text',lines:[]});await manual;assert.equal(m.ui.lyricsState.open,true);
  m.ui.lyricsAuto=false;m.ui.hideLyrics();m.ui.music.data.item={...song,name:'Disabled automatic track'};m.ui.lyricsLifecycle();assert.equal(m.calls,2);assert.equal(m.ui.lyricsState.open,false);
 });

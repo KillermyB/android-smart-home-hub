@@ -1,14 +1,22 @@
 # Vérification du 20 octobre 2026
 
+## v0.10.0 — Focus musique allégé
+
+- Syntaxe et 60 tests réussis, dont ciblage explicite de la sono, refus d’un appareil restreint, volume borné, reprise sans métadonnées et renouvellement du jeton.
+- Le lecteur retire la navigation et les notices techniques ; la pochette reste en place et les paroles sont rendues dans une région distincte en dessous. Aucun texte de chanson n’est embarqué dans le dépôt.
+- Vue locale 1280 × 800 et 320 × 700 contrôlée ; sortie vers Maison et absence de débordement horizontal vérifiées. Les données et le son réels de Home restent une validation séparée.
+
 ## v0.9.1 — Lisibilité du code d’association
 
+- Association réelle Mac → cadre effectuée après accord explicite, avec fichier chiffré et code séparé. Le fichier a été enregistré comme téléchargement Android pour être sélectionnable. Après fermeture forcée et réouverture de Firefox, Hub a retrouvé le vrai morceau et la commande pause sans nouvel OAuth ; un seul onglet est resté ouvert. Les fichiers et l’entrée temporaire ont été retirés.
+- La pause via l’API a été constatée dans l’application Spotify, sans erreur de décodage. La lecture a été rétablie ensuite.
 - Le code d’association reste masqué au départ ; une commande explicite permet de l’afficher puis de le masquer sans refaire l’export ni changer de code. Le code n’est pas mémorisé dans les réglages.
 
 ## v0.9.0 — Connexion mémorisée et association Spotify
 
 - Syntaxe vérifiée, 57 tests réussis. Le client retrouve son jeton depuis un stockage persistant même avec un nouveau stockage de session, renouvelle l’accès et supprime les deux copies lors d’une déconnexion. Un échec d’écriture ne retire pas la session active.
 - Le fichier d’association ne contient aucun jeton ni code en clair : AES-256-GCM, IV aléatoire de 96 bits, contexte authentifié et clé aléatoire de 256 bits conservée à part. Expiration à 10 minutes contrôlée après déchiffrement. Code erroné, altération et expiration testés ; aucun jeton réel dans les tests ou le dépôt.
-- Formulaires réels de configuration/import vérifiés en navigateur à 1280 × 800 et 320 × 700 ; aucune largeur débordante. La transmission réelle vers le cadre et la persistance après fermeture de Firefox restent à vérifier séparément après accord.
+- Formulaires réels de configuration/import vérifiés en navigateur à 1280 × 800 et 320 × 700 ; aucune largeur débordante. La transmission réelle vers le cadre et la persistance ont ensuite été vérifiées séparément : voir v0.9.1.
 - Aucun travail de portage Android natif : l’utilisateur a choisi de conserver l’application web. Le dépôt communautaire cite à la fois des dashboards web et Mado, qui utilise Kotlin/Canvas avec un serveur Rust distinct.
 
 ## v0.8.1 — Veille, tuiles et activation des services

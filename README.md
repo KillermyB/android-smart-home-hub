@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.9.1.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent aussi par leur contenu, les commandes internes restent indépendantes et la veille sépare clairement citation, auteur et œuvre. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify a été autorisé et vérifié dans Chrome sur le Mac ; une association chiffrée permet de transmettre la connexion au cadre sans y saisir le mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
+**Version : v0.10.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent aussi par leur contenu, les commandes internes restent indépendantes et la veille sépare clairement citation, auteur et œuvre. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.9.1`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.10.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
 
@@ -33,7 +33,7 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/IN
 - **À faire** : ajout, validation et suppression des tâches locales ; connexion Todoist des tâches quotidiennes via le serveur Node existant après configuration.
 - **Cuisine** : 32 recettes initiales, dont 20 faciles à petit budget sans porc ; recettes personnelles, recherche, catégories, favoris, plats retirés/restauration, portions et étapes conservés.
 - **Courses** : page dédiée depuis Cuisine ou Réglages, rayons modifiables, articles cochés en bas, ajout des ingrédients manquants depuis une recette. Liste locale distincte du projet Todoist choisi.
-- **Musique** : widget et lecteur Spotify immersif, pochette et commandes après autorisation ; paroles LRCLIB automatiques en mode focus lorsque disponibles, avec option de désactivation et retour à la pochette. Aucune lecture ni parole fictive n’est présentée comme réelle.
+- **Musique** : widget et focus immersif allégé ; pochette conservée, paroles LRCLIB en dessous quand disponibles, bouton Home pour la sono et volume selon les capacités de l’appareil. Aucune lecture ni parole fictive n’est présentée comme réelle.
 - **Domotique** : page Maison connectée depuis Réglages, liaison directe à une instance Home Assistant existante, vrais états et commandes des lumières/interrupteurs/robots/scènes, jeton en mémoire uniquement. [Guide Home Assistant](docs/DOMOTIQUE.md).
 - **Brief du matin** : prochain rendez-vous, trois priorités, météo et repas choisi ; ouverture matinale facultative.
 - **Minuteur** : accessible depuis chaque page, durée libre, pause/reprise, ajout d’une minute, persistance et alerte visuelle.

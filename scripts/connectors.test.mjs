@@ -71,3 +71,13 @@ test('failure to remember never removes the working session',()=>{
  const persistentStorage={getItem:()=>null,setItem:()=>{throw Error('Storage full');},removeItem(){}};
  const client=spotify({storage,persistentStorage,fetch:async()=>{throw Error("Unexpected request");}});assert.throws(()=>client.remember(true),/Storage full/);assert.equal(client.connected(),true);
 });
+
+test('Spotify lists real devices, transfers to one explicit device and validates volume before writing',async()=>{
+ const storage=memory();storage.setItem('hub.spotify.token',JSON.stringify({access_token:'test-only',expires:Date.now()+3600000}));
+ const calls=[],device={id:'speaker/one',name:'Home',is_restricted:false,supports_volume:true};
+ const client=spotify({storage,fetch:async(url,options)=>{calls.push({url,options});return url.endsWith('/devices')?response({devices:[device]}):response(null,204);}});
+ assert.equal((await client.devices())[0].name,'Home');await client.transfer(device.id,false);await client.volume(25,device.id);
+ assert.equal(calls[1].options.method,'PUT');assert.deepEqual(JSON.parse(calls[1].options.body),{device_ids:['speaker/one'],play:false});
+ assert.match(calls[2].url,/volume_percent=25&device_id=speaker%2Fone$/);
+ await assert.rejects(client.volume(101,device.id),/0 et 100/);await assert.rejects(client.volume(NaN,device.id),/0 et 100/);await assert.rejects(client.transfer('',true),/appareil/);assert.equal(calls.length,3);
+});

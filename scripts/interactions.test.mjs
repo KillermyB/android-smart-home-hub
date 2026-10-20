@@ -6,6 +6,33 @@ import { readFileSync } from 'node:fs';
 const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
 const section = (start, end) => app.slice(app.indexOf(start), app.indexOf(end, app.indexOf(start)));
 
+test('Home never silently selects a different or restricted Spotify device', async () => {
+  let listed = [{ id: 'phone', name: 'Phone' }, { id: 'blocked', name: 'Home', is_restricted: true }];
+  const transfers=[],modals=[];
+  const context=vm.createContext({ music:{data:{is_playing:true}},HubConnect:{normalize:value=>value.toLowerCase()},read:(_key,fallback)=>fallback,
+    spotify:{devices:async()=>listed,transfer:async(...args)=>transfers.push(args)},refreshMusic:async()=>{},toast(){},openModal:name=>modals.push(name),renderOverlay(){},state:{} });
+  vm.runInContext(section('  async function musicHome()', '  function musicTime('),context);
+  await context.musicHome();assert.equal(transfers.length,0);assert.deepEqual(modals,['music-devices']);
+  listed=[{id:'speaker',name:'HOME',is_restricted:false}];await context.musicHome();assert.deepEqual(transfers,[['speaker',true]]);assert.equal(context.music.devicesBusy,false);
+});
+
+test('Spotify can resume a connected session after playback disappears, while restricted and signed-out sessions stay disabled', () => {
+  const calls = [];
+  let connected = true;
+  const context = vm.createContext({ music: { data: null, busy: false }, spotify: { connected: () => connected }, icon: () => '', action: (name, _icon, _class, attributes) => { calls.push({ name, disabled: attributes.includes('disabled') }); return ''; } });
+  vm.runInContext(section('  function musicControls(', '  function musicTile('), context);
+  context.musicControls(true);
+  assert.deepEqual(calls, [{ name: 'music-control:previous', disabled: true }, { name: 'music-control:play', disabled: false }, { name: 'music-control:next', disabled: true }]);
+  for (const state of ['restricted', 'signed-out', 'busy']) {
+    calls.length = 0;
+    connected = state !== 'signed-out';
+    context.music.data = state === 'restricted' ? { device: { is_restricted: true }, item: {} } : null;
+    context.music.busy = state === 'busy';
+    context.musicControls(true);
+    assert.ok(calls.every(call => call.disabled), state);
+  }
+});
+
 test('personal setup hides samples without deleting user tasks, recipes or favorites', () => {
   const stored = { demo: true, tasks: [{ id: 't1', content: 'sample' }, { id: 'local-1', content: 'My task', done: true }], favorites: ['my-recipe'], recipes: [{ id: 'my-recipe' }], timer: { end: 12345 } };
   const context = vm.createContext({ today: '2026-10-20', URLSearchParams, location: { search: '' }, HUB_DATA: { recipes: [] }, asDate: key => new Date(key),
