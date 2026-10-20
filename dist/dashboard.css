@@ -132,3 +132,39 @@
   .lyrics-line{font-size:24px}.lyrics-plain{font-size:17px}.lyrics-caption{font-size:11px}
   .ha-layout .ha-device-actions .pill{font-size:14px;min-height:48px}.ha-device h3{font-size:18px}.ha-device p{font-size:14px}
 }
+/* Tile bodies share the existing button's action without nesting controls. */
+[data-tile-action]{cursor:pointer}
+.keyboard-input [data-tile-action]:focus-within{outline:2px solid var(--focus);outline-offset:3px}
+
+/* A quiet reading block with distinct author and work, still in sans serif. */
+.screensaver{padding:44px 64px 64px;background:#090a0d}
+.screensaver .sleep-date{font-size:21px;color:#a8a9b2}
+.screensaver .sleep-time{font-size:clamp(112px,19vw,250px);line-height:1.06}
+.sleep-thought{width:100%;max-width:780px;margin:32px auto 0;display:flex;flex-direction:column;align-items:center;gap:15px}
+.sleep-rule{display:block;width:32px;height:2px;border-radius:2px;background:linear-gradient(90deg,#90b9dc,#eda771);margin-bottom:3px;opacity:.75}
+.screensaver .sleep-quote{max-width:100%;margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:clamp(21px,2.25vw,29px);font-weight:400;line-height:1.48;letter-spacing:-.025em;color:#e8e6e1;overflow-wrap:anywhere;text-wrap:balance}
+.sleep-thought figcaption{display:flex;flex-direction:column;align-items:center;gap:5px;max-width:100%}
+.screensaver .sleep-author{margin:0;font-size:15px;font-weight:500;line-height:1.5;letter-spacing:0;color:#bbbcc6}
+.sleep-work{font-size:12px;line-height:1.6;color:#858792;max-width:660px;overflow-wrap:anywhere}
+.sleep-thought.is-long .sleep-quote{font-size:clamp(19px,1.9vw,25px)}
+.screensaver .sleep-hint{bottom:23px;font-size:12px;color:#767985}
+.sleep-weather-detail>span{font-size:14px}.sleep-weather-detail small{font-size:12px;max-width:420px}
+@media(max-width:720px){.screensaver{padding:72px 25px 64px;overflow:auto;justify-content:safe center}.screensaver .sleep-date{font-size:17px!important}.screensaver .sleep-time{font-size:clamp(86px,23vw,165px)}.sleep-thought{margin-top:28px;gap:13px}.screensaver .sleep-quote{font-size:23px;line-height:1.45}.sleep-thought.is-long .sleep-quote{font-size:20px}.screensaver .sleep-author{font-size:14px}.sleep-work{font-size:12px}.sleep-weather-detail small{font-size:11px;max-width:210px}.screensaver .sleep-hint{position:static;margin-top:30px;font-size:11px}}
+@media(max-height:700px) and (min-width:721px){.screensaver{padding:28px 60px 55px}.screensaver .sleep-time{font-size:min(17vw,185px)}.sleep-thought{margin-top:22px;gap:10px}.screensaver .sleep-quote{font-size:24px}.sleep-thought.is-long .sleep-quote{font-size:21px}.screensaver .sleep-date{font-size:18px}}
+
+/* Secondary information remains readable at arm's length on the frame. */
+@media(min-width:901px){
+ .dashboard .eyebrow,.clock-location{font-size:12px}
+ .dash-weather p,.dash-forecast small{font-size:12px}
+ .agenda-event-day{font-size:12px}.agenda-event-time>span{font-size:15px}
+ .agenda-range-hours,.agenda-source{font-size:11px}
+ .dashboard-details .quote-author,.github-foot,.dashboard-details .github-total small{font-size:12px}
+ .dashboard .card-title h2 svg,.dashboard .arrow svg{width:18px;height:18px}
+ .dashboard .arrow{width:44px;min-height:44px}
+ .footer{font-size:11px}
+}
+ .remember-line{display:flex;align-items:center;gap:10px;font-size:14px;line-height:1.5;padding:8px 0}
+ .remember-line input{width:20px;height:20px;flex-shrink:0}
+ .pair-export,.pair-import{padding:20px 0;border-top:1px solid var(--line);margin-top:20px}
+ .pair-export h3,.pair-import h3{font-size:18px;margin-bottom:12px}
+ #spotify-link-code{width:100%;font:13px/1.6 monospace;margin-top:8px}

@@ -66,3 +66,9 @@ La vraie ville météo reste à choisir. GitHub public se charge sans clé. Les 
 Firefox est le premier affichage compatible installé, pas la seule architecture possible. Une application kiosque dédiée peut réutiliser l’interface, intégrer un moteur compatible et afficher Hub sans barre d’adresse. La déclarer comme application d’accueil permet à Android de l’ouvrir au démarrage ; un simple récepteur `BOOT_COMPLETED` est filtré sur ce firmware, comme confirmé ici et documenté dans le [rapport PF1007L](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/allwinner-a33-mainline-uboot.md#8-notes-from-this-unit-after-root).
 
 Cette application n’est pas encore livrée. Prévoir un moteur compatible Android 6, le lancement du service local et du SSH restreint, un accès aux réglages utilisable avec un seul doigt et une sortie vers AiMOR. Ne pas remplacer le launcher avant la validation physique du chemin de récupération ; le seul test Cuisine → recette → Maison ne couvre pas cette étape.
+
+## Éviter les doublons d’onglets — v0.8.1
+
+`frame deploy` met à jour les fichiers et vérifie le service, puis s’arrête. `frame start` relance uniquement le service. Actualiser l’onglet Hub déjà ouvert pour charger la nouvelle version ; ces commandes n’ouvrent plus d’onglet supplémentaire. `frame open` reste une ouverture explicite de Firefox, utile si aucun onglet Hub n’existe. Le paramètre `?v=` d’une ancienne URL ne bloque pas la lecture des fichiers les plus récents après actualisation.
+
+Les quatre onglets provenaient des ouvertures successives pendant l’installation et les déploiements. Les trois doublons Hub ont été fermés après contrôle ; un seul onglet a été conservé, sans effacement des données Firefox.

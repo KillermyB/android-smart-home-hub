@@ -37,3 +37,37 @@ test('Spotify requires a secure redirect and handles no active player without in
  const client=spotify({storage,location:{origin:'http://localhost:4173',protocol:'http:',hostname:'localhost',pathname:'/'},fetch:async()=>response(null,204)});
  assert.throws(()=>client.redirect(),/127.0.0.1/);assert.equal(await client.player(),null);await assert.rejects(client.control('unknown'),/inconnue/);
 });
+
+test('Spotify playback commands accept successful plain acknowledgements and keep API failures distinct',async()=>{
+ const storage=memory();storage.setItem('hub.spotify.token',JSON.stringify({access_token:'test-only',expires:Date.now()+3600000}));
+ const calls=[];
+ const client=spotify({storage,fetch:async(url,o)=>{calls.push({url,o});return {ok:true,status:200,text:async()=>{throw Error('A command must not parse an acknowledgement as JSON');}};}});
+ assert.equal(await client.control('pause'),null);assert.equal(await client.control('play'),null);
+ assert.match(calls[0].url,/\/pause$/);assert.equal(calls[0].o.method,'PUT');assert.match(calls[1].url,/\/play$/);
+ const denied=spotify({storage,fetch:async()=>response({},403)});await assert.rejects(denied.control('play'),/accès refusé/);
+});
+
+test('invalid JSON never echoes the raw provider response into the interface',async()=>{
+ const client=todoist('test-only-token',async()=>({ok:true,status:200,text:async()=> 'private-provider-response'}));
+ await assert.rejects(client.projects(),error=>error.message.includes('réponse inattendue')&&!error.message.includes('private-provider-response'));
+});
+
+test('remembered Spotify sessions survive a new tab, refresh once, and disconnect removes both stores',async()=>{
+ const storage=memory(),persistentStorage=memory();
+ storage.setItem('hub.spotify.token',JSON.stringify({access_token:'old-test-access',refresh_token:'test-refresh',expires:Date.now()-1000,client_id:'a'.repeat(32)}));
+ const first=spotify({storage,persistentStorage,fetch:async()=>{throw Error("Unexpected request");}});first.remember(true);
+ assert.equal(first.remembered(),true);assert.equal(storage.getItem('hub.spotify.token'),null);
+ const calls=[];
+ const next=spotify({storage:memory(),persistentStorage,fetch:async(url,o)=>{calls.push({url,o});return response(url.includes('/api/token')?{access_token:'new-test-access',expires_in:3600}:{item:{name:'Test track'}});}});
+ assert.equal(next.connected(),true);await next.player();
+ assert.equal(new URLSearchParams(calls[0].o.body).get('grant_type'),'refresh_token');
+ assert.equal(JSON.parse(persistentStorage.getItem('hub.spotify.token')).refresh_token,'test-refresh');
+ assert.equal(JSON.parse(persistentStorage.getItem('hub.spotify.token')).access_token,'new-test-access');
+ next.disconnect();assert.equal(next.connected(),false);assert.equal(persistentStorage.getItem('hub.spotify.token'),null);assert.equal(persistentStorage.getItem('hub.spotify.remember'),null);
+});
+
+test('failure to remember never removes the working session',()=>{
+ const storage=memory();storage.setItem('hub.spotify.token',JSON.stringify({access_token:'test-only',expires:Date.now()+3600000}));
+ const persistentStorage={getItem:()=>null,setItem:()=>{throw Error('Storage full');},removeItem(){}};
+ const client=spotify({storage,persistentStorage,fetch:async()=>{throw Error("Unexpected request");}});assert.throws(()=>client.remember(true),/Storage full/);assert.equal(client.connected(),true);
+});

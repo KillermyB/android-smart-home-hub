@@ -6,6 +6,65 @@ import { readFileSync } from 'node:fs';
 const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
 const section = (start, end) => app.slice(app.indexOf(start), app.indexOf(end, app.indexOf(start)));
 
+test('personal setup hides samples without deleting user tasks, recipes or favorites', () => {
+  const stored = { demo: true, tasks: [{ id: 't1', content: 'sample' }, { id: 'local-1', content: 'My task', done: true }], favorites: ['my-recipe'], recipes: [{ id: 'my-recipe' }], timer: { end: 12345 } };
+  const context = vm.createContext({ today: '2026-10-20', URLSearchParams, location: { search: '' }, HUB_DATA: { recipes: [] }, asDate: key => new Date(key),
+    read: (key, fallback) => key in stored ? structuredClone(stored[key]) : fallback,
+    save: (key, value) => { stored[key] = value; }
+  });
+  vm.runInContext(section('  var state = {', '  var quoteBrowsePage='), context);
+  assert.equal(context.state.demo, false);
+  assert.equal(stored.personalSetup, 1);
+  assert.equal(context.state.tasks.length, 2);
+  assert.equal(context.state.tasks[1].content, 'My task');
+  assert.equal(context.state.tasks[1].done, true);
+  assert.equal(context.state.recipes[0].id, 'my-recipe');
+  assert.equal(context.state.favorites[0], 'my-recipe');
+  assert.equal(context.state.timer.end, 12345);
+  assert.equal(stored.tasks.length, 2);
+});
+
+test('tile clicks open their destination while controls, disabled buttons and links stay independent', () => {
+  let listener;
+  const calls = [];
+  const context = vm.createContext({ document: { addEventListener: (_name, handler) => { listener = handler; } },
+    handle: async name => { calls.push(name); }, toast() {}, closeModal() {}
+  });
+  vm.runInContext(section("  document.addEventListener('click'", "  document.addEventListener('change'"), context);
+  const target = ({ action, disabled, interactive } = {}) => ({ classList: { contains: () => false }, closest(selector) {
+    if (selector === '[data-action]') return action ? { dataset: { action }, disabled } : null;
+    if (selector === '[data-tile-action]') return { dataset: { tileAction: 'nav:music' } };
+    return interactive ? {} : null;
+  } });
+  listener({ target: target() });
+  listener({ target: target({ action: 'music-next' }) });
+  listener({ target: target({ action: 'music-next', disabled: true }) });
+  listener({ target: target({ interactive: true }) });
+  assert.deepEqual(calls, ['nav:music', 'music-next']);
+});
+
+test('idle quotation rotation updates author and source independently without a page rebuild', () => {
+  const nodes = { '.sleep-quote': {}, '.sleep-author': {}, '.sleep-work': {}, '.sleep-thought': { classList: { toggle: (_name, long) => { nodes.long = long; } } } };
+  const current = { text: 'A'.repeat(181), author: 'Author', work: 'Work' };
+  const context = vm.createContext({ state: { sleep: true }, quote: () => current, $: selector => nodes[selector] });
+  vm.runInContext(section('  function updateQuote()', '  function tasks()'), context);
+  context.updateQuote();
+  assert.equal(nodes['.sleep-quote'].textContent, current.text);
+  assert.equal(nodes['.sleep-author'].textContent, 'Author');
+  assert.equal(nodes['.sleep-work'].textContent, 'Work');
+  assert.equal(nodes.long, true);
+});
+
+test('waking paints service data received during idle, then restores focus', () => {
+  let rendered = 0, overlays = 0, focused = 0;
+  const context = vm.createContext({ state: { sleep: true }, mainDirty: true, render: () => rendered++, renderOverlay: () => overlays++, $: () => ({ focus: () => focused++ }), resetIdle() {} });
+  vm.runInContext(section('  function wake()', '  function sleepWeather()'), context);
+  context.wake();
+  assert.equal(context.state.sleep, false); assert.equal(rendered, 1); assert.equal(overlays, 0); assert.equal(focused, 1);
+  context.mainDirty = false; context.state.sleep = true; context.wake();
+  assert.equal(rendered, 1); assert.equal(overlays, 1); assert.equal(focused, 2);
+});
+
 test('date formatting reuses a bounded cache and preserves Zurich dates around midnight', () => {
   let constructed = 0;
   const context = vm.createContext({ Date, Intl: { DateTimeFormat: function (...args) { constructed++; return new Intl.DateTimeFormat(...args); } }, dateFormats: new Map() });

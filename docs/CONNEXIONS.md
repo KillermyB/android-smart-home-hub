@@ -37,7 +37,7 @@ Le scope [`calendar.readonly`](https://developers.google.com/workspace/calendar/
 
 ## Météo
 
-Choisir la ville dans les réglages puis sélectionner le bon résultat. Géocodage et prévisions utilisent [Open-Meteo](https://open-meteo.com/). La météo n’utilise pas la géolocalisation du navigateur. Pour le moment, elle est actualisée lors du choix de la ville ; une actualisation régulière reste à ajouter. Une valeur conservée est accompagnée de son heure de mise à jour.
+Choisir la ville dans les réglages puis sélectionner le bon résultat. Géocodage et prévisions utilisent [Open-Meteo](https://open-meteo.com/). La météo n’utilise pas la géolocalisation du navigateur. Elle est actualisée lors du choix de la ville, puis toutes les 30 minutes lorsque le navigateur est visible. Moudon est la ville initiale si aucune ville n’a encore été choisie. Une valeur conservée est accompagnée de son heure de mise à jour.
 
 ## Accès du cadre au serveur de la tour
 

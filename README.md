@@ -2,11 +2,13 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.7.1.** Hub est installé et affiché sur le cadre physique dans Firefox 143.0.4. La navigation réutilise l’en-tête, les favoris se mettent à jour sur place et la recherche conserve son champ. Un comparatif sur le cadre confirme une réduction du temps de traitement JavaScript ; mesures et limites dans [VERIFICATION.md](docs/VERIFICATION.md). Le tactile Cuisine → recette → Maison a été confirmé par l’utilisateur. Le redémarrage Android a conservé les réglages et fichiers ; le démarrage automatique est bloqué par la politique constructeur. La reprise après coupure, les performances prolongées et les comptes réels restent à vérifier. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
+**Version : v0.9.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent aussi par leur contenu, les commandes internes restent indépendantes et la veille sépare clairement citation, auteur et œuvre. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify a été autorisé et vérifié dans Chrome sur le Mac ; une association chiffrée permet de transmettre la connexion au cadre sans y saisir le mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.1`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.9.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
+
+Pour activer les services un par un, suivre [CONFIGURATION.md](docs/CONFIGURATION.md). Le Client ID Spotify public est prérempli ; aucune clé secrète ni session de compte n’est incluse dans le projet.
 
 ## Récupérer et lancer sur Windows
 
@@ -44,7 +46,7 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/IN
 
 Les tâches locales, recettes, favoris, plats retirés, repas, courses, thème, ville météo, réglages et minuteur restent **dans le navigateur utilisé**. Les contenus « À garder » utilisent IndexedDB. Chaque appareil et chaque origine (`localhost`, site hébergé) garde sa propre copie. Un clone ou un push GitHub ne transfère pas ces données.
 
-Les jetons Courses Todoist et Spotify restent dans la session du navigateur. Le jeton Home Assistant reste uniquement en mémoire ; seule son adresse peut être mémorisée avec accord explicite. Les anciennes connexions calendriers/tâches Node utilisent `.env` et `.data` sur la tour. Ne publier ni secrets, ni exports personnels, ni sauvegardes du cadre. La clé et les jetons de ce serveur sont sur la même machine : le chiffrement protège le fichier isolé, pas une machine compromise.
+Le jeton Courses Todoist reste dans la session du navigateur. Spotify peut conserver son jeton de renouvellement dans le stockage de ce navigateur avec « Rester connecté » ; « Déconnecter » efface cette connexion. Le jeton Home Assistant reste uniquement en mémoire ; seule son adresse peut être mémorisée avec accord explicite. Les anciennes connexions calendriers/tâches Node utilisent `.env` et `.data` sur la tour. Ne publier ni secrets, ni exports personnels, ni sauvegardes du cadre. La clé et les jetons de ce serveur sont sur la même machine : le chiffrement protège le fichier isolé, pas une machine compromise.
 
 ## Services et limites
 
@@ -52,7 +54,7 @@ La copie autonome du cadre et le [site privé HTTPS](https://smart-hub-maison.kb
 
 La domotique exige une instance Home Assistant existante, accessible depuis le navigateur. Depuis Hub. en HTTPS, son adresse doit également être HTTPS. Aucun serveur domotique n’est installé par cette app et aucun appareil réel n’a encore été testé. Voir [DOMOTIQUE.md](docs/DOMOTIQUE.md).
 
-Pour Todoist/Spotify, voir [COURSES-SPOTIFY.md](docs/COURSES-SPOTIFY.md). Pour Outlook/Google et le mode LAN, voir [CONNEXIONS.md](docs/CONNEXIONS.md). Spotify pilote un appareil existant et nécessite les droits du compte, Premium et un appareil actif ; il ne transforme pas le cadre en haut-parleur. La fermeture complète de la session peut demander une nouvelle connexion.
+Pour Todoist/Spotify, voir [COURSES-SPOTIFY.md](docs/COURSES-SPOTIFY.md). Pour Outlook/Google et le mode LAN, voir [CONNEXIONS.md](docs/CONNEXIONS.md). Spotify pilote un appareil existant et nécessite les droits du compte, Premium et un appareil actif ; il ne transforme pas le cadre en haut-parleur. Spotify mémorisé reprend sans nouvelle connexion tant que son autorisation reste valide.
 
 Les paroles sont recherchées auprès de [LRCLIB](https://lrclib.net/docs) automatiquement en mode focus si cette option est activée, à partir des métadonnées du morceau. Le réglage Spotify permet de désactiver ce chargement ; le bouton « Afficher la pochette » masque les paroles pour le morceau courant. La pochette reste visible si aucune parole n’est disponible. Le logiciel serveur LRCLIB est publié sous licence MIT ; **cette licence ne donne pas de droits sur les paroles retournées**. Aucun texte de chanson n’est inclus dans le dépôt. Une absence, une version instrumentale ou une erreur de recherche est signalée.
 

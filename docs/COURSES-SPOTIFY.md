@@ -38,3 +38,7 @@ Références officielles : [PKCE](https://developer.spotify.com/documentation/we
 ## Validation restante
 
 Contrats testés avec réponses simulées : pagination Todoist, écritures, erreurs 401/429, PKCE/état, absence de lecteur Spotify. L’autorisation des vrais comptes et les échanges authentifiés n’ont pas été réalisés. Le navigateur et le tactile du cadre restent à vérifier. Les anciens flux Outlook/Google/Todoist Node restent inchangés.
+
+## Spotify mémorisé et association — v0.9.0
+
+Spotify peut maintenant conserver le jeton de renouvellement sur l’appareil, après choix explicite. Une fermeture d’onglet ou du navigateur ne supprime pas cette connexion mémorisée ; la déconnexion l’efface. L’association chiffrée depuis un navigateur déjà connecté évite de saisir ses identifiants sur le cadre. La procédure à jour est dans [CONFIGURATION.md](CONFIGURATION.md). Ces ajouts concernent Spotify ; le jeton Todoist reste géré séparément.

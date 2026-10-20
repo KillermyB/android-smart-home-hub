@@ -1,5 +1,22 @@
 # Vérification du 20 octobre 2026
 
+## v0.9.0 — Connexion mémorisée et association Spotify
+
+- Syntaxe vérifiée, 57 tests réussis. Le client retrouve son jeton depuis un stockage persistant même avec un nouveau stockage de session, renouvelle l’accès et supprime les deux copies lors d’une déconnexion. Un échec d’écriture ne retire pas la session active.
+- Le fichier d’association ne contient aucun jeton ni code en clair : AES-256-GCM, IV aléatoire de 96 bits, contexte authentifié et clé aléatoire de 256 bits conservée à part. Expiration à 10 minutes contrôlée après déchiffrement. Code erroné, altération et expiration testés ; aucun jeton réel dans les tests ou le dépôt.
+- Formulaires réels de configuration/import vérifiés en navigateur à 1280 × 800 et 320 × 700 ; aucune largeur débordante. La transmission réelle vers le cadre et la persistance après fermeture de Firefox restent à vérifier séparément après accord.
+- Aucun travail de portage Android natif : l’utilisateur a choisi de conserver l’application web. Le dépôt communautaire cite à la fois des dashboards web et Mado, qui utilise Kotlin/Canvas avec un serveur Rust distinct.
+
+## v0.8.1 — Veille, tuiles et activation des services
+
+- Syntaxe vérifiée et 53 tests réussis : migration hors démonstration avec conservation des données, clic sur les tuiles sans déclencher une navigation depuis leurs commandes, auteur/source de citation séparés, données différées rendues au réveil, accusés de commande Spotify sans analyse JSON et erreurs sans contenu brut du fournisseur.
+- Navigateur 1280 × 800 : clic sur le texte de la météo, le corps de Spotify et le message de l’agenda ; destinations attendues ouvertes. Citation, auteur et œuvre lisibles en veille. Vue 320 × 700 : aucune largeur débordante, citation et source visibles, réveil accessible.
+- Moudon identifiée par le géocodage officiel Open-Meteo ; prévisions réelles reçues sur le Mac puis le cadre. Aucune géolocalisation de l’utilisateur ni clé météo nécessaire.
+- Spotify : application existante retrouvée dans la session Chrome de l’utilisateur. Deux adresses de retour ajoutées et enregistrées après autorisation explicite, sans changement du secret. Consentement lecture/contrôle approuvé, retour OAuth PKCE réussi, lecture active depuis un iPhone et paroles synchronisées LRCLIB constatées. Aucun jeton, texte de chanson ou relevé personnel n’est ajouté aux fichiers du projet.
+- Une réponse réussie non JSON lors du contrôle Spotify a révélé un défaut du client ; les commandes n’essaient plus de décoder leurs accusés en JSON. Le retour de veille reconstruit uniquement la page devenue obsolète pendant l’inactivité. Les tests couvrent ces deux régressions.
+- Cadre : identité SSH relue avant écriture, fichiers v0.8.1 et empreintes vérifiés. Le déploiement n’a pas ajouté d’onglet. Trois anciens onglets Hub fermés après contrôle des titres, puis unique onglet actualisé ; Moudon et les états réels « à connecter » affichés. Aucun effacement de données Firefox. Les vérifications injectées ne remplacent pas un nouveau test tactile humain.
+- Authentification Spotify du cadre, Todoist, calendriers et appareils Home Assistant restent des validations distinctes. Voir CONFIGURATION.md ; la connexion sur Chrome ne connecte pas Firefox à distance.
+
 ## v0.7.1 — Réactivité des interactions
 
 - `npm run check` : réussi. `npm test` : 47 tests réussis, dont cinq nouveaux contrôles de régression sur la réutilisation du rendu, le focus, les filtres et les dates autour de minuit à Zurich. Les tests HTTP locaux nécessitent l’autorisation d’ouvrir leur port de test.

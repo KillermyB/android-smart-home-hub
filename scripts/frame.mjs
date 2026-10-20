@@ -135,10 +135,14 @@ HUBCONF
       }
       console.log('Hub v' + version + ' vérifié et servi sur le cadre, uniquement en boucle locale.');
     } finally { await rm(temp, { recursive: true, force: true }); }
+    console.log('Actualise l’onglet Hub existant sur le cadre. Aucun nouvel onglet ouvert.');
+    return;
   }
   if (command === 'start') {
     await remote(startScript());
     await remote(`${busybox} wget -q -O /dev/null http://127.0.0.1:4173/`);
+    console.log('Service Hub relancé. Actualise l’onglet existant ; frame open reste disponible pour une ouverture explicite.');
+    return;
   }
   const current = JSON.parse(await remote('cat ' + base + '/www/hub-release.json'));
   if (!/^\d+\.\d+\.\d+$/.test(current.version)) throw Error('Version installée invalide');
