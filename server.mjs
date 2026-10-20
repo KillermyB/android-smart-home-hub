@@ -159,8 +159,12 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && req.headers.origin !== origin && req.headers.origin !== `http://${requestHost}`) return json(res, 403, { error: 'Origine refusée.' });
     if (path === '/api/status' && req.method === 'GET') return json(res, 200, { ...Object.fromEntries(Object.keys(providers).map(p => [p, {configured:configured(p), connected:!!accounts[p]}])), calendarConnected:Object.keys(providers).some(p=>!!accounts[p]), todoist:{configured:!!process.env.TODOIST_API_TOKEN,connected:false} });
     if (path === '/api/tasks' && req.method === 'GET') {
-      let cursor, tasks = [];
-      do { const data = await todo('tasks/filter?' + new URLSearchParams({query:'today | overdue',limit:'200',...(cursor?{cursor}:{})})); tasks.push(...data.results.map(t => ({id:t.id,content:t.content,priority:t.priority,done:false}))); cursor=data.next_cursor; } while(cursor);
+      let cursor, tasks = [], projects = [], projectCursor;
+      do { const data=await todo('projects?'+new URLSearchParams({limit:'100',...(projectCursor?{cursor:projectCursor}:{})}));projects.push(...data.results);projectCursor=data.next_cursor; } while(projectCursor);
+      const excluded=new Set(projects.filter(p=>['course','courses'].includes(p.name.trim().toLowerCase())).map(p=>p.id));
+      const selected=url.searchParams.get('shopping_project');if(selected)excluded.add(selected);
+      let changed=true;while(changed){changed=false;for(const p of projects)if(excluded.has(p.parent_id)&&!excluded.has(p.id)){excluded.add(p.id);changed=true;}}
+      do { const data = await todo('tasks/filter?' + new URLSearchParams({query:'today | overdue',limit:'200',...(cursor?{cursor}:{})})); tasks.push(...data.results.filter(t=>!excluded.has(t.project_id)).map(t => ({id:t.id,content:t.content,priority:t.priority,project_id:t.project_id,done:false}))); cursor=data.next_cursor; } while(cursor);
       return json(res, 200, {tasks});
     }
     if (path === '/api/tasks' && req.method === 'POST') { const data = await body(req); if (typeof data.content !== 'string' || !data.content.trim() || data.content.length > 500) return json(res, 400, {error:'Tâche invalide.'}); await todo('tasks','POST',{content:data.content.trim(),due_string:'today'}); return json(res,201,{ok:true}); }
@@ -196,7 +200,7 @@ const server = http.createServer(async (req, res) => {
     }
     if(path.startsWith('/api/')||path.startsWith('/auth/'))return json(res,404,{error:'Route indisponible.'});
     if(req.method!=='GET'&&req.method!=='HEAD')return json(res,405,{error:'Méthode refusée.'});
-    const files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/hub-tools.js':'hub-tools.js','/connectors.js':'connectors.js','/lyrics.js':'lyrics.js','/home-assistant.js':'home-assistant.js','/data.js':'data.js','/budget-recipes.js':'budget-recipes.js','/quotes.js':'quotes.js','/github.js':'github.js','/styles.css':'styles.css','/dashboard.css':'dashboard.css','/home-assistant.css':'home-assistant.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt','/licenses/syne.txt':'licenses/syne.txt','/licenses/geist.txt':'licenses/geist.txt'};
+    const files={'/connection-bundle.js':'connection-bundle.js','/calendar-import.js':'calendar-import.js','/vendor/ical.js':'vendor/ical.js','/licenses/ical.txt':'licenses/ical.txt','/music-colors.js':'music-colors.js','/spotify-link.js':'spotify-link.js','/':'index.html','/index.html':'index.html','/app.js':'app.js','/hub-tools.js':'hub-tools.js','/connectors.js':'connectors.js','/lyrics.js':'lyrics.js','/home-assistant.js':'home-assistant.js','/data.js':'data.js','/budget-recipes.js':'budget-recipes.js','/quotes.js':'quotes.js','/github.js':'github.js','/styles.css':'styles.css','/dashboard.css':'dashboard.css','/home-assistant.css':'home-assistant.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt','/licenses/syne.txt':'licenses/syne.txt','/licenses/geist.txt':'licenses/geist.txt'};
     if(/^\/fonts\/(dm-sans|manrope)(?:-(400|500|600|700|800))?(\.woff2|-OFL\.txt)$/.test(path))files[path]=path.slice(1);
     if(!files[path])return json(res,404,{error:'Fichier introuvable.'});
     const font=path.match(/^\/fonts\/(dm-sans|manrope)(?:-(400|500|600|700|800))?(\.woff2|-OFL\.txt)$/);

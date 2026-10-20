@@ -2,11 +2,13 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.11.1.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
+**Version : v0.12.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.11.1`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.12.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
+
+La configuration autonome des agendas et le transfert chiffré sont décrits dans [AGENDAS-IMPORT.md](docs/AGENDAS-IMPORT.md).
 
 Pour activer les services un par un, suivre [CONFIGURATION.md](docs/CONFIGURATION.md). Le Client ID Spotify public est prérempli ; aucune clé secrète ni session de compte n’est incluse dans le projet.
 
@@ -30,7 +32,7 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/IN
 
 - **Accueil** : grande horloge sur dégradé bleu/crème/orange, météo et priorités à droite, prochains rendez-vous avec leurs heures lisibles, repas et Spotify. GitHub et citations restent accessibles. Mode sombre graphite, degrés agrandis et contour Spotify indiquant le temps restant.
 - **Agenda** : sources distinctes **Perso, Myrak et Travail**, avec filtres et repères de couleur ; Myrak utilise un bleu soutenu. Vues jour, semaine et mois.
-- **À faire** : ajout, validation et suppression des tâches locales ; connexion Todoist des tâches quotidiennes via le serveur Node existant après configuration.
+- **À faire** : ajout, validation et suppression des tâches locales ; connexion directe Todoist pour les tâches du jour et en retard, en excluant les projets de courses et leurs sous-projets.
 - **Cuisine** : 32 recettes initiales, dont 20 faciles à petit budget sans porc ; recettes personnelles, recherche, catégories, favoris, plats retirés/restauration, portions et étapes conservés.
 - **Courses** : page dédiée depuis Cuisine ou Réglages, rayons modifiables, articles cochés en bas, ajout des ingrédients manquants depuis une recette. Liste locale distincte du projet Todoist choisi.
 - **Musique** : widget et focus immersif allégé ; pochette conservée, paroles LRCLIB en dessous quand disponibles, bouton Home pour la sono, volume selon les capacités de l’appareil et fond coloré à partir de la pochette. Aucune lecture ni parole fictive n’est présentée comme réelle.
@@ -38,7 +40,7 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/IN
 - **Brief du matin** : prochain rendez-vous, trois priorités, météo et repas choisi ; ouverture matinale facultative.
 - **Minuteur** : accessible depuis chaque page, durée libre, pause/reprise, ajout d’une minute, persistance et alerte visuelle.
 - **Compagnon local** : notes, photos, liens et recettes conservés sur l’appareil ; transfert manuel par fichier, sans serveur de synchronisation. [Guide de transfert](docs/TRANSFERT-LOCAL.md).
-- **GitHub** : commits publics de KillermyB sur 28 jours ; compte configurable, cache, erreurs et résultats partiels signalés.
+- **GitHub** : commits publics sur 28 jours ou relevé importé des contributions agrégées, y compris privées selon GitHub ; aucun jeton GitHub transféré au cadre.
 - **Veille** : grande heure, météo de la ville choisie et 200 citations sourcées en police sans sérif ; réveil par toucher ou Échap.
 - **Interface** : polices et icônes locales, commandes tactiles, transitions courtes et préférence `prefers-reduced-motion` conservée. Cible Chrome/WebView 106 ou plus récent.
 
@@ -46,11 +48,11 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/IN
 
 Les tâches locales, recettes, favoris, plats retirés, repas, courses, thème, ville météo, réglages et minuteur restent **dans le navigateur utilisé**. Les contenus « À garder » utilisent IndexedDB. Chaque appareil et chaque origine (`localhost`, site hébergé) garde sa propre copie. Un clone ou un push GitHub ne transfère pas ces données.
 
-Le jeton Courses Todoist reste dans la session du navigateur. Spotify peut conserver son jeton de renouvellement dans le stockage de ce navigateur avec « Rester connecté » ; « Déconnecter » efface cette connexion. Le jeton Home Assistant reste uniquement en mémoire ; seule son adresse peut être mémorisée avec accord explicite. Les anciennes connexions calendriers/tâches Node utilisent `.env` et `.data` sur la tour. Ne publier ni secrets, ni exports personnels, ni sauvegardes du cadre. La clé et les jetons de ce serveur sont sur la même machine : le chiffrement protège le fichier isolé, pas une machine compromise.
+Le jeton Todoist reste en session ou, avec « Rester connecté », dans le stockage persistant du navigateur. Courses et tâches partagent cette connexion mais gardent des listes séparées. Spotify peut conserver son jeton de renouvellement dans le stockage de ce navigateur avec « Rester connecté » ; « Déconnecter » efface cette connexion. Le jeton Home Assistant reste uniquement en mémoire ; seule son adresse peut être mémorisée avec accord explicite. Les anciennes connexions calendriers/tâches Node utilisent `.env` et `.data` sur la tour. Ne publier ni secrets, ni exports personnels, ni sauvegardes du cadre. La clé et les jetons de ce serveur sont sur la même machine : le chiffrement protège le fichier isolé, pas une machine compromise.
 
 ## Services et limites
 
-La copie autonome du cadre et le [site privé HTTPS](https://smart-hub-maison.kbo1.chatgpt.site/) évitent de garder la tour allumée pour les fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify. Les calendriers Perso/Myrak/Travail restent à autoriser et à vérifier séparément ; les flux calendriers existants nécessitent encore le serveur Node. Choisir une couleur ou un nom de source ne connecte pas un compte.
+La copie autonome du cadre et le [site privé HTTPS](https://smart-hub-maison.kbo1.chatgpt.site/) évitent de garder la tour allumée pour les fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify. Les calendriers Perso/Myrak/Travail peuvent être importés par fichiers ICS sans serveur ; ce sont des instantanés à réimporter après modification. Les anciennes connexions OAuth calendriers restent propres au serveur Node optionnel. Choisir une couleur ou un nom de source ne connecte pas un compte.
 
 La domotique exige une instance Home Assistant existante, accessible depuis le navigateur. Depuis Hub. en HTTPS, son adresse doit également être HTTPS. Aucun serveur domotique n’est installé par cette app et aucun appareil réel n’a encore été testé. Voir [DOMOTIQUE.md](docs/DOMOTIQUE.md).
 

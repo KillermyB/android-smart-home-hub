@@ -1,5 +1,14 @@
 # Liste de reprise
 
+## Connexions autonomes v0.12.0
+
+- [x] Import ICS local, récurrences/exceptions, fuseaux et journées entières ; liste des agendas et retrait de leur copie Hub.
+- [x] Courses et tâches Todoist séparées, connexion directe mémorisable et transfert chiffré à durée limitée.
+- [x] Diagnostic GitHub : recherche publique distincte des contributions privées ; relevé agrégé importable, sans clé ni noms de dépôts privés.
+- [x] Corriger la liste des modules servis par Node, y compris les modules musique ajoutés aux versions précédentes.
+- [ ] Mettre à jour manuellement les relevés calendriers/GitHub après modification à la source ; aucun serveur de synchronisation ajouté.
+
+
 ## Accueil et veille v0.11.0
 
 - [x] Ville retirée de l’accueil, degrés agrandis et flèches des tuiles retirées ; actions natives conservées pour le clavier, clic sur chaque contenu vérifié.
@@ -34,8 +43,9 @@ Hub reste une application web ; le portage natif a été écarté à la demande 
 - [x] Retours Spotify ajoutés après autorisation, connexion réelle du site dans Chrome, morceau et paroles synchronisées reçus. Client ID public prérempli ; aucun secret dans Git.
 - [x] Corriger le retour de veille avec données reçues pendant l’inactivité et les accusés de commande Spotify non JSON ; 53 tests réussis.
 - [x] Associer Spotify au navigateur du cadre sans nouvelle saisie du mot de passe ; connexion conservée après reprise du navigateur.
-- [ ] Autoriser Todoist pour les courses ; les priorités directes sans Node restent à implémenter séparément.
-- [ ] Enregistrer et autoriser les trois calendriers ; les flux actuels utilisent Node, les flux de navigateur sans serveur personnel restent à implémenter.
+- [x] Implémenter Todoist direct pour courses et tâches, avec exclusion du projet de courses et de ses sous-projets. Projet « course » créé et connexion réelle vérifiée sur le Mac ; association du cadre à vérifier à la livraison.
+- [x] Importer les exports Google Myrak, Outlook Perso et les trois agendas iCloud dans Hub sur le Mac, sans serveur personnel.
+- [ ] Synchronisation automatique des calendriers : les imports ICS sont des instantanés ; les fournisseurs testés ne permettent pas une lecture CORS directe. Aucune publication de nouveau lien ni proxy tiers.
 - [ ] Connecter l’instance Home Assistant lorsqu’elle sera prête.
 
 Procédure et limites : [CONFIGURATION.md](CONFIGURATION.md).

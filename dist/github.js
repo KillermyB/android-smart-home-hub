@@ -17,5 +17,6 @@
     }
     return summarize({items:items,total_count:total,incomplete_results:incomplete},user,first,last);
   }
-  var api={load:load,summarize:summarize};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.HubGithub=api;
+  function snapshot(value,user){if(!value||value.format!=='hub-github-contributions'||String(value.user).toLowerCase()!==String(user).toLowerCase()||!/^\d{4}-\d{2}-\d{2}$/.test(value.start)||!/^\d{4}-\d{2}-\d{2}$/.test(value.end)||!Number.isFinite(value.updated)||value.updated>Date.now()+60000||!value.days||typeof value.days!=='object')throw Error('Relevé GitHub invalide ou compte différent.');var first=new Date(value.start+'T00:00:00Z'),last=new Date(value.end+'T00:00:00Z');if(last-first!==27*86400000)throw Error('Le relevé doit couvrir 28 jours.');var days={},total=0;for(var i=0;i<28;i++){var day=new Date(first.getTime()+i*86400000).toISOString().slice(0,10),n=value.days[day]||0;if(!Number.isSafeInteger(n)||n<0||n>1000000)throw Error('Relevé GitHub invalide.');days[day]=n;total+=n;}return {user:user,updated:value.updated,start:value.start,end:value.end,total:total,days:days,items:[],kind:'contributions',partial:false};}
+  var api={load:load,summarize:summarize,snapshot:snapshot};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.HubGithub=api;
 })(typeof window!=='undefined'?window:globalThis);

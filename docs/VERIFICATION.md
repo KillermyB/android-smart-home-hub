@@ -1,4 +1,15 @@
-# Vérifications des 20 et 21 octobre 2026
+# Vérification
+
+## v0.12.0 — Agendas importés et Todoist direct
+
+- `npm run check` et 71 tests réussis : séparation achats/tâches (projet choisi, projets course/courses et sous-projets), pagination API, récurrences/exclusions/exceptions, DST, journées entières et événements de nuit, déchiffrement, expiration et altération des transferts.
+- Aperçu réel à 1280 × 800 et contrôle géométrique à 320 px : formulaires, connexion et liste des cinq agendas sans débordement horizontal. API Todoist réelle : projet « course » créé, rayons créés, liste des courses vide et 18 tâches du jour/en retard dans À faire ; aucun élément utilisateur ajouté comme test.
+- Exports réels récupérés depuis Google Agenda Myrak et le lien Outlook complet préexistant, plus les trois liens iCloud fournis. Aucun partage modifié. Les sources iCloud comptaient 127, 0 et 5 VEVENT ; Google 1 et Outlook 5. Dans la fenêtre locale −60/+365 jours : 11, 0, 2, 1 et 4 occurrences. Ce sont des imports datés, pas une synchronisation automatique.
+- GitHub authentifié confirme des contributions privées absentes de la recherche publique. Un relevé de 28 jours UTC a été importé avec le libellé « contributions » ; aucun jeton GitHub ni nom de dépôt privé transféré. Le relevé reste explicitement manuel.
+- Consentement explicite reçu pour mémoriser Todoist sur le Mac et le cadre. Transfert AES-256-GCM, code séparé et expiration 30 minutes ; fichiers privés hors dépôt. Contrôle exact des liens privés et du jeton Todoist : aucune occurrence dans les fichiers du projet.
+- Identité physique recontrôlée : sun8i, Android 6.0.1, ARMv7, 1280 × 800. v0.12.0 installée par Wi-Fi avec empreintes et HTTP vérifiés ; onglet existant actualisé, Spotify réel conservé. L’USB puis le SSH sont devenus indisponibles avant l’import sur le cadre : association matérielle en attente de reconnexion, distincte de l’installation des fichiers.
+- Le serveur Node optionnel sert désormais aussi les modules Spotify/teintes/import et leur bibliothèque ; ses tâches excluent également les projets de courses. Le cadre reste servi localement sans dépendre de Node sur le Mac.
+
 
 ## v0.11.1 — Validation sur le cadre
 

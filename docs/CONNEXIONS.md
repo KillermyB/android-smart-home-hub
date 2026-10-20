@@ -1,10 +1,12 @@
 # Connexions
 
+Depuis v0.12.0, le cadre peut utiliser Todoist directement et importer les agendas sans serveur personnel : voir [AGENDAS-IMPORT.md](AGENDAS-IMPORT.md). Les procédures OAuth Node ci-dessous restent optionnelles et ne sont pas utilisées pour les imports du cadre.
+
 Configurer depuis un navigateur sur la tour à `http://localhost:4173`. Redémarrer `npm start` après toute modification de `.env`.
 
 ## Courses et musique sans serveur personnel
 
-La connexion directe des courses Todoist et le lecteur Spotify sont décrits dans [COURSES-SPOTIFY.md](COURSES-SPOTIFY.md). Les jetons restent dans la session du navigateur.
+La connexion directe des courses Todoist et le lecteur Spotify sont décrits dans [COURSES-SPOTIFY.md](COURSES-SPOTIFY.md). Todoist et Spotify proposent une mémorisation explicite sur l’appareil.
 
 ## Todoist — tâches quotidiennes via Node
 
@@ -53,7 +55,7 @@ Ce mode LAN HTTP est réservé à un réseau de confiance. Pour un usage permane
 
 ## GitHub public (v0.2.0)
 
-La tuile utilise la [recherche de commits GitHub](https://docs.github.com/en/rest/search/search#search-commits) avec `author:<compte>` et une plage de 28 jours UTC. Le compte initial est `killermyb`, indiqué par l’utilisateur. Cliquer sur la flèche pour changer de compte ou ouvrir les derniers commits.
+La tuile utilise la [recherche de commits GitHub](https://docs.github.com/en/rest/search/search#search-commits) avec `author:<compte>` et une plage de 28 jours UTC. Le compte initial est `killermyb`, indiqué par l’utilisateur. Toucher la tuile pour changer de compte ou ouvrir les derniers commits.
 
 Aucun secret : la requête part du navigateur vers api.github.com. Les données sont mises en cache 30 minutes, la synchronisation s’arrête quand l’onglet est masqué. Une actualisation manuelle est espacée d’au moins une minute. Au maximum 300 résultats sont lus ; si le total est supérieur, ou si GitHub signale un index incomplet, le graphique est explicitement partiel. Les dépôts privés sont exclus. Ce n’est pas le total de contributions du profil GitHub.
 

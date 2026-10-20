@@ -10,7 +10,7 @@ const response=(body,status=200)=>({ok:status>=200&&status<300,status,text:async
 function memory(){const m=new Map();return {getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v),removeItem:k=>m.delete(k)};}
 
 test('Todoist paginates project tasks and never turns failed requests into an empty list',async()=>{
- const calls=[];const client=todoist('test-only-token',async(url,options)=>{calls.push({url,options});return response(calls.length===1?{results:[{id:'first'}],next_cursor:'page.next'}:{results:[{id:'last'}],next_cursor:null});});
+ const calls=[];const client=todoist('test-only-token',async(url,options)=>{calls.push({url,options});return response(calls.length===1?{results:[{id:'first',project_id:'project/one'}],next_cursor:'page.next'}:{results:[{id:'last',project_id:'project/one'}],next_cursor:null});});
  assert.deepEqual(Array.from(await client.tasks('project/one'),x=>x.id),['first','last']);assert.match(calls[0].url,/project_id=project%2Fone/);assert.match(calls[1].url,/cursor=page.next/);assert.equal(calls[0].options.credentials,'omit');
  const denied=todoist('test-only-token',async()=>response({secret:'do-not-display'},401));await assert.rejects(denied.tasks('p'),/connexion expirée/);
  const limited=todoist('test-only-token',async()=>response({},429));await assert.rejects(limited.tasks('p'),/limite atteinte/);
@@ -80,4 +80,13 @@ test('Spotify lists real devices, transfers to one explicit device and validates
  assert.equal(calls[1].options.method,'PUT');assert.deepEqual(JSON.parse(calls[1].options.body),{device_ids:['speaker/one'],play:false});
  assert.match(calls[2].url,/volume_percent=25&device_id=speaker%2Fone$/);
  await assert.rejects(client.volume(101,device.id),/0 et 100/);await assert.rejects(client.volume(NaN,device.id),/0 et 100/);await assert.rejects(client.transfer('',true),/appareil/);assert.equal(calls.length,3);
+});
+
+test('Todoist excludes shopping projects from daily tasks and limits purchases to their project',async()=>{
+ const client=todoist('test-only',async()=>response({results:[{id:'buy',project_id:'course',content:'Rice',due:{date:'2026-10-21'}},{id:'work',project_id:'job',content:'Call',due:{date:'2026-10-20'},priority:4},{id:'future',project_id:'job',due:{date:'2026-10-22'}},{id:'undated',project_id:'job'}]}));
+ assert.deepEqual(Array.from(await client.daily(['course'],'2026-10-21'),t=>t.id),['work']);assert.deepEqual(Array.from(await client.tasks('course'),t=>t.id),['buy']);
+});
+
+test('shopping project exclusion also covers explicitly selected projects and descendants',async()=>{
+ const source=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');const body=source.match(/  function excludedShoppingProjects\(\)\{([^\n]+)\}/)[0];const c=vm.createContext({shop:{project:'selected',projects:[{id:'selected',name:'Groceries'},{id:'course',name:'course'},{id:'child',parent_id:'course',name:'Vegetables'},{id:'grandchild',parent_id:'child',name:'Fresh'},{id:'job',name:'Work'}]},HubConnect:{normalize:s=>s.trim().toLowerCase()}});vm.runInContext(body,c);const ids=Array.from(c.excludedShoppingProjects());assert.ok(ids.includes('selected'));assert.ok(ids.includes('course'));assert.ok(ids.includes('child'));assert.ok(ids.includes('grandchild'));assert.ok(!ids.includes('job'));
 });
