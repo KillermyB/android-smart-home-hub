@@ -89,3 +89,9 @@ input[type=checkbox]{accent-color:var(--accent)}
 .brand .brand-wordmark path{stroke-linecap:butt}
 @media(max-width:720px){.brand .brand-wordmark{width:129px;height:28px}.brand .brand-symbol{width:31px;height:31px}}
 @media(max-width:360px){.brand .brand-wordmark{width:114px;height:25px}.brand .brand-symbol{width:28px;height:28px}}
+/* Lucide geometry, consistent optical weight across interactive controls. */
+.ui-icon{stroke-width:1.8;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.header-actions .ui-icon{width:20px;height:20px;stroke-width:1.8}
+.header .brand-wordmark{width:151px}
+@media(max-width:720px){.header .brand-wordmark{width:129px}}
+@media(max-width:360px){.header .brand-wordmark{width:114px}}

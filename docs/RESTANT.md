@@ -6,6 +6,12 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Identité et icônes v0.2.2
+
+- [x] Base Outfit (graisse 850) en tracés, ligatures S–M et H–U conservées et épaissies.
+- [x] Pictogrammes officiels Lucide 1.60.0 : réglages, navigation, météo et actions. SVG locaux, sans dépendance au chargement.
+- [x] Licences Outfit OFL et Lucide ISC conservées dans `dist/licenses/`.
+
 ## Identité v0.2.1
 
 - [x] Symbole organique à jonctions régulières et lettrage SMART HUB avec ligatures S–M, M–A et H–U en SVG, favicon assorti.

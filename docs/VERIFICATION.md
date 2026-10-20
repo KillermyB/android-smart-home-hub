@@ -39,3 +39,11 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - En-tête à 320 px : largeur du document 320 px, pas de débordement.
 - Navigation au clavier : focus visible, contour iris de 3 px. Nom accessible du bouton : « Smart Hub — Accueil ».
 - Aucun ajout de dépendance ni animation permanente. Favicon SVG et signature téléchargeable assortis.
+
+
+## v0.2.2 — Typographie et Lucide
+
+- Lettrage fondé sur Outfit 850, fourni par le dépôt officiel Google Fonts, converti en tracés SVG avec ligatures personnalisées. Favicon et symbole conservés.
+- 24 SVG officiels de lucide-static 1.60.0 intégrés localement ; seules les icônes utilisées sont conservées. Source : https://lucide.dev/guide/static. Licences jointes.
+- En-tête et pictogrammes vérifiés à 1280 × 800, puis à 320 px. Le bouton Réglages ouvre la fenêtre, le bouton de fermeture ramène à l’accueil.
+- Contrôles de syntaxe et quatre tests existants réussis.
