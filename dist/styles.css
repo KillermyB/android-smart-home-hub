@@ -83,3 +83,9 @@ input[type=checkbox]{accent-color:var(--accent)}
 @media(hover:hover) and (pointer:fine){.brand:hover .brand-symbol{color:var(--ink)}.arrow:hover{background:var(--accent-soft);color:var(--accent)}}
 @media(max-width:720px){.brand{gap:8px}.brand .brand-symbol{width:30px;height:30px}.brand .brand-wordmark{width:125px;height:28px}}
 @media(max-width:360px){.header{gap:6px}.header-actions{gap:4px}.header-actions .icon-button{width:40px;height:40px;min-height:40px}.brand{gap:7px}.brand .brand-symbol{width:27px;height:27px}.brand .brand-wordmark{width:115px;height:27px}}
+/* Solid geometric wordmark; the M carries the organic connection. */
+.brand .brand-wordmark{width:146px;height:30px;fill:currentColor}
+.brand .brand-symbol{width:37px;height:37px}
+.brand .brand-wordmark path{stroke-linecap:butt}
+@media(max-width:720px){.brand .brand-wordmark{width:129px;height:28px}.brand .brand-symbol{width:31px;height:31px}}
+@media(max-width:360px){.brand .brand-wordmark{width:114px;height:25px}.brand .brand-symbol{width:28px;height:28px}}
