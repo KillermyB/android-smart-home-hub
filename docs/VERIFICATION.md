@@ -35,7 +35,7 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 
 ## v0.2.1 — Identité organique
 
-- Symbole à arcs réguliers, lettrage géométrique gras et ligature MA en tracés vectoriels contrôlés en mode sombre à 1280 × 800 et clair dans la bibliothèque.
+- Symbole à arcs réguliers, lettrage géométrique gras et ligatures S–M, M–A et H–U en tracés vectoriels contrôlés en mode sombre à 1280 × 800 et clair dans la bibliothèque.
 - En-tête à 320 px : largeur du document 320 px, pas de débordement.
 - Navigation au clavier : focus visible, contour iris de 3 px. Nom accessible du bouton : « Smart Hub — Accueil ».
 - Aucun ajout de dépendance ni animation permanente. Favicon SVG et signature téléchargeable assortis.

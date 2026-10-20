@@ -8,7 +8,7 @@
 
 ## Identité v0.2.1
 
-- [x] Symbole organique à jonctions régulières et lettrage SMART HUB avec ligature MA en SVG, favicon assorti.
+- [x] Symbole organique à jonctions régulières et lettrage SMART HUB avec ligatures S–M, M–A et H–U en SVG, favicon assorti.
 - [x] Accent iris pour les actions, sélections et focus ; palette graphite conservée la nuit.
 - [x] Signature vectorielle réutilisable : `dist/logo.svg`.
 
