@@ -1,10 +1,28 @@
 # Liste de reprise
 
-## Avant GitHub
+## Livraison v0.6.0
 
-- [ ] Revoir l’interface avec l’utilisateur et choisir les éventuels ajustements.
-- [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
-- [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
+- [x] Contrôles locaux et visuels consignés dans `VERIFICATION.md` : syntaxe, 40 tests et vues cadre/étroites.
+- [x] Créer le dépôt privé [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub).
+- [ ] Pousser la branche et le tag `v0.6.0`, puis vérifier le SHA distant. Publication GitHub non confirmée à ce stade.
+- [x] Contrôler les fichiers et l’historique à publier : aucun `.env`, jeton, `.data`, export personnel, diagnostic ou sauvegarde matérielle.
+- [x] Préparer le guide Windows/cadre : `INSTALLATION-CADRE.md`, lancement sans dépendance et site HTTPS conseillé sans tour permanente.
+- [ ] Vérifier le clone du dépôt privé depuis la tour une fois la publication confirmée.
+- [x] Finaliser et vérifier les ajustements de dégradé, les heures des rendez-vous, les marges et les commandes du lecteur musical.
+- [x] Finaliser et vérifier les trois repères de calendrier Perso/Myrak/Travail, avec le bleu Myrak choisi ; les comptes réels restent à connecter séparément.
+- [x] Valider avec des réponses synthétiques les paroles LRCLIB automatiques en focus, leur option de désactivation et le retour à la pochette, avec les états synchronisé, texte simple, instrumental, introuvable et erreur. La licence MIT du logiciel LRCLIB ne couvre pas les paroles retournées ; aucun texte n’est embarqué dans le dépôt.
+
+## Domotique v0.6.0
+
+- [x] Préparer la page Maison connectée, accessible depuis Réglages sans changer les tuiles de l’accueil.
+- [x] Connexion directe à l’API WebSocket Home Assistant : jeton en mémoire uniquement, URL seule mémorisable avec option explicite, déconnexion et erreurs signalées.
+- [x] Afficher seulement les vraies entités lumières/interrupteurs/robots/scènes ; commandes selon capacités, états indisponibles désactivés, aucune mise à jour d’état optimiste.
+- [x] Documenter les prérequis, HTTPS, limites et procédure dans `DOMOTIQUE.md`.
+- [x] Vérifier les vues 320 px/1280 × 800 et les états formulaire/erreur/appareils/commandes/déconnexion avec client simulé ; pertes réseau couvertes par les tests du protocole. Le tactile physique reste à tester.
+- [ ] Connecter l’instance Home Assistant de l’utilisateur ; vérifier les droits et états, puis une lumière et un robot réellement identifiés, avec retour physique.
+- [ ] Vérifier les certificats, permissions réseau local et reconnexion sur le vrai cadre. Hub. n’installe pas de serveur Home Assistant.
+
+Les recettes personnelles, favoris, plats retirés, courses, notes/photos, citations, brief, minuteur et GitHub doivent rester disponibles. Leur stockage local ne doit pas être réinitialisé par cette livraison.
 
 ## Carte horloge v0.5.3
 
@@ -86,9 +104,9 @@
 
 ## Comptes et données
 
-- [ ] Configurer et vérifier le compte Outlook personnel.
-- [ ] Configurer séparément Outlook travail ; vérifier les règles de l’entreprise et les calendriers partagés nécessaires.
-- [ ] Configurer et vérifier Google Agenda du compte Gmail.
+- [ ] Autoriser et vérifier le calendrier **Perso** avec le bon compte.
+- [ ] Autoriser et vérifier séparément **Myrak** ; confirmer le compte, les règles de l’organisation et les calendriers partagés nécessaires.
+- [ ] Autoriser et vérifier séparément **Travail** ; confirmer le fournisseur et le compte attendus. Les connexions Outlook/Google existantes ne sont pas validées par leur simple renommage.
 - [ ] Renseigner et vérifier la clé Todoist ; tester une tâche de contrôle explicitement identifiée comme telle.
 - [ ] Choisir la vraie ville météo ; ajouter l’actualisation périodique et une indication d’ancienneté complète.
 - [ ] Désactiver les exemples une fois les connexions validées.

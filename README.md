@@ -1,63 +1,68 @@
 # Hub.
 
-Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, recettes et veille avec citations.
+Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**État : v0.5.3, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
+**Livraison préparée : v0.6.0.** L’interface est vérifiable en navigateur ; l’installation, le tactile et les performances sur le cadre physique restent à valider. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
 
-## Lancer sur la tour Windows
+Dépôt privé créé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub). Le push et le tag `v0.6.0` doivent être confirmés avant de considérer la publication GitHub comme terminée.
 
-1. Installer [Node.js](https://nodejs.org/) **22.9 ou plus récent**, et Git si nécessaire.
-2. Récupérer le futur dépôt GitHub puis ouvrir un terminal dans ce dossier, celui qui contient `package.json`.
-3. Exécuter :
+## Récupérer et lancer sur Windows
+
+Installer Git et [Node.js](https://nodejs.org/) **22.9 ou plus récent**. Après publication du dépôt, ouvrir PowerShell dans le dossier où conserver le projet :
 
 ```powershell
-Copy-Item .env.example .env
+git clone https://github.com/KillermyB/smart-hub.git
+Set-Location .\smart-hub
+npm run check
+npm test
 npm start
 ```
 
-Ouvrir [http://localhost:4173](http://localhost:4173). Aucun `npm install` n’est nécessaire : le serveur utilise les modules intégrés de Node. Sur macOS/Linux, copier avec `cp .env.example .env`.
+Un dépôt privé demande une connexion GitHub autorisée. Ouvrir [http://localhost:4173](http://localhost:4173). Aucun `npm install` ni fichier `.env` n’est nécessaire pour l’interface et les fonctions locales de cette version. Arrêter avec `Ctrl+C`.
 
-## Ce qui fonctionne
+Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/INSTALLATION-CADRE.md). Le cadre doit ouvrir le site dans un navigateur compatible ; il n’a pas besoin de Git ou de Node.js.
 
-- Maison : grande horloge sur dégradé pastel bleu/crème/abricot, météo et priorités à droite, agenda horizontal sur 24 h en bas avec Repas/Spotify ; GitHub et citations conservés. Mode sombre graphite, accents orange et bleu.
-- Agenda : jour, semaine, mois, navigation et filtres des trois sources.
-- À faire : ajout, validation et suppression des tâches locales ; lecture, ajout et validation Todoist après configuration.
-- Cuisine : 32 recettes, dont 20 faciles à petit budget sans porc, recherche, catégories, favoris, retrait et restauration des plats, portions et étapes. Sources individuelles pour les nouvelles recettes adaptées.
-- Brief du matin : prochain rendez-vous, trois priorités, météo et repas choisi ; ouverture matinale facultative dans les réglages.
-- Minuteur accessible depuis chaque écran : durée libre, pause, reprise, ajout d’une minute, indicateur flottant et alerte visuelle persistante.
-- À garder : notes, photos, liens et recettes complètes en stockage local ; transfert manuel par fichier, sans serveur de synchronisation. Voir [le guide](docs/TRANSFERT-LOCAL.md).
-- Liens web : pages de recettes ouvertes dans un autre onglet, sans extraction automatique. Le navigateur du cadre reste à installer et valider.
-- Courses : page dédiée, rayons automatiques modifiables, articles cochés en bas, ajout depuis les recettes et aperçu sur l’accueil. Liste locale préservée ; connexion directe optionnelle à un projet Todoist.
-- Musique : widget Spotify et lecteur immersif ; connexion PKCE, pochette et commandes sur un appareil actif après autorisation. Voir [le guide Courses/Spotify](docs/COURSES-SPOTIFY.md).
-- GitHub : commits publics de `killermyb` sur 28 jours, graphique et derniers commits ; compte modifiable depuis la tuile, cache 30 minutes, erreurs et résultats partiels signalés.
-- Carnet : saisie d’une recette copiée depuis un site/livre ; import JSON-LD `schema.org/Recipe` ou fichier JSON.
-- Veille automatique réglable, grande heure, météo de la ville choisie, citations sourcées par catégorie en police sans sérif ; un toucher ou Échap pour revenir.
-- Thèmes clair/sombre avec fondu natif si disponible, transition de couleurs sur WebView 106 ; mouvements désactivés si `prefers-reduced-motion` est actif.
-- Polices locales avec licences OFL ; aucun CDN nécessaire pour l’interface.
+## Fonctionnalités conservées et affinées
 
-Les tâches locales, recettes, favoris, plats retirés, repas, courses, compte GitHub, thème, météo choisie et minuteur sont enregistrés **dans le navigateur utilisé**. Les contenus « À garder » sont conservés dans IndexedDB. Chaque appareil et chaque adresse du site a sa propre copie. GitHub ne transfère pas ces données. Les jetons Courses Todoist et Spotify restent dans la session du navigateur. Aucun serveur de synchronisation n’est ajouté ; les anciennes connexions OAuth locales restent optionnelles et requièrent le serveur Node pour fonctionner. Le serveur conserve séparément les autorisations des calendriers dans `.data`, chiffrées avec une clé locale. Ne publier ni `.env`, ni `.data`, ni les sauvegardes du cadre. La clé de chiffrement et les jetons se trouvent sur la même machine : cela protège le fichier isolé, pas une machine compromise.
+- **Accueil** : grande horloge sur dégradé bleu/crème/orange, météo et priorités à droite, prochains rendez-vous avec leurs heures lisibles, repas et Spotify. GitHub et citations restent accessibles. Mode sombre graphite.
+- **Agenda** : sources distinctes **Perso, Myrak et Travail**, avec filtres et repères de couleur ; Myrak utilise un bleu soutenu. Vues jour, semaine et mois.
+- **À faire** : ajout, validation et suppression des tâches locales ; connexion Todoist des tâches quotidiennes via le serveur Node existant après configuration.
+- **Cuisine** : 32 recettes initiales, dont 20 faciles à petit budget sans porc ; recettes personnelles, recherche, catégories, favoris, plats retirés/restauration, portions et étapes conservés.
+- **Courses** : page dédiée depuis Cuisine ou Réglages, rayons modifiables, articles cochés en bas, ajout des ingrédients manquants depuis une recette. Liste locale distincte du projet Todoist choisi.
+- **Musique** : widget et lecteur Spotify immersif, pochette et commandes après autorisation ; paroles LRCLIB automatiques en mode focus lorsque disponibles, avec option de désactivation et retour à la pochette. Aucune lecture ni parole fictive n’est présentée comme réelle.
+- **Domotique** : page Maison connectée depuis Réglages, liaison directe à une instance Home Assistant existante, vrais états et commandes des lumières/interrupteurs/robots/scènes, jeton en mémoire uniquement. [Guide Home Assistant](docs/DOMOTIQUE.md).
+- **Brief du matin** : prochain rendez-vous, trois priorités, météo et repas choisi ; ouverture matinale facultative.
+- **Minuteur** : accessible depuis chaque page, durée libre, pause/reprise, ajout d’une minute, persistance et alerte visuelle.
+- **Compagnon local** : notes, photos, liens et recettes conservés sur l’appareil ; transfert manuel par fichier, sans serveur de synchronisation. [Guide de transfert](docs/TRANSFERT-LOCAL.md).
+- **GitHub** : commits publics de KillermyB sur 28 jours ; compte configurable, cache, erreurs et résultats partiels signalés.
+- **Veille** : grande heure, météo de la ville choisie et 200 citations sourcées en police sans sérif ; réveil par toucher ou Échap.
+- **Interface** : polices et icônes locales, commandes tactiles, transitions courtes et préférence `prefers-reduced-motion` conservée. Cible Chrome/WebView 106 ou plus récent.
 
-## Connecter les services
+## Où vivent les données
 
-Voir [docs/CONNEXIONS.md](docs/CONNEXIONS.md). Outlook personnel et travail utilisent deux autorisations séparées ; le compte Gmail est raccordé via **Google Agenda**, sans lecture des e-mails. Les calendriers sont en lecture seule.
+Les tâches locales, recettes, favoris, plats retirés, repas, courses, thème, ville météo, réglages et minuteur restent **dans le navigateur utilisé**. Les contenus « À garder » utilisent IndexedDB. Chaque appareil et chaque origine (`localhost`, site hébergé) garde sa propre copie. Un clone ou un push GitHub ne transfère pas ces données.
 
-La configuration est écrite et contrôlée localement ; les flux OAuth et appels aux services devront encore être validés avec les vrais comptes. Une clé présente dans `.env` n’est pas une preuve de connexion réussie.
+Les jetons Courses Todoist et Spotify restent dans la session du navigateur. Le jeton Home Assistant reste uniquement en mémoire ; seule son adresse peut être mémorisée avec accord explicite. Les anciennes connexions calendriers/tâches Node utilisent `.env` et `.data` sur la tour. Ne publier ni secrets, ni exports personnels, ni sauvegardes du cadre. La clé et les jetons de ce serveur sont sur la même machine : le chiffrement protège le fichier isolé, pas une machine compromise.
 
-## Préparer le cadre
+## Services et limites
 
-Voir [docs/CADRE-WINDOWS.md](docs/CADRE-WINDOWS.md). Ne flasher aucun firmware pour afficher cet aperçu. La première étape sur la tour est de vérifier USB/ADB, puis de lire l’identité réelle du matériel et de sauvegarder avant toute installation.
+Le [site privé HTTPS](https://smart-hub-maison.kbo1.chatgpt.site/) évite de garder la tour allumée pour les fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify. Les calendriers Perso/Myrak/Travail restent à autoriser et à vérifier séparément ; les flux calendriers existants nécessitent encore le serveur Node. Choisir une couleur ou un nom de source ne connecte pas un compte.
 
-Le cadre a été joignable en Wi-Fi pendant la session du 20 octobre 2026, mais **aucun accès ADB n’a été obtenu**. Son adresse IP et son adresse MAC changent au redémarrage : les retrouver avant chaque intervention. Le test de `IS OPEN` n’a pas suffi à produire une connexion USB sur le Mac utilisé.
+La domotique exige une instance Home Assistant existante, accessible depuis le navigateur. Depuis Hub. en HTTPS, son adresse doit également être HTTPS. Aucun serveur domotique n’est installé par cette app et aucun appareil réel n’a encore été testé. Voir [DOMOTIQUE.md](docs/DOMOTIQUE.md).
 
-## Vérifications
+Pour Todoist/Spotify, voir [COURSES-SPOTIFY.md](docs/COURSES-SPOTIFY.md). Pour Outlook/Google et le mode LAN, voir [CONNEXIONS.md](docs/CONNEXIONS.md). Spotify pilote un appareil existant et nécessite les droits du compte, Premium et un appareil actif ; il ne transforme pas le cadre en haut-parleur. La fermeture complète de la session peut demander une nouvelle connexion.
+
+Les paroles sont recherchées auprès de [LRCLIB](https://lrclib.net/docs) automatiquement en mode focus si cette option est activée, à partir des métadonnées du morceau. Le réglage Spotify permet de désactiver ce chargement ; le bouton « Afficher la pochette » masque les paroles pour le morceau courant. La pochette reste visible si aucune parole n’est disponible. Le logiciel serveur LRCLIB est publié sous licence MIT ; **cette licence ne donne pas de droits sur les paroles retournées**. Aucun texte de chanson n’est inclus dans le dépôt. Une absence, une version instrumentale ou une erreur de recherche est signalée.
+
+## Validation et reprise sur le cadre
 
 ```powershell
 npm run check
 npm test
 ```
 
-Les tests du serveur contrôlent notamment l’absence de publication des secrets, le refus des écritures provenant d’un autre site, les états OAuth invalides et la protection obligatoire d’une écoute LAN. La vérification visuelle est distincte des tests de syntaxe et du serveur.
+Les tests de code, les contrôles visuels en navigateur, les autorisations de vrais comptes, le push GitHub et le fonctionnement physique sont des validations distinctes. Les résultats de chaque livraison sont consignés dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-## Suite
+L’accès ADB n’a pas été obtenu pendant la session Mac initiale. Sur la tour, commencer par un câble USB-A → USB-C de données, lire l’identité réelle de l’appareil et vérifier les sauvegardes avant toute installation. Ne flasher aucun firmware et ne remplacer aucun launcher pour le premier essai. Voir [INSTALLATION-CADRE.md](docs/INSTALLATION-CADRE.md), puis [CADRE-WINDOWS.md](docs/CADRE-WINDOWS.md).
 
-La liste de reprise est dans [docs/RESTANT.md](docs/RESTANT.md). Le dépôt GitHub sera créé après revue de cette première interface, conformément à la demande.
+La liste des étapes restantes est dans [RESTANT.md](docs/RESTANT.md).

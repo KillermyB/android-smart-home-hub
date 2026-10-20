@@ -4,3 +4,13 @@ node_modules/
 artifacts/
 .DS_Store
 tools/
+
+# Credentials and device backups stay outside publication.
+.env.*
+!.env.example
+backups/
+diagnostics/
+firmware-backups/
+*.img
+*.dump
+*.log

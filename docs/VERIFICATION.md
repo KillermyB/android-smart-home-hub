@@ -102,3 +102,15 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 
 - Fond de la carte horloge remplacé par trois dégradés CSS légers bleu ciel, crème et abricot, en clair comme en sombre. Aucun fichier image ni mouvement permanent ajouté.
 - Contrôle visuel sombre à 1280 × 800 et clair à 320 × 740 : texte foncé lisible, pas de débordement horizontal. Syntaxe, 13 tests existants et diff vérifiés.
+
+## v0.6.0 — Agenda, paroles automatiques et Home Assistant
+
+- Audit réparti entre trois agents : ergonomie/bugs, paroles et préparation du cadre, puis protocole et interface Home Assistant. Fonctions locales et stockage existants conservés.
+- `npm run check`, 40 tests et `git diff --check` passent. Le test serveur utilise une écoute locale autorisée ; son nettoyage gère aussi un processus déjà terminé. Les nouveaux modules sont servis par la liste de fichiers autorisés.
+- Accueil contrôlé à 1280 × 800 en clair et sombre : document sans débordement, espace de 12 px entre les rangées, trois priorités entièrement visibles. Orange renforcé et nuances de bleu plus profondes sur l’horloge.
+- Agenda : départ et fin restent lisibles pour un événement de cinq minutes et deux rendez-vous simultanément affichés à 320 px, sans débordement horizontal. Un clic ouvre la bonne journée. Perso, Myrak (#0213ee, couleur de la capture) et Travail ont des repères distincts en jour/semaine/mois et dans la bande de l’accueil.
+- Musique : commandes pause/reprise au clavier et focus conservé, changement de morceau, paroles automatiques sans clic, défilement interne de la ligne courante à 320 px, retour à la pochette et annulation couverts par tests et/ou navigateur. La progression et le suivi s’arrêtent hors lecture visible. Réponses et textes synthétiques uniquement ; aucun compte Spotify réel ni parole de chanson téléchargée pour les essais.
+- Home Assistant : formulaire, refus d’authentification, connexion, lumière allumée, robot en nettoyage, appareil indisponible, jeton vidé du champ, focus clavier et déconnexion vérifiés en navigateur à 320 px et 1280 × 800 avec un client simulé. Les 13 tests du vrai module couvrent le protocole WebSocket, les courses snapshot/événements, les capacités, refus, délais et déconnexions. Aucun appareil physique commandé.
+- Compagnon/météo : contrôles VM ciblés sur préservation des brouillons/photos, sauvegarde asynchrone, erreurs, cache daté et rafraîchissement visible à 30 minutes ; le dernier relevé reste disponible hors réseau. Aucune ville réelle choisie pendant cette vérification.
+- Historique Git inspecté : 121 blobs texte historiques sans motif de credential fort ou identifiant MAC ; les fichiers privés et fixtures restent exclus. Cette recherche ne remplace pas les exclusions et la revue des chemins publiés.
+- Restent distincts : connexion aux comptes réels, Home Assistant de l’utilisateur, clone sur la tour et installation/tactile/performance du cadre physique.
