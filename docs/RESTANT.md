@@ -6,6 +6,17 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Outils quotidiens v0.4.0
+
+- [x] Brief : prochain rendez-vous en cours/à venir, trois tâches prioritaires, météo et repas prévu ; ouverture matinale facultative.
+- [x] Minuteur global : pause, reprise, +1 minute, persistance et signal visuel, sans sonnerie système garantie.
+- [x] Compagnon sans serveur : notes, photos, liens et recettes dans IndexedDB ; export/import manuel par fichier, sans doublon ni écrasement.
+- [x] Liens de recettes dans un nouvel onglet, avec adresse HTTP(S) validée. Le navigateur Android lui-même reste à installer sur le cadre.
+- [x] 20 recettes faciles à petit budget sans porc, portant le carnet initial à 32 ; liens des sources et versions simplifiées indiqués.
+- [x] Cœur et retrait visibles sur les cartes ; favoris et plats retirés persistants, restauration possible. Accueil et sélection du repas excluent les plats retirés.
+- [x] Citations en DM Sans, sans sérif.
+- [ ] Vérifier le sélecteur de fichier, téléchargements et ouverture/retour des onglets sur le vrai cadre et le téléphone.
+
 ## En-tête v0.3.2
 
 - [x] Nom et logo retirés de l’en-tête à la demande de l’utilisateur.
@@ -64,10 +75,10 @@
 ## Produit à approfondir
 
 - [ ] Agenda : plage synchronisée explicite, événements sur plusieurs jours, vue trois jours si souhaitée.
-- [ ] Cuisine : extraction automatique depuis une URL, gestion/suppression des recettes et sauvegarde portable du carnet ; les recettes importées gardent leurs quantités textuelles d’origine.
+- [ ] Cuisine : extraction automatique depuis une URL et sauvegarde complète du carnet (favoris, plats retirés, courses). Les recettes individuelles se transfèrent déjà par fichier ; leurs quantités importées restent textuelles.
 - [x] Ajouter une sélection de citations plus large, en vérifiant chaque attribution et la source (200 entrées en v0.3.0).
-- [ ] Vérifier qu’un minuteur terminé se signale correctement au milieu d’une longue recette ; la première version fournit une alerte visuelle et pas une sonnerie système garantie.
-- [ ] Choisir le fonctionnement permanent : tour toujours allumée, petit serveur dédié ou autre hébergement privé.
+- [x] Signal visuel de fin du minuteur contrôlé en navigateur ; sonnerie et veille Android à vérifier sur le cadre.
+- [ ] Choisir le navigateur permanent sur le cadre. Demande actuelle : aucun serveur pour le compagnon ; transfert manuel par fichier. Les calendriers/Todoist du serveur Node restent une option distincte à revoir.
 - [ ] Durcir le transport réseau et la gestion des appareils avant un usage durable au-delà du réseau domestique de confiance.
 
 ## Validation physique

@@ -63,3 +63,14 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 
 - Syne remplacée par Geist SemiBold, depuis le paquet officiel `geist` 1.8.1. Tracés locaux, sans chargement de police à l’exécution ; point iris conservé. Licence jointe dans `dist/licenses/geist.txt`.
 - Logo autonome et en-tête contrôlés dans le navigateur, en clair et en sombre.
+
+## v0.4.0 — Outils quotidiens et recettes
+
+- 9 tests : cinq existants et quatre nouveaux couvrant prochain rendez-vous/priorités, minuteur absolu/pause, validation des transferts et catalogue de 20 recettes supplémentaires. Syntaxe des deux nouveaux scripts contrôlée.
+- Cuisine en navigateur : ajout favori, filtre, retrait, rechargement, présence dans « Plats retirés », restauration et favori conservé. Favori de contrôle retiré ensuite. Les plats retirés sont exclus du repas du brief et de la suggestion d’accueil.
+- 20 nouvelles recettes visibles dans le filtre petit budget/sans porc ; source individuelle accessible dans la recette. Les ajouts personnels existants sont conservés.
+- Brief : repas choisi retrouvé après rechargement ; suggestion d’accueil liée au repas prévu. Les données de calendrier et météo d’exemple restent indiquées.
+- Minuteur : durée libre de trois secondes et signal de fin contrôlés ; pause de cinq minutes retrouvée après navigation/rechargement, puis minuteur arrêté. Le bouton Pause est masqué à la fin ; alerte visuelle, aucune sonnerie garantie.
+- Compagnon : note enregistrée, recette importée par sélecteur de fichier puis ajoutée au carnet, photo PNG de contrôle convertie et enregistrée ; présence après rechargement. Export JSON téléchargé puis réimporté : « Ces contenus sont déjà présents », sans doublon. Données de démonstration uniquement, dans le navigateur localhost.
+- Présentation : brief sombre 1280 × 800, compagnon et carnet à 320 × 740 ; largeur du document égale à celle de l’écran, filtres défilants dans leur conteneur. Police calculée des citations : DM Sans / Arial / sans-serif.
+- Aucun serveur de synchronisation ajouté, aucune validation matérielle ni connexion OAuth réelle revendiquée. Le transfert sur téléphone/cadre, les onglets et l’installation du navigateur Android restent à tester sur ces appareils.

@@ -196,7 +196,7 @@ const server = http.createServer(async (req, res) => {
     }
     if(path.startsWith('/api/')||path.startsWith('/auth/'))return json(res,404,{error:'Route indisponible.'});
     if(req.method!=='GET'&&req.method!=='HEAD')return json(res,405,{error:'Méthode refusée.'});
-    const files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/data.js':'data.js','/quotes.js':'quotes.js','/github.js':'github.js','/styles.css':'styles.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt','/licenses/syne.txt':'licenses/syne.txt','/licenses/geist.txt':'licenses/geist.txt'};
+    const files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/hub-tools.js':'hub-tools.js','/data.js':'data.js','/budget-recipes.js':'budget-recipes.js','/quotes.js':'quotes.js','/github.js':'github.js','/styles.css':'styles.css','/icon.svg':'icon.svg','/logo.svg':'logo.svg','/licenses/lucide.txt':'licenses/lucide.txt','/licenses/outfit.txt':'licenses/outfit.txt','/licenses/syne.txt':'licenses/syne.txt','/licenses/geist.txt':'licenses/geist.txt'};
     if(/^\/fonts\/(dm-sans|manrope)(\.woff2|-OFL\.txt)$/.test(path))files[path]=path.slice(1);
     if(!files[path])return json(res,404,{error:'Fichier introuvable.'});
     const font=path.match(/^\/fonts\/(dm-sans|manrope)(\.woff2|-OFL\.txt)$/);

@@ -2,7 +2,7 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, recettes et veille avec citations.
 
-**État : v0.3.2, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
+**État : v0.4.0, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
 
 ## Lancer sur la tour Windows
 
@@ -22,15 +22,19 @@ Ouvrir [http://localhost:4173](http://localhost:4173). Aucun `npm install` n’e
 - Maison : horloge Europe/Zurich, aperçu du jour, météo, tâches et accès aux recettes.
 - Agenda : jour, semaine, mois, navigation et filtres des trois sources.
 - À faire : ajout, validation et suppression des tâches locales ; lecture, ajout et validation Todoist après configuration.
-- Cuisine : douze recettes originales, recherche par ingrédient, catégories, favoris, portions, ingrédients cochables, étapes et minuteur persistant.
+- Cuisine : 32 recettes, dont 20 faciles à petit budget sans porc, recherche, catégories, favoris, retrait et restauration des plats, portions et étapes. Sources individuelles pour les nouvelles recettes adaptées.
+- Brief du matin : prochain rendez-vous, trois priorités, météo et repas choisi ; ouverture matinale facultative dans les réglages.
+- Minuteur accessible depuis chaque écran : durée libre, pause, reprise, ajout d’une minute, indicateur flottant et alerte visuelle persistante.
+- À garder : notes, photos, liens et recettes complètes en stockage local ; transfert manuel par fichier, sans serveur de synchronisation. Voir [le guide](docs/TRANSFERT-LOCAL.md).
+- Liens web : pages de recettes ouvertes dans un autre onglet, sans extraction automatique. Le navigateur du cadre reste à installer et valider.
 - Courses : ajout des ingrédients manquants aux quantités choisies, protection contre les doublons, saisie libre, validation et retrait des articles cochés.
 - GitHub : commits publics de `killermyb` sur 28 jours, graphique et derniers commits ; compte modifiable depuis la tuile, cache 30 minutes, erreurs et résultats partiels signalés.
 - Carnet : saisie d’une recette copiée depuis un site/livre ; import JSON-LD `schema.org/Recipe` ou fichier JSON.
-- Veille automatique réglable, grande heure, citations sourcées par catégorie ; un toucher ou Échap pour revenir.
+- Veille automatique réglable, grande heure, citations sourcées par catégorie en police sans sérif ; un toucher ou Échap pour revenir.
 - Thèmes clair/sombre avec fondu natif si disponible, transition de couleurs sur WebView 106 ; mouvements désactivés si `prefers-reduced-motion` est actif.
 - Polices locales avec licences OFL ; aucun CDN nécessaire pour l’interface.
 
-Les tâches locales, recettes, favoris, courses, compte GitHub, thème, météo choisie et minuteur sont enregistrés **dans le navigateur utilisé**. GitHub ne transfère pas ces données. Le serveur conserve séparément les autorisations des calendriers dans `.data`, chiffrées avec une clé locale. Ne publier ni `.env`, ni `.data`, ni les sauvegardes du cadre. La clé de chiffrement et les jetons se trouvent sur la même machine : cela protège le fichier isolé, pas une machine compromise.
+Les tâches locales, recettes, favoris, plats retirés, repas, courses, compte GitHub, thème, météo choisie et minuteur sont enregistrés **dans le navigateur utilisé**. Les contenus « À garder » sont conservés dans IndexedDB. Chaque appareil et chaque adresse du site a sa propre copie. GitHub ne transfère pas ces données. Aucun serveur de synchronisation n’est ajouté ; les anciennes connexions OAuth locales restent optionnelles et requièrent le serveur Node pour fonctionner. Le serveur conserve séparément les autorisations des calendriers dans `.data`, chiffrées avec une clé locale. Ne publier ni `.env`, ni `.data`, ni les sauvegardes du cadre. La clé de chiffrement et les jetons se trouvent sur la même machine : cela protège le fichier isolé, pas une machine compromise.
 
 ## Connecter les services
 
