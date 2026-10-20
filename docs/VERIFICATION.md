@@ -1,5 +1,9 @@
 # Vérification du 20 octobre 2026
 
+## v0.9.1 — Lisibilité du code d’association
+
+- Le code d’association reste masqué au départ ; une commande explicite permet de l’afficher puis de le masquer sans refaire l’export ni changer de code. Le code n’est pas mémorisé dans les réglages.
+
 ## v0.9.0 — Connexion mémorisée et association Spotify
 
 - Syntaxe vérifiée, 57 tests réussis. Le client retrouve son jeton depuis un stockage persistant même avec un nouveau stockage de session, renouvelle l’accès et supprime les deux copies lors d’une déconnexion. Un échec d’écriture ne retire pas la session active.

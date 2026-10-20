@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.9.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent aussi par leur contenu, les commandes internes restent indépendantes et la veille sépare clairement citation, auteur et œuvre. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify a été autorisé et vérifié dans Chrome sur le Mac ; une association chiffrée permet de transmettre la connexion au cadre sans y saisir le mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
+**Version : v0.9.1.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent aussi par leur contenu, les commandes internes restent indépendantes et la veille sépare clairement citation, auteur et œuvre. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify a été autorisé et vérifié dans Chrome sur le Mac ; une association chiffrée permet de transmettre la connexion au cadre sans y saisir le mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique reste bloqué par la politique constructeur. Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.9.0`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.9.1`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
 
