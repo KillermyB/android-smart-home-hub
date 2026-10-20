@@ -11,7 +11,7 @@ test('private local server rejects secret files, foreign hosts and cross-origin 
   const port = 4197;
   const secret='local-only-sentinel-do-not-serve';
   const child = spawn(process.execPath, ['server.mjs'], { cwd: new URL('..', import.meta.url), env: { ...process.env, PORT: String(port), HOST: '127.0.0.1', BASE_URL: `http://localhost:${port}`, HUB_DATA_DIR: folder, TODOIST_API_TOKEN: '', MICROSOFT_CLIENT_ID: '', MICROSOFT_CLIENT_SECRET:secret, GOOGLE_CLIENT_ID: '' }, stdio: ['ignore','pipe','pipe'] });
-  t.after(async () => { child.kill(); await new Promise(r => child.once('exit', r)); await rm(folder, { recursive: true, force: true }); });
+  t.after(async () => { if(child.exitCode===null&&child.signalCode===null){const exited=new Promise(r=>child.once('exit',r));child.kill();await exited;} await rm(folder, { recursive: true, force: true }); });
   await new Promise((resolve, reject) => { child.stdout.once('data', resolve); child.once('error', reject); child.once('exit', code => reject(new Error('Server stopped: ' + code))); });
   const base = `http://127.0.0.1:${port}`;
   const page = await fetch(base);
@@ -26,6 +26,7 @@ test('private local server rejects secret files, foreign hosts and cross-origin 
   assert.equal((await fetch(base + '/api/tasks',{method:'POST',headers:{Origin:'https://attacker.invalid','Content-Type':'application/json'},body:'{"content":"must not be created"}'})).status,403);
   assert.equal((await fetch(base + '/auth/google')).status,400);
   assert.equal((await fetch(base + '/auth/callback/google?state=forged&code=forged')).status,400);
+  for(const asset of ['lyrics.js','home-assistant.js']){const response=await fetch(base+'/'+asset);assert.equal(response.status,200,asset);assert.match(response.headers.get('content-type'),/javascript/);}
   const font=await fetch(base+'/fonts/manrope.woff2');assert.equal(font.status,200);assert.match(font.headers.get('content-type'),/font\/woff2/);
   const source=await (await fetch(base+'/app.js')).text();assert.equal(source.includes(secret),false);
 });
