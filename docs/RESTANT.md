@@ -1,5 +1,12 @@
 # Liste de reprise
 
+## Calendrier v0.13.0
+
+- [x] Un seul filtre orange Perso & Travail, Myrak bleu conservé ; sources originales gardées dans les détails.
+- [x] Vues Jour et 3 jours sur grille horaire, journées entières séparées, chevauchements en colonnes et ligne de l’heure actuelle.
+- [x] Cartes de rendez-vous cliquables, horaires lisibles, détails et accès à leur journée.
+- [x] 74 tests et contrôles navigateur 1280 × 800 / 320 px, clair/sombre, filtre commun, détails et défilement interne sans débordement.
+
 ## Connexions autonomes v0.12.0
 
 - [x] Import ICS local, récurrences/exceptions, fuseaux et journées entières ; liste des agendas et retrait de leur copie Hub.
@@ -43,8 +50,8 @@ Hub reste une application web ; le portage natif a été écarté à la demande 
 - [x] Retours Spotify ajoutés après autorisation, connexion réelle du site dans Chrome, morceau et paroles synchronisées reçus. Client ID public prérempli ; aucun secret dans Git.
 - [x] Corriger le retour de veille avec données reçues pendant l’inactivité et les accusés de commande Spotify non JSON ; 53 tests réussis.
 - [x] Associer Spotify au navigateur du cadre sans nouvelle saisie du mot de passe ; connexion conservée après reprise du navigateur.
-- [x] Implémenter Todoist direct pour courses et tâches, avec exclusion du projet de courses et de ses sous-projets. Projet « course » créé et connexion réelle vérifiée sur le Mac ; association du cadre à vérifier à la livraison.
-- [x] Importer les exports Google Myrak, Outlook Perso et les trois agendas iCloud dans Hub sur le Mac, sans serveur personnel.
+- [x] Implémenter Todoist direct pour courses et tâches, avec exclusion du projet de courses et de ses sous-projets. Projet « course » créé et connexion réelle vérifiée sur le Mac ; association du cadre réalisée, 18 tâches retrouvées après fermeture/réouverture de Firefox.
+- [x] Importer les exports Google Myrak, Outlook Perso et les trois agendas iCloud dans Hub sur le Mac et sur le cadre, sans serveur personnel.
 - [ ] Synchronisation automatique des calendriers : les imports ICS sont des instantanés ; les fournisseurs testés ne permettent pas une lecture CORS directe. Aucune publication de nouveau lien ni proxy tiers.
 - [ ] Connecter l’instance Home Assistant lorsqu’elle sera prête.
 

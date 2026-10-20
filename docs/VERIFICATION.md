@@ -1,13 +1,22 @@
 # Vérification
 
+## v0.13.0 — Calendrier lisible et vue 3 jours
+
+- Filtre commun Perso & Travail orange, Myrak bleu conservé, sans fusionner ni modifier les calendriers d’origine.
+- Vues Jour et 3 jours sur grille horaire, dates fixes, journées entières séparées, chevauchements en colonnes et commandes tactiles ; fiche de rendez-vous accessible par toute la carte. Vues semaine/mois conservées.
+- `npm run check`, 74 tests et `git diff --check` réussis. Contrôles navigateur : 1280 × 800 clair/sombre, 320 px sans débordement global (défilement limité à la grille), filtre orange masquant les rendez-vous concernés, déplacement de trois jours, détail et retour du focus à la carte d’origine.
+- Les rendez-vous des captures de contrôle sont synthétiques et vivent sur une origine de test distincte ; ils n’ont pas été importés sur le cadre ni dans les comptes réels.
+- v0.13.0 copiée par Wi-Fi sur le cadre avec empreintes et HTTP vérifiés. Onglet unique actualisé ; filtre commun orange et bouton 3 jours constatés sur le vrai 1280 × 800. Les connexions existantes restent dans son navigateur. Fichiers de transfert, code et exports temporaires supprimés après l’association, y compris l’entrée Téléchargements Android.
+
+
 ## v0.12.0 — Agendas importés et Todoist direct
 
 - `npm run check` et 71 tests réussis : séparation achats/tâches (projet choisi, projets course/courses et sous-projets), pagination API, récurrences/exclusions/exceptions, DST, journées entières et événements de nuit, déchiffrement, expiration et altération des transferts.
 - Aperçu réel à 1280 × 800 et contrôle géométrique à 320 px : formulaires, connexion et liste des cinq agendas sans débordement horizontal. API Todoist réelle : projet « course » créé, rayons créés, liste des courses vide et 18 tâches du jour/en retard dans À faire ; aucun élément utilisateur ajouté comme test.
 - Exports réels récupérés depuis Google Agenda Myrak et le lien Outlook complet préexistant, plus les trois liens iCloud fournis. Aucun partage modifié. Les sources iCloud comptaient 127, 0 et 5 VEVENT ; Google 1 et Outlook 5. Dans la fenêtre locale −60/+365 jours : 11, 0, 2, 1 et 4 occurrences. Ce sont des imports datés, pas une synchronisation automatique.
 - GitHub authentifié confirme des contributions privées absentes de la recherche publique. Un relevé de 28 jours UTC a été importé avec le libellé « contributions » ; aucun jeton GitHub ni nom de dépôt privé transféré. Le relevé reste explicitement manuel.
-- Consentement explicite reçu pour mémoriser Todoist sur le Mac et le cadre. Transfert AES-256-GCM, code séparé et expiration 30 minutes ; fichiers privés hors dépôt. Contrôle exact des liens privés et du jeton Todoist : aucune occurrence dans les fichiers du projet.
-- Identité physique recontrôlée : sun8i, Android 6.0.1, ARMv7, 1280 × 800. v0.12.0 installée par Wi-Fi avec empreintes et HTTP vérifiés ; onglet existant actualisé, Spotify réel conservé. L’USB puis le SSH sont devenus indisponibles avant l’import sur le cadre : association matérielle en attente de reconnexion, distincte de l’installation des fichiers.
+- Consentement explicite reçu pour mémoriser Todoist sur le Mac et le cadre ; association réalisée sur les deux. Transfert AES-256-GCM, code séparé et expiration 30 minutes ; fichiers privés hors dépôt. Contrôle exact des liens privés et du jeton Todoist : aucune occurrence dans les fichiers du projet.
+- Identité physique recontrôlée : sun8i, Android 6.0.1, ARMv7, 1280 × 800. v0.12.0 installée par Wi-Fi avec empreintes et HTTP vérifiés ; onglet existant actualisé, Spotify réel conservé. Après une coupure, USB retrouvé sur l’autre serveur ADB local ; clé hôte conservée, filtre adapté à la nouvelle IP du même Mac et services repris. Association réelle du cadre réussie : 18 tâches Todoist, agendas importés et relevé GitHub 505 retrouvés après force-stop/réouverture de Firefox. Spotify reste connecté. Ce contrôle ne valide pas le démarrage automatique Android.
 - Le serveur Node optionnel sert désormais aussi les modules Spotify/teintes/import et leur bibliothèque ; ses tâches excluent également les projets de courses. Le cadre reste servi localement sans dépendre de Node sur le Mac.
 
 

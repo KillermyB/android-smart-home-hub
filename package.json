@@ -1,12 +1,12 @@
 {
   "name": "smart-hub",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node --env-file-if-exists=.env server.mjs",
     "start": "node --env-file-if-exists=.env server.mjs",
-    "check": "node --check scripts/connection-pack.mjs && node --check scripts/github-export.mjs && node --check dist/calendar-import.js && node --check dist/connection-bundle.js && node --check dist/music-colors.js && node --check dist/app.js && node --check dist/connectors.js && node --check dist/spotify-link.js && node --check dist/lyrics.js && node --check dist/home-assistant.js && node --check dist/hub-tools.js && node --check dist/budget-recipes.js && node --check dist/data.js && node --check dist/quotes.js && node --check dist/github.js && node --check server.mjs && node --check scripts/frame.mjs",
+    "check": "node --check dist/agenda-layout.js && node --check scripts/connection-pack.mjs && node --check scripts/github-export.mjs && node --check dist/calendar-import.js && node --check dist/connection-bundle.js && node --check dist/music-colors.js && node --check dist/app.js && node --check dist/connectors.js && node --check dist/spotify-link.js && node --check dist/lyrics.js && node --check dist/home-assistant.js && node --check dist/hub-tools.js && node --check dist/budget-recipes.js && node --check dist/data.js && node --check dist/quotes.js && node --check dist/github.js && node --check server.mjs && node --check scripts/frame.mjs",
     "test": "node --test scripts/*.test.mjs",
     "frame": "node scripts/frame.mjs"
   },

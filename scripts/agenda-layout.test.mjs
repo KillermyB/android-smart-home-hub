@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFileSync} from 'node:fs';
+const c=vm.createContext({Date});vm.runInContext(readFileSync(new URL('../dist/agenda-layout.js',import.meta.url),'utf8'),c);const {layout,shift}=c.HubAgenda;
+const event=(id,start,end,allDay=false)=>({id,start,end,allDay});
+test('agenda navigation advances exactly three days, one week or a month without overflow',()=>{assert.equal(shift('2026-10-31','three',1),'2026-11-03');assert.equal(shift('2026-10-21','three',-1),'2026-10-18');assert.equal(shift('2026-01-31','month',1),'2026-02-01');assert.equal(shift('2026-10-21','week',1),'2026-10-28');});
+test('agenda overlaps use distinct lanes and adjacent meetings recover their full width',()=>{const r=layout([event('a','09:00','11:00'),event('b','10:00','12:00'),event('c','13:00','14:00')],480,1320);assert.equal(r[0].lanes,2);assert.notEqual(r[0].lane,r[1].lane);assert.equal(r[2].lanes,1);assert.equal(r[2].lane,0);});
+test('agenda small touch targets do not overlap and all-day/outside events stay off the time grid',()=>{const r=layout([event('a','09:00','09:05'),event('b','09:15','09:20'),event('c','00:00','23:59',true),event('d','07:00','07:30')],480,1320);assert.equal(r.length,2);assert.equal(r[0].lanes,2);assert.equal(r[0].visualEnd-r[0].start,44);});
