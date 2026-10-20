@@ -1,0 +1,43 @@
+# Liste de reprise
+
+## Avant GitHub
+
+- [ ] Revoir l’interface avec l’utilisateur et choisir les éventuels ajustements.
+- [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
+- [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
+
+## Sur la tour
+
+- [ ] Installer Node 22.9+ et lancer `npm start` ; vérifier `npm run check` et `npm test`.
+- [ ] Brancher le cadre en USB-A → USB-C de données, confirmer `adb devices -l` et lire son identité réelle.
+- [ ] Faire les sauvegardes privées nécessaires avant installation sur le cadre.
+- [ ] Choisir et vérifier le navigateur/kiosk compatible ; tester Smart Hub sur le vrai panneau.
+- [ ] Vérifier le retour aux réglages Android avec un seul doigt et après redémarrage.
+- [ ] Stabiliser l’accès de maintenance et l’adresse du cadre avec une méthode validée pour ce matériel.
+
+## Comptes et données
+
+- [ ] Configurer et vérifier le compte Outlook personnel.
+- [ ] Configurer séparément Outlook travail ; vérifier les règles de l’entreprise et les calendriers partagés nécessaires.
+- [ ] Configurer et vérifier Google Agenda du compte Gmail.
+- [ ] Renseigner et vérifier la clé Todoist ; tester une tâche de contrôle explicitement identifiée comme telle.
+- [ ] Choisir la vraie ville météo ; ajouter l’actualisation périodique et une indication d’ancienneté complète.
+- [ ] Désactiver les exemples une fois les connexions validées.
+- [ ] Ajouter déconnexion/révocation des comptes et export/import des données locales avant usage permanent.
+
+## Produit à approfondir
+
+- [ ] Agenda : plage synchronisée explicite, événements sur plusieurs jours, vue trois jours si souhaitée.
+- [ ] Cuisine : extraction automatique depuis une URL, gestion/suppression des recettes et sauvegarde portable du carnet ; les recettes importées gardent leurs quantités textuelles d’origine.
+- [ ] Ajouter une sélection de citations plus large, en vérifiant chaque attribution et la source.
+- [ ] Vérifier qu’un minuteur terminé se signale correctement au milieu d’une longue recette ; la première version fournit une alerte visuelle et pas une sonnerie système garantie.
+- [ ] Choisir le fonctionnement permanent : tour toujours allumée, petit serveur dédié ou autre hébergement privé.
+- [ ] Durcir le transport réseau et la gestion des appareils avant un usage durable au-delà du réseau domestique de confiance.
+
+## Validation physique
+
+- [ ] Mesurer la fluidité et l’usage CPU/mémoire sur l’A33, en particulier le fondu des thèmes et les transitions.
+- [ ] Tester 1280 × 800 réel, clavier tactile, veille/réveil, perte Wi-Fi, coupure électrique, heure et fuseau après redémarrage.
+- [ ] Vérifier l’autostart du kiosk, la disponibilité des certificats HTTPS et le maintien de l’écran pendant la cuisine.
+
+La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes physiques.

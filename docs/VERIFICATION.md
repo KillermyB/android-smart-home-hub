@@ -1,0 +1,23 @@
+# Vérification du 20 octobre 2026
+
+## Contrôles locaux réussis
+
+- `npm run check` : syntaxe JavaScript et serveur.
+- `npm test` : 2 tests du serveur, incluant protection des fichiers privés, origine des écritures, Host, retours OAuth invalides, polices et refus d’une écoute LAN sans code d’association.
+- Navigateur intégré : accueil 1280 × 800 sans défilement vertical ni débordement horizontal ; les trois tâches restent à l’intérieur de leur carte.
+- Petit format 320 × 740 : navigation et météo sans débordement horizontal ; fenêtre de réglages sans débordement interne.
+- Agenda : jour, semaine et grille de 42 jours ; filtre Travail retirant puis rétablissant l’événement attendu.
+- Tâches : ajout, validation et suppression de la seule tâche de contrôle créée pour l’essai.
+- Cuisine : passage de 2 à 3 portions, recalcul de 180 à 270 g de riz ; passage d’étape ; minuteur conservé lors du retour à Maison puis arrêté manuellement.
+- Recherche : « citron » retourne la seule recette correspondante.
+- Carnet : saisie d’une recette personnelle, sauvegarde, rechargement et présence confirmée dans le carnet de ce navigateur.
+- Thèmes : contrôles clair/sombre utilisables ; fondus et interactions courtes implémentés ; le mode sans mouvement suit la préférence système.
+
+## Ce que cela ne valide pas
+
+- Fluidité, CPU, mémoire, touches physiques et démarrage sur l’A33.
+- Autorisation et lecture réelles des comptes Microsoft et Google, clé Todoist, règles de l’organisation professionnelle.
+- Alarme sonore système, veille Android, certificats du cadre ou reprise après coupure électrique.
+- Parcours d’authentification et usage permanent du kiosk.
+
+La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA locales se trouvent dans `artifacts/`, exclu du dépôt.
