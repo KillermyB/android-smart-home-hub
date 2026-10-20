@@ -2,13 +2,13 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Livraison préparée : v0.6.0.** L’interface est vérifiable en navigateur ; l’installation, le tactile et les performances sur le cadre physique restent à valider. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
+**Version : v0.6.0.** L’interface est vérifiable en navigateur ; l’installation, le tactile et les performances sur le cadre physique restent à valider. Les exemples sont signalés et aucun compte externe n’est connecté par défaut.
 
 Dépôt privé créé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub). Le push et le tag `v0.6.0` doivent être confirmés avant de considérer la publication GitHub comme terminée.
 
 ## Récupérer et lancer sur Windows
 
-Installer Git et [Node.js](https://nodejs.org/) **22.9 ou plus récent**. Après publication du dépôt, ouvrir PowerShell dans le dossier où conserver le projet :
+Installer Git et [Node.js](https://nodejs.org/) **22.9 ou plus récent**. Ouvrir PowerShell dans le dossier où conserver le projet :
 
 ```powershell
 git clone https://github.com/KillermyB/smart-hub.git

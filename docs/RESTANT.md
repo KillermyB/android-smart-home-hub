@@ -4,7 +4,7 @@
 
 - [x] Contrôles locaux et visuels consignés dans `VERIFICATION.md` : syntaxe, 40 tests et vues cadre/étroites.
 - [x] Créer le dépôt privé [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub).
-- [ ] Pousser la branche et le tag `v0.6.0`, puis vérifier le SHA distant. Publication GitHub non confirmée à ce stade.
+- [x] Publier le code dans le dépôt privé, branche `main`, version `v0.6.0` ; vérifier le SHA distant lors de la livraison.
 - [x] Contrôler les fichiers et l’historique à publier : aucun `.env`, jeton, `.data`, export personnel, diagnostic ou sauvegarde matérielle.
 - [x] Préparer le guide Windows/cadre : `INSTALLATION-CADRE.md`, lancement sans dépendance et site HTTPS conseillé sans tour permanente.
 - [ ] Vérifier le clone du dépôt privé depuis la tour une fois la publication confirmée.

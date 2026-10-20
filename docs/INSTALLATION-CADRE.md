@@ -6,7 +6,7 @@ Le code peut être récupéré sur la tour Windows. Le cadre, lui, doit ouvrir H
 
 ## 1. Récupérer le projet sur la tour
 
-Après publication du dépôt `KillermyB/smart-hub`, installer Git et Node.js 22.9 ou plus récent, puis ouvrir PowerShell dans le dossier où conserver le projet :
+Installer Git et Node.js 22.9 ou plus récent, puis ouvrir PowerShell dans le dossier où conserver le projet :
 
 ```powershell
 git clone https://github.com/KillermyB/smart-hub.git
