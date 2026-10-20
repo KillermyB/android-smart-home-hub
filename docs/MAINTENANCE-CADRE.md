@@ -48,9 +48,9 @@ npm run frame -- start --config '../.private-frame-access/connection.json'
 
 ## Après une coupure
 
-Le lancement automatique de Hub et la reprise SSH après un vrai redémarrage ne sont pas encore validés. Le service web en mémoire doit être relancé après coupure. Les fichiers Hub et les données Firefox sont persistants ; la présence des fichiers n’est pas une preuve d’autostart.
+Un redémarrage réel a été effectué : USB et Wi-Fi reviennent, les réglages heure/écran et les fichiers sont conservés. La préférence SimpleSSHD de lancement au démarrage a été activée après accord explicite, mais le journal constructeur confirme que `BackgroundManagerService` bloque son `BOOT_COMPLETED`. SSH a été relancé manuellement par USB, puis Hub par Wi-Fi. Le démarrage automatique de SSH et de Hub n’est donc pas opérationnel. Le service web en mémoire doit être relancé après coupure. Les fichiers Hub et les données Firefox sont persistants ; la présence des fichiers n’est pas une preuve d’autostart.
 
-Si SSH répond, utiliser `frame start`. Sinon, reprendre l’accès USB/ADB avec le câble de données validé. Sur le Mac de cette installation, le serveur ADB qui détient l’USB utilise le port 5038 ; c’est un état local à vérifier, pas un paramètre à imposer sur Windows. Ne pas ouvrir ADB TCP 5555 pour contourner une reprise difficile.
+Si SSH répond, utiliser `frame start`. Sinon, reprendre l’accès USB/ADB avec le câble de données validé. Le Mac a utilisé ADB sur 5038 avant le redémarrage ; le serveur 5037 a repris l’USB ensuite. Vérifier lequel voit le cadre plutôt que réutiliser un port figé ; ce n’est pas un paramètre à imposer sur Windows. Ne pas ouvrir ADB TCP 5555 pour contourner une reprise difficile.
 
 Avant de remplacer le launcher ou d’installer un kiosk permanent, l’utilisateur doit confirmer physiquement le retour aux réglages Android, puis la reprise après coupure. Le parcours tactile Cuisine → recette → Maison est confirmé ; il ne valide pas ce chemin de récupération.
 
@@ -59,3 +59,10 @@ Avant de remplacer le launcher ou d’installer un kiosk permanent, l’utilisat
 La copie du cadre et le site HTTPS ont des stockages séparés. Un push GitHub ne transfère aucun favori, photo, note ou jeton du navigateur du Mac. Les notes/photos/recettes peuvent être transférées manuellement avec le compagnon ; conserver les exports utiles avant toute opération sur les données Firefox.
 
 La vraie ville météo reste à choisir. GitHub public se charge sans clé. Les comptes Todoist, Spotify, calendriers et Home Assistant doivent être autorisés séparément par leur propriétaire. Pour Spotify, déclarer exactement le callback affiché, avec `http://127.0.0.1:4173/` pour cette copie locale. Les calendriers Outlook/Google utilisent encore le serveur Node et ne sont pas connectés par la copie statique. Voir [CONNEXIONS.md](CONNEXIONS.md), [COURSES-SPOTIFY.md](COURSES-SPOTIFY.md) et [DOMOTIQUE.md](DOMOTIQUE.md).
+
+
+## Affichage comme application Android
+
+Firefox est le premier affichage compatible installé, pas la seule architecture possible. Une application kiosque dédiée peut réutiliser l’interface, intégrer un moteur compatible et afficher Hub sans barre d’adresse. La déclarer comme application d’accueil permet à Android de l’ouvrir au démarrage ; un simple récepteur `BOOT_COMPLETED` est filtré sur ce firmware, comme confirmé ici et documenté dans le [rapport PF1007L](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/allwinner-a33-mainline-uboot.md#8-notes-from-this-unit-after-root).
+
+Cette application n’est pas encore livrée. Prévoir un moteur compatible Android 6, le lancement du service local et du SSH restreint, un accès aux réglages utilisable avec un seul doigt et une sortie vers AiMOR. Ne pas remplacer le launcher avant la validation physique du chemin de récupération ; le seul test Cuisine → recette → Maison ne couvre pas cette étape.

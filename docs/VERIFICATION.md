@@ -127,3 +127,10 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Agrandissement demandé après l’essai réel : navigation 15 px, priorités 15 px, heures d’agenda 24 px, icônes/commandes plus grandes et horloge renforcée. Contrôle 1280 × 800 : document 1280 × 800, trois priorités dans leur carte et prévisions dans la météo. Les exemples restent signalés.
 - Réglages/plein écran et retour vérifiés aussi en navigateur, format 320 px sans débordement. Tests des fichiers statiques (empreintes, refus des fichiers cachés/liens symboliques) et configuration SSH ajoutés. `npm run check`, 42 tests et `git diff --check` passent.
 - À vérifier séparément : réglages Android par toucher physique, autostart après coupure, CPU/mémoire prolongés, vraie ville météo et comptes externes.
+
+### Contrôle de redémarrage
+
+- Après accord explicite supplémentaire, option SimpleSSHD au démarrage activée. Redémarrage Android réel effectué, USB retrouvé par le serveur local 5037 (5038 avant redémarrage), adresse Wi-Fi relue et clé hôte existante conservée.
+- Europe/Zurich, auto_time=1, auto_time_zone=0 et stay_on_while_plugged_in=3 persistent. Les fichiers de Hub sont conservés.
+- SSH n’a pas démarré seul : journal ciblé `BackgroundManagerService: prevent from boot complete broadcast: org.galexander.sshd`. Lecture de la politique constructeur : liste de boot issue des ressources du système, sans exception utilisateur ciblée identifiée. Aucun changement de framework, désactivation globale de la protection ou remplacement du launcher.
+- Pare-feu restreint et SSH relancés par USB ; relance de Hub par Wi-Fi effectuée ensuite. La préférence activée ne constitue pas une preuve d’autostart. Une application kiosque déclarée HOME reste la prochaine étape, après test physique du retour aux réglages Android.

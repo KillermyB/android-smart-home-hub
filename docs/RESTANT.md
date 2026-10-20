@@ -9,7 +9,8 @@
 - [x] Tactile Cuisine → recette → Maison confirmé par l’utilisateur ; textes et commandes agrandis ensuite selon son retour.
 - [x] Fuseau Europe/Zurich, heure automatique, fuseau manuel et maintien allumé sur alimentation appliqués avec accord explicite.
 - [x] SSH root par clé sur 2222 testé en Wi-Fi depuis le Mac ; clé privée et clé hôte épinglée hors Git, redirections interdites, autre source refusée par le shell.
-- [ ] Tester la reprise après redémarrage/coupure, la nouvelle IP, le retour physique vers Android Settings et le démarrage automatique de Hub. Voir `MAINTENANCE-CADRE.md`.
+- [x] Redémarrage Android réel : USB/Wi-Fi, réglages heure/écran et fichiers persistants contrôlés ; SSH relancé par USB puis Hub par Wi-Fi.
+- [ ] Démarrage automatique SSH/Hub : option SimpleSSHD approuvée et activée, mais `BackgroundManagerService` filtre son signal de boot. Intégrer la reprise au futur kiosque d’accueil, après validation physique de l’accès aux réglages. Tester aussi une coupure électrique. Voir `MAINTENANCE-CADRE.md`.
 
 ## Livraison v0.6.0
 
