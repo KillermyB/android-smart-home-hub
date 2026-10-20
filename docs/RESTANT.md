@@ -6,6 +6,10 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Carte horloge v0.5.3
+
+- [x] Dégradé léger bleu ciel, crème et abricot inspiré de la référence ; carte claire conservée dans les deux thèmes, texte foncé lisible.
+
 ## Veille v0.5.2
 
 - [x] Météo sous l’heure : pictogramme, température, ville et heure du relevé disponibles. Exemple signalé si activé ; état à configurer sinon. Citations et réveil conservés.

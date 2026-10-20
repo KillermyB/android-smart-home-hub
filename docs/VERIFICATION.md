@@ -97,3 +97,8 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Pictogramme et température sous l’heure ; ville/conditions/heure du relevé reprises de la météo déjà enregistrée. Exemple explicitement signalé si activé ; message à configurer sans ville et sans exemples.
 - Veille contrôlée à 1280 × 800 et 320 × 740 avec une citation longue : texte et météo visibles, aucun débordement horizontal. Sortie par bouton et Échap vérifiée. Réglage des exemples rétabli après l’essai.
 - Syntaxe, 13 tests existants et diff vérifiés. Aucun nouvel appel météo ni intervalle ajouté ; les conditions réelles dépendent toujours de la ville configurée. Pas de validation physique sur le cadre.
+
+## v0.5.3 — Dégradé de l’horloge
+
+- Fond de la carte horloge remplacé par trois dégradés CSS légers bleu ciel, crème et abricot, en clair comme en sombre. Aucun fichier image ni mouvement permanent ajouté.
+- Contrôle visuel sombre à 1280 × 800 et clair à 320 × 740 : texte foncé lisible, pas de débordement horizontal. Syntaxe, 13 tests existants et diff vérifiés.

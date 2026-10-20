@@ -2,7 +2,7 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, recettes et veille avec citations.
 
-**État : v0.5.2, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
+**État : v0.5.3, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
 
 ## Lancer sur la tour Windows
 
@@ -19,7 +19,7 @@ Ouvrir [http://localhost:4173](http://localhost:4173). Aucun `npm install` n’e
 
 ## Ce qui fonctionne
 
-- Maison : grande horloge bleue, météo et priorités à droite, agenda horizontal sur 24 h en bas avec Repas/Spotify ; GitHub et citations conservés. Mode sombre graphite, accents orange et bleu.
+- Maison : grande horloge sur dégradé pastel bleu/crème/abricot, météo et priorités à droite, agenda horizontal sur 24 h en bas avec Repas/Spotify ; GitHub et citations conservés. Mode sombre graphite, accents orange et bleu.
 - Agenda : jour, semaine, mois, navigation et filtres des trois sources.
 - À faire : ajout, validation et suppression des tâches locales ; lecture, ajout et validation Todoist après configuration.
 - Cuisine : 32 recettes, dont 20 faciles à petit budget sans porc, recherche, catégories, favoris, retrait et restauration des plats, portions et étapes. Sources individuelles pour les nouvelles recettes adaptées.
