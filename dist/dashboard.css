@@ -36,3 +36,21 @@
 .dashboard-tiles>.dash-agenda .card-title h2{color:var(--ink);font-size:13px;font-weight:600}
 @media(max-width:900px){.dashboard-right>.dash-tasks{min-height:165px}}
 @media(max-width:720px){.dashboard-right>.dash-tasks{padding:18px 20px;min-height:190px}.dashboard-right>.dash-tasks .task,.dashboard-right>.dash-tasks .task-toggle{min-height:37px}.dashboard-tiles>.dash-agenda{grid-column:1/-1;min-height:175px}}
+
+/* A quiet weather line beneath the idle clock. */
+.screensaver .sleep-time{line-height:1.12}
+.sleep-weather{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0 0;max-width:100%;color:#e7e4da}
+.sleep-weather-icon{display:flex;align-items:center;justify-content:center;width:40px;height:36px;flex-shrink:0}
+.sleep-weather-icon>.ui-icon{width:34px;height:34px;stroke-width:1.6}
+.sleep-weather-icon.is-sunny{color:#d8b06b}
+.sleep-weather-partly{position:relative;display:block;width:40px;height:36px}
+.sleep-weather-partly .ui-icon:first-child{position:absolute;width:24px;height:24px;top:0;left:0;color:#d8b06b}
+.sleep-weather-partly .ui-icon:last-child{position:absolute;width:33px;height:29px;bottom:0;right:0;fill:#c5c9d2;stroke:#c5c9d2}
+.sleep-weather strong{font:600 32px/1.15 Manrope,Arial,sans-serif;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.sleep-weather-detail{display:flex;flex-direction:column;gap:4px;text-align:left;border-left:1px solid #ffffff20;padding-left:16px;margin-left:3px;min-width:0}
+.sleep-weather-detail>span{font-size:13px;color:#bbbcc4;overflow-wrap:anywhere}
+.sleep-weather-detail small{font-size:10px;color:#93949f;line-height:1.5;max-width:360px;overflow-wrap:anywhere}
+.sleep-weather-empty{font-size:12px;color:#93949f}
+.sleep-weather-empty svg{width:22px;height:22px}
+@media(max-width:720px){.sleep-weather{gap:10px;margin-top:20px}.sleep-weather strong{font-size:27px}.sleep-weather-detail{padding-left:12px;margin-left:0}.sleep-weather-detail>span{font-size:12px}.sleep-weather-detail small{font-size:9px;max-width:190px}.sleep-weather-empty{font-size:11px}.sleep-weather-icon{width:34px}.screensaver .sleep-quote{margin-top:28px}}
+@media(max-height:700px) and (min-width:721px){.screensaver{padding:35px 60px}.screensaver .sleep-time{font-size:min(18vw,210px)}.screensaver .sleep-quote{font-size:24px;margin-top:22px}.sleep-weather{margin-top:8px}}

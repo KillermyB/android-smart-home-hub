@@ -2,7 +2,7 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, recettes et veille avec citations.
 
-**État : v0.5.1, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
+**État : v0.5.2, aperçu fonctionnel en navigateur. L’installation et les performances sur le cadre physique restent à valider.** Les données d’exemple sont signalées dans l’interface. Aucun compte externe n’est connecté par défaut.
 
 ## Lancer sur la tour Windows
 
@@ -31,7 +31,7 @@ Ouvrir [http://localhost:4173](http://localhost:4173). Aucun `npm install` n’e
 - Musique : widget Spotify et lecteur immersif ; connexion PKCE, pochette et commandes sur un appareil actif après autorisation. Voir [le guide Courses/Spotify](docs/COURSES-SPOTIFY.md).
 - GitHub : commits publics de `killermyb` sur 28 jours, graphique et derniers commits ; compte modifiable depuis la tuile, cache 30 minutes, erreurs et résultats partiels signalés.
 - Carnet : saisie d’une recette copiée depuis un site/livre ; import JSON-LD `schema.org/Recipe` ou fichier JSON.
-- Veille automatique réglable, grande heure, citations sourcées par catégorie en police sans sérif ; un toucher ou Échap pour revenir.
+- Veille automatique réglable, grande heure, météo de la ville choisie, citations sourcées par catégorie en police sans sérif ; un toucher ou Échap pour revenir.
 - Thèmes clair/sombre avec fondu natif si disponible, transition de couleurs sur WebView 106 ; mouvements désactivés si `prefers-reduced-motion` est actif.
 - Polices locales avec licences OFL ; aucun CDN nécessaire pour l’interface.
 

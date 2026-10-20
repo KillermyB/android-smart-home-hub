@@ -91,3 +91,9 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Courses retirées de l’accueil ; agenda 24 h dans la rangée du bas sur deux colonnes, priorités sous la météo à droite de l’horloge.
 - Clair à 1280 × 800 : document de mêmes dimensions, trois tâches entièrement dans leur carte. Sombre à 320 × 740 : aucune tuile Courses, priorités et agenda à leurs emplacements attendus, document sans débordement horizontal.
 - Accès Cuisine → Courses vérifié ; liste locale et ses six éléments de contrôle conservés. `npm run check`, les 13 tests existants et `git diff --check` passent.
+
+## v0.5.2 — Météo en veille
+
+- Pictogramme et température sous l’heure ; ville/conditions/heure du relevé reprises de la météo déjà enregistrée. Exemple explicitement signalé si activé ; message à configurer sans ville et sans exemples.
+- Veille contrôlée à 1280 × 800 et 320 × 740 avec une citation longue : texte et météo visibles, aucun débordement horizontal. Sortie par bouton et Échap vérifiée. Réglage des exemples rétabli après l’essai.
+- Syntaxe, 13 tests existants et diff vérifiés. Aucun nouvel appel météo ni intervalle ajouté ; les conditions réelles dépendent toujours de la ville configurée. Pas de validation physique sur le cadre.

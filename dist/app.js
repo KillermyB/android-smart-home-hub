@@ -169,10 +169,17 @@
   function updateClock() { document.querySelectorAll('[data-clock]').forEach(function(el){el.textContent=timeText();}); }
   function openModal(name) { if(!state.modal)lastFocus=document.activeElement;state.modal=name;renderOverlay();animateEnter($('.modal'));var f=$('#overlay-root button, #overlay-root input');if(f)f.focus(); }
   function closeModal() { var previous=lastFocus&&lastFocus.getAttribute('data-action');state.modal=null;render();var target=Array.from(document.querySelectorAll('[data-action]')).find(function(b){return b.getAttribute('data-action')===previous;});if(target)target.focus({preventScroll:true}); }
+  function sleepWeather(){
+    var w=state.weather,hasWeather=!!(w&&Number.isFinite(w.temperature)),example=!hasWeather&&state.demo;
+    if(!hasWeather&&!example)return '<div class="sleep-weather sleep-weather-empty">'+icon('cloud')+'<span>Météo à configurer dans les réglages</span></div>';
+    var temp=hasWeather?Math.round(w.temperature):14,code=hasWeather?Number(w.code):1,partly=code===1||code===2;
+    var symbol=partly?'<span class="sleep-weather-partly">'+icon('sun')+icon('cloud')+'</span>':icon(code===0?'sun':'cloud');
+    return '<div class="sleep-weather" role="group" aria-label="'+esc('Météo · '+(hasWeather?w.city:'exemple')+' · '+temp+' degrés · '+(hasWeather?w.summary:'Quelques éclaircies'))+'"><span class="sleep-weather-icon '+(code===0?'is-sunny':'')+'">'+symbol+'</span><strong>'+temp+'°</strong><span class="sleep-weather-detail"><span>'+esc(hasWeather?w.city:'Météo · exemple')+'</span><small>'+esc(hasWeather?(w.summary||'')+(w.updated?' · relevé à '+w.updated:''):'Quelques éclaircies')+'</small></span></div>';
+  }
   function renderOverlay() {
     var modalFocus=document.activeElement&&document.activeElement.getAttribute('data-action');
     var root=$('#overlay-root');$('#app').inert=!!(state.sleep||state.modal);if(state.sleep||state.modal)$('#app').setAttribute('aria-hidden','true');else $('#app').removeAttribute('aria-hidden');
-    if(state.sleep){var q=quote();root.innerHTML='<section class="screensaver" aria-label="Horloge de veille" data-action="wake"><button class="icon-button sleep-exit" data-action="wake" aria-label="Quitter la veille">'+icon('close')+'</button><p class="sleep-date">'+esc(dayText())+'</p><div class="sleep-time" data-clock></div><blockquote class="sleep-quote">« '+esc(q.text)+' »</blockquote><p class="sleep-author">'+esc(q.author)+' · '+esc(q.work)+'</p><span class="sleep-hint">Touchez l’écran pour revenir à la maison</span></section>';updateClock();return;}
+    if(state.sleep){var q=quote();root.innerHTML='<section class="screensaver" aria-label="Horloge de veille" data-action="wake"><button class="icon-button sleep-exit" data-action="wake" aria-label="Quitter la veille">'+icon('close')+'</button><p class="sleep-date">'+esc(dayText())+'</p><div class="sleep-time" data-clock></div>'+sleepWeather()+'<blockquote class="sleep-quote">« '+esc(q.text)+' »</blockquote><p class="sleep-author">'+esc(q.author)+' · '+esc(q.work)+'</p><span class="sleep-hint">Touchez l’écran pour revenir à la maison</span></section>';updateClock();return;}
     if(!state.modal){root.innerHTML='';return;}
     var heading='Réglages',body='';
     if(state.modal==='settings')body=settings();

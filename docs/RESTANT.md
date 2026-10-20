@@ -6,6 +6,10 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Veille v0.5.2
+
+- [x] Météo sous l’heure : pictogramme, température, ville et heure du relevé disponibles. Exemple signalé si activé ; état à configurer sinon. Citations et réveil conservés.
+
 ## Accueil v0.5.1
 
 - [x] Tuile Courses retirée de l’accueil ; agenda 24 h élargi dans la rangée du bas, priorités sous la météo. Courses accessibles depuis la cuisine et les réglages.
