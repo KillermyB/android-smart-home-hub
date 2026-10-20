@@ -5,7 +5,7 @@ Les deux connexions partent directement du navigateur, sans serveur personnel. E
 ## Courses
 
 - Depuis la tuile Courses, ajouter/modifier un achat et choisir un rayon. Les catégories automatiques sont des suggestions modifiables.
-- Les achats cochés sont regroupés en bas ; ils peuvent être rétablis. La tuile d’accueil montre les achats actifs.
+- Les achats cochés sont regroupés en bas ; ils peuvent être rétablis. La page Courses montre les achats actifs.
 - Depuis une recette, ajuster les portions et cocher ce qu’on possède déjà, puis « Ajouter les ingrédients ». Les libellés actifs identiques ne sont pas ajoutés deux fois. Cela ne fusionne pas automatiquement des quantités différentes.
 - « Cet appareil » et « Todoist » sont deux listes distinctes. Changer de source ne supprime ni n’envoie la liste locale.
 
@@ -17,9 +17,9 @@ Pour Todoist :
 4. Sur le téléphone, ouvrir le même projet dans Todoist. La liste distante est actualisée toutes les 60 secondes lorsque Hub. est visible ; une actualisation manuelle est disponible.
 5. Les validations sont effectuées après réponse de l’API. L’historique distant couvre les sept derniers jours ; si son chargement échoue, ce fait est indiqué séparément des achats actifs.
 
-Le jeton donne accès au compte Todoist ; Hub. ne l’envoie qu’à `api.todoist.com`. Il reste dans `sessionStorage` de l’onglet, survit au rechargement, mais pas à la fin de cette session. Le bouton Déconnecter l’enlève de cette session sans révoquer le jeton chez Todoist. La révocation se fait dans Todoist. Rien n’est envoyé automatiquement depuis la liste locale.
+Le jeton donne accès au compte Todoist ; Hub. ne l’envoie qu’à `api.todoist.com`. Il peut rester dans `sessionStorage`, ou être mémorisé sur cet appareil après choix explicite. Le bouton Déconnecter l’enlève de cette session sans révoquer le jeton chez Todoist. La révocation se fait dans Todoist. Rien n’est envoyé automatiquement depuis la liste locale.
 
-La connexion des tâches quotidiennes préexistante via le serveur Node reste distincte de cette connexion Courses.
+La connexion directe alimente également les tâches quotidiennes, en excluant le projet Courses et ses sous-projets.
 
 ## Spotify
 

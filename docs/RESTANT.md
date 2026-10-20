@@ -1,5 +1,17 @@
 # Liste de reprise
 
+## Widgets et configuration v0.14.0
+
+- [x] Musique : appareil au-dessus de la grande pochette, titre de service retiré, barre blanche de progression écoulée.
+- [x] Agenda compact : pistes orange Perso & Travail / bleu Myrak, horaires de début et fin lisibles, lien vers le calendrier complet.
+- [x] Minuteur dans l’en-tête, également dans le lecteur focus, sans superposition sur les étapes cuisine.
+- [x] Bouton Domotique visible et commandes media_player / Sonos selon les capacités annoncées.
+- [x] Qualité de l’air européenne et UV via Open-Meteo / CAMS ENSEMBLE, cache indépendant de la météo.
+- [x] GitHub : identité compacte, total, grille et jours actifs, sans titre de service redondant.
+- [x] Imports ICS prioritaires, remplacement sans doublon ; option Google GIS directe, sélection et copie datée, aucun secret d’application.
+- [ ] Autoriser Google avec le Client ID Web de l’utilisateur ; l’accès temporaire nécessite une nouvelle action après expiration.
+- [ ] Connecter l’instance Home Assistant de l’utilisateur et tester ses vrais appareils.
+
 ## Calendrier v0.13.0
 
 - [x] Un seul filtre orange Perso & Travail, Myrak bleu conservé ; sources originales gardées dans les détails.

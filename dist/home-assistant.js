@@ -20,6 +20,7 @@
     var domain = value.entity_id.split('.')[0];
     if (domain === 'light' || domain === 'switch') return ['turn_on','turn_off','toggle'].indexOf(service) >= 0;
     if (domain === 'scene') return service === 'turn_on';
+    if(domain==='media_player'){var media={media_pause:1,volume_set:4,media_previous_track:16,media_next_track:32,media_stop:4096,media_play:16384};return Object.prototype.hasOwnProperty.call(media,service)&&(Number(value.attributes.supported_features)&media[service])===media[service];}
     var bits = {start:8192, pause:4, stop:8, return_to_base:16}, bit = Object.prototype.hasOwnProperty.call(bits,service) ? bits[service] : 0;
     return domain === 'vacuum' && bit > 0 && (Number(value.attributes.supported_features) & bit) === bit;
   }
@@ -119,6 +120,7 @@
       if (typeof data !== 'object' || Array.isArray(data) || ['entity_id','device_id','area_id','floor_id','label_id'].some(function (key) { return Object.prototype.hasOwnProperty.call(data,key); })) throw failure('invalid_data', 'Les paramètres ne peuvent pas changer les appareils ciblés.');
       var payload; try { payload = copy(data); } catch (_) { throw failure('invalid_data', 'Paramètres Home Assistant invalides.'); }
       if (!payload || typeof payload !== 'object' || Array.isArray(payload) || ['entity_id','device_id','area_id','floor_id','label_id'].some(function (key) { return Object.prototype.hasOwnProperty.call(payload,key); })) throw failure('invalid_data', 'Paramètres Home Assistant invalides.');
+      if(domain==='media_player'&&(Object.keys(payload).some(function(k){return service!=='volume_set'||k!=='volume_level';})||(service==='volume_set'&&(!Number.isFinite(payload.volume_level)||payload.volume_level<0||payload.volume_level>1))))throw failure('invalid_data','Volume attendu entre 0 et 1.');
       return send('call_service', {domain:domain, service:service, target:{entity_id:ids.length === 1 ? ids[0] : ids}, service_data:payload});
     }
     return {url:normalizeURL(address.replace(/^ws:/,'http:').replace(/^wss:/,'https:')), connect:connect, states:states, status:status, call:call, subscribe:function (listener) { if (typeof listener !== 'function') throw failure('invalid_listener','Écouteur Home Assistant invalide.'); listeners.add(listener); try { listener(states(),status()); } catch (_) {} return function () { listeners.delete(listener); }; }, disconnect:function () { close(null,'disconnected',true); }};

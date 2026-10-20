@@ -1,5 +1,14 @@
 # Vérification
 
+## v0.14.0 — Widgets et configuration directe
+
+- `npm run check`, 78 tests et `git diff --check` réussis. Les nouveaux modules et leur CSS sont servis en HTTP 200 par le serveur Node optionnel.
+- Accueil contrôlé dans le navigateur à 1280 × 800 et 320 px : aucun débordement global, grande pochette, nom de sortie, pistes calendrier et horaires visibles. Sur une recette, minuteur en haut à 44 px de hauteur, bouton La suite distinct et accessible ; minuteur arrêté après le contrôle.
+- Remplacement réel d’un ICS synthétique sur une origine de test : ancien nom conservé, rendez-vous remplacés sans doublon ; aucun fichier de test importé dans les comptes réels ou sur le cadre. SDK Google officiel chargé dans le navigateur, formulaire prêt ; pagination, dates Zurich, fins exclusives et refus/expiration testés synthétiquement. Aucun Client ID utilisateur ni consentement Google configuré.
+- Qualité de l’air réellement reçue depuis Open-Meteo pour la ville configurée, indice européen et UV séparés. Cache propre à la ville, indépendant de la météo. Home Assistant media_player : droits de commande et bornes du volume testés avec protocole simulé ; aucune instance ni enceinte réelle connectée.
+- Identité du cadre et accès SSH recontrôlés. v0.14.0 installée par Wi-Fi, empreintes et contenu HTTP vérifiés, onglet Firefox unique actualisé. Accueil réel constaté avec Domotique, qualité de l’air, grande pochette et nouvelles tuiles ; tâches Todoist et relevé GitHub 505 conservés, Spotify reste associé mais aucun morceau actif lors du contrôle. Les cinq imports calendriers sont conservés ; aucun rendez-vous dans les prochaines 24 h à ce moment.
+
+
 ## v0.13.0 — Calendrier lisible et vue 3 jours
 
 - Filtre commun Perso & Travail orange, Myrak bleu conservé, sans fusionner ni modifier les calendriers d’origine.

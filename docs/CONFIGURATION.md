@@ -31,14 +31,35 @@ La mémorisation n’est pas un coffre-fort contre un appareil compromis. « Dé
 
 Pour les courses sans serveur : **Cuisine → Courses → Todoist**. Ouvrir Todoist **Paramètres → Intégrations → Développeur**, puis coller le jeton uniquement dans le champ protégé de Hub. Charger les projets et choisir le projet Courses. La création d’un projet ou de rayons reste une action explicite. Aucun achat local n’est envoyé automatiquement.
 
-La connexion directe actuellement implémentée concerne les courses. Les priorités quotidiennes utilisent encore la connexion Node optionnelle, ou les tâches locales du cadre. La connexion des courses ne doit pas être présentée comme une connexion des priorités.
+La connexion directe alimente aussi les tâches et priorités. Le projet `course` et ses sous-projets sont exclus des tâches ; seules ses tâches alimentent les courses. La mémorisation est un choix explicite ; « Déconnecter Todoist » efface l’accès dans Hub.
 
-## Perso, Myrak et Travail
+## Calendriers : copier les fichiers ICS
 
-Ces calendriers ne sont pas encore autorisés. Le code actuel utilise les applications Microsoft Entra et Google Cloud du [guide CONNEXIONS.md](CONNEXIONS.md), avec le serveur Node optionnel pour l’échange et le renouvellement des jetons. Être connecté à Outlook ou Gmail dans Chrome ne remplit pas ces réglages.
+Aucune API, clé ni configuration `.env` n’est nécessaire :
 
-Pour une version entièrement sans serveur personnel, il reste à remplacer ces flux par des clients OAuth de navigateur et à enregistrer leurs applications/retours appropriés. Ne pas ajouter de secret d’application dans le frontend pour contourner cette étape.
+1. Exporter le fichier `.ics` depuis Google Agenda, Outlook ou iCloud. Pour Google, décompresser le ZIP exporté avant l’import.
+2. Ouvrir **Réglages → Mes agendas**, choisir **Perso**, **Travail** ou **Myrak**, puis sélectionner les fichiers `.ics` sur l’appareil. Plusieurs fichiers sont acceptés.
+3. Pour une nouvelle version, sélectionner la copie dans **Remplacer une copie existante** et importer un seul fichier. Cela conserve le nom et le calendrier choisis et évite les doublons, même si le nom de l’export diffère.
+4. Les événements récurrents, exceptions et fuseaux sont lus localement. Les fichiers restent dans ce navigateur ; un import est une copie datée, pas un abonnement automatique.
+
+Perso et Travail partagent le filtre orange ; Myrak conserve son bleu. Les sources restent distinctes dans le détail. Un lien `webcal://` n’est pas un fichier : télécharger son export ICS avant l’import. Ne jamais placer les calendriers privés dans `dist`, Git ou un répertoire publié. L’association chiffrée ponctuelle peut transmettre leurs copies au cadre sans serveur permanent.
+
+## Google Agenda API : option directe dans le navigateur
+
+Dans **Mes agendas → Connexion Google Agenda · Myrak** :
+
+1. Activer **Google Calendar API** dans Google Cloud, configurer l’écran de consentement et créer un client OAuth **Application Web**.
+2. Ajouter les origines JavaScript exactes utilisées : `http://127.0.0.1:4173` sur le cadre et `https://smart-hub-maison.kbo1.chatgpt.site` sur le site. Ajouter l’origine de l’aperçu local seulement si nécessaire.
+3. Activer la connexion Google dans Hub, renseigner le **Client ID public** puis se connecter. Aucun Client Secret ne doit être saisi ou publié.
+4. Choisir les agendas et **Charger ces agendas**. Le relevé remplace uniquement les ICS Myrak à l’affichage ; leurs copies ne sont pas supprimées. **Revenir aux fichiers ICS Myrak** rétablit ces copies.
+
+Le [modèle Google Identity Services](https://developers.google.com/identity/oauth2/web/guides/use-token-model) fournit un accès temporaire sans jeton de renouvellement. Hub conserve uniquement le Client ID, la sélection et la copie datée des événements ; l’accès reste en mémoire. Après expiration ou fermeture du navigateur, reconnecter Google pour actualiser. Les événements déjà chargés restent disponibles hors ligne. Ce flux ne promet donc pas une synchronisation permanente sans intervention. Aucun compte Google n’a encore été autorisé pour cette nouvelle connexion.
 
 ## Home Assistant
 
-Ouvrir **Réglages → Domotique** après avoir préparé l’instance Home Assistant. Renseigner son URL et son jeton dans Hub ; le jeton reste en mémoire. Depuis le site HTTPS, utiliser une instance également accessible en HTTPS. Les appareils réels apparaissent seulement après connexion. Voir [DOMOTIQUE.md](DOMOTIQUE.md).
+Ouvrir le bouton **Domotique** dans la barre du haut après avoir préparé l’instance Home Assistant. Renseigner son URL et son jeton dans Hub ; le jeton reste en mémoire. Depuis le site HTTPS, utiliser une instance également accessible en HTTPS. Les appareils réels apparaissent seulement après connexion. Voir [DOMOTIQUE.md](DOMOTIQUE.md).
+
+
+## Qualité de l’air
+
+Le petit widget météo affiche l’indice **européen** et l’UV, séparément. Données modélisées [Open-Meteo / CAMS ENSEMBLE](https://open-meteo.com/en/docs/air-quality-api), actualisées toutes les 30 minutes lorsque la page est visible. Le relevé daté est conservé en cas de coupure ; ce ne sont pas des mesures de capteurs intérieurs.

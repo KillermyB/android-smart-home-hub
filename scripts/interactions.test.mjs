@@ -15,10 +15,10 @@ test('idle context shows the next visible calendar appointment beside real weath
  context.state.weather=null;assert.doesNotMatch(context.sleepContext(),/sleep-weather/);
 });
 
-test('the Spotify tile outline represents remaining playback time',()=>{
+test('the music tile bar represents elapsed playback time',()=>{
  const context=vm.createContext({music:{data:{item:{duration_ms:10000}}},musicProgress:()=>3000,musicTime:value=>String(value)});
  vm.runInContext(section('  function musicOrbit()', '  function musicArtwork()'),context);
- assert.match(context.musicOrbit(),/stroke-dasharray="70 100"/);assert.match(context.musicOrbit(),/7000 restantes/);
+ assert.match(context.musicOrbit(),/max="10000" value="3000"/);assert.doesNotMatch(context.musicOrbit(),/<svg/);
  context.music.data=null;assert.equal(context.musicOrbit(),'');
 });
 

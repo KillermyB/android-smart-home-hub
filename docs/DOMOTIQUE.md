@@ -42,3 +42,10 @@ Le module et l’interface sont préparés en v0.6.0. La connexion à ton instan
 Commencer par consulter les états. Tester ensuite une seule lumière clairement identifiée, puis vérifier physiquement son état et son retour dans l’interface. Pour un robot, vérifier d’abord que la zone est prête et que les commandes sont disponibles dans Home Assistant.
 
 Références : [API WebSocket officielle](https://developers.home-assistant.io/docs/api/websocket/), [authentification Home Assistant](https://www.home-assistant.io/docs/authentication/), [capacités officielles vacuum](https://github.com/home-assistant/core/blob/dev/homeassistant/components/vacuum/const.py).
+
+
+## Enceintes et Sonos — v0.14.0
+
+Les entités `media_player` remontées par Home Assistant apparaissent dans **Enceintes · Sonos** : titre, artiste, lecture/pause, précédent/suivant et volume selon les capacités réellement annoncées. Le volume est borné entre 0 et 100 %. Les états attendent les événements Home Assistant ; une commande acceptée ne simule pas un changement d’état. Aucun regroupement Sonos, lancement de contenu ou allumage global implicite. Les pochettes protégées ne reçoivent jamais le jeton dans leur URL.
+
+L’intégration [Sonos](https://www.home-assistant.io/integrations/sonos/) doit être ajoutée à ton instance ; Hub utilise ensuite les services [media_player](https://www.home-assistant.io/integrations/media_player/). Aucun appareil réel n’a encore été commandé par cette nouvelle interface.
