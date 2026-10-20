@@ -6,6 +6,16 @@
 - [ ] Créer le dépôt GitHub demandé après cette revue ; nom proposé : `smart-hub`.
 - [ ] Contrôler le diff, l’exclusion de `.env`, `.data`, `tools`, sauvegardes et captures privées, puis publier une version cohérente avec l’historique existant.
 
+## Composition et services v0.5.0
+
+- [x] Nouvel accueil : horloge sur une moitié, météo et agenda 24 h à droite, Courses/Priorités/Repas/Spotify en bas ; GitHub, citations et outils existants accessibles.
+- [x] Palette graphite/orange/bleu et dégradés discrets ; transitions courtes et préférence sans mouvement conservées.
+- [x] Courses locales par rayons, modification et articles cochés en bas ; achats identiques actifs dédupliqués lors de l’ajout d’une recette.
+- [x] Client Todoist direct : projets, sections, achats, modification, validation/réouverture et historique sept jours. Aucun envoi automatique de la liste locale.
+- [x] Spotify direct PKCE : configuration Client ID, callback/état, renouvellement, lecture de l’état et commandes. Widget et page immersive avec états non connectés explicites.
+- [ ] Autoriser et vérifier les vrais comptes Todoist/Spotify ; aucune authentification réelle n’a été réalisée.
+- [ ] Tester les sessions et nouveaux contrôles sur le navigateur du vrai cadre.
+
 ## Outils quotidiens v0.4.0
 
 - [x] Brief : prochain rendez-vous en cours/à venir, trois tâches prioritaires, météo et repas prévu ; ouverture matinale facultative.

@@ -2,7 +2,11 @@
 
 Configurer depuis un navigateur sur la tour à `http://localhost:4173`. Redémarrer `npm start` après toute modification de `.env`.
 
-## Todoist
+## Courses et musique sans serveur personnel
+
+La connexion directe des courses Todoist et le lecteur Spotify sont décrits dans [COURSES-SPOTIFY.md](COURSES-SPOTIFY.md). Les jetons restent dans la session du navigateur.
+
+## Todoist — tâches quotidiennes via Node
 
 Dans Todoist : Paramètres → Intégrations → Développeur → jeton API. Copier le jeton dans `TODOIST_API_TOKEN` du fichier **local** `.env`. Ne pas le coller dans GitHub ni dans un message public.
 
