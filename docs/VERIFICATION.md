@@ -518,3 +518,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur isolé sur huit formats de 320 à 1280 px : pochette de 180 à 280 px centrée, titre de 17 px et artiste de 13 px alignés à gauche dessous. Hauteurs de l’image et du SVG égales, contour de 2 px (au lieu de 4 en paysage), opacité .75. Texte hors contour, citation séparée et basse, titre long, absence de pochette et lecture inactive contrôlés. Progression stable sans remplacement du lecteur et mouvement réduit vérifiés, aucune lecture réelle déclenchée.
 
 - Rotation de viewport en direct : un même lecteur passe du contour paysage au contour carré portrait puis revient, dimensions du SVG et contour de 2/4 px corrects. Installation v0.27.9 validée sur le cadre identifié, empreintes et manifeste servi conformes ; lecture active contrôlée avec données simulées, sans lancer de musique réelle.
+
+
+## v0.27.10 — Veille, échelle et contraste
+
+- Syntaxe et 188 tests réussis. Ajustement CSS : pochette plus grande sur les portraits hauts, taille limitée sous 1100 px de hauteur ; contour de veille 1,5 px / opacité .28, piste #ffffff08. Aucune modification des commandes ou boucles de synchronisation.
+- Huit formats de 320 à 1280 px contrôlés avec données simulées : image carrée, contour à sa taille, titre et artiste dessous, citation basse, pas de débordement horizontal. À 800 × 1280 : pochette 352 px au lieu de 256 px, citation normale 28 px / longue 24 px. À 1280 × 800 : citation normale 25,6 px / longue 22,4 px. Absence d’image/lecture et mouvement réduit conservés.
+
+- Installation v0.27.10 validée sur le cadre identifié : empreintes et manifeste servi contrôlés après réconciliation du seul PID HTTP Hub actif. Lecture musicale vérifiée avec données simulées, sans déclencher de musique réelle.

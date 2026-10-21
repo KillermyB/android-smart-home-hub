@@ -549,3 +549,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Contour de progression fin de 2 px autour de la pochette uniquement ; libellé extérieur au contour, rendu compact paysage conservé. Sans commande de lecture.
 - [x] Absence de pochette/lecture gérée, huit formats vérifiés et 188 tests réussis.
 - [x] v0.27.9 installée sur le cadre identifié, fichiers et manifeste servi vérifiés.
+
+
+## v0.27.10 — Pochette agrandie et veille plus discrète
+
+- [x] Pochette portrait agrandie : 352 px à 800 × 1280, adaptation sur les écrans moins hauts pour préserver la citation.
+- [x] Contour de veille affiné à 1,5 px et opacité .28 ; piste presque transparente. Effet limité à la veille.
+- [x] Police des citations légèrement réduite en portrait et paysage, signature conservée ; huit formats et 188 tests vérifiés.
+- [x] v0.27.10 installée sur le cadre identifié ; fichiers et manifeste servi validés.
