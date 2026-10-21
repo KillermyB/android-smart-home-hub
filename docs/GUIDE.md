@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.20.1.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](VERIFICATION.md).
+**Version : v0.21.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](VERIFICATION.md).
 
-Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.20.1`.
+Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.21.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](MAINTENANCE-CADRE.md).
 
@@ -73,3 +73,16 @@ Les tests de code, les contrôles visuels en navigateur, les autorisations de vr
 L’accès USB/ADB root a été confirmé sur le Mac, les sauvegardes données/boot/bootloader sont vérifiées et Firefox est installé. Le WebView stock et AiMOR sont conservés. Pour un autre ordinateur, commencer par les lectures d’identité et ne pas utiliser les anciennes adresses IP. Le démarrage automatique et le retour physique aux réglages Android restent à valider. Voir [INSTALLATION-CADRE.md](INSTALLATION-CADRE.md), puis [CADRE-WINDOWS.md](CADRE-WINDOWS.md).
 
 La liste des étapes restantes est dans [RESTANT.md](RESTANT.md).
+
+
+## Quotidien · v0.21.0
+
+Le bouton **···** dans l’en-tête ouvre Quotidien : départs de transports suisses, notes épinglées et état des connexions. Les notes sont locales à ce navigateur. Un arrêt peut être recherché et mémorisé ; Moudon, gare est la valeur initiale. Les horaires restent datés et la dernière lecture est conservée en cas d’erreur.
+
+- **Cuisine → La semaine** : un repas par jour, portions de 1 à 20, reprise des repas existants. « Cuisiner » reprend les portions choisies. Seules les quantités structurées sont recalculées ; les ingrédients importés en texte restent tels quels.
+- **Agenda → rendez-vous → Préparer mon départ** : durée et marge manuelles, ou calcul d’un trajet en transports publics avec arrivée à l’heure du rendez-vous. La recherche envoie le départ, la destination et l’heure à Transport API. Le trajet retenu est un instantané à recalculer si nécessaire. Un rappel apparaît dans Hub cinq minutes avant le départ ; pas d’alarme système lorsque Hub est fermé. Le conseil parapluie utilise les prévisions horaires de la ville météo, datées de moins de deux heures.
+- **Domotique → Je pars** : sélectionner explicitement les appareils puis enregistrer ou appliquer. Aucune prise n’est cochée implicitement, aucune commande à l’ouverture et aucun nouvel essai automatique. Les retours confirmés et non confirmés restent séparés.
+- **Robot → Par pièce** : pièces de la carte active si l’intégration Dreame les publie et annonce le service ciblé ; sinon raccourcis vers des scripts Home Assistant choisis manuellement. Jamais de repli sur un nettoyage complet.
+- **Musique → À suivre** : vingt prochains titres au maximum. Écouter un titre précis demande confirmation car Spotify peut remplacer le contexte et la file de lecture.
+
+Sources : [Transport API](https://transport.opendata.ch/docs.html), horaires opentransportdata.swiss ; [Spotify Web API](https://developer.spotify.com/documentation/web-api/reference/get-queue) ; [Dreame Vacuum](https://github.com/Tasshack/dreame-vacuum). Aucun serveur supplémentaire.

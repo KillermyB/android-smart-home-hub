@@ -195,3 +195,47 @@ test('unconfirmed TV power commands read back states but are never repeated auto
 test('confirmation fails clearly if HA disconnects while a command is being checked',async()=>{
  const h=setup(1000,{confirmMs:100});const {socket}=await ready(h);const command=h.client.confirmedCall('light','turn_on',{entity_id:light.entity_id});socket.reply(socket.sent.at(-1));await turn();socket.remoteClose();await assert.rejects(command,e=>e.code==='not_connected');
 });
+
+test('room discovery uses only the active Dreame map and validates room IDs',()=>{
+ const {api}=setup(),robot={...vacuum,attributes:{rooms:{'Étage':[{id:1,name:'Chambre'}],'Appartement':[{id:1,name:'Salon'},{id:2,name:'Cuisine'},{id:'2',name:'Duplicate'},{id:0,name:'Bad'},{id:3,name:''}]},selected_map:'Appartement'}};
+ assert.deepEqual(JSON.parse(JSON.stringify(api.roomList(robot))),{map:'Appartement',rooms:[{id:1,name:'Salon'},{id:2,name:'Cuisine'}]});
+ assert.equal(api.roomList({...robot,attributes:{...robot.attributes,selected_map:'Carte supprimée'}}).rooms.length,0);
+ assert.equal(api.roomList({...robot,attributes:{rooms:robot.attributes.rooms}}).rooms.length,0);
+ assert.equal(api.roomList({...robot,attributes:{rooms:{Only:[{id:4,name:'Office'}]}}}).rooms[0].id,4);
+ assert.equal(api.roomList(light).rooms.length,0);
+});
+
+test('optional HA service discovery is bounded, shared, immutable and cleared on disconnect',async t=>{
+ const h=setup();t.after(()=>h.client.disconnect());const {socket}=await ready(h);
+ const first=h.client.loadServices(),second=h.client.loadServices(),request=socket.sent.at(-1);
+ assert.equal(request.type,'get_services');assert.equal(socket.sent.filter(x=>x.type==='get_services').length,1);
+ socket.reply(request,{dreame_vacuum:{vacuum_clean_segment:{fields:{segments:{required:true}}}}});await Promise.all([first,second]);
+ const services=h.client.services();services.dreame_vacuum.vacuum_clean_segment.fields.segments.required=false;
+ assert.equal(h.client.services().dreame_vacuum.vacuum_clean_segment.fields.segments.required,true);
+ h.client.disconnect();assert.equal(Object.keys(h.client.services()).length,0);await assert.rejects(h.client.loadServices(),e=>e.code==='not_connected');
+});
+
+test('room cleaning sends exactly one advertised command for discovered current-map room IDs',async t=>{
+ const h=setup();t.after(()=>h.client.disconnect());const robot={...vacuum,attributes:{...vacuum.attributes,selected_map:'Home',rooms:{Home:[{id:3,name:'Cuisine'},{id:4,name:'Salon'}]}}}, {socket,subscription}=await ready(h,[robot]);
+ await assert.rejects(h.client.cleanRooms(robot.entity_id,[3]),e=>e.code==='unsupported_service');
+ const loading=h.client.loadServices();socket.reply(socket.sent.at(-1),{dreame_vacuum:{vacuum_clean_segment:{fields:{segments:{}}}}});await loading;
+ assert.equal(h.client.vacuumRooms(robot.entity_id).serviceAvailable,true);
+ const before=socket.sent.length;
+ for(const bad of [[],[99],['3'],[3,3],null])await assert.rejects(h.client.cleanRooms(robot.entity_id,bad),e=>e.code==='invalid_data');
+ await assert.rejects(h.client.cleanRooms('vacuum.foreign',[3]),e=>e.code==='invalid_target');assert.equal(socket.sent.length,before);
+ const command=h.client.cleanRooms(robot.entity_id,[3,4]),request=socket.sent.at(-1);
+ assert.deepEqual(request,{id:4,type:'call_service',domain:'dreame_vacuum',service:'vacuum_clean_segment',target:{entity_id:'vacuum.robot'},service_data:{segments:[3,4]}});
+ socket.reply(request);assert.deepEqual(JSON.parse(JSON.stringify(await command)),{accepted:true,confirmed:false});
+ assert.equal(h.client.states()[0].state,'docked');
+ changed(socket,subscription,{...robot,state:'cleaning'});await assert.rejects(h.client.cleanRooms(robot.entity_id,[3]),e=>e.code==='busy');
+ changed(socket,subscription,{...robot,state:'unavailable'});await assert.rejects(h.client.cleanRooms(robot.entity_id,[3]),e=>e.code==='unavailable');
+ changed(socket,subscription,{...robot,attributes:{...robot.attributes,selected_map:'Other'}});await assert.rejects(h.client.cleanRooms(robot.entity_id,[3]),e=>e.code==='invalid_data');
+});
+
+test('user-selected HA scripts can be started without granting arbitrary cross-domain service calls',async t=>{
+ const h=setup();t.after(()=>h.client.disconnect());const script={entity_id:'script.clean_kitchen',state:'off',attributes:{friendly_name:'Nettoyer cuisine'}}, {socket}=await ready(h,[script]);
+ assert.equal(h.api.supports(script,'turn_on'),true);assert.equal(h.api.supports(script,'turn_off'),false);
+ const command=h.client.confirmedCall('script','turn_on',{entity_id:script.entity_id}),request=socket.sent.at(-1);socket.reply(request);
+ assert.deepEqual(JSON.parse(JSON.stringify(await command)),{accepted:true,confirmed:false});
+ await assert.rejects(h.client.call('script','turn_on',{entity_id:'vacuum.robot'}),e=>e.code==='invalid_target');
+});

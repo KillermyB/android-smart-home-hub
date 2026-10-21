@@ -353,3 +353,17 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Contour blanc de progression écoulée, actualisé chaque seconde sans reconstruire la carte ; suspension quand la page est masquée et préférence de mouvement réduit conservée.
 - [x] Retour du contour de l’accueil après sortie de veille ; arrêt/reprise du morceau vérifiés avec des données synthétiques.
 - [x] 126 tests et contrôle navigateur 1280 × 800 / 320 × 740.
+
+
+## Quotidien v0.21.0
+
+- [x] Scénario Je pars avec sélection explicite, arrêt ciblé et retours par appareil, sans répétition automatique.
+- [x] Nettoyage par pièces Dreame découvertes sur la carte active ; raccourcis vers scripts HA existants si nécessaire.
+- [x] File Spotify et lecture d’un titre après confirmation du remplacement possible de la file.
+- [x] Planning de repas hebdomadaire et portions conservées dans les recettes.
+- [x] Horaires suisses directs, recherche d’arrêt et cache daté ; API publique Moudon et CORS vérifiés.
+- [x] Rappel de départ par trajet manuel ou transports publics, conseil pluie avec prévision récente ; Hub doit rester ouvert.
+- [x] Notes locales épinglables sur l’accueil et diagnostic des dernières lectures sans afficher de secrets.
+- [ ] Choisir les appareils du scénario Je pars et vérifier leurs réactions physiques. Aucun arrêt réel envoyé pendant les tests.
+- [ ] Confirmer les pièces de chaque vrai robot et lancer un nettoyage ciblé voulu par le propriétaire.
+- [ ] Choisir l’arrêt préféré et préparer les trajets des rendez-vous ; aucune adresse privée inventée.
