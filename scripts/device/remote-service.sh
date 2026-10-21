@@ -35,7 +35,7 @@ if [ -f "$BASE/remote.pid" ]; then
         esac
     fi
 fi
-for asset in remote.html remote.css remote.js remote-core.js icon.svg; do
+for asset in remote.html remote.css remote.js remote-core.js timer-presets.js icon.svg; do
     cp "$BASE/www/$asset" "$BASE/remote-www/$asset" || exit 1
 done
 cp "$BASE/www/remote.html" "$BASE/remote-www/index.html"

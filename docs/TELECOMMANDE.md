@@ -4,7 +4,7 @@ Sur le cadre : **Réglages → Télécommande**. Scanner le QR avec le télépho
 
 - **Notes** : envoyer jusqu’à 400 caractères, épingler sur l’accueil. Maximum 12 notes sur le cadre.
 - **Lumières** : lampes et prises Home Assistant ; état confirmé après la commande. Aucun changement de page du cadre.
-- **Minuteurs** : nom, durée et tag ; trois emplacements partagés avec la cuisine. Activer et tester le son sur le cadre. L’alerte à échéance reste celle de Hub.
+- **Minuteurs** : raccourcis Thé, Œufs, Pâtes, Four, Lessive, Pause et durées prédéfinies, lancement en un appui sans saisie ; trois emplacements partagés avec la cuisine. Activer et tester le son sur le cadre. L’alerte à échéance reste celle de Hub.
 - **À faire** : cocher une tâche Todoist, courses exclues. Aucune nouvelle connexion Todoist sur le téléphone.
 
 Le cadre doit garder Hub ouvert. Quand son navigateur est fermé ou en arrière-plan, le téléphone devient indisponible et les demandes expirent ; aucune répétition automatique après un résultat incertain. En cas de doute, vérifier l’état avant de renvoyer. Les grandes listes sont tronquées selon un budget de transmission, avec leur total indiqué.

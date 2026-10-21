@@ -388,3 +388,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [ ] Activation persistante du port 4180 en attente de l’accord explicite demandé : la validation automatique a refusé cette seule étape ; aucun listener distant activé.
 - [ ] Association et ergonomie sur le téléphone réel à confirmer par le propriétaire. HTTP local uniquement, pas de chiffrement réseau ; Wi-Fi domestique de confiance requis.
 - [ ] Adresse stable toujours à traiter dans le routeur ; rescanner le QR si DHCP change l’IP. Le navigateur Hub doit rester ouvert, y compris en veille Hub. Son du minuteur selon son activation sur le cadre.
+
+
+## Minuteurs sans saisie v0.23.2
+
+- [x] Champs Nom/Tag/Minutes/Secondes remplacés par six raccourcis nommés et neuf durées prêtes à lancer en un appui ; catégorie affectée automatiquement.
+- [x] Même choix sur la télécommande mobile ; protection des trois emplacements, pause/reprise/+1 min et tags d’étapes depuis les recettes conservés.
+- [x] 169 tests et lancement Pâtes → Cuisine → 10 min vérifié dans une session navigateur isolée. Activation Wi-Fi de la télécommande toujours en attente de l’accord précédent.

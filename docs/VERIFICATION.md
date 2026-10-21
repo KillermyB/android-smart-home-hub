@@ -347,3 +347,10 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur à 375 × 667 : clair/sombre, vues notes/lumières/minuteurs/tâches, lampe/minuteur/tâche simulés et confirmation. Aucun compte réel utilisé dans la prévisualisation.
 - GitHub `v0.23.1` : `968e9103e741e994b62a8fb65985a2d4197eb0a5`, identique au code publié sur Sites. Fichiers de cette version vérifiés sur le cadre et affichage réel en plein écran contrôlé.
 - Activation réseau persistante refusée par validation automatique faute d’accord explicite ; question d’autorisation en attente, port 4180 non activé. Le test HTTP réel depuis le Wi-Fi et l’association du téléphone restent à faire après cet accord.
+
+
+## v0.23.2 — Minuteurs en un appui
+
+- 169 tests et syntaxe réussis, analyse de secrets sans détection.
+- Session isolée : un appui sur Pâtes lance 10 minutes avec le tag Cuisine ; aucune saisie ni confirmation. Télécommande à 375 × 667 : Thé lance 3 minutes avec retour confirmé simulé.
+- Cadre : v0.23.2 copiée et empreintes vérifiées par Wi-Fi ; connexions et minuteurs existants conservés. La télécommande Wi-Fi reste désactivée en attente de son autorisation précédente.
