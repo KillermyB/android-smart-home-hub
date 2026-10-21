@@ -147,21 +147,21 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 .timer-quick-start{margin-top:20px;text-align:left}.timer-section-label{font-size:12px!important;color:var(--muted);margin:16px 0 10px!important}.timer-quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.timer-quick{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:64px;border:1px solid var(--line);border-radius:17px;padding:14px;background:var(--card);text-align:left}.timer-quick strong{font-size:14px;font-weight:600}.timer-quick span{font-size:12px;color:var(--accent);white-space:nowrap}.timer-quick:active{background:var(--accent-soft)}.multi-timer .timer-presets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:10px 0 0;gap:8px}.multi-timer .timer-presets .pill{min-height:44px;padding:0 8px;justify-content:center}.multi-timer .timer-sound{margin-top:20px}.multi-timer>.subtle{text-align:left}@media(max-width:600px){.multi-timer .timer-presets{grid-template-columns:repeat(3,minmax(0,1fr))}.timer-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.timer-quick{min-height:64px;padding:12px}}
 
 /* Give the clock, context and quotation room; playback stays in its own corner. */
-.screensaver{padding:44px 64px 118px}
+.screensaver{padding:112px 64px 64px}
 .screensaver .sleep-date{margin-bottom:18px}
 .screensaver .sleep-time,.screensaver .sleep-date,.sleep-context,.sleep-thought{flex-shrink:0}
 .sleep-context{margin-top:32px}
-.sleep-thought{margin-top:46px;gap:18px}
+.sleep-thought{margin-top:62px;gap:18px}
 .sleep-thought figcaption{gap:8px}
-[data-sleep-music]{position:absolute;right:32px;bottom:28px;width:auto;max-width:calc(100% - 64px);justify-content:flex-end}
+[data-sleep-music]{position:absolute;left:32px;top:28px;right:auto;bottom:auto;width:auto;max-width:calc(100% - 64px);justify-content:flex-end}
 .sleep-music{margin:0}
-.screensaver.has-music .sleep-hint{left:32px;right:auto;bottom:28px}
+.screensaver.has-music .sleep-hint{left:auto;right:auto;bottom:23px}
 @media(max-height:700px) and (min-width:721px){
   .screensaver{padding:24px 48px 110px}
   .screensaver .sleep-date{margin-bottom:10px}
   .screensaver .sleep-time{font-size:min(17vw,24vh,165px)}
   .sleep-context{margin-top:22px}
-  .sleep-thought{margin-top:30px;gap:13px}
+  .sleep-thought{margin-top:42px;gap:13px}
   .sleep-thought figcaption{gap:5px}
 }
 @media(max-width:720px){
@@ -169,8 +169,11 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
   .screensaver .sleep-date{margin-bottom:18px}
   .sleep-context{margin-top:28px}
   .sleep-thought{order:1;margin-top:38px;gap:18px}
-  [data-sleep-music]{order:2;position:static;align-self:flex-end;max-width:100%;width:100%;margin-top:32px}
+  [data-sleep-music]{order:-1;position:static;align-self:flex-start;justify-content:flex-start;max-width:100%;width:100%;margin:0 0 32px}
   [data-sleep-music]:empty{display:none}
   .sleep-music{max-width:100%}
   .screensaver .sleep-hint,.screensaver.has-music .sleep-hint{order:3;position:static;margin-top:28px}
 }
+
+.task-category-filters{display:flex;gap:10px;margin:-8px 0 16px;flex-wrap:wrap}.task-category-filters select{min-height:44px;padding:10px 16px;max-width:300px}.task-category-filters label{min-width:0}
+@media(min-width:721px) and (max-width:1000px){.screensaver.has-music{padding-top:116px;padding-bottom:44px}.screensaver.has-music .sleep-time{font-size:min(18vw,20vh,165px)}}
