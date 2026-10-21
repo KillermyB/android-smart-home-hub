@@ -187,3 +187,6 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 .screensaver .sleep-thought{margin-top:auto;margin-bottom:0;padding-top:42px}
 @media(orientation:landscape){.screensaver,.screensaver.has-music{padding-top:56px;padding-bottom:32px}}
 @media(orientation:landscape) and (max-height:700px){.screensaver .sleep-thought{padding-top:24px}}
+
+/* Standby remains an indication; playback controls live in the focus player. */
+.sleep-music-backdrop{display:none}

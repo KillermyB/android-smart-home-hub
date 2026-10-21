@@ -484,3 +484,13 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Le texte de retour est retiré du DOM dans les deux formats. Citation rapprochée du bas en paysage (marge 32 px), marge portrait 24 px. Contrôles repris sur les huit formats de v0.27.4, avec absence simultanée de la croix et de l’indication ; musique active/inactive, extraits courts/longs, réveil par Échap et par toucher du fond conservés. Syntaxe et 188 tests réussis.
 
 - Cadre identifié et v0.27.5 activée après vérification des 89 fichiers ; manifeste HTTP confirmé. Un ancien processus HTTP Hub absent du suivi PID a été identifié puis arrêté seul avant activation. Onglet existant actualisé, plein écran portrait 800 × 1280 et veille réelle sans croix ni texte de retour contrôlés. La musique était inactive sur ce contrôle matériel ; son placement actif est validé en navigateur avec données simulées.
+
+
+## v0.27.6 — Pochette et progression en veille
+
+- Syntaxe et 188 tests réussis. Test du rendu de veille renforcé : carte passive, aucune commande, métadonnées de lecture active, illustration présente/absente, disparition à l’arrêt.
+- Grande carte de 520 × 204 px minimum sur tablette portrait et présentation 240 × 68 px paysage. Les images d’avant-plan et de fond réutilisent la même URL de pochette ; dégradé CSS sans filtre ni animation continue supplémentaire. Le contour utilise le même calcul et la même boucle de progression existants.
+
+- Navigateur isolé : 1280 × 800, 800 × 1280, 768 × 1024, 1024 × 1366, 600 × 960, 390 × 844, 320 × 740 et 1024 × 600. Pochette synthétique, titre long, absence de pochette, arrêt/reprise, contour qui progresse et conservation du même élément pendant la progression vérifiés. Pas de boutons dans la carte, citation distincte, défilement nécessaire conservé sur petit écran, aucun débordement horizontal. Mouvement réduit et réveil testés ; aucune commande réelle envoyée.
+
+- v0.27.6 copiée après lecture de l’identité USB du cadre ; suivi PID de son seul serveur HTTP réconcilié avant activation, empreintes et manifeste servi vérifiés. La lecture active et son illustration ont été contrôlées avec des données simulées ; aucune musique n’a été déclenchée pour le test matériel.

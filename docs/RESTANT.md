@@ -519,3 +519,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Texte « Touchez l’écran pour revenir » retiré ; interaction de réveil au toucher du fond et à Échap conservée. Marge basse paysage réduite après suppression de cette indication. Citation et musique portrait restent à leurs emplacements dédiés.
 - [x] Syntaxe, 188 tests et huit formats contrôlés avec/sans musique, citations courtes/longues, retour au toucher et au clavier.
 - [x] Version finale installée sur le cadre ; plein écran portrait et nouvelle veille constatés. Musique active vérifiée avec données simulées, sans lancer de lecture réelle.
+
+
+## v0.27.6 — Carte musicale de veille portrait
+
+- [x] Grande carte portrait de 520 px maximum, pochette au premier plan et en fond avec dégradé sombre ; titre, artiste et appareil conservés. Taille réduite sur téléphone et format compact paysage conservé.
+- [x] Carte passive sans commandes de lecture ; contour blanc de progression conservé. Pas de flou animé, de calcul de palette ni de nouveau rafraîchissement ; la carte reste stable pendant la progression.
+- [x] Métadonnées sans pochette et absence de lecture prises en charge ; citation basse et réveil au toucher conservés.
+- [x] v0.27.6 installée sur le cadre ; fichiers et manifeste HTTP validés.
