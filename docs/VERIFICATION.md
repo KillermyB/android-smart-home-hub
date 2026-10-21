@@ -1,5 +1,13 @@
 # Vérification
 
+## v0.15.1 — Hauteurs réduites et polices du cadre
+
+- 81 tests et contrôles syntaxiques conservés. Le contrôle physique de v0.15.0 a révélé un débordement météo à 744 px de haut lorsque Firefox affiche sa barre. La grille et la météo sont compactées dans ce cas, sans masquer les prévisions. À 1280 × 744 : prévisions à y=202–230 dans la tuile y=96–242 ; document 1280 × 744, défilement limité au contenu plus haut que le viewport.
+- Repas prévu au titre long testé par l’interface sur l’origine isolée : deux lignes, temps / portions lisibles et clic conservé. Les décorations dépassant la carte sont coupées intentionnellement.
+- Les graisses Inter 400/500/600/700 sont désormais statiques et locales ; leurs quatre ressources répondent HTTP 200. Aucune police externe chargée à l’usage.
+- v0.15.1 installée par Wi-Fi avec identité, empreintes et HTTP vérifiés. Accueil constaté sur le cadre avec météo contenue et graisses Inter corrigées. La vraie liste Todoist a révélé un titre contenant un long lien Markdown ; le traitement de ce cas est corrigé dans v0.15.2.
+
+
 ## v0.15.0 — Interface épurée et météo détaillée
 
 - `npm run check`, 81 tests et `git diff --check` réussis. Police Inter variable locale et sa licence incluses ; nouvelle marque Spotify vectorielle blanche servie localement. Tous les nouveaux modules / ressources répondent HTTP 200 avec le serveur Node optionnel.
@@ -8,7 +16,7 @@
 - Cuisine à 320 px avec minuteur actif : pas de débordement horizontal ou du document ; minuterie dans l’en-tête et boutons cuisine accessibles dans le contenu défilant. Minuteur de contrôle arrêté ensuite.
 - Météo : clic sur le corps de la tuile ouvre les détails réels, sept jours / 24 heures reçus auprès d’Open-Meteo. Données manquantes affichées indisponibles, repli sur le relevé précédent en cas d’échec. Vue complète à 1280 × 800 sans défilement vertical ; bande horaire défilante horizontalement. Aucune erreur console constatée sur les vues contrôlées.
 - 240 citations uniques et sourcées, dont 40 supplémentaires de Vauvenargues et Pascal sur éditions anciennes Wikisource. Cycle sans répétition, alternance d’auteurs lorsque possible, précédent/suivant et historique récent local testés.
-- v0.15.0 copiée sur le cadre via SSH Wi-Fi après contrôle d’identité, empreintes et contenu HTTP vérifiés. Contrôle d’affichage et conservation des connexions à compléter ci-dessous.
+- v0.15.0 copiée sur le cadre via SSH Wi-Fi après contrôle d’identité, empreintes et contenu HTTP vérifiés. Rendu constaté avec le nouveau menu, les tuiles et 505 contributions orange ; Todoist et Spotify conservés. Le débordement de la météo en fenêtre réduite est corrigé dans v0.15.1.
 
 
 ## v0.14.0 — Widgets et configuration directe

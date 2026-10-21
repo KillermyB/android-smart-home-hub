@@ -1,5 +1,10 @@
 # Liste de reprise
 
+## Ajustements cadre v0.15.1
+
+- [x] Météo contenue dans sa tuile avec la barre Firefox ouverte ; repas longs sur deux lignes sans masquer les détails.
+- [x] Graisses Inter 400/500/600/700 statiques, auto-hébergées pour le rendu sur l’ancien Android.
+
 ## Interface et météo v0.15.0
 
 - [x] Inter locale, surfaces sombres neutres et accents orange ; cinq entrées dans le menu, Domotique avec robot et icône veille distincte.
