@@ -534,3 +534,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Carte musicale sur toute la largeur disponible en portrait, sans vignette séparée. Pochette en plein fond, dégradé uniquement depuis la gauche et texte blanc à gauche. Contour blanc de progression conservé, aucun bouton de lecture.
 - [x] Taille adaptée aux téléphones, paysage compact conservé ; huit formats, titre long, pochette absente et lecture inactive contrôlés.
 - [x] v0.27.7 installée sur le cadre identifié ; fichiers et manifeste servi vérifiés.
+
+
+## v0.27.8 — Musique compacte sous la météo
+
+- [x] Carte musicale portrait remontée à 16 px sous le contexte météo/rendez-vous, sans zone flexible de centrage. Hauteur réduite à 184 px sur tablette et 140 px minimum sur téléphone ; largeur utile conservée.
+- [x] Pochette en fond, dégradé, progression et citation basse conservés. Titres sur deux lignes, hauteur adaptable aux métadonnées longues.
+- [x] v0.27.8 installée sur le cadre identifié ; fichiers et manifeste servi vérifiés.

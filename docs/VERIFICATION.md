@@ -502,3 +502,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Syntaxe et 188 tests réussis. Navigateur isolé sur huit formats de 320 à 1280 px, pochette synthétique, titre long, absence de pochette, lecture inactive, maintien de la citation basse, progression sans remplacement de carte, mouvement réduit et réveil contrôlés. Aucun débordement horizontal du document ; pas de lecture réelle déclenchée.
 
 - v0.27.7 installée après lecture de l’identité USB : empreintes et manifeste servi conformes. Le rendu musical actif est contrôlé avec des données simulées ; aucune lecture réelle lancée sur le cadre.
+
+
+## v0.27.8 — Carte musicale remontée
+
+- CSS portrait seulement : conteneur sans expansion verticale, espace de 16 px après le contexte, hauteur minimum 184 px tablette / 140 px téléphone. Paysage inchangé.
+- Syntaxe et 188 tests réussis ; huit formats de 320 à 1280 px contrôlés avec données simulées. Sur tablette portrait : largeur utile entière, espace sous météo mesuré à 16 px et hauteur entre 184 et 210 px, vignette masquée, fond visible, citation distincte et basse. Titre long, absence de pochette, arrêt de lecture, mouvement réduit, progression stable et réveil conservés.
+
+- Installation v0.27.8 validée sur le cadre identifié : empreintes et manifeste servi vérifiés après réconciliation du seul PID HTTP Hub actif. Aucun réglage natif ou compte modifié. Lecture active testée avec données simulées, sans déclenchement de musique réelle.
