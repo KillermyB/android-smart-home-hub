@@ -512,3 +512,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Croix retirée dans les deux orientations ; retour par toucher du fond ou Échap conservé, focus clavier placé sur l’écran de veille.
 - [x] Citation ancrée près du bas, sans recouvrir sa signature ni l’indication de retour. En portrait, musique compacte centrée dans l’espace entre l’horloge/contexte et la citation ; absence de musique sans espace réservé.
 - [x] Syntaxe, 188 tests et huit formats de navigateur contrôlés, musique active/inactive, extraits courts/longs, mouvement réduit et retour à l’accueil. Aucun appareil réel commandé par les données de test.
+
+
+## v0.27.5 — Veille sans indication de retour
+
+- [x] Texte « Touchez l’écran pour revenir » retiré ; interaction de réveil au toucher du fond et à Échap conservée. Marge basse paysage réduite après suppression de cette indication. Citation et musique portrait restent à leurs emplacements dédiés.
+- [x] Syntaxe, 188 tests et huit formats contrôlés avec/sans musique, citations courtes/longues, retour au toucher et au clavier.
+- [x] Version finale installée sur le cadre ; plein écran portrait et nouvelle veille constatés. Musique active vérifiée avec données simulées, sans lancer de lecture réelle.

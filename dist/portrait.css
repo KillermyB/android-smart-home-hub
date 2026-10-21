@@ -187,7 +187,6 @@
   .screensaver [data-sleep-music] { position:static;order:0;display:flex;flex:1 0 auto;align-self:center;align-items:center;justify-content:center;width:100%;max-width:100%;margin:32px 0 0 }
   .screensaver [data-sleep-music]:empty { display:none }
   .screensaver .sleep-music { margin:0 auto }
-  .screensaver .sleep-hint,.screensaver.has-music .sleep-hint { position:static;order:3;flex-shrink:0;margin:24px 0 0 }
 }
 
 @media (orientation:portrait) and (max-width:599px) {

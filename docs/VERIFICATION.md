@@ -477,3 +477,10 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur isolé : 1280 × 800, 800 × 1280, 768 × 1024, 1024 × 1366, 600 × 960, 390 × 844, 320 × 740 et 1024 × 600. Croix absente, citation basse, aucun débordement horizontal, musique centrée entre l’horloge et la citation en portrait. Extraits les plus court et long du corpus contrôlés ; signature et indication de retour contenues sur tablette, défilement possible si nécessaire sur petit écran. Musique active/inactive, Échap, toucher du fond et mouvement réduit vérifiés sans commandes domotiques réelles.
 
 - v0.27.4 copiée et manifeste servi vérifié sur le cadre identifié. L’actualisation visuelle est regroupée avec l’ajustement suivant demandé pendant cette installation.
+
+
+## v0.27.5 — Retrait de l’indication de retour
+
+- Le texte de retour est retiré du DOM dans les deux formats. Citation rapprochée du bas en paysage (marge 32 px), marge portrait 24 px. Contrôles repris sur les huit formats de v0.27.4, avec absence simultanée de la croix et de l’indication ; musique active/inactive, extraits courts/longs, réveil par Échap et par toucher du fond conservés. Syntaxe et 188 tests réussis.
+
+- Cadre identifié et v0.27.5 activée après vérification des 89 fichiers ; manifeste HTTP confirmé. Un ancien processus HTTP Hub absent du suivi PID a été identifié puis arrêté seul avant activation. Onglet existant actualisé, plein écran portrait 800 × 1280 et veille réelle sans croix ni texte de retour contrôlés. La musique était inactive sur ce contrôle matériel ; son placement actif est validé en navigateur avec données simulées.
