@@ -288,3 +288,8 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Deux robots existants vérifiés par leurs états réels ; noms dupliqués corrigés dans Home Assistant.
 - [x] Robots placés avant les médias, batterie/état/mode/alertes visibles et commandes liées aux capacités ; 94 tests réussis.
 - [ ] Vérifier les alertes réservoir d’eau vide / retirer la serpillière sur les appareils, puis faire un essai physique des commandes. Aucun nettoyage ni changement de programme effectué pendant la configuration.
+
+## Place et notifications v0.18.3
+
+- [x] Barre de connexion retirée en mode connecté ; retours de commande en notification temporaire en bas à droite, erreurs distinctes, déconnexion déplacée dans Réglages.
+- [x] TV/Sonos plus compacts avec volume sur la ligne des commandes quand la largeur le permet ; 95 tests réussis, dont les notifications et les réponses tardives d’anciennes connexions.

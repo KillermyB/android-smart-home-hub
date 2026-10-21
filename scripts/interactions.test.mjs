@@ -206,3 +206,12 @@ test('robot cards expose battery, translated alerts and real capability-gated co
  const offline=context.houseRobot({...robot,state:'unavailable',attributes:{...robot.attributes,battery:null}});assert.doesNotMatch(offline,/ha-battery|Réservoir/);assert.match(offline,/disabled/);
  const missing=context.houseRobot({...robot,attributes:{...robot.attributes,battery:null,error:'No error',supported_features:16}});assert.doesNotMatch(missing,/ha-battery|À vérifier/);assert.match(missing,/ha-call:vacuum:return_to_base:/);assert.match(missing,/ha-call:vacuum:start:vacuum.robot"[^>]+disabled/);
 });
+
+test('HA command feedback uses a temporary notification while errors remain distinct and stale completions stay silent',async()=>{
+ const notices=[],item={entity_id:'light.lamp',state:'off',attributes:{friendly_name:'Lampe'}};
+ const context=vm.createContext({house:{status:'connected',client:{call:async()=>{}},pending:'',generation:1,entities:[item]},state:{page:'house',modal:null,sleep:false},document:{hidden:false,activeElement:{}},window:{HubHA:{supports:()=>true}},houseUpdate(){},houseRestoreFocus(){},resetIdle(){},houseError:()=> 'Commande refusée',toast:(...args)=>notices.push(args)});
+ vm.runInContext(section('  async function houseAction(', '  function header()'),context);
+ await context.houseAction('ha-call','light:turn_on:light.lamp');assert.deepEqual(notices,[['Commande envoyée · Lampe','success']]);assert.equal(context.house.message,'');assert.equal(item.state,'off');
+ context.house.client.call=async()=>{throw Error('failed');};await context.houseAction('ha-call','light:turn_on:light.lamp');assert.deepEqual(notices.at(-1),['Commande refusée','error']);assert.equal(context.house.error,'Commande refusée');
+ const count=notices.length;context.house.client.call=async()=>{context.house.generation++;};await context.houseAction('ha-call','light:turn_on:light.lamp');assert.equal(notices.length,count);
+});

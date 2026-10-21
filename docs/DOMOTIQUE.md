@@ -92,3 +92,7 @@ Hub masque les raccourcis génériques nommés exactement « Turn On » / « Tur
 Les deux intégrations Dreame existantes fournissent bien les robots Zima Blue et Zima Blue v2 dans Home Assistant. Les noms affichés ont été corrigés pour supprimer leur répétition. Hub les place après les lampes, avant Sonos/TV, avec batterie réelle, état traduit, mode de nettoyage et message d’attention. Démarrer/Reprendre, Pause, Arrêter et Retour à la base restent limités aux capacités annoncées ; aucun ordre n’est envoyé à l’ouverture.
 
 Au contrôle du 21 octobre, les deux robots répondent avec 100 % de batterie. Le v2 rapporte un lavage en pause et « Water tank dry » ; l’autre est à la base et rapporte « Remove mop ». Ces messages sont affichés comme points à vérifier, sans effacement ni tentative de réparation logicielle. Aucun nettoyage, déplacement, changement de carte ou de programme n’a été déclenché. Un essai physique des commandes reste à faire après résolution des alertes.
+
+### Notifications et place disponible · v0.18.3
+
+La barre de connexion est masquée lorsque Home Assistant est connecté. Une commande acceptée déclenche une notification « Commande envoyée » en bas à droite pendant 3,5 secondes ; une erreur y reste 6,5 secondes. Cette confirmation ne prétend pas que l’appareil a déjà changé d’état. Les erreurs de connexion gardent le formulaire accessible, et la déconnexion reste disponible dans Réglages. Les contrôles et le volume TV/Sonos se partagent une ligne quand la largeur le permet. Les deux cartes robots restent avant les médias.
