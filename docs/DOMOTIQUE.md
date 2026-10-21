@@ -70,7 +70,18 @@ Pour les ANTELA 9 W, [Tuya Local](https://github.com/make-all/tuya-local) permet
 
 Tuya Local **2026.9.2** (version publiée `2026.9.2-rel`) a été installé dans le dossier `custom_components/tuya_local` de l’instance Home Assistant Container **2026.9.4**. Une sauvegarde privée de la configuration précède l’installation. La compilation passe avec Python **3.14.6** du conteneur ; le Python plus ancien de l’hôte ne reconnaît pas une syntaxe utilisée par cette version. Après redémarrage, Home Assistant répond et détecte le composant. L’intégration Tuya officielle est conservée.
 
-**Aucune ampoule n’est encore migrée.** Prochaine étape : ouvrir Ajouter une intégration → Tuya Local → association Smart Life, sélectionner une seule ampoule joignable, vérifier le profil détecté puis lecture/commande/restauration de son état. Ne pas désactiver l’entité cloud avant cette validation. L’association et les essais matériels restent à effectuer ; aucune autonomie sans Internet n’est affirmée.
+**Quatre appareils migrés et reconnectés en local, protocole 3.3 :**
+
+| Appareil | Profil Tuya Local | Vérification |
+| --- | --- | --- |
+| Bureau · ANTELA 9 W | `rgbcw_lightbulb` | Lecture locale, marche puis arrêt reçus ; état éteint et réglages antérieurs restaurés |
+| Fado | `rgbcw_lightbulb` | Lecture locale et commande de maintien allumé ; couleur et intensité conservées |
+| VARMBLIXT · prise Hombli | `smartplugv2_energyv3` | Lecture locale et commande de maintien allumé ; réglages conservés |
+| SOLVINDEN · prise Hombli | `smartplugv2_energyv3` | Lecture locale et commande de maintien allumé ; réglages conservés |
+
+L’utilisateur a validé le QR Smart Life de Tuya Local. La découverte automatique n’a pas donné d’adresse ; les quatre hôtes ont été identifiés sur le port Tuya 6668 puis vérifiés par leurs clés locales, sans commande pendant l’identification. Les identifiants d’entités habituels et les pièces sont conservés. Les quatre doublons cloud sont renommés avec le suffixe `_cloud` et désactivés, sans suppression ; l’intégration officielle et ses scènes restent actives. Les sauvegardes et paramètres privés restent hors Git.
+
+Les quatre intégrations se rechargent sans redémarrage de Home Assistant, puis rapportent une connexion locale active et les états attendus. Ce contrôle ne prouve pas une autonomie sans Internet, une IP durable après changement DHCP ni la stabilité sur plusieurs jours. Les sept autres lampes sont encore signalées hors ligne dans Smart Life et n’ont pas été migrées. Aucun micrologiciel ni réglage du routeur n’a été modifié.
 
 ### Scènes affichées · v0.18.1
 
