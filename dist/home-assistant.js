@@ -199,12 +199,14 @@
       await call(domain,service,target,data);
       if(!expected||domain==='scene'||domain==='script'||service==='volume_set')return {confirmed:false,accepted:true};
       return new Promise(function(resolve,reject){
-        var done=false,deadline,refresh;
+        var done=false,deadline,refresh,early,reading=false,fallback=false;
         function matches(){var value=cache[id]&&cache[id].state;return value===expected||domain==='media_player'&&expected==='on'&&['playing','paused','idle','standby','buffering'].includes(value)||domain==='media_player'&&expected==='off'&&value==='standby'||domain==='vacuum'&&expected==='returning'&&value==='docked';}
-        function finish(error,confirmed){if(done)return;done=true;clearTimeout(deadline);clearTimeout(refresh);listeners.delete(check);if(error)reject(error);else resolve({confirmed:confirmed,accepted:true,state:cache[id]&&cache[id].state});}
+        function finish(error,confirmed){if(done)return;done=true;clearTimeout(deadline);clearTimeout(refresh);clearTimeout(early);listeners.delete(check);if(error)reject(error);else resolve({confirmed:confirmed,accepted:true,state:cache[id]&&cache[id].state});}
         function check(){if(phase!=='connected')finish(failure('not_connected','Connexion interrompue pendant la vérification.'));else if(matches())finish(null,true);}
         listeners.add(check);deadline=setTimeout(function(){finish(null,matches());},confirmMs);
-        refresh=setTimeout(async function(){var before=cache[id];try{var values=await send('get_states');if(done)return;var latest=Array.isArray(values)&&values.find(function(value){return value.entity_id===id&&validState(value);});if(latest&&cache[id]===before){cache[id]=copy(latest);emit();}check();}catch(error){if(!done)finish(error);}},settleMs);
+        async function readback(){if(done)return;if(reading){fallback=true;return;}reading=true;var before=cache[id];try{var values=await send('get_states');if(done)return;var latest=Array.isArray(values)&&values.find(function(value){return value.entity_id===id&&validState(value);});if(latest&&cache[id]===before){cache[id]=copy(latest);emit();}check();}catch(error){if(!done)finish(error);}finally{reading=false;if(fallback&&!done){fallback=false;readback();}}}
+        early=setTimeout(readback,Math.min(300,settleMs/2));
+        refresh=setTimeout(readback,settleMs);
         check();
       });
     }

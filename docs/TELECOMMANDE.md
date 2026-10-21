@@ -2,10 +2,10 @@
 
 Sur le cadre : **Réglages → Télécommande**. Scanner le QR avec le téléphone connecté au même Wi-Fi. Sur iPhone : **Partager → Sur l’écran d’accueil**. L’association est conservée sur ce téléphone.
 
-- **Notes** : envoyer jusqu’à 400 caractères, épingler sur l’accueil. Maximum 12 notes sur le cadre.
-- **Domotique** : scènes, lampes et prises, robots aspirateurs, Sonos et télévisions. Commandes selon les capacités actuelles des appareils : marche/arrêt, lecture/pause, piste précédente/suivante, volume, nettoyage/retour à la base. État confirmé lorsque disponible ; scènes, changement de piste et volume indiquent seulement « commande envoyée ». Aucun changement de page du cadre.
-- **Minuteurs** : raccourcis Thé, Œufs, Pâtes, Four, Lessive, Pause et durées prédéfinies, lancement en un appui sans saisie ; trois emplacements partagés avec la cuisine. Activer et tester le son sur le cadre. L’alerte à échéance reste celle de Hub.
-- **À faire** : cocher une tâche Todoist, courses exclues. Aucune nouvelle connexion Todoist sur le téléphone.
+- **Notes**, dernier onglet : envoyer jusqu’à 400 caractères, épingler sur l’accueil. Maximum 12 notes sur le cadre.
+- **Domotique**, ouverte par défaut : scènes, lampes et prises, robots aspirateurs, Sonos et télévisions. Commandes selon les capacités actuelles des appareils : marche/arrêt, lecture/pause, piste précédente/suivante, volume, nettoyage/retour à la base. État confirmé lorsque disponible ; scènes, changement de piste et volume indiquent seulement « commande envoyée ». Aucun changement de page du cadre.
+- **Minuteurs** : Thé, Œufs, Pâtes, Four, Lessive (1 h 05), Sèche-linge (1 h 55), Pause et durées prédéfinies. Lancement en un appui ; trois emplacements partagés avec la cuisine. Les minuteurs en cours apparaissent en premier : glisser vers la gauche ou toucher la corbeille pour supprimer sur le cadre. Le numéro et l’identité de chaque minuteur sont revérifiés avant suppression. Activer et tester le son sur le cadre. L’alerte à échéance reste celle de Hub.
+- **À faire** : filtrer par projet existant, priorité et recherche, puis cocher une tâche Todoist ; courses exclues. Aucune nouvelle connexion Todoist sur le téléphone.
 
 Le cadre doit garder Hub ouvert. Quand son navigateur est fermé ou en arrière-plan, le téléphone devient indisponible et les demandes expirent ; une nouvelle session après interruption ou rechargement refuse les demandes de l’ancienne session. Aucune répétition automatique après un résultat incertain. En cas de doute, vérifier l’état avant de renvoyer. Les grandes listes sont tronquées selon un budget de transmission, avec leur total indiqué.
 
@@ -29,3 +29,9 @@ npm run frame -- remote-disable --config /chemin/prive/connection.json
 Activation explicite sur le matériel vérifié. La désactivation arrête uniquement le listener reconnu, révoque l’association et efface la copie filtrée des états ; elle ne supprime pas les notes, minuteurs ou connexions de Hub. Les scripts existants relancent le service activé au démarrage et vérifient son processus toutes les 30 secondes. Une vraie coupure électrique reste distincte d’un test logiciel.
 
 QR généré localement avec [Project Nayuki](https://www.nayuki.io/page/qr-code-generator-library), licence MIT conservée dans le fichier embarqué. Aucun service externe ne reçoit le QR.
+
+## Icône et autres écrans
+
+Icône de navigateur dédiée et icône Apple 180 × 180 intégrées. Sur iPhone, créer le raccourci depuis Safari → Partager → Sur l’écran d’accueil. Un ancien raccourci peut garder son ancienne icône et nécessiter d’être recréé. L’installation réelle sur iPhone reste à confirmer.
+
+Une télécommande commune avec ScreenK/Raspberry est prévue pour la suite : le transport et l’authentification de cette autre télécommande restent à examiner. Aucun contrôle ni partage de clés entre les deux systèmes n’est encore configuré. Les adresses locales fournies restent dans les notes privées hors Git.

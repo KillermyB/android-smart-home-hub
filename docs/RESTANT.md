@@ -423,3 +423,16 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] 173 tests et syntaxe réussis, analyse de secrets sans détection. Contrôles avec lecture simulée à 1280 × 800, sans musique, avec citation longue, 1280 × 600, 375 × 667 et 320 × 740 : absence de chevauchement et de débordement horizontal ; mouvement réduit conservé. Sur petit écran, lecteur après la citation dans la zone défilante.
 
 - [x] v0.25.1 installée et veille réelle vérifiée en plein écran sur le cadre ; lecteur musical contrôlé avec données simulées en navigateur isolé.
+
+
+## Télécommande et maison v0.26.0
+
+- [x] Domotique ouverte par défaut, puis Minuteurs, À faire, Notes. Icônes SVG et Apple PNG dédiées.
+- [x] Lessive 1 h 05 et Sèche-linge 1 h 55 sur cadre/télécommande ; affichage des heures dans les compteurs longs.
+- [x] Minuteurs actifs avant les raccourcis, suppression par glissement gauche ou corbeille, identité revérifiée pour ne pas supprimer un minuteur ayant repris le même numéro.
+- [x] Projets existants et priorités Todoist filtrables sur les deux interfaces ; courses exclues et aucune catégorie créée dans le compte.
+- [x] Lecture de contrôle HA précoce à 300 ms, repli conservé et aucune répétition de commande. Pont à 750 ms quand un téléphone est actif, retour en attente à 500 ms ; état publié avant accusé de résultat. Les délais propres à Tuya/HA restent possibles.
+- [x] Musique en haut à gauche de la veille et citations descendues ; contrôle des citations longues sur le format cadre et petits écrans.
+- [x] 179 tests et parcours mobile simulé : filtre projet/priorité, marche/arrêt, glissement tactile réel, corbeille et lancement de 1 h 55. Aucune commande aux appareils physiques pendant ces tests.
+- [ ] Installation du cadre : ancienne adresse de maintenance indisponible, nouvel accès requis.
+- [ ] Essai physique sur iPhone et intégration de la future télécommande commune ScreenK/Raspberry.

@@ -239,3 +239,9 @@ test('user-selected HA scripts can be started without granting arbitrary cross-d
  assert.deepEqual(JSON.parse(JSON.stringify(await command)),{accepted:true,confirmed:false});
  await assert.rejects(h.client.call('script','turn_on',{entity_id:'vacuum.robot'}),e=>e.code==='invalid_target');
 });
+
+test('an early state read confirms fast lights but an older read keeps the later fallback and never resends the action',async t=>{
+ const h=setup(2000,{confirmMs:2400});t.after(()=>h.client.disconnect());const {socket}=await ready(h);const p=h.client.confirmedCall('light','turn_on',{entity_id:light.entity_id});socket.reply(socket.sent.at(-1));
+ const until=async count=>{for(let i=0;i<170&&socket.sent.filter(m=>m.type==='get_states').length<count;i++)await new Promise(r=>setTimeout(r,10));assert.ok(socket.sent.filter(m=>m.type==='get_states').length>=count);return socket.sent.at(-1);};
+ const early=await until(2);socket.reply(early,[light]);const later=await until(3);socket.reply(later,[{...light,state:'on'}]);assert.equal((await p).confirmed,true);assert.equal(socket.sent.filter(m=>m.type==='call_service').length,1);
+});

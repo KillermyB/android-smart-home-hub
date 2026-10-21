@@ -69,7 +69,7 @@ test('CGI enforces origin, key, subnet, bounded payload, duplicate IDs and one-s
     assert.match(call('send',encoded,{},key,id),/200 OK/);assert.match(call('send',encoded,{},key,id),/200 OK/);
     assert.ok(existsSync(join(dir,'remote-data',id+'.cmd')));
     assert.match(call('send',encoded,{},key,'a'.repeat(32)),/200 OK/);
-    const first=call('status','-',{...local,REQUEST_METHOD:'GET'},bridgeKey);assert.match(first,new RegExp(id));assert.deepEqual(JSON.parse(first.split('\r\n\r\n')[1]).commands.map(x=>x.id),[id,'a'.repeat(32)]); assert.ok(existsSync(join(dir,'remote-data',id+'.run')));
+    const first=call('status','-',{...local,REQUEST_METHOD:'GET'},bridgeKey);assert.equal(JSON.parse(first.split('\r\n\r\n')[1]).phone_active,true);assert.match(first,new RegExp(id));assert.deepEqual(JSON.parse(first.split('\r\n\r\n')[1]).commands.map(x=>x.id),[id,'a'.repeat(32)]); assert.ok(existsSync(join(dir,'remote-data',id+'.run')));
     assert.doesNotMatch(call('status','-',{...local,REQUEST_METHOD:'GET'},bridgeKey),new RegExp(id));
     assert.match(call('ack',api.encode({ok:true,message:'Gardée'}),local,bridgeKey,id),/200 OK/);
     assert.ok(!existsSync(join(dir,'remote-data',id+'.run')));assert.match(call(),new RegExp(id));
@@ -87,7 +87,7 @@ test('bridge pauses hidden, acknowledges once and never changes the frame route'
   vm.runInContext(source('remote-bridge'),c);
   const bridge=c.HubRemoteBridge.start({snapshot:()=>({notes:[],lights:[],tasks:[]}),execute:async()=>{execute++;return {ok:true};}});
   assert.equal(calls.length,0);hidden=false;events.visibilitychange();await new Promise(r=>setImmediate(r));await new Promise(r=>setImmediate(r));
-  assert.equal(execute,1);assert.equal(calls.filter(x=>x.options.body?.split('\n')[1]==='ack').length,1);assert.ok(bridge.pair());
+  assert.equal(execute,1);assert.equal(calls.filter(x=>x.options.body?.split('\n')[1]==='ack').length,1);assert.ok(bridge.pair());var operations=calls.filter(x=>x.options.body).map(x=>x.options.body.split('\n')[1]);assert.equal(operations[operations.indexOf('ack')-1],'publish');
   await bridge.refresh();assert.equal(execute,1);bridge.stop();
 });
 
@@ -154,4 +154,11 @@ test('remote bridge refuses commands from before a hidden or reloaded frame sess
   queued.push({id,payload:c.HubRemote.encode({...command,created:Date.now(),session:oldSession})});hidden=true;events.visibilitychange();hidden=false;events.visibilitychange();await turn();
   assert.notEqual(sessionValue,oldSession);assert.equal(executed,0);assert.equal(acks[0].ok,false);assert.match(acks[0].message,/interrompue/);
   const beforeReload=sessionValue;bridge.stop();queued.push({id,payload:c.HubRemote.encode({...command,created:Date.now(),session:beforeReload})});bridge=c.HubRemoteBridge.start(options);await turn();assert.notEqual(sessionValue,beforeReload);assert.equal(executed,0);assert.equal(acks[1].ok,false);bridge.stop();
+});
+
+
+test('timer cancellation targets the exact instance and cannot stop a replacement in the same slot',async()=>{
+ const c=core({Date,Error,timerItems:[{id:'1',instance:'original',end:7000,label:'Lessive'}],HubTools:{timers:{change:(items,id)=>items.filter(t=>t.id!==id)}},localStorage:{setItem(){}},saveTimers(){},renderTimer(){},scheduleTick(){},renderOverlay(){},state:{modal:null}});const app=source('app');vm.runInContext(app.slice(app.indexOf('  function remoteHomeDevices(){'),app.indexOf("  if(typeof HubRemoteBridge")),c);
+ await assert.rejects(c.executeRemote({type:'timer_cancel',timer:'1',instance:'old-instance'}),/déjà changé/);assert.equal(c.timerItems.length,1);assert.equal((await c.executeRemote({type:'timer_cancel',timer:'1',instance:'original'})).ok,true);assert.equal(c.timerItems.length,0);
+ const api=c.HubRemote;assert.doesNotThrow(()=>api.validate(api.decode(api.encode({id,session,created:Date.now(),type:'timer_cancel',timer:'1',instance:'original'}))));for(const timer of ['4','../file'])assert.throws(()=>api.validate(api.decode(api.encode({id,session,created:Date.now(),type:'timer_cancel',timer,instance:'original'}))));
 });

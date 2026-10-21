@@ -384,3 +384,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - 173 tests et syntaxe réussis, analyse de secrets sans détection. Contrôles avec lecture simulée à 1280 × 800, sans musique, avec citation longue, 1280 × 600, 375 × 667 et 320 × 740 : absence de chevauchement et de débordement horizontal ; mouvement réduit conservé. Sur petit écran, lecteur après la citation dans la zone défilante.
 
 - v0.25.1 installée sur le cadre en Wi-Fi, empreintes vérifiées ; onglet existant actualisé, plein écran et veille réelle contrôlés. Lecture musicale testée en simulation uniquement, aucun morceau lancé sur les appareils.
+
+
+## v0.26.0 — Télécommande, catégories et commandes
+
+- Syntaxe, 179 tests et analyse de secrets sans détection. Nouvelles vérifications : durées 3900/6900 secondes, filtres réels projet/priorité, identité des minuteurs après réutilisation d’un numéro, transfert de capture tactile, état publié avant le résultat mobile et lecture HA précoce avec repli conservé.
+- Navigateur isolé 375 × 812 / 320 × 740 : Domotique initiale, Notes en dernier, filtres, minuteurs actifs en tête, glissement et corbeille puis lancement Sèche-linge confirmés sur un service simulé ; aucun appareil réel commandé. Icône Apple exportée et contrôlée visuellement.
+- Veille avec musique simulée, citation longue ou absence de musique à 1280 × 800, 1280 × 600, 375 × 667 et 320 × 740 : lecteur en haut à gauche, citation dessous, aucune erreur JS ni débordement horizontal, mouvement réduit conservé.
+- Ancienne adresse SSH du cadre indisponible lors du contrôle ; aucune installation matérielle de cette version encore attestée. Les délais physiques des lampes et l’installation de l’icône sur iPhone restent à confirmer.

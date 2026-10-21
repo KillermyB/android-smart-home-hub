@@ -30,7 +30,10 @@ now=$(date +%s)
 if [ "$REQUEST_METHOD" = GET ] && [ "$local" = true ]; then
     [ "$1" = locked ] || exec "$BB" flock -x "$STORE/queue.lock" /system/bin/sh "$0" locked
     key=$(cat "$STORE/access-key")
-    printf 'Content-Type: application/json\r\nCache-Control: no-store\r\n\r\n{"key":"%s","url":"http://%s:4180/","commands":[' "$key" "$ip"
+    seen=$(cat "$STORE/phone-seen" 2>/dev/null)
+    case "$seen" in ''|*[!0-9]*) seen=0;; esac
+    active=false; [ $((now-seen)) -ge 0 ] && [ $((now-seen)) -le 15 ] && active=true
+    printf 'Content-Type: application/json\r\nCache-Control: no-store\r\n\r\n{"key":"%s","url":"http://%s:4180/","phone_active":%s,"commands":[' "$key" "$ip" "$active"
     sep=''
     for id in $(cat "$STORE/order" 2>/dev/null); do
         [ ${#id} -eq 32 ] || continue
@@ -112,6 +115,7 @@ case "$op" in
         ;;
     status)
         [ "$local" = false ] || reply '403 Forbidden' '{}'
+        printf '%s\n' "$now" >"$STORE/phone-seen"
         ;;
     *) reply '400 Bad Request' '{}';;
 esac

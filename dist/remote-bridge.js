@@ -16,14 +16,15 @@
         if(value!==lastSnapshot||Date.now()-lastPublished>5000){await local('publish','-',value);lastSnapshot=value;lastPublished=Date.now();}
         var response=await fetch('/cgi-bin/remote.cgi',{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(8000)});
         if(!response.ok)throw Error('Télécommande indisponible.');
-        var data=await response.json();pair={url:data.url,key:data.key};
+        var data=await response.json();pair={url:data.url,key:data.key};delay=data.phone_active?750:2500;
         for(var entry of data.commands||[]){
           var result;
           try{var command=HubRemote.validate(HubRemote.decode(entry.payload),Date.now());if(command.session!==session)throw Error('La connexion au cadre a été interrompue. Aucune action effectuée.');if(command.id!==entry.id)throw Error('Demande invalide.');if(document.hidden)throw Error('Hub est passé en arrière-plan.');result=await options.execute(command);}
           catch(e){result={ok:false,message:e.message||'Action non confirmée.'};}
+          // Send the authoritative state before making the result visible to the phone.
+          var fresh=snapshot();await local('publish','-',fresh);lastSnapshot=fresh;lastPublished=Date.now();
           await local('ack',entry.id,HubRemote.encode(result));
         }
-        if((data.commands||[]).length){await local('publish','-',snapshot());lastPublished=Date.now();}
       }catch(_){pair=null;invalidate();delay=15000;}
       finally{busy=false;if(!stopped&&!document.hidden)timer=setTimeout(tick,delay);}
     }
