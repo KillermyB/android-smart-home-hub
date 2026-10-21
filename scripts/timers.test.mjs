@@ -14,9 +14,22 @@ test('expired timers stay dismissible and extending one never restarts another',
  const {timers:t,remaining}=tools();let list=t.start([],1,'Un','',0);list=t.start(list,2,'Deux','',0);list=t.change(list,'1','add',4000);assert.equal(remaining(list[0],4000),60);assert.equal(remaining(list[1],4000),0);assert.equal(list[0].notified,false);
  for(const sec of [0,-1,1.2,86401,NaN])assert.throws(()=>t.start([],sec,'','',0));assert.equal(t.restore([{id:'1',end:NaN}]).length,0);assert.equal(t.restore([{id:'1',end:1000},{id:'1',end:2000}]).length,1);
 });
-test('timer alarm resumes audio after interaction and schedules a bounded six-note alert',async()=>{
- const notes=[];let resumes=0;class Audio{constructor(){this.state='suspended';this.currentTime=2;this.destination={};}async resume(){resumes++;this.state='running';}createOscillator(){return {frequency:{},connect(){},disconnect(){},start(t){notes.push(['start',t]);},stop(t){notes.push(['stop',t]);}};}createGain(){return {gain:{setValueAtTime(){},linearRampToValueAtTime(){},exponentialRampToValueAtTime(){}},connect(){},disconnect(){}};}}
- const alarm=tools().alarm({AudioContext:Audio});assert.equal(await alarm.unlock(),true);assert.equal(await alarm.play(),true);assert.equal(resumes,1);assert.equal(notes.filter(n=>n[0]==='start').length,6);assert.ok(notes.at(-1)[1]<5);assert.equal(await tools().alarm().play(),false);
+test('timer notification is louder, finite and shared by simultaneous deadlines',async()=>{
+ const notes=[],levels=[];let resumes=0,disconnected=0,context;
+ class Audio{
+  constructor(){context=this;this.state='suspended';this.currentTime=2;this.destination={};}
+  async resume(){resumes++;this.state='running';}
+  createOscillator(){const osc={frequency:{},connect(){},disconnect(){disconnected++;},start(t){notes.push({osc,start:t});},stop(t){notes.find(n=>n.osc===osc).stop=t;}};return osc;}
+  createGain(){return {gain:{setValueAtTime(){},linearRampToValueAtTime(value){levels.push(value);},exponentialRampToValueAtTime(){}},connect(){},disconnect(){disconnected++;}};}
+ }
+ const alarm=tools().alarm({AudioContext:Audio});assert.equal(await alarm.unlock(),true);assert.equal(await alarm.play(),true);assert.equal(resumes,1);
+ assert.ok(Math.max(...levels)>=.45,'notification has a stronger attack than the old .22 alert');
+ assert.ok(notes.length>0);for(const note of notes){assert.ok(note.stop>note.start);assert.ok(note.stop<=3.9);assert.ok(note.osc.frequency.value>=600&&note.osc.frequency.value<=3000);}
+ const count=notes.length;assert.equal(await alarm.play(),true);assert.equal(notes.length,count,'simultaneous deadlines must not stack audio');
+ notes.forEach(n=>n.osc.onended());assert.equal(disconnected,count*2);
+ context.currentTime=4;assert.equal(await alarm.play(),true);assert.equal(notes.length,count*2,'later alerts remain audible');
+ context.state='closed';assert.equal(await alarm.play(),true);assert.equal(notes.length,count*3,'recreating the audio context must not suppress the next alert');
+ assert.equal(await tools().alarm().play(),false);
 });
 
 test('laundry and dryer presets keep exact household durations and hourly labels',()=>{

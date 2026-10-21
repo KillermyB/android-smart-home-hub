@@ -392,3 +392,10 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur isolé 375 × 812 / 320 × 740 : Domotique initiale, Notes en dernier, filtres, minuteurs actifs en tête, glissement et corbeille puis lancement Sèche-linge confirmés sur un service simulé ; aucun appareil réel commandé. Icône Apple exportée et contrôlée visuellement.
 - Veille avec musique simulée, citation longue ou absence de musique à 1280 × 800, 1280 × 600, 375 × 667 et 320 × 740 : lecteur en haut à gauche, citation dessous, aucune erreur JS ni débordement horizontal, mouvement réduit conservé.
 - Ancienne adresse SSH du cadre indisponible lors du contrôle ; aucune installation matérielle de cette version encore attestée. Les délais physiques des lampes et l’installation de l’icône sur iPhone restent à confirmer.
+
+
+## v0.26.1 — Carillon de notification
+
+- Syntaxe et 179 tests réussis : reprise du contexte audio, volume renforcé, durée bornée, libération des nœuds, absence de superposition et nouvelle alerte ultérieure.
+- Son réellement rendu par OfflineAudioContext dans Chrome isolé : crête 0,516 / 1, fin à 1,87 s. Aucun son joué sur les appareils pour ce contrôle ; le volume perçu dépend du haut-parleur et du volume système.
+- SSH du cadre encore refusé : aucun déploiement matériel ni changement de volume Android attesté pour cette version.

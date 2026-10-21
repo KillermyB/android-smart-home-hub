@@ -436,3 +436,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] 179 tests et parcours mobile simulé : filtre projet/priorité, marche/arrêt, glissement tactile réel, corbeille et lancement de 1 h 55. Aucune commande aux appareils physiques pendant ces tests.
 - [ ] Installation du cadre : ancienne adresse de maintenance indisponible, nouvel accès requis.
 - [ ] Essai physique sur iPhone et intégration de la future télécommande commune ScreenK/Raspberry.
+
+
+## v0.26.1 — Notification de fin de minuteur
+
+- [x] Double carillon montant répété une fois, attaque plus présente ; gain principal de 0,22 à 0,48 et harmonique légère. Alerte bornée à moins de deux secondes, nettoyage audio et absence de superposition pour les fins simultanées. Option sonore et déverrouillage par interaction conservés.
+- [x] Syntaxe et 179 tests réussis. Rendu audio hors ligne réel : crête 0,516, fin à 1,87 s, sans écrêtage numérique.
+- [ ] Installation et écoute sur le cadre : accès Wi-Fi de maintenance toujours refusé. Aucun réglage du volume Android modifié.

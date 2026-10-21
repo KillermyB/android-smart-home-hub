@@ -75,9 +75,31 @@
   }
   function timerChange(values,id,command,now){return timerRestore(values).filter(function(t){return command!=='stop'||t.id!==String(id);}).map(function(t){if(t.id!==String(id))return t;var left=remaining(t,now);if(command==='toggle'&&left){t.paused=!t.paused;t.remaining=left;if(!t.paused)t.end=now+left*1000;}if(command==='add'){t.remaining=Math.min(86400,left+60);t.end=now+t.remaining*1000;t.notified=false;}return t;});}
   function alarm(options){
-    options=options||{};var Audio=options.AudioContext||root.AudioContext||root.webkitAudioContext,context=null;
-    async function unlock(){if(!Audio)return false;try{if(!context||context.state==='closed')context=new Audio();if(context.state==='suspended')await context.resume();return context.state==='running';}catch(_){return false;}}
-    async function play(){if(!await unlock())return false;try{var now=context.currentTime;[0,.4,.8,1.6,2,2.4].forEach(function(offset,i){var osc=context.createOscillator(),gain=context.createGain(),at=now+offset;osc.type='sine';osc.frequency.value=i%2?880:660;gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.22,at+.025);gain.gain.exponentialRampToValueAtTime(.001,at+.28);osc.connect(gain);gain.connect(context.destination);osc.onended=function(){osc.disconnect();gain.disconnect();};osc.start(at);osc.stop(at+.3);});return true;}catch(_){return false;}}
+    options=options||{};var Audio=options.AudioContext||root.AudioContext||root.webkitAudioContext,context=null,busyUntil=0;
+    async function unlock(){if(!Audio)return false;try{if(!context||context.state==='closed'){context=new Audio();busyUntil=0;}if(context.state==='suspended')await context.resume();return context.state==='running';}catch(_){return false;}}
+    async function play(){
+      if(!await unlock())return false;
+      try{
+        var now=context.currentTime;
+        // A short rising notification chime, repeated once. Simultaneous timers share it.
+        if(now<busyUntil)return true;
+        busyUntil=now+1.9;
+        [[0,880],[.18,1174.66],[1.15,880],[1.33,1174.66]].forEach(function(note){
+          [[1,.48],[2,.07]].forEach(function(partial){
+            var osc=context.createOscillator(),gain=context.createGain(),at=now+note[0];
+            osc.type='sine';osc.frequency.value=note[1]*partial[0];
+            gain.gain.setValueAtTime(0,at);
+            gain.gain.linearRampToValueAtTime(partial[1],at+.008);
+            gain.gain.exponentialRampToValueAtTime(.0001,at+.5);
+            gain.gain.linearRampToValueAtTime(0,at+.54);
+            osc.connect(gain);gain.connect(context.destination);
+            osc.onended=function(){osc.disconnect();gain.disconnect();};
+            osc.start(at);osc.stop(at+.55);
+          });
+        });
+        return true;
+      }catch(_){busyUntil=0;return false;}
+    }
     return {unlock:unlock,play:play};
   }
   var api={timers:{restore:timerRestore,start:timerStart,change:timerChange},alarm:alarm,safeURL:safeURL,brief:brief,upcoming:upcoming,remaining:remaining,item:item,transfer:transfer,entries:entries,store:store,id:id,photo:photo};
