@@ -215,3 +215,15 @@ test('HA command feedback uses a temporary notification while errors remain dist
  context.house.client.confirmedCall=async()=>{throw Error('failed');};await context.houseAction('ha-call','light:turn_on:light.lamp');assert.deepEqual(notices.at(-1),['Commande refusée','error']);assert.equal(context.house.error,'Commande refusée');
  const count=notices.length;context.house.client.confirmedCall=async()=>{context.house.generation++;};await context.houseAction('ha-call','light:turn_on:light.lamp');assert.equal(notices.length,count);
 });
+
+test('standby player shows only an active track with its elapsed perimeter and compact metadata',()=>{
+ const context=vm.createContext({music:{data:{is_playing:true,item:{name:'Track',artists:[{name:'Artist'}],duration_ms:10000,album:{images:[]}},device:{name:'Home'}}},HubTools:{safeURL:s=>s},esc:String,icon:()=>'<icon>',musicOrbit:()=>'<svg data-tile-progress></svg>'});
+ vm.runInContext(section('  function sleepMusic()', '  var sleepMusicKey='),context);
+ const html=context.sleepMusic();assert.match(html,/Track/);assert.match(html,/Artist · Home/);assert.match(html,/data-tile-progress/);assert.doesNotMatch(html,/sleep-music-device/);
+ context.music.data.is_playing=false;assert.equal(context.sleepMusic(),'');context.music.data=null;assert.equal(context.sleepMusic(),'');
+});
+test('standby progress updates each second only for visible active playback',()=>{
+ let delays=[];const context=vm.createContext({state:{page:'home',sleep:true},document:{hidden:false},music:{data:{is_playing:true}},lyricsState:{open:false,busy:false},lyricsAttemptedKey:'',lyricsTick:0,clearTimeout(){},setTimeout(_fn,delay){delays.push(delay);},resetLyrics(){},paintLyrics(){}});
+ vm.runInContext(app.split('\n').find(line=>line.startsWith('  function lyricsLifecycle()')),context);
+ context.lyricsLifecycle();assert.deepEqual(delays,[1000]);delays=[];context.document.hidden=true;context.lyricsLifecycle();assert.deepEqual(delays,[]);context.document.hidden=false;context.music.data.is_playing=false;context.lyricsLifecycle();assert.deepEqual(delays,[]);
+});

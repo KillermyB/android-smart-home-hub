@@ -344,4 +344,12 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Planificateur natif réversible à 4 h 30 (fenêtre jusqu’à 5 h 29), une fois par date, après au moins 15 minutes d’activité et report si un minuteur est actif ; contrôle du serveur local toutes les 30 secondes.
 - [x] Aide au plein écran par recherche du bouton accessible exact et toucher natif ; aucune coordonnée aveugle, aucun nouvel onglet et aucune écriture système supplémentaire.
 - [x] 124 tests de code et parcours navigateur synthétique 1280/768/320 px ; rotation réelle d’une minute vérifiée avec conservation du nœud musique.
-- [ ] Audibilité réelle de l’alarme et réaction physique des télévisions : à confirmer sur les appareils, sans commande domotique envoyée pour les tests.
+- [x] Alarme sonore entendue sur le cadre, confirmée par le propriétaire.
+- [ ] Réaction physique des télévisions : à confirmer sur les appareils, sans commande domotique envoyée pour les tests.
+
+## v0.20.1 — lecteur compact en veille
+
+- [x] Carte musicale de 360 px maximum, métadonnées regroupées, adaptation à 320 px.
+- [x] Contour blanc de progression écoulée, actualisé chaque seconde sans reconstruire la carte ; suspension quand la page est masquée et préférence de mouvement réduit conservée.
+- [x] Retour du contour de l’accueil après sortie de veille ; arrêt/reprise du morceau vérifiés avec des données synthétiques.
+- [x] 126 tests et contrôle navigateur 1280 × 800 / 320 × 740.

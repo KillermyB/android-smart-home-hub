@@ -314,3 +314,9 @@ Comparaison avant/après dans un navigateur isolé à densité 2, dimensions et 
 - Premier essai plein écran corrigé : Firefox expose le libellé dans `text`, pas `content-desc`. Contrôle du resource-id, du libellé exact et des bornes ; toucher natif réussi, capture réelle sans barre du navigateur.
 - Logique nocturne 4 h 30–5 h 29, marqueur journalier, seuil d’uptime et report des minuteurs testés sans changer l’heure. Le passage nocturne réel et l’audibilité par une personne restent à confirmer.
 - Redémarrage Android réel effectué : boot ID changé, démarrage terminé, serveur local, SSH et processus de surveillance nocturne revenus sans relance manuelle. Capture réelle de Hub en plein écran, sans barre Firefox ; seule l’adresse DHCP a changé, retrouvée puis validée avec la clé hôte épinglée. L’USB n’est pas revenu dans ce contrôle, mais l’accès Wi-Fi a permis les vérifications. Aucune modification de la box ou IP statique.
+
+## v0.20.1 — musique en veille
+
+Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour blanc utilisant le même chemin fermé et le même cache de géométrie que l’accueil ; progression une fois par seconde uniquement pendant une lecture visible. Le lecteur garde son nœud lors de ces mises à jour. Reprise de l’observation du contour de l’accueil au réveil.
+
+126 tests passent. Navigateur synthétique : blanc réel dans le style calculé, progression croissante après deux secondes, même carte conservée, étapes 0/48/99/100 %, redimensionnement, mouvement réduit, arrêt/reprise et retour à l’accueil, sans exception ni commande domotique. Le propriétaire confirme aussi avoir entendu l’alarme du minuteur sur le cadre.
