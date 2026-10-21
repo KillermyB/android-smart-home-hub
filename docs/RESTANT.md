@@ -505,3 +505,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 ## v0.27.3 — Sélection du menu portrait
 
 - [x] Icônes centrées dans leur propre bouton en portrait : le fond orange entoure correctement le menu sélectionné. Sélection unique et alignement des cinq menus contrôlés à 800, 600, 390 et 320 px. Correction CSS uniquement, paysage préservé.
+
+
+## v0.27.4 — Veille épurée
+
+- [x] Croix retirée dans les deux orientations ; retour par toucher du fond ou Échap conservé, focus clavier placé sur l’écran de veille.
+- [x] Citation ancrée près du bas, sans recouvrir sa signature ni l’indication de retour. En portrait, musique compacte centrée dans l’espace entre l’horloge/contexte et la citation ; absence de musique sans espace réservé.
+- [x] Syntaxe, 188 tests et huit formats de navigateur contrôlés, musique active/inactive, extraits courts/longs, mouvement réduit et retour à l’accueil. Aucun appareil réel commandé par les données de test.

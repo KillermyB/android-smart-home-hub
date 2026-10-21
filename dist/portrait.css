@@ -177,17 +177,17 @@
 }
 
 @media (orientation:portrait) {
-  .screensaver,.screensaver.has-music { padding:32px 28px 24px;justify-content:space-evenly }
-  .screensaver .sleep-date { margin:18px 0 0 }
+  .screensaver,.screensaver.has-music { padding:48px 28px 24px;justify-content:flex-start }
+  .screensaver .sleep-date { margin:0 0 18px }
   .screensaver .sleep-time,.screensaver.has-music .sleep-time { font-size:clamp(112px,27vw,310px);line-height:1.05 }
   .screensaver .sleep-context { margin:16px 0;flex-shrink:0 }
-  .screensaver .sleep-thought { margin:24px 0;gap:22px;max-width:100% }
+  .screensaver .sleep-thought { margin:auto 0 0;padding-top:32px;gap:22px;max-width:100% }
   .screensaver .sleep-quote { font-size:clamp(25px,4vw,44px);line-height:1.5 }
   .screensaver .sleep-thought.is-long .sleep-quote { font-size:clamp(22px,3.5vw,36px) }
-  .screensaver [data-sleep-music] { position:static;order:-1;align-self:center;justify-content:center;width:100%;max-width:100%;margin:0 0 24px }
+  .screensaver [data-sleep-music] { position:static;order:0;display:flex;flex:1 0 auto;align-self:center;align-items:center;justify-content:center;width:100%;max-width:100%;margin:32px 0 0 }
   .screensaver [data-sleep-music]:empty { display:none }
   .screensaver .sleep-music { margin:0 auto }
-  .screensaver .sleep-hint,.screensaver.has-music .sleep-hint { position:static;order:3;margin:12px 0 0 }
+  .screensaver .sleep-hint,.screensaver.has-music .sleep-hint { position:static;order:3;flex-shrink:0;margin:24px 0 0 }
 }
 
 @media (orientation:portrait) and (max-width:599px) {

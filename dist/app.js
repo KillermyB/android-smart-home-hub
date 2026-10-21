@@ -352,7 +352,7 @@
     lyricsLifecycle();centerLyricsLine();houseUpdate();
     var modalFocus=document.activeElement&&document.activeElement.getAttribute('data-action');
     nativeFullscreen();var root=$('#overlay-root');$('#app').inert=!!(state.sleep||state.modal);if(state.sleep||state.modal)$('#app').setAttribute('aria-hidden','true');else $('#app').removeAttribute('aria-hidden');
-    if(state.sleep){var q=quote();root.innerHTML='<section class="screensaver" aria-label="Horloge de veille" data-action="wake"><button class="icon-button sleep-exit" data-action="wake" aria-label="Quitter la veille">'+icon('close')+'</button>'+(preferences.standby.date?'<p class="sleep-date">'+esc(dayText())+'</p>':'')+'<div class="sleep-time" data-clock></div>'+sleepContext()+'<div data-sleep-music>'+sleepMusic()+'</div>'+(preferences.standby.quote?'<figure class="sleep-thought '+(q.text.length>180?'is-long':'')+'"><span class="sleep-rule" aria-hidden="true"></span><blockquote class="sleep-quote">'+esc(q.text)+'</blockquote><figcaption><strong class="sleep-author">'+esc(q.author)+'</strong><span class="sleep-work">'+esc(q.work)+'</span></figcaption></figure>':'')+'<span class="sleep-hint">Touchez l’écran pour revenir</span></section>';updateClock();renderSleepMusic();return;}
+    if(state.sleep){var q=quote();root.innerHTML='<section class="screensaver" aria-label="Horloge de veille" tabindex="-1" data-action="wake">'+(preferences.standby.date?'<p class="sleep-date">'+esc(dayText())+'</p>':'')+'<div class="sleep-time" data-clock></div>'+sleepContext()+'<div data-sleep-music>'+sleepMusic()+'</div>'+(preferences.standby.quote?'<figure class="sleep-thought '+(q.text.length>180?'is-long':'')+'"><span class="sleep-rule" aria-hidden="true"></span><blockquote class="sleep-quote">'+esc(q.text)+'</blockquote><figcaption><strong class="sleep-author">'+esc(q.author)+'</strong><span class="sleep-work">'+esc(q.work)+'</span></figcaption></figure>':'')+'<span class="sleep-hint">Touchez l’écran pour revenir</span></section>';updateClock();renderSleepMusic();return;}
     if(!state.modal){root.innerHTML='';HubMusicOrbit.mount($('.dash-music .music-orbit'));return;}
     var heading='Réglages',body='';
     if(state.modal==='settings')body=settings();
@@ -499,7 +499,7 @@
     else if(cmd==='share-recipe'){var r=state.recipes.find(function(x){return x.id===state.recipeId;});if(r)exportKept([{id:'recipe-'+r.id,kind:'recipe',title:r.title,time:r.time,servings:r.servings,url:HubTools.safeURL(r.source)||'',ingredients:r.ingredients.map(function(i){return (i.qty?i.qty+' '+i.unit+' ':'')+i.name;}).join('\n'),steps:r.steps.map(function(x){return x.text;}).join('\n')}]);}
     else if(cmd==='theme'){changeTheme();}
     else if(cmd==='sleep-music'){state.sleep=false;state.page='music';render();resetIdle();}
-    else if(cmd==='sleep'){state.sleep=true;lastQuoteAt=Date.now();renderOverlay();scheduleTick();animateEnter($('.screensaver'));var exit=$('.sleep-exit');if(exit)exit.focus();}
+    else if(cmd==='sleep'){state.sleep=true;lastQuoteAt=Date.now();renderOverlay();scheduleTick();animateEnter($('.screensaver'));var screen=$('.screensaver');if(screen)screen.focus({preventScroll:true});}
     else if(cmd==='wake'){wake();}
     else if(['personalize','personal-backup','connections-status','screen-targets'].includes(cmd)){openModal(cmd);}
     else if(cmd==='home-move'){var move=v.split(':');commitPreferences(HubPreferences.move(preferences,move[0],Number(move[1])));}

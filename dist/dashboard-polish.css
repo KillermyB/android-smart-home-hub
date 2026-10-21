@@ -180,3 +180,10 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 
 /* Keep display recovery first and comfortably tappable in settings. */
 .settings-display{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px;background:var(--soft);border:1px solid var(--line);border-radius:20px;margin-bottom:18px}.settings-display h3{font-size:16px;margin:0 0 5px}.settings-display p{font-size:13px;line-height:1.5;color:var(--muted);margin:0}.settings-display .pill{min-height:52px;flex-shrink:0;gap:10px}.settings-display .pill span{white-space:normal;text-align:left}@media(max-width:600px){.settings-display{align-items:stretch;flex-direction:column;gap:14px}.settings-display .pill{width:100%;justify-content:center}}
+
+
+/* Anchor the quotation near the bottom while keeping touch-to-wake available. */
+.screensaver,.screensaver.has-music{justify-content:flex-start;overflow:auto}
+.screensaver .sleep-thought{margin-top:auto;margin-bottom:0;padding-top:42px}
+@media(orientation:landscape){.screensaver,.screensaver.has-music{padding-top:56px;padding-bottom:64px}}
+@media(orientation:landscape) and (max-height:700px){.screensaver .sleep-thought{padding-top:24px}}
