@@ -415,3 +415,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [ ] Association et ergonomie à confirmer sur le téléphone réel depuis Réglages → Télécommande sur le cadre.
 
 - [x] v0.25.0 installée en Wi-Fi, empreintes des fichiers vérifiées ; onglet existant actualisé et affichage réel en plein écran confirmé. Télécommande toujours active avec un état récent après actualisation.
+
+
+## v0.25.1 — Veille plus aérée
+
+- [x] Espacement vertical augmenté entre date, heure, météo et citation. Lecteur compact indépendant en bas à droite, contour blanc de progression conservé ; son apparition ne réduit plus l’horloge.
+- [x] 173 tests et syntaxe réussis, analyse de secrets sans détection. Contrôles avec lecture simulée à 1280 × 800, sans musique, avec citation longue, 1280 × 600, 375 × 667 et 320 × 740 : absence de chevauchement et de débordement horizontal ; mouvement réduit conservé. Sur petit écran, lecteur après la citation dans la zone défilante.
+
+- [x] v0.25.1 installée et veille réelle vérifiée en plein écran sur le cadre ; lecteur musical contrôlé avec données simulées en navigateur isolé.

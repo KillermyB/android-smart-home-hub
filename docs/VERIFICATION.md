@@ -376,3 +376,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur du Mac indisponible via le contrôle graphique ; vérification du téléphone physique toujours en attente.
 
 - v0.25.0 installée en Wi-Fi, empreintes des fichiers vérifiées ; onglet existant actualisé et affichage réel en plein écran confirmé. Télécommande toujours active avec un état récent après actualisation.
+
+
+## v0.25.1 — Veille plus aérée
+
+- Espacement vertical augmenté entre date, heure, météo et citation. Lecteur compact indépendant en bas à droite, contour blanc de progression conservé ; son apparition ne réduit plus l’horloge.
+- 173 tests et syntaxe réussis, analyse de secrets sans détection. Contrôles avec lecture simulée à 1280 × 800, sans musique, avec citation longue, 1280 × 600, 375 × 667 et 320 × 740 : absence de chevauchement et de débordement horizontal ; mouvement réduit conservé. Sur petit écran, lecteur après la citation dans la zone défilante.
+
+- v0.25.1 installée sur le cadre en Wi-Fi, empreintes vérifiées ; onglet existant actualisé, plein écran et veille réelle contrôlés. Lecture musicale testée en simulation uniquement, aucun morceau lancé sur les appareils.
