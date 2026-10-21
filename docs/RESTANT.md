@@ -454,3 +454,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] v0.26.2 copiée sur le cadre, 83 fichiers et manifeste servis vérifiés. Ancien PID du serveur local réparé après restauration automatique de sécurité ; aucun compte ni minuteur supprimé.
 
 - [x] Nouveau bouton testé sur le cadre : réglages ouverts, bouton touché, fermeture du panneau et accueil plein écran 1280 × 800 sans barre de navigateur constatés.
+
+
+## v0.26.3 — Lecteur de veille plus étroit
+
+- [x] Largeur réduite de 360 à 240 px, espacements resserrés ; pochette de 44 px, hauteur, emplacement et contour blanc conservés. Titres longs tronqués sans élargir la carte.
+- [x] Syntaxe et 179 tests réussis. Navigateur isolé 1280/320 px : largeur 240 px, contour fermé et progressif, titres longs, absence de débordement, disparition au repos et mouvement réduit vérifiés ; aucune commande à un appareil réel. Analyse de secrets sans détection.
+
+- [x] v0.26.3 installée sur le cadre, empreintes et manifeste servis vérifiés ; onglet existant actualisé, veille plein écran et lecteur de 240 px avec vraie lecture musicale constatés.

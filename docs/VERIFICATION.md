@@ -415,3 +415,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Cadre identifié en USB, service de maintenance existant relancé depuis son activité. Le premier essai de déploiement a correctement restauré la version précédente : serveur local actif mais PID sauvegardé périmé. Processus identifié par sa ligne exacte, référence corrigée, puis v0.26.2 activée avec empreintes et manifeste HTTP identiques (83 fichiers). Aucun changement du démarrage système.
 
 - Nouveau bouton constaté en tête des réglages du cadre, puis activé : retour à l’accueil avec document [0,0][1280,800], aucune barre de navigateur et capture réelle vérifiée.
+
+
+## v0.26.3 — Lecteur de veille compact
+
+- Largeur réduite de 360 à 240 px, sans modifier la hauteur ni la position en haut à gauche. Espaces internes resserrés et troncature des textes conservée.
+- Syntaxe, 179 tests et analyse de secrets réussis. Lecture simulée en navigateur isolé : carte 240 px à 1280 × 800, titres longs contenus, contour blanc fermé avec progression effective sans recréer le lecteur, pas de débordement à 320 px, mouvement réduit et masquage au repos vérifiés.
+
+- v0.26.3 installée sur le cadre identifié : empreintes et manifeste HTTP validés. Veille réelle plein écran 1280 × 800, lecteur de 240 px en haut à gauche, pochette et contour blanc constatés sans lancer ni modifier la lecture musicale.
