@@ -1,5 +1,15 @@
 # Liste de reprise
 
+## Interface et météo v0.15.0
+
+- [x] Inter locale, surfaces sombres neutres et accents orange ; cinq entrées dans le menu, Domotique avec robot et icône veille distincte.
+- [x] Horloge épurée, date en haut, salutation et phrase selon six plages horaires Zurich, mise à jour sans rechargement.
+- [x] États inactifs musique / repas modernisés, marque Spotify blanche sur dégradé orange, contributions en nuances orange.
+- [x] Tâches sur toute la largeur : 18 éléments courts visibles en deux colonnes à 1280 × 800 ; courses toujours exclues.
+- [x] Défilement du document supprimé ; seuls le contenu débordant, les listes et les grilles dédiées défilent.
+- [x] Détail météo réel : ressenti, vent, humidité, pluie, soleil, UV, sept jours et 24 heures, repli sur le relevé précédent en cas d’erreur.
+- [x] 240 citations sourcées, cycle mélangé sans répétition, historique précédent/suivant et mémoire des dernières lectures.
+
 ## Widgets et configuration v0.14.0
 
 - [x] Musique : appareil au-dessus de la grande pochette, titre de service retiré, barre blanche de progression écoulée.

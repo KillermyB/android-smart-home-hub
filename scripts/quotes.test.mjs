@@ -3,18 +3,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-test('200 unique sourced quotations remain readable and alternate authors', () => {
+test('240 unique sourced quotations remain readable and alternate authors', () => {
   const context = vm.createContext({});
   context.window = context;
   vm.runInContext(readFileSync(new URL('../dist/data.js', import.meta.url), 'utf8'), context);
   context.HUB_DATA = context.window.HUB_DATA;
   vm.runInContext(readFileSync(new URL('../dist/quotes.js', import.meta.url), 'utf8'), context);
   const quotes = context.HUB_DATA.quotes;
-  assert.equal(quotes.length, 200);
-  assert.equal(new Set(quotes.map(q => q.text.toLocaleLowerCase('fr'))).size, 200);
-  assert.equal(new Set(quotes.map(q => q.author)).size, 7);
+  assert.equal(quotes.length, 240);
+  assert.equal(new Set(quotes.map(q => q.text.toLocaleLowerCase('fr'))).size, 240);
+  assert.equal(new Set(quotes.map(q => q.author)).size, 8);
   quotes.forEach((q, i) => {
-    assert.ok(q.text.length > 5 && q.text.length <= 200);
+    assert.ok(q.text.length > 5 && q.text.length <= 240);
     assert.ok(q.author && q.work);
     assert.ok(['Stoïcisme', 'Littérature', 'Philosophie'].includes(q.category));
     assert.equal(new URL(q.source).protocol, 'https:');

@@ -133,7 +133,7 @@ test('page rendering preserves the shell, navigation, and an open modal', () => 
     $: selector => ({ '#main': main, '.modal': modal, '.footer [data-action="settings"]': footer })[selector] || null,
     applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, updateClock() {}, updateKeptFields() {}, lyricsLifecycle() {}, houseUpdate() {}
   });
-  for (const name of ['home', 'calendar', 'taskPage', 'kitchen', 'briefPage', 'companionPage', 'linksPage', 'shoppingPage', 'musicPage', 'housePage']) context[name] = () => name;
+  for (const name of ['home', 'calendar', 'taskPage', 'kitchen', 'briefPage', 'companionPage', 'linksPage', 'shoppingPage', 'musicPage', 'housePage', 'weatherPage']) context[name] = () => name;
   vm.runInContext(section('  function render() {', '  function title('), context);
   context.render(); assert.equal(main.innerHTML, 'home');
   context.state.page = 'calendar'; context.render();

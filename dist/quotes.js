@@ -1374,6 +1374,290 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
   }
 ]);
 
+// Additional public-domain editions, verified 21 October 2026.
+HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
+  {
+    "text": "Ce qui fait souvent le mécompte d’un écrivain, c’est qu’il croit rendre les choses telles qu’il les aperçoit ou qu’il les sent.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 7 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "On proscrirait moins de pensées d’un ouvrage, si on les concevait comme l’auteur.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 8 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Si une pensée ou un ouvrage n’intéressent que peu de personnes, peu en parleront.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 11 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Beaucoup de défiances et d’espérances raisonnables sont trompées.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 15 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "La prospérité fait peu d’amis.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 17 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Les longues prospérités s’écoulent quelquefois en un moment, comme les chaleurs de l’été sont emportées par un jour d’orage.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 18 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Il n’est pas donné à la raison de réparer tous les vices de la nature.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 24 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Les générations des opinions sont conformes à celles des hommes, bonnes et vicieuses tour à tour.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 33 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Personne ne veut être plaint de ses erreurs.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 35 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "L’estime s’use comme l’amour.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 44 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Celui qui fait rendre ses profusions utiles a une grande et noble économie.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 51 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Nous sommes moins offensés du mépris des sots, que d’être médiocrement estimés des gens d’esprit.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 65 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "La tranquillité d’esprit passerait-elle pour une meilleure preuve de la vertu ? La santé la donne.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 70 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "La modération des grands hommes ne borne que leurs vices.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 72 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Ceux qui croient n’avoir plus besoin d’autrui deviennent intraitables.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 83 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "On méprise les grands desseins lorsqu’on ne se sent pas capable des grands succès.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 88 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Les hommes ont de grandes prétentions et de petits projets.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 89 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Le terme de l’habileté est de gouverner sans la force.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 96 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Les habiles ne rebutent personne.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 100 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "L’extrême défiance n’est pas moins nuisible que son contraire ; la plupart des hommes deviennent inutiles à celui qui ne veut pas risquer d’être trompé.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 101 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Il faut tout attendre et tout craindre du temps et des hommes.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 102 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Nous découvrons en nous-mêmes ce que les autres nous cachent, et nous reconnaissons dans les autres ce que nous nous cachons à nous-mêmes.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 106 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Peu de maximes sont vraies à tous égards.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 111 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "On dit peu de choses solides lorsqu’on cherche à en dire d’extraordinaires.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 112 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Il n’y aurait pas beaucoup d’heureux, s’il appartenait à autrui de décider de nos occupations et de nos plaisirs.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 119 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Lorsqu’une chose ne peut nous nuire, il faut nous moquer de ceux qui nous en détournent.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 120 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Il y a plus de mauvais conseils que de caprices.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 121 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Pour exécuter de grandes choses, il faut vivre comme si on ne devait jamais mourir.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 142 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "La raison et le sentiment se conseillent et se suppléent tour à tour. Quiconque ne consulte qu’un des deux et renonce à l’autre, se prive inconsidérément d’une partie des secours qui nous ont été accordés pour nous conduire.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 150 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Il est bon d’être ferme par tempérament, et flexible par réflexion.",
+    "author": "Vauvenargues",
+    "work": "Réflexions et Maximes, 191 · éd. Furne, 1857",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/R%C3%A9flexions_et_Maximes_(Vauvenargues)/1-330"
+  },
+  {
+    "text": "Se moquer de la philosophie, c’est vraiment philosopher.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 4 · extrait, éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "Comme on se gâte l’esprit, on se gâte aussi le sentiment.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 6 · extrait, éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "À mesure qu’on a plus d’esprit, on trouve qu’il y a plus d’hommes originaux ; les gens du commun ne trouvent pas de différence entre les hommes.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 7 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "On se persuade mieux, pour l’ordinaire, par les raisons qu’on a soi-même trouvées, que par celles qui sont venues dans l’esprit des autres.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 10 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "Les rivières sont des chemins qui marchent et qui portent où l’on veut aller.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 17 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "La dernière chose qu’on trouve en faisant un ouvrage, est de savoir celle qu’il faut mettre la première.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 19 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "Les mots diversement rangés font un divers sens, et les sens diversement rangés font différents effets.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 23 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "L’éloquence est une peinture de la pensée ; et ainsi, ceux qui, après avoir peint, ajoutent encore, font un tableau au lieu d’un portrait.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 26 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "Quand on voit le style naturel, on est tout étonné et ravi, car on s’attendait de voir un auteur, et on trouve un homme.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 29 · extrait, éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  },
+  {
+    "text": "Voulez-vous qu’on croie du bien de vous ? n’en dites pas.",
+    "author": "Blaise Pascal",
+    "work": "Pensées, section I, fragment 44 · éd. Brunschvicg, Hachette, 1925",
+    "category": "Philosophie",
+    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  }
+]);
+
 // Balance authors across the full cycle, without duplicate draws.
 (function () {
   var groups = {}, ordered = [], total = HUB_DATA.quotes.length, last = '';

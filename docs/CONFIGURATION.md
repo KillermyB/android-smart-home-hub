@@ -4,7 +4,7 @@ Le cadre et le site privé utilisent des stockages de navigateur distincts. Une 
 
 ## Météo et GitHub
 
-- Moudon est chargée automatiquement si aucune ville n’a été choisie. Le choix existant est conservé. Le relevé réel affiche sa date et se renouvelle toutes les 30 minutes tant que l’onglet est visible.
+- Moudon est chargée automatiquement si aucune ville n’a été choisie. Le choix existant est conservé. La tuile ouvre une vue détaillée avec la date du relevé, 24 heures et sept jours de prévisions. La tuile d’accueil conserve seulement les conditions et températures. Le relevé se renouvelle toutes les 30 minutes tant que l’onglet est visible.
 - GitHub public utilise le compte déjà choisi, sans clé. Les dépôts privés ne sont pas inclus dans ce compteur ; zéro commit public n’indique pas une absence d’activité privée.
 - Les anciennes données d’exemple sont masquées lors de cette mise à jour, sans supprimer tâches, recettes ou favoris. Le pied de page ouvre simplement les réglages.
 
@@ -63,3 +63,6 @@ Ouvrir le bouton **Domotique** dans la barre du haut après avoir préparé l’
 ## Qualité de l’air
 
 Le petit widget météo affiche l’indice **européen** et l’UV, séparément. Données modélisées [Open-Meteo / CAMS ENSEMBLE](https://open-meteo.com/en/docs/air-quality-api), actualisées toutes les 30 minutes lorsque la page est visible. Le relevé daté est conservé en cas de coupure ; ce ne sont pas des mesures de capteurs intérieurs.
+
+
+Les 240 citations disposent d’un cycle mélangé, d’un historique récent local et des commandes précédente/suivante. Les thèmes et la fréquence restent dans les réglages. La date et les salutations utilisent Europe/Zurich. La police Inter et la marque Spotify sont incluses localement avec leurs références de licence.

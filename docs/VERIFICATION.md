@@ -1,5 +1,16 @@
 # Vérification
 
+## v0.15.0 — Interface épurée et météo détaillée
+
+- `npm run check`, 81 tests et `git diff --check` réussis. Police Inter variable locale et sa licence incluses ; nouvelle marque Spotify vectorielle blanche servie localement. Tous les nouveaux modules / ressources répondent HTTP 200 avec le serveur Node optionnel.
+- Accueil clair/sombre à 1280 × 800 : navigation orange, Domotique dans les cinq entrées avec robot, veille avec écran/lune distinct du minuteur ; date en haut, horloge épurée et deux textes liés à six plages horaires Zurich. Contributions GitHub en nuances orange, repas / musique inactifs modernisés.
+- 18 tâches synthétiques sur l’origine de vérification distincte : toutes visibles à 1280 × 800 en deux colonnes ; à 320 px, document 320 × 800 sans débordement, défilement uniquement dans la liste. Le panneau décoratif est retiré. Aucune tâche de vérification créée dans Todoist ou sur le cadre.
+- Cuisine à 320 px avec minuteur actif : pas de débordement horizontal ou du document ; minuterie dans l’en-tête et boutons cuisine accessibles dans le contenu défilant. Minuteur de contrôle arrêté ensuite.
+- Météo : clic sur le corps de la tuile ouvre les détails réels, sept jours / 24 heures reçus auprès d’Open-Meteo. Données manquantes affichées indisponibles, repli sur le relevé précédent en cas d’échec. Vue complète à 1280 × 800 sans défilement vertical ; bande horaire défilante horizontalement. Aucune erreur console constatée sur les vues contrôlées.
+- 240 citations uniques et sourcées, dont 40 supplémentaires de Vauvenargues et Pascal sur éditions anciennes Wikisource. Cycle sans répétition, alternance d’auteurs lorsque possible, précédent/suivant et historique récent local testés.
+- v0.15.0 copiée sur le cadre via SSH Wi-Fi après contrôle d’identité, empreintes et contenu HTTP vérifiés. Contrôle d’affichage et conservation des connexions à compléter ci-dessous.
+
+
 ## v0.14.0 — Widgets et configuration directe
 
 - `npm run check`, 78 tests et `git diff --check` réussis. Les nouveaux modules et leur CSS sont servis en HTTP 200 par le serveur Node optionnel.
