@@ -57,7 +57,10 @@ test('CGI enforces origin, key, subnet, bounded payload, duplicate IDs and one-s
       assert.equal(r.status,0,r.stderr);return r.stdout;
     };
     const local={REMOTE_ADDR:'127.0.0.1',HTTP_HOST:'127.0.0.1:4173',HTTP_REFERER:'http://127.0.0.1:4173/'};
-    for(const extra of [{HTTP_ORIGIN:'https://evil.test'},{HTTP_HOST:'evil.test:4180'},{REMOTE_ADDR:'192.168.2.4'},{CONTENT_TYPE:'application/x-www-form-urlencoded'},{REQUEST_METHOD:'DELETE'},{QUERY_STRING:'key='+key}])assert.doesNotMatch(call('status','-',extra),/200 OK/);
+    for(const extra of [{HTTP_ORIGIN:'https://evil.test'},{HTTP_HOST:'evil.test:4180'},{REMOTE_ADDR:'192.168.2.4'},{CONTENT_TYPE:'application/x-www-form-urlencoded'},{REQUEST_METHOD:'DELETE'},{QUERY_STRING:'key='+key}])assert.match(call('status','-',extra),/Status: (400|403|405)/);
+    assert.equal(JSON.parse(call('status','-',{HTTP_ORIGIN:'',HTTP_REFERER:'http://192.168.1.11:4180/'}).split('\r\n\r\n')[1]).heartbeat,0);
+    for(const referer of ['', 'https://evil.test/', 'http://192.168.1.11:4180.evil.test/', 'http://192.168.1.11:4180@evil.test/'])assert.match(call('status','-',{HTTP_ORIGIN:'',HTTP_REFERER:referer}),/Status: 403/);
+    assert.match(call('status','-',{HTTP_ORIGIN:'https://evil.test',HTTP_REFERER:'http://192.168.1.11:4180/'}),/Status: 403/);
     assert.doesNotMatch(call('status','-',{},bridgeKey),/200 OK/);
     const api=core().HubRemote,encoded=api.encode(command);
     assert.match(call('send',encoded,{},key,id),/503 Service Unavailable/);

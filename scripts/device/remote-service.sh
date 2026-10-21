@@ -43,7 +43,7 @@ for weight in 400 500 600 700; do cp "$BASE/www/fonts/inter-$weight.woff2" "$BAS
 cp "$BASE/www/cgi-bin/remote.cgi" "$BASE/remote-www/cgi-bin/remote.cgi" || exit 1
 chmod 700 "$BASE/remote-www/cgi-bin/remote.cgi"
 cat >"$BASE/remote.conf" <<EOF
-A:$ip/255.255.255.0
+A:${ip%.*}.0/255.255.255.0
 D:*
 .js:application/javascript
 .css:text/css

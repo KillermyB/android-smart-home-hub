@@ -17,6 +17,8 @@ Le QR contient une clé de télécommande privée de 256 bits, indépendante de 
 
 Le service local utilise **HTTP sans TLS** : clé et contenus ne sont pas chiffrés sur le Wi-Fi. Réservé au réseau domestique de confiance ; ne pas ouvrir le port sur Internet. Ce n’est pas une application native ni une PWA hors ligne. Si DHCP change l’adresse du cadre après redémarrage, rescanner son QR ; aucun faux nom hub.local n’est annoncé.
 
+Activation persistante autorisée et vérifiée sur le cadre le 21 octobre 2026. La page mobile et la lecture des états associés répondent sur le Wi-Fi ; l’essai sur le téléphone réel reste à faire.
+
 ## Maintenance
 
 ```sh

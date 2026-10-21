@@ -14,7 +14,14 @@ local=false
 if [ "$REMOTE_ADDR" = 127.0.0.1 ] && [ "$HTTP_HOST" = 127.0.0.1:4173 ]; then
     case "$HTTP_REFERER" in http://127.0.0.1:4173/*) local=true;; *) reply '403 Forbidden' '{}';; esac
 else
-    [ "$HTTP_HOST" = "$ip:4180" ] && [ "$HTTP_ORIGIN" = "http://$ip:4180" ] || reply '403 Forbidden' '{}'
+    [ "$HTTP_HOST" = "$ip:4180" ] || reply '403 Forbidden' '{}'
+    # BusyBox 1.20 does not export Origin to CGI; require a same-origin Referer
+    # when that header is unavailable, and reject a conflicting Origin.
+    if [ -n "$HTTP_ORIGIN" ]; then
+        [ "$HTTP_ORIGIN" = "http://$ip:4180" ] || reply '403 Forbidden' '{}'
+    else
+        case "$HTTP_REFERER" in "http://$ip:4180/"*) ;; *) reply '403 Forbidden' '{}';; esac
+    fi
     # A remote phone must be on this Wi-Fi /24, never another interface or Internet.
     [ "${REMOTE_ADDR%.*}" = "${ip%.*}" ] || reply '403 Forbidden' '{}'
 fi
