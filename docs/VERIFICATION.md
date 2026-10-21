@@ -510,3 +510,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Syntaxe et 188 tests réussis ; huit formats de 320 à 1280 px contrôlés avec données simulées. Sur tablette portrait : largeur utile entière, espace sous météo mesuré à 16 px et hauteur entre 184 et 210 px, vignette masquée, fond visible, citation distincte et basse. Titre long, absence de pochette, arrêt de lecture, mouvement réduit, progression stable et réveil conservés.
 
 - Installation v0.27.8 validée sur le cadre identifié : empreintes et manifeste servi vérifiés après réconciliation du seul PID HTTP Hub actif. Aucun réglage natif ou compte modifié. Lecture active testée avec données simulées, sans déclenchement de musique réelle.
+
+
+## v0.27.9 — Pochette et libellé minimal
+
+- Syntaxe et 188 tests réussis. Une seule image de pochette est rendue ; pas de fond dupliqué ni de commande. Pochette contenue dans un carré arrondi et titre/artiste identifiés séparément de la sortie audio, masquée en portrait.
+- Navigateur isolé sur huit formats de 320 à 1280 px : pochette de 180 à 280 px centrée, titre de 17 px et artiste de 13 px alignés à gauche dessous. Hauteurs de l’image et du SVG égales, contour de 2 px (au lieu de 4 en paysage), opacité .75. Texte hors contour, citation séparée et basse, titre long, absence de pochette et lecture inactive contrôlés. Progression stable sans remplacement du lecteur et mouvement réduit vérifiés, aucune lecture réelle déclenchée.
+
+- Rotation de viewport en direct : un même lecteur passe du contour paysage au contour carré portrait puis revient, dimensions du SVG et contour de 2/4 px corrects. Installation v0.27.9 validée sur le cadre identifié, empreintes et manifeste servi conformes ; lecture active contrôlée avec données simulées, sans lancer de musique réelle.

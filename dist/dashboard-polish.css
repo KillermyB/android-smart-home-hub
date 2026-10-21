@@ -189,4 +189,6 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 @media(orientation:landscape) and (max-height:700px){.screensaver .sleep-thought{padding-top:24px}}
 
 /* Standby remains an indication; playback controls live in the focus player. */
-.sleep-music-backdrop{display:none}
+.sleep-music-artwork{display:block;width:44px;height:44px;border-radius:12px;flex:none;overflow:hidden}
+.sleep-music-artwork>img,.sleep-music-artwork>.sleep-music-symbol{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.sleep-music-artwork>.sleep-music-symbol{display:grid;place-items:center}

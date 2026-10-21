@@ -221,8 +221,8 @@ test('standby music remains a passive active-track indication with cover and ela
  const context=vm.createContext({music:{data:{is_playing:true,item:{name:'Track',artists:[{name:'Artist'}],duration_ms:10000,album:{images:[]}},device:{name:'Home'}}},HubTools:{safeURL:s=>s},esc:String,icon:()=>'<icon>',musicOrbit:()=>'<svg data-tile-progress></svg>'});
  context.preferences={standby:{music:true}};
  vm.runInContext(section('  function sleepMusic()', '  var sleepMusicKey='),context);
- const html=context.sleepMusic();assert.match(html,/Track/);assert.match(html,/Artist · Home/);assert.match(html,/data-tile-progress/);assert.doesNotMatch(html,/sleep-music-device|<button|data-action/);assert.match(html,/<article/);assert.doesNotMatch(html,/sleep-music-backdrop/);
- context.music.data.item.album.images=[{url:'https://example.com/cover.jpg'}];const illustrated=context.sleepMusic();assert.match(illustrated,/sleep-music-backdrop/);assert.equal((illustrated.match(/src="https:\/\/example.com\/cover.jpg"/g)||[]).length,2);assert.doesNotMatch(illustrated,/<button|data-action/);
+ const html=context.sleepMusic();assert.match(html,/Track/);assert.match(html,/Artist/);assert.match(html,/ · Home/);assert.match(html,/data-tile-progress/);assert.doesNotMatch(html,/sleep-music-device|<button|data-action/);assert.match(html,/<article/);assert.doesNotMatch(html,/sleep-music-backdrop/);
+ context.music.data.item.album.images=[{url:'https://example.com/cover.jpg'}];const illustrated=context.sleepMusic();assert.match(illustrated,/sleep-music-artwork/);assert.doesNotMatch(illustrated,/sleep-music-backdrop/);assert.equal((illustrated.match(/src="https:\/\/example.com\/cover.jpg"/g)||[]).length,1);assert.doesNotMatch(illustrated,/<button|data-action/);
  context.music.data.is_playing=false;assert.equal(context.sleepMusic(),'');context.music.data=null;assert.equal(context.sleepMusic(),'');
 });
 test('standby progress updates each second only for visible active playback',()=>{

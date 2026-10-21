@@ -541,3 +541,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Carte musicale portrait remontée à 16 px sous le contexte météo/rendez-vous, sans zone flexible de centrage. Hauteur réduite à 184 px sur tablette et 140 px minimum sur téléphone ; largeur utile conservée.
 - [x] Pochette en fond, dégradé, progression et citation basse conservés. Titres sur deux lignes, hauteur adaptable aux métadonnées longues.
 - [x] v0.27.8 installée sur le cadre identifié ; fichiers et manifeste servi vérifiés.
+
+
+## v0.27.9 — Pochette seule en veille portrait
+
+- [x] Pochette carrée arrondie centrée, sans grande carte ni fond dégradé. Petit titre et artiste dessous à gauche ; appareil masqué en portrait.
+- [x] Contour de progression fin de 2 px autour de la pochette uniquement ; libellé extérieur au contour, rendu compact paysage conservé. Sans commande de lecture.
+- [x] Absence de pochette/lecture gérée, huit formats vérifiés et 188 tests réussis.
+- [x] v0.27.9 installée sur le cadre identifié, fichiers et manifeste servi vérifiés.
