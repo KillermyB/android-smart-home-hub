@@ -384,5 +384,7 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Pont discret sans navigation/réveil lors d’une action, clé d’association distincte révocable, quatre actions bornées, file FIFO à usage unique et expiration courte. Aucun jeton de compte envoyé au téléphone.
 - [x] Surface Wi-Fi optionnelle séparée sur 4180 ; application principale toujours sur 127.0.0.1:4173, lancement et surveillance depuis les scripts existants sans nouvelle écriture système.
 - [x] Clavier natif passé de français à français Suisse (QWERTZ), réglages précédents sauvegardés en privé sur le cadre.
+- [x] v0.23.1 publiée sur GitHub et Sites, fichiers vérifiés et plein écran confirmé sur le cadre en Wi-Fi. 169 tests réussis.
+- [ ] Activation persistante du port 4180 en attente de l’accord explicite demandé : la validation automatique a refusé cette seule étape ; aucun listener distant activé.
 - [ ] Association et ergonomie sur le téléphone réel à confirmer par le propriétaire. HTTP local uniquement, pas de chiffrement réseau ; Wi-Fi domestique de confiance requis.
 - [ ] Adresse stable toujours à traiter dans le routeur ; rescanner le QR si DHCP change l’IP. Le navigateur Hub doit rester ouvert, y compris en veille Hub. Son du minuteur selon son activation sur le cadre.
