@@ -445,3 +445,12 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 
 - Panne Spotify simulée puis rétablissement : heure de la dernière réussite conservée, badge retiré après réussite suivante. Thème sombre et animations réduites contrôlés.
 - v0.27.0 installée sur le cadre identifié : 85 empreintes statiques correspondent aux sources locales, manifeste HTTP vérifié, nouveaux réglages et plein écran constatés. Le déploiement automatique a d’abord annulé son activation car un ancien processus HTTP était absent du fichier PID ; l’ancien serveur Hub a été identifié, arrêté seul, puis la version contrôlée activée.
+
+
+## v0.27.1 — Portrait
+
+- 187 tests et vérifications de syntaxe réussis. Modification limitée à une feuille CSS conditionnée par l’orientation, son chargement et le numéro de version ; aucune commande de service ou connexion modifiée.
+- Contrôles de navigateur à 800 × 1280, 768 × 1024, 1024 × 1366, 600 × 960, 390 × 844, 320 × 740 et 1280 × 800. Hiérarchie de l’accueil, heure du rendez-vous, absence de débordement horizontal du document, maintien de la composition paysage, masquage et ordre personnalisés contrôlés.
+- Calendrier, tâches (36 visibles dans la liste), bibliothèque et étapes de recette, domotique, météo détaillée, brief, lecteur avec paroles et trois minuteurs du header vérifiés sur tablette portrait. Thème sombre et mouvement réduit conservés. Les données et commandes de ces contrôles sont simulées.
+
+- v0.27.1 installée par la maintenance Wi-Fi après lecture de l’identité du cadre et correction du suivi de son seul serveur HTTP : fichiers vérifiés et manifeste servi conformes. Le capteur de rotation n’a pas été modifié ; l’essai portrait physique reste distinct des contrôles de viewport.

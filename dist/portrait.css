@@ -1,0 +1,177 @@
+/* Reflow the same interactive cards; account state and custom order stay intact. */
+@media (orientation:portrait) {
+  .dashboard:not(.custom-dashboard)>.dashboard-hero,
+  .dashboard:not(.custom-dashboard) .dashboard-right,
+  .dashboard:not(.custom-dashboard)>.dashboard-tiles,
+  .dashboard:not(.custom-dashboard)>.dashboard-details { display:contents }
+  .dashboard:not(.custom-dashboard) .dash-clock { order:0 }
+  .dashboard:not(.custom-dashboard) .dash-weather { order:1 }
+  .dashboard:not(.custom-dashboard) .dash-agenda { order:2 }
+  .dashboard:not(.custom-dashboard) .dash-tasks { order:3 }
+  .dashboard:not(.custom-dashboard) .dash-music { order:4 }
+  .dashboard:not(.custom-dashboard) .dash-meal { order:5 }
+  .dashboard:not(.custom-dashboard) .dash-quote,
+  .dashboard:not(.custom-dashboard) .home-note { order:6 }
+  .dashboard:not(.custom-dashboard) .github-card { order:7 }
+  .dashboard .github-card .commit-map { min-width:0;grid-template-columns:repeat(14,minmax(0,1fr));grid-template-rows:repeat(2,18px);align-self:center;gap:5px }
+  .dashboard .github-card .commit-dot { min-width:0;max-width:20px;width:100%;height:18px;aspect-ratio:auto;justify-self:center }
+  .screensaver { overflow:auto;justify-content:safe center }
+  .screensaver .sleep-time { font-size:clamp(100px,23vw,260px) }
+  .screensaver.has-music .sleep-time { font-size:clamp(100px,23vw,260px) }
+  .screensaver .sleep-thought { max-width:850px;margin-top:clamp(40px,6vh,84px) }
+  .screensaver .sleep-quote { font-size:clamp(24px,3.4vw,36px);line-height:1.5 }
+  .screensaver .sleep-thought.is-long .sleep-quote { font-size:clamp(21px,2.9vw,31px) }
+  .screensaver .sleep-context { flex-wrap:wrap;row-gap:16px;max-width:100%;margin-top:36px }
+  .screensaver .sleep-date { font-size:clamp(19px,2.6vw,28px)!important }
+  .sleep-appointment { max-width:100%;min-width:0 }
+}
+
+@media (orientation:portrait) and (min-width:600px) {
+  .shell { padding:24px 24px 16px }
+  .header { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;min-height:0;margin-bottom:20px }
+  .header nav { grid-column:1/-1;order:0;width:100%;margin:0;padding:5px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-radius:32px }
+  .header nav .nav-button { padding:0 10px;min-height:56px;gap:9px;font-size:16px;white-space:nowrap }
+  .header .nav-button svg { width:22px;height:22px;flex-shrink:0 }
+  .header-widgets { grid-column:1;grid-row:2;order:0;flex-basis:auto;width:auto;margin:0;min-width:0 }
+  .header-actions { grid-column:2;grid-row:2;margin:0;gap:10px;flex-wrap:nowrap }
+  .header .icon-button { width:52px;height:52px;min-height:52px }
+  .header-actions .ui-icon { width:23px;height:23px }
+  .header-timers { flex-wrap:wrap;gap:6px }
+  .header-timers .header-timer button { min-height:48px;padding:0 10px }
+  .header-timers [data-timer-label] { font-size:14px }
+  .footer { display:none }
+  .dashboard,.dashboard.custom-dashboard { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto;gap:14px;align-content:start;flex:none;min-height:0;height:auto!important;padding-bottom:6px }
+  .dashboard .card { grid-area:auto;min-width:0;margin:0;border-radius:26px }
+  .dashboard .dash-clock,.dashboard.custom-dashboard>.dash-clock { grid-column:1/-1;grid-row:auto;min-height:clamp(290px,25vh,370px);padding:30px 34px }
+  .dashboard .dash-clock .day { font-size:21px }
+  .dashboard .dash-clock .clock-time { font-size:clamp(140px,22vw,228px);line-height:1.02;letter-spacing:-.075em }
+  .dashboard .dash-clock .clock-greeting { font-size:38px;margin-top:4px }
+  .clock-foot { font-size:15px;max-width:100% }
+  .dashboard .dash-weather,.dashboard .dash-agenda,.dashboard.custom-dashboard>.dash-weather,.dashboard.custom-dashboard>.dash-agenda { grid-column:auto;min-height:clamp(225px,18vh,270px);padding:22px }
+  .dashboard .dash-temperature { font-size:76px;gap:10px;line-height:1.05 }
+  .dashboard .dash-temperature>.weather-icon { width:50px;height:50px }
+  .dashboard .dash-weather-top { min-height:85px;gap:8px }
+  .dashboard .dash-weather p { font-size:13px;line-height:1.5 }
+  .air-widget { width:110px;flex-shrink:0 }
+  .air-widget>span { font-size:11px }
+  .dash-forecast { gap:5px }
+  .dash-forecast>div { flex:1;min-width:0;min-height:76px;padding:8px 4px;flex-direction:column;gap:5px }
+  .dash-forecast small { font-size:12px }
+  .dash-forecast strong { font-size:15px }
+  .dash-forecast .weather-icon { width:34px;height:34px }
+  .dashboard .card-title h2 { font-size:16px }
+  .dashboard .dash-agenda { gap:8px }
+  .agenda-track-row { grid-template-columns:minmax(0,1fr);gap:5px;min-height:64px }
+  .agenda-track-name { font-size:12px;line-height:1.3 }
+  .agenda-track { min-height:46px }
+  .agenda-track-event { min-height:46px;padding:6px 10px }
+  .agenda-track-event strong,.agenda-track-event>span { font-size:14px }
+  .agenda-track-hours { margin-left:0;font-size:11px }
+  .dashboard .dash-tasks,.dashboard .dash-music,.dashboard.custom-dashboard>.dash-tasks,.dashboard.custom-dashboard>.dash-music { grid-column:auto;min-height:200px;padding:20px }
+  .dashboard .dash-tasks .card-title h2 { display:flex;align-items:center;gap:8px }
+  .dashboard .dash-tasks .task-list { margin-top:6px }
+  .dashboard .dash-tasks .task,.dashboard .dash-tasks .task-toggle { min-height:46px;font-size:16px }
+  .dashboard .task-more { min-width:44px;min-height:44px }
+  .dashboard .dash-music { justify-content:center }
+  .dashboard .dash-music .tile-device { font-size:14px }
+  .dashboard .dash-music .music-mini strong { font-size:21px }
+  .dashboard .dash-music .music-mini small { font-size:15px }
+  .dashboard .dash-music .music-controls { gap:18px;margin-top:16px }
+  .dashboard .dash-music .music-controls button { min-width:50px;width:50px;min-height:50px;height:50px }
+  .dashboard .dash-meal,.dashboard .dash-quote,.dashboard .home-note,.dashboard.custom-dashboard>.dash-meal,.dashboard.custom-dashboard>.dash-quote,.dashboard.custom-dashboard>.home-note { grid-column:auto;min-height:160px;padding:20px }
+  .dashboard .dash-meal strong { font-size:32px }
+  .meal-top,.dashboard .dash-meal small { font-size:13px }
+  .dashboard .dash-quote { display:flex }
+  .dashboard .dash-quote .quote-open,.dashboard .home-note-open { font-size:18px;line-height:1.45 }
+  .dashboard .quote-author { font-size:13px }
+  .dashboard .github-card,.dashboard.custom-dashboard>.github-card { grid-column:1/-1;display:grid;grid-template-columns:145px minmax(0,1fr);min-height:110px;padding:16px 24px;gap:6px 22px }
+  .dashboard .github-identity { grid-column:1;grid-row:1;font-size:12px;line-height:1.2 }
+  .dashboard .github-stat { grid-column:1;grid-row:2;gap:9px;align-items:baseline }
+  .dashboard .github-stat strong { font-size:36px;line-height:1 }
+  .dashboard .github-stat>span { font-size:11px }
+  .dashboard .github-card .commit-map { grid-column:2;grid-row:1/3;margin:0 }
+  .dashboard .github-foot { grid-column:1/-1;font-size:12px;margin:0 }
+  .page-top { gap:18px;flex-wrap:wrap;margin-bottom:24px }
+  .page-top h1 { font-size:36px }
+  .page-top p { font-size:16px;line-height:1.5 }
+  .toolbar { flex-wrap:wrap;gap:10px }
+  .pill { min-height:50px;font-size:15px }
+  .agenda-toolbar { width:100%;gap:9px }
+  .agenda-toolbar .segmented button { min-height:50px;font-size:15px;padding:0 17px }
+  .calendar-filters label { min-height:50px;font-size:15px }
+  .agenda-week { display:flex;overflow-x:auto;min-height:580px;padding-bottom:10px;scroll-snap-type:x proximity }
+  .agenda-week .week-day { flex:0 0 clamp(160px,23vw,225px);min-width:0;min-height:550px;scroll-snap-align:start }
+  .agenda-week .event-title { font-size:15px }
+  .agenda-week .event-time { font-size:13px }
+  .calendar-timeline { min-height:460px;max-height:calc(100dvh - 350px) }
+  .task-board { grid-template-columns:minmax(0,1fr);max-height:none }
+  .task-page .task-board .task,.task-board .task-toggle { min-height:66px;font-size:18px }
+  .task-category-filters select { min-height:50px;font-size:16px }
+  .recipe-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .recipe-content h2 { font-size:25px }
+  .recipe-content p,.recipe-meta { font-size:14px }
+  .cook-layout { grid-template-columns:minmax(0,1fr);flex:none;gap:18px }
+  .ingredients label { min-height:52px;font-size:17px }
+  .cook-step { min-height:420px;padding:32px }
+  .cook-step>p { font-size:27px }
+  .step-controls { position:sticky;bottom:0;background:inherit;padding-top:18px }
+  .weather-detail-main { grid-template-columns:minmax(0,1fr) }
+  .weather-overview,.weather-week { padding:28px }
+  .weather-day { min-height:56px;font-size:16px }
+  .weather-hour-strip .weather-icon { width:44px;height:44px }
+  .music-stage { grid-template-columns:minmax(0,1fr);padding:30px 22px;gap:32px;flex:none }
+  .music-visual { width:100%;max-width:520px;margin:0 auto }
+  .music-cover { max-width:420px;margin:auto }
+  .music-info { width:100%;max-width:640px;margin:0 auto }
+  .music-info h1 { font-size:clamp(38px,5.6vw,62px);margin-top:0 }
+  .music-artist { font-size:26px }
+  .music-info .music-controls { justify-content:center;margin:26px 0 }
+  .music-info .music-play { width:80px;height:80px;min-height:80px }
+  .music-info .music-skip { width:56px;min-height:56px }
+  .ha-layout.is-connected .ha-grid-scene { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .ha-layout.is-connected .ha-grid-lighting { grid-template-columns:repeat(3,minmax(0,1fr)) }
+  .ha-scene { min-height:64px;padding:14px }
+  .ha-scene strong { font-size:15px;line-height:1.4 }
+  .ha-layout.is-connected .ha-lamp { min-height:108px;padding:14px;grid-template-columns:24px minmax(0,1fr) 48px;gap:9px }
+  .ha-lamp h3 { font-size:15px;line-height:1.3 }
+  .ha-lamp p.ha-state { font-size:12px }
+  .ha-lamp .ha-icon-control { width:48px;height:48px;min-height:48px }
+  .ha-layout.is-connected .ha-grid-media_player,.ha-layout.is-connected .ha-grid-vacuum { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .ha-device-actions .pill,.ha-media_player .ha-device-actions .ha-icon-control { min-height:48px }
+  .modal { width:720px;padding:30px;max-height:90dvh }
+  .modal-head h2 { font-size:29px }
+  .modal p { font-size:15px }
+  .modal .icon-button { min-width:48px;min-height:48px }
+  .multi-timer .timer-actions .pill { min-height:46px;font-size:14px }
+  .screensaver { padding:150px 44px 90px }
+  .screensaver .sleep-thought { margin-top:80px }
+  .screensaver .sleep-author { font-size:18px }
+  .screensaver .sleep-work { font-size:14px }
+  .screensaver .sleep-context { margin-top:44px;font-size:20px }
+  .screensaver .sleep-appointment,.screensaver .sleep-appointment strong { font-size:20px }
+}
+
+@media (orientation:portrait) and (min-width:600px) and (max-width:740px) {
+  .header nav .nav-button { flex-direction:column;font-size:13px;padding:8px 2px;gap:5px }
+  .dashboard .dash-weather,.dashboard .dash-agenda { padding:18px }
+  .dashboard .dash-temperature { font-size:62px }
+  .dashboard .dash-temperature>.weather-icon { width:38px;height:38px }
+  .air-widget { width:86px }
+  .ha-layout.is-connected .ha-grid-lighting { grid-template-columns:repeat(2,minmax(0,1fr)) }
+}
+
+@media (orientation:portrait) and (max-width:599px) {
+  .dashboard,.dashboard.custom-dashboard { display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:auto;gap:14px;flex:none;min-height:0;height:auto!important }
+  .dashboard .card,.dashboard.custom-dashboard>.card { grid-column:1;grid-row:auto;margin:0 }
+  .dashboard .dash-clock { min-height:310px }
+  .dashboard .dash-clock .clock-time { font-size:clamp(90px,25vw,150px) }
+  .dashboard .dash-weather { min-height:240px }
+  .dashboard .dash-agenda { min-height:230px;padding:22px }
+  .dashboard .dash-tasks,.dashboard .dash-music { min-height:215px }
+  .dashboard .dash-tasks .task,.dashboard .dash-tasks .task-toggle { min-height:48px;font-size:15px }
+  .dashboard .dash-meal { min-height:200px }
+  .dashboard .github-card { min-height:150px }
+  .header nav .nav-button { min-height:56px }
+  .screensaver .sleep-context { flex-direction:column }
+  .screensaver .sleep-appointment[data-with-weather] { border-left:0;padding-left:0;margin-left:0 }
+}

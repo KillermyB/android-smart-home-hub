@@ -483,3 +483,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Sauvegarde JSON personnelle, aperçu puis restauration explicite : notes de la maison, recettes personnelles, tâches locales et préférences, y compris lieu météo et accès ScreenK. Les notes/recettes/tâches déjà présentes sont conservées. Les comptes, photos, agendas et minuteurs en cours sont exclus ; leur association/transfert reste séparé.
 - [x] Sélecteur Cadre / Écran salon / Miroir sur le téléphone ; liens locaux configurables vers les télécommandes ScreenK existantes, sans transfert d’identifiants ni intégration iframe.
 - [ ] Commandes ScreenK directement dans Hub : transport et authentification à intégrer ultérieurement, indépendamment du sélecteur déjà fonctionnel.
+
+
+## v0.27.1 — Mise en page portrait
+
+- [x] Disposition portrait dédiée : grande horloge en largeur, météo et rendez-vous côte à côte sur tablette, puis priorités/musique, cuisine/citation et contributions. Sur téléphone : agenda placé juste après la météo. Ordre et masquage personnalisés conservés.
+- [x] Textes et cibles tactiles agrandis sur tablette ; navigation sur sa propre ligne. Cuisine empilée, lecteur musical vertical, météo détaillée en largeur, scènes et éclairages adaptés au portrait. Semaine du calendrier défilante horizontalement dans son propre panneau.
+- [x] Veille : heure et citation agrandies, informations espacées, musique compacte conservée en haut à gauche.
+- [ ] Portrait physique du cadre : valider après rotation réelle ; les contrôles de navigateur ne prouvent pas le comportement du capteur d’orientation Android.
