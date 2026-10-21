@@ -90,3 +90,8 @@ test('Todoist excludes shopping projects from daily tasks and limits purchases t
 test('shopping project exclusion also covers explicitly selected projects and descendants',async()=>{
  const source=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');const body=source.match(/  function excludedShoppingProjects\(\)\{([^\n]+)\}/)[0];const c=vm.createContext({shop:{project:'selected',projects:[{id:'selected',name:'Groceries'},{id:'course',name:'course'},{id:'child',parent_id:'course',name:'Vegetables'},{id:'grandchild',parent_id:'child',name:'Fresh'},{id:'job',name:'Work'}]},HubConnect:{normalize:s=>s.trim().toLowerCase()}});vm.runInContext(body,c);const ids=Array.from(c.excludedShoppingProjects());assert.ok(ids.includes('selected'));assert.ok(ids.includes('course'));assert.ok(ids.includes('child'));assert.ok(ids.includes('grandchild'));assert.ok(!ids.includes('job'));
 });
+
+test('Todoist all-tasks view includes future and undated tasks across pages but excludes shopping',async()=>{
+ let page=0;const client=todoist('test-only',async()=>response(++page===1?{results:Array.from({length:100},(_,i)=>({id:'task-'+i,project_id:'job',content:'Task '+i,due:{date:'2026-10-22'}})),next_cursor:'second'}:{results:[{id:'undated',project_id:'job',content:'No date'},{id:'purchase',project_id:'course',due:{date:'2026-10-21'}}]}));
+ const items=await client.daily(['course'],'2026-10-21',true);assert.equal(items.length,101);assert.equal(items[0].due_date,'2026-10-22');assert.equal(items[100].due_date,'');assert.equal(page,2);assert.ok(!items.some(x=>x.id==='purchase'));
+});

@@ -8,7 +8,7 @@ const section = (start, end) => app.slice(app.indexOf(start), app.indexOf(end, a
 
 test('idle context shows the next visible calendar appointment beside real weather and never invents an event',()=>{
  let entries=[{date:'2026-10-21',start:'11:00',end:'13:00',source:'work',title:'Ongoing'}, {date:'2026-10-21',start:'12:30',end:'13:00',source:'outlook',title:'Filtered'}, {date:'2026-10-21',start:'13:30',end:'14:00',source:'work',title:'Next meeting'}];
- const context=vm.createContext({Date,state:{weather:{temperature:15,code:1,city:'Moudon',summary:'Clouds'},demo:false,filters:['work']},events:()=>entries,dateKey:()=> '2026-10-21',timeText:()=> '12:00',shiftDay:()=> '2026-10-22',dateText:()=> 'Jeu. 22',sourceStyles:{work:{color:'#f90'}},icon:()=>'',esc:String});
+ const context=vm.createContext({Date,state:{weather:{temperature:15,code:1,city:'Moudon',summary:'Clouds'},demo:false,filters:['work']},events:()=>entries,dateKey:()=> '2026-10-21',timeText:()=> '12:00',shiftDay:()=> '2026-10-22',dateText:()=> 'Jeu. 22',sourceStyles:{work:{color:'#f90'}},icon:()=>'',weatherIcon:()=>'',esc:String});
  vm.runInContext(section('  function sleepWeather()', '  function renderOverlay()'),context);
  let markup=context.sleepContext();assert.match(markup,/13:30/);assert.match(markup,/Next meeting/);assert.doesNotMatch(markup,/Filtered|Ongoing/);assert.match(markup,/data-with-weather/);
  entries=[];markup=context.sleepContext();assert.doesNotMatch(markup,/sleep-appointment/);assert.match(markup,/15°/);

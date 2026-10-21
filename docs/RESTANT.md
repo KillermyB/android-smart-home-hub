@@ -241,3 +241,11 @@ Les recettes personnelles, favoris, plats retirés, courses, notes/photos, citat
 - [ ] Vérifier l’autostart du kiosk, la disponibilité des certificats HTTPS et le maintien de l’écran pendant la cuisine.
 
 La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes physiques.
+
+## Interface épurée v0.16.0
+
+- [x] Supprimer le pied de page, alléger Spotify au repos/en lecture et la tuile Cuisine, adoucir l’horloge avec une touche orange en haut et du bleu clair en bas.
+- [x] Palette GitHub bleu clair → orange selon l’activité quotidienne ; mise à jour de la tuile dès la fermeture de l’import.
+- [x] Ajouter Toutes / Aujourd’hui à Todoist : futures et sans date accessibles, courses et sous-projets exclus ; trois colonnes à 1280 px, 27 tâches visibles et défilement interne vérifiés avec 36 tâches locales de contrôle.
+- [x] Jeu météo rempli Meteocons statique, local, sous licence MIT, utilisé sur l’accueil, le détail et la veille ; 85 tests passés.
+- [x] Transférer et vérifier v0.16.0 sur le cadre par SSH Wi-Fi, sans nouvelle ouverture d’onglet ni suppression des données.

@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.15.2.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](docs/DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
+**Version : v0.16.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](docs/DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.15.2`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.16.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
 
@@ -32,7 +32,7 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](docs/IN
 
 - **Accueil** : grande horloge sur dégradé bleu/crème/orange, météo et priorités à droite, prochains rendez-vous avec leurs heures lisibles, repas et Spotify. GitHub et citations restent accessibles. Mode sombre graphite, degrés agrandis et contour Spotify indiquant le temps restant.
 - **Agenda** : filtre commun **Perso & Travail** orange, et **Myrak** bleu. Vues jour et **3 jours** sur grille horaire, semaine en colonnes et mois ; détails au toucher et chevauchements côte à côte.
-- **À faire** : ajout, validation et suppression des tâches locales ; connexion directe Todoist pour les tâches du jour et en retard, en excluant les projets de courses et leurs sous-projets.
+- **À faire** : vues Toutes / Aujourd’hui, avec les tâches futures et sans date en vue Toutes ; trois colonnes sur le cadre et défilement interne, en excluant toujours les courses et leurs sous-projets. Ajout et validation conservés.
 - **Cuisine** : 32 recettes initiales, dont 20 faciles à petit budget sans porc ; recettes personnelles, recherche, catégories, favoris, plats retirés/restauration, portions et étapes conservés.
 - **Courses** : page dédiée depuis Cuisine ou Réglages, rayons modifiables, articles cochés en bas, ajout des ingrédients manquants depuis une recette. Liste locale distincte du projet Todoist choisi.
 - **Musique** : widget et focus immersif allégé ; pochette conservée, paroles LRCLIB en dessous quand disponibles, bouton Home pour la sono, volume selon les capacités de l’appareil et fond coloré à partir de la pochette. Aucune lecture ni parole fictive n’est présentée comme réelle.

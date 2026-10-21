@@ -261,3 +261,13 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - La box est accessible à sa passerelle locale, mais son interface HTTPS s’arrête sur un avertissement de certificat. Étape remise au propriétaire, sans contournement. Réservation DHCP et stabilisation de l’identité réseau restent à faire.
 - Contrôles locaux : syntaxe des deux scripts vérifiée sur le Mac et du lanceur sur Android ; `npm run check`, 82 tests avec écoute localhost autorisée et `git diff --check` passent. Le premier essai des tests dans le bac à sable avait uniquement bloqué l’écoute du test serveur.
 - Fichiers web `dist/` inchangés : Hub reste v0.15.2 sur le cadre et le site privé. Cette livraison concerne la configuration du cadre et sa documentation, sans nouvelle publication du site.
+
+## v0.16.0 — Interface épurée et tâches étendues
+
+- Pied de page retiré ; cartes Spotify et Cuisine simplifiées, dégradé de l’horloge clair avec orange discret en haut et bleu en bas. Le lecteur au repos conserve la même disposition compacte qu’en lecture.
+- GitHub : niveaux bleu clair/bleu/orange selon le nombre quotidien. Un import mettait à jour le panneau mais pas immédiatement la tuile : correction et contrôle navigateur du passage de 129 à 130 sur un relevé synthétique local uniquement.
+- Todoist : Toutes inclut les tâches futures et sans date ; Aujourd’hui et les priorités de l’accueil gardent le filtre du jour/en retard. Courses et sous-projets exclus. Test de 101 tâches sur deux pages API synthétiques ; navigateur avec 36 tâches locales, trois colonnes et 27 tâches visibles à 1280 × 800, suite défilable. Aucun ajout de tâche de contrôle au compte réel.
+- Icônes météo Meteocons 0.1.0 fill statiques, licence MIT conservée, marge SVG réduite. Fichiers locaux uniquement, sans animation permanente ; accueil, détail et veille utilisent le même jeu. Jour/nuit viennent des données Open-Meteo quand disponibles.
+- Navigateur : clair/sombre à 1280 × 800 ; document 1280 × 800, prévisions à l’intérieur de la carte, aucune icône manquante. À 320 × 740 : aucune sortie horizontale pour accueil, tâches et météo ; température et qualité de l’air sans chevauchement. Les sections longues défilent dans leur conteneur.
+- `npm run check`, 85 tests et vérification du diff réussis. Publication de fichiers statiques uniquement, sans données personnelles, secrets ni fixtures navigateur.
+- Cadre : déploiement v0.16.0 et contrôle des empreintes via SSH Wi-Fi ; actualisation de l’onglet existant par Wi-Fi. Capture réelle de l’accueil avec le vrai morceau Spotify en cours, la pochette, l’appareil iPhone et les nouvelles cartes. Les comptes, agendas et 505 contributions importées sont conservés. L’USB n’a pas été nécessaire pour ce transfert ni ces contrôles.
