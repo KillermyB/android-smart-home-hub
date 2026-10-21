@@ -660,11 +660,18 @@
     if(!pair)return '<p>La télécommande locale n’est pas disponible. Vérifie son activation et le Wi-Fi du cadre.</p>'+action('remote','Actualiser','pill');
     var url=pair.url+'#key='+pair.key,qr=qrcodegen.QrCode.encodeText(url,qrcodegen.QrCode.Ecc.MEDIUM),path='';
     for(var y=0;y<qr.size;y++)for(var x=0;x<qr.size;x++)if(qr.getModule(x,y))path+='M'+(x+4)+','+(y+4)+'h1v1h-1z';
-    return '<div class="remote-pair"><div><svg viewBox="0 0 '+(qr.size+8)+' '+(qr.size+8)+'" role="img" aria-label="QR d’association privé à scanner avec ton téléphone"><rect width="100%" height="100%" fill="white"/><path d="'+path+'" fill="black"/></svg></div><section><h3>Scanne, et c’est chez toi.</h3><p>Sur le même Wi-Fi : notes, lumières, minuteurs et tâches. La page affichée ici ne change pas.</p><p><strong>'+esc(pair.url)+'</strong></p><p>Sur iPhone : Partager → Sur l’écran d’accueil. Garde le QR privé : il donne accès à la télécommande.</p><details><summary>Copier le lien d’association</summary><input aria-label="Lien privé d’association" readonly value="'+esc(url)+'"></details><p class="subtle">Liaison HTTP sur le Wi-Fi local, sans serveur supplémentaire. Une nouvelle IP nécessite de rescanner ce QR.</p>'+action('remote-revoke','Révoquer les téléphones','pill')+'</section></div>';
+    return '<div class="remote-pair"><div><svg viewBox="0 0 '+(qr.size+8)+' '+(qr.size+8)+'" role="img" aria-label="QR d’association privé à scanner avec ton téléphone"><rect width="100%" height="100%" fill="white"/><path d="'+path+'" fill="black"/></svg></div><section><h3>Scanne, et c’est chez toi.</h3><p>Sur le même Wi-Fi : notes, domotique, minuteurs et tâches. La page affichée ici ne change pas.</p><p><strong>'+esc(pair.url)+'</strong></p><p>Sur iPhone : Partager → Sur l’écran d’accueil. Garde le QR privé : il donne accès à la télécommande.</p><details><summary>Copier le lien d’association</summary><input aria-label="Lien privé d’association" readonly value="'+esc(url)+'"></details><p class="subtle">Liaison HTTP sur le Wi-Fi local, sans serveur supplémentaire. Une nouvelle IP nécessite de rescanner ce QR.</p>'+action('remote-revoke','Révoquer les téléphones','pill')+'</section></div>';
+  }
+  function remoteHomeDevices(){
+    var groups=['scene','lighting','switch','vacuum','media_player'];
+    return house.entities.filter(function(e){return groups.includes(HubHA.group(e));}).sort(function(a,b){return groups.indexOf(HubHA.group(a))-groups.indexOf(HubHA.group(b))||String(a.attributes.friendly_name||a.entity_id).localeCompare(String(b.attributes.friendly_name||b.entity_id),'fr');}).map(function(e){
+      var a=e.attributes,domain=e.entity_id.split('.')[0],volume=a.volume_level,battery=typeof a.battery_level==='number'?a.battery_level:a.battery;
+      return {id:e.entity_id,name:String(a.friendly_name||e.entity_id).slice(0,100),group:HubHA.group(e),state:String(e.state).slice(0,40),services:house.status==='connected'?(HubRemote.homeServices[domain]||[]).filter(function(service){return HubHA.supports(e,service);}):[],volume:typeof volume==='number'&&Number.isFinite(volume)&&volume>=0&&volume<=1?volume:null,battery:typeof battery==='number'&&Number.isFinite(battery)&&battery>=0&&battery<=100?Math.round(battery):null,title:String(a.media_title||'').slice(0,160),artist:String(a.media_artist||'').slice(0,100)};
+    });
   }
   function remoteSnapshot(){
-    var allTasks=daily.items.filter(function(t){return !t.done&&excludedShoppingProjects().indexOf(t.project_id)<0;});
-    return {notes:dayTools.notes.slice(-12).map(function(n){return {text:String(n.text).slice(0,400),pinned:!!n.pinned,created:n.created};}),timers:timerItems.map(function(t){return {id:t.id,label:t.label,tag:t.tag,paused:!!t.paused,remaining:t.remaining,end:t.end};}),ha:house.status==='connected',lights:house.entities.filter(function(e){return ['lighting','switch'].includes(HubHA.group(e));}).slice(0,100).map(function(e){return {id:e.entity_id,name:String(e.attributes.friendly_name||e.entity_id).slice(0,100),on:e.state==='on',available:house.status==='connected'&&['on','off'].includes(e.state)};}),todoist:!!shop.client&&daily.loaded,tasksTotal:allTasks.length,tasks:allTasks.slice(0,200).map(function(t){return {id:t.id,content:t.content.slice(0,500),due:t.due_date||''};})};
+    var allTasks=daily.items.filter(function(t){return !t.done&&excludedShoppingProjects().indexOf(t.project_id)<0;}),devices=remoteHomeDevices();
+    return {notes:dayTools.notes.slice(-12).map(function(n){return {text:String(n.text).slice(0,400),pinned:!!n.pinned,created:n.created};}),timers:timerItems.map(function(t){return {id:t.id,label:t.label,tag:t.tag,paused:!!t.paused,remaining:t.remaining,end:t.end};}),ha:house.status==='connected',devicesTotal:devices.length,devices:devices.slice(0,200),lights:house.entities.filter(function(e){return ['lighting','switch'].includes(HubHA.group(e));}).slice(0,100).map(function(e){return {id:e.entity_id,name:String(e.attributes.friendly_name||e.entity_id).slice(0,100),on:e.state==='on',available:house.status==='connected'&&['on','off'].includes(e.state)};}),todoist:!!shop.client&&daily.loaded,tasksTotal:allTasks.length,tasks:allTasks.slice(0,200).map(function(t){return {id:t.id,content:t.content.slice(0,500),due:t.due_date||''};})};
   }
   async function executeRemote(c){
     if(c.type==='note'){
@@ -677,11 +684,19 @@
       var timers=HubTools.timers.start(timerItems,c.seconds,c.label,c.tag,Date.now());try{localStorage.setItem('hub.timers',JSON.stringify(timers));}catch(_){throw Error('Stockage du cadre plein. Le minuteur n’a pas été lancé.');}timerItems=timers;saveTimers();renderTimer();scheduleTick();if(state.modal==='timer')renderOverlay();
       return {ok:true,message:'Minuteur lancé sur le cadre.'};
     }
-    if(c.type==='light'){
-      var entity=house.entities.find(function(e){return e.entity_id===c.entity&&['lighting','switch'].includes(HubHA.group(e));}),service=c.on?'turn_on':'turn_off';
-      if(house.status!=='connected'||!house.client||house.pending||!entity||!HubHA.supports(entity,service))throw Error('Cette lampe est indisponible ou déjà en cours de commande.');
+    if(c.type==='home'||c.type==='light'){
+      var service=c.type==='light'?(c.on?'turn_on':'turn_off'):c.service;
+      if(!HubRemote.homeAllowed(c.entity,service))throw Error('Commande domotique non autorisée.');
+      if(service==='volume_set'&&(typeof c.volume!=='number'||!Number.isFinite(c.volume)||c.volume<0||c.volume>1))throw Error('Volume invalide.');
+      var entity=house.entities.find(function(e){return e.entity_id===c.entity&&['scene','lighting','switch','vacuum','media_player'].includes(HubHA.group(e));});
+      if(house.status!=='connected'||!house.client||house.pending||!entity||!HubHA.supports(entity,service))throw Error('Cet appareil est indisponible, occupé ou ne propose pas cette commande.');
       var client=house.client,generation=house.generation;house.pending=c.entity;houseUpdate();
-      try{var r=await client.confirmedCall(c.entity.split('.')[0],service,{entity_id:c.entity});return {ok:!!r.confirmed,message:r.confirmed?'État de la lampe confirmé.':'Commande reçue, état non confirmé. Vérifie la lampe.'};}finally{if(client===house.client&&generation===house.generation){house.pending='';houseUpdate();}}
+      try{
+        var r=await client.confirmedCall(c.entity.split('.')[0],service,{entity_id:c.entity},service==='volume_set'?{volume_level:c.volume}:undefined);
+        if(client!==house.client||generation!==house.generation)throw Error('La connexion a changé. Vérifie l’état de l’appareil.');
+        var acceptedOnly=c.entity.indexOf('scene.')===0||['volume_set','media_next_track','media_previous_track'].includes(service);
+        return {ok:!!r.confirmed||acceptedOnly&&!!r.accepted,confirmed:!!r.confirmed,message:r.confirmed?'État de l’appareil confirmé.':acceptedOnly?'Commande envoyée à Home Assistant.':'Commande reçue, état non confirmé. Vérifie l’appareil.'};
+      }finally{if(client===house.client&&generation===house.generation){house.pending='';houseUpdate();}}
     }
     if(c.type==='task'){
       var task=daily.items.find(function(t){return t.id===c.task&&!t.done&&excludedShoppingProjects().indexOf(t.project_id)<0;});

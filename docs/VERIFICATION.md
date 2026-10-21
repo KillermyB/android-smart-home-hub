@@ -354,3 +354,14 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - 169 tests et syntaxe réussis, analyse de secrets sans détection.
 - Session isolée : un appui sur Pâtes lance 10 minutes avec le tag Cuisine ; aucune saisie ni confirmation. Télécommande à 375 × 667 : Thé lance 3 minutes avec retour confirmé simulé.
 - Cadre : v0.23.2 copiée et empreintes vérifiées par Wi-Fi ; connexions et minuteurs existants conservés. La télécommande Wi-Fi reste désactivée en attente de son autorisation précédente.
+
+
+## v0.24.0 — Domotique globale dans la télécommande
+
+- 173 tests, syntaxe et analyse de secrets réussis. Fichiers v0.24.0 installés et empreintes vérifiées sur le cadre par Wi-Fi.
+
+- Contrôles simulés des scènes, prises, robots, Sonos et télévisions : capacités réévaluées au moment d’exécution, volume 0–100 %, fonctions arbitraires refusées et état confirmé distingué d’une simple acceptation.
+- Vue réelle générée testée avec scènes, prise, robot, Sonos et TV limitée au marche/arrêt ; contenu échappé et boutons désactivés hors ligne.
+- Session changée au rechargement, après interruption ou retour du navigateur : commandes de l’ancienne session refusées sans exécution, avec accusé d’échec. Aucune commande aux appareils réels pendant ces tests.
+- Contrôle visuel navigateur indisponible cette fois : Computer Use renvoie `cgWindowNotFound` et son inventaire de navigateurs échoue. Les tests de rendu ne constituent pas une vérification visuelle sur téléphone physique.
+- L’écoute Wi-Fi reste désactivée en attente de l’accord explicite précédent.

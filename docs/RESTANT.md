@@ -395,3 +395,12 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Champs Nom/Tag/Minutes/Secondes remplacés par six raccourcis nommés et neuf durées prêtes à lancer en un appui ; catégorie affectée automatiquement.
 - [x] Même choix sur la télécommande mobile ; protection des trois emplacements, pause/reprise/+1 min et tags d’étapes depuis les recettes conservés.
 - [x] 169 tests et lancement Pâtes → Cuisine → 10 min vérifié dans une session navigateur isolée. Activation Wi-Fi de la télécommande toujours en attente de l’accord précédent.
+
+
+## Télécommande Domotique v0.24.0
+
+- [x] Onglet Lumières remplacé par Domotique : scènes, lampes et prises, robots, Sonos/télévisions, état et contrôles réellement annoncés.
+- [x] Volume absolu borné, actions domotiques autorisées explicitement et capacités revérifiées sur le cadre à l’exécution ; pas de service arbitraire, pas de répétition automatique.
+- [x] Demandes rattachées à la session du cadre : ancienne demande refusée après interruption, retour d’arrière-plan ou rechargement.
+- [x] Scène/volume/piste envoyés distingués d’un état confirmé ; notes, tâches et minuteurs conservés, sans navigation du cadre.
+- [ ] Écoute Wi-Fi persistante et essai du téléphone physique toujours en attente de l’accord explicite ; aucune commande à un vrai appareil pendant les vérifications.
