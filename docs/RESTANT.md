@@ -271,5 +271,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Scènes du salon en premier, puis lampes et prises, médias et robots ; réglages des appareils repliés.
 - [x] Tuiles d’éclairage réduites à 78 px à 1280 px, effet ambré allumé et états distincts éteint / indisponible ; bouton Accueil de la page supprimé.
 - [x] Commandes TV marche/arrêt limitées aux capacités déclarées ; 92 tests passent sans commande domotique réelle.
-- [ ] Tester une ANTELA 9 W en Wi-Fi local avant de confirmer sa compatibilité Tuya Local ; installation communautaire non effectuée.
+- [x] Installer Tuya Local 2026.9.2 dans Home Assistant Container, sauvegarde privée préalable, compilation dans le conteneur et reprise HTTP vérifiées. Tuya cloud conservé.
+- [ ] Associer puis tester une ANTELA 9 W en Wi-Fi local avant de confirmer sa compatibilité ; aucune lampe migrée à ce stade.
 - [ ] Diagnostiquer séparément Champignon et Japonaise, impossibles à réassocier selon l’utilisateur ; ne pas déduire un défaut de toutes les lampes du bref délai Smart Life à l’ouverture.
+
+## Scènes simplifiées v0.18.1
+
+- [x] Masquer les raccourcis génériques Turn On / Turn Off et leurs copies numérotées, sans supprimer les scènes d’origine ; conserver les ambiances nommées.
+- [x] Vérification syntaxique et 93 tests réussis, dont le filtrage des raccourcis et la conservation des scènes nommées.

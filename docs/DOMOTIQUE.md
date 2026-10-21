@@ -64,4 +64,14 @@ Les lecteurs exposant officiellement les capacités `TURN_ON`/`TURN_OFF` propose
 
 Tuya documente un bref état hors ligne pendant la reconnexion de Smart Life au cloud à l’ouverture : [explication Tuya](https://support.tuya.com/en/help/_detail/K9hut3kw7xumg). Ce délai ne suffit pas à conclure à un mauvais appairage. Dans Home Assistant, l’intégration officielle reprend l’indicateur `online` de Tuya ; un état durablement indisponible doit être examiné séparément.
 
-Pour les ANTELA 9 W, [Tuya Local](https://github.com/make-all/tuya-local) est une piste de contrôle Wi-Fi local, sous réserve du protocole, de la clé locale et du profil effectivement détectés. Le modèle commercial seul ne garantit pas la compatibilité. Une première ampoule joignable doit être validée avant une migration ; aucune intégration communautaire ni modification du micrologiciel n’a été installée pour cette refonte. Les ampoules qui ne rejoignent plus Smart Life doivent d’abord retrouver une connexion réseau et une alimentation normales.
+Pour les ANTELA 9 W, [Tuya Local](https://github.com/make-all/tuya-local) permet d’envisager un contrôle Wi-Fi local, sous réserve du protocole, de la clé locale et du profil effectivement détectés. Le modèle commercial seul ne garantit pas la compatibilité. Les ampoules qui ne rejoignent plus Smart Life doivent d’abord retrouver une connexion réseau et une alimentation normales.
+
+### Préparation locale · 21 octobre 2026
+
+Tuya Local **2026.9.2** (version publiée `2026.9.2-rel`) a été installé dans le dossier `custom_components/tuya_local` de l’instance Home Assistant Container **2026.9.4**. Une sauvegarde privée de la configuration précède l’installation. La compilation passe avec Python **3.14.6** du conteneur ; le Python plus ancien de l’hôte ne reconnaît pas une syntaxe utilisée par cette version. Après redémarrage, Home Assistant répond et détecte le composant. L’intégration Tuya officielle est conservée.
+
+**Aucune ampoule n’est encore migrée.** Prochaine étape : ouvrir Ajouter une intégration → Tuya Local → association Smart Life, sélectionner une seule ampoule joignable, vérifier le profil détecté puis lecture/commande/restauration de son état. Ne pas désactiver l’entité cloud avant cette validation. L’association et les essais matériels restent à effectuer ; aucune autonomie sans Internet n’est affirmée.
+
+### Scènes affichées · v0.18.1
+
+Hub masque les raccourcis génériques nommés exactement « Turn On » / « Turn Off » et leurs copies numérotées. Les ambiances nommées sont conservées, avec celles du salon en premier. Ce filtre ne supprime aucune scène dans Home Assistant ni Smart Life.

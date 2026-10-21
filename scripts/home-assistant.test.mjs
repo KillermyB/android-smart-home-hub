@@ -169,6 +169,13 @@ test('HA groups scenes first and lighting outlets separately from Sonos settings
  assert.equal(api.group({entity_id:'sensor.temperature',state:'20',attributes:{}}),'');
 });
 
+test('generic Tuya on/off shortcuts are hidden while named ambiances stay visible',()=>{
+ const {api}=setup();
+ for(const name of ['Turn On','Turn Off','  turn off  ','Turn On 2'])assert.equal(api.group({entity_id:'scene.shortcut',state:'unknown',attributes:{friendly_name:name}}),'');
+ assert.equal(api.group({entity_id:'scene.turn_off_2',state:'unknown',attributes:{}}),'');
+ for(const name of ['Salon - Nuit','Appartement - Nuit','Étage - Couleur','Turn on garden evening'])assert.equal(api.group({entity_id:'scene.ambiance',state:'unknown',attributes:{friendly_name:name}}),'scene');
+});
+
 test('media power commands follow announced HA feature bits and never infer wake support',async t=>{
  const h=setup();t.after(()=>h.client.disconnect());const tv={entity_id:'media_player.tv',state:'off',attributes:{supported_features:128|256}},speaker={entity_id:'media_player.home',state:'playing',attributes:{supported_features:1|4}};
  assert.equal(h.api.supports(tv,'turn_on'),true);assert.equal(h.api.supports(tv,'turn_off'),true);assert.equal(h.api.supports(speaker,'turn_on'),false);

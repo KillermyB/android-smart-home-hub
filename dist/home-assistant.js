@@ -24,7 +24,8 @@
   function group(value) {
     if(!validState(value))return '';
     var domain=value.entity_id.split('.')[0],attr=value.attributes;
-    if(domain==='scene')return 'scene';
+    // Hide generic Tuya shortcuts, including numbered copies, without deleting HA scenes.
+    if(domain==='scene'){var sceneName=String(attr.friendly_name||value.entity_id.slice(6)).trim().replace(/[_-]+/g,' ');return /^turn\s*(?:on|off)(?:\s+\d+)?$/i.test(sceneName)?'':'scene';}
     if(domain==='light')return 'lighting';
     if(domain!=='switch')return ['media_player','vacuum'].includes(domain)?domain:'';
     var name=String(attr.friendly_name||value.entity_id).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
