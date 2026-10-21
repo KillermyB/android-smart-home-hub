@@ -86,3 +86,9 @@ Les quatre intégrations se rechargent sans redémarrage de Home Assistant, puis
 ### Scènes affichées · v0.18.1
 
 Hub masque les raccourcis génériques nommés exactement « Turn On » / « Turn Off » et leurs copies numérotées. Les ambiances nommées sont conservées, avec celles du salon en premier. Ce filtre ne supprime aucune scène dans Home Assistant ni Smart Life.
+
+### Robots Dreame · v0.18.2
+
+Les deux intégrations Dreame existantes fournissent bien les robots Zima Blue et Zima Blue v2 dans Home Assistant. Les noms affichés ont été corrigés pour supprimer leur répétition. Hub les place après les lampes, avant Sonos/TV, avec batterie réelle, état traduit, mode de nettoyage et message d’attention. Démarrer/Reprendre, Pause, Arrêter et Retour à la base restent limités aux capacités annoncées ; aucun ordre n’est envoyé à l’ouverture.
+
+Au contrôle du 21 octobre, les deux robots répondent avec 100 % de batterie. Le v2 rapporte un lavage en pause et « Water tank dry » ; l’autre est à la base et rapporte « Remove mop ». Ces messages sont affichés comme points à vérifier, sans effacement ni tentative de réparation logicielle. Aucun nettoyage, déplacement, changement de carte ou de programme n’a été déclenché. Un essai physique des commandes reste à faire après résolution des alertes.

@@ -195,3 +195,14 @@ test('compact home groups prioritize scenes and lighting, retain real states, an
  const context=vm.createContext({house:{status:'connected',pending:'',entities},HubHA:ha.HubHA,icon:()=>'<svg></svg>',esc:String,action:(a,label,cls,attrs)=>'<button class="'+cls+'" data-action="'+a+'" '+(attrs||'')+'>'+label+'</button>'});
  vm.runInContext(section('  function houseControl(', '  function housePage()'),context);const html=context.houseDevices();assert.ok(html.indexOf('Scènes')<html.indexOf('Lampes et prises'));assert.ok(html.indexOf('Lampes et prises')<html.indexOf('Sonos et télévisions'));assert.ok(html.indexOf('scene.salon')<html.indexOf('scene.appartement'));assert.match(html,/ha-is-on/);assert.match(html,/ha-is-off/);assert.match(html,/ha-unavailable/);assert.match(html,/ha-call:switch:turn_off:switch.socket/);assert.match(html,/ha-call:media_player:turn_on:media_player.tv/);assert.match(html,/<details class="ha-group ha-advanced">/);assert.doesNotMatch(html,/ha-entity/);
 });
+
+test('robot cards expose battery, translated alerts and real capability-gated controls before media',()=>{
+ const ha=vm.createContext({URL});vm.runInContext(readFileSync(new URL('../dist/home-assistant.js',import.meta.url),'utf8'),ha);
+ const robot={entity_id:'vacuum.robot',state:'paused',attributes:{friendly_name:'Robot',battery:100,washing_paused:true,cleaning_mode:'Sweeping and mopping',error:'Water tank dry',supported_features:8192|4|8|16}};
+ const entities=[{entity_id:'light.lamp',state:'off',attributes:{}},robot,{entity_id:'media_player.tv',state:'off',attributes:{supported_features:128}}];
+ const context=vm.createContext({house:{status:'connected',pending:'',entities},HubHA:ha.HubHA,icon:()=>'<svg></svg>',esc:s=>String(s).replace(/</g,'&lt;'),action:(a,label,cls,attrs)=>'<button data-action="'+a+'" '+(attrs||'')+'>'+label+'</button>'});
+ vm.runInContext(section('  function houseControl(', '  function housePage()'),context);
+ const html=context.houseDevices();assert.ok(html.indexOf('Lampes et prises')<html.indexOf('Robots aspirateurs'));assert.ok(html.indexOf('Robots aspirateurs')<html.indexOf('Sonos et télévisions'));assert.match(html,/100 %/);assert.match(html,/Lavage en pause/);assert.match(html,/Réservoir d’eau vide/);assert.match(html,/Aspiration et lavage/);assert.match(html,/ha-call:vacuum:start:vacuum.robot/);assert.match(html,/>Reprendre</);assert.doesNotMatch(html,/ha-call:vacuum:pause:/);
+ const offline=context.houseRobot({...robot,state:'unavailable',attributes:{...robot.attributes,battery:null}});assert.doesNotMatch(offline,/ha-battery|Réservoir/);assert.match(offline,/disabled/);
+ const missing=context.houseRobot({...robot,attributes:{...robot.attributes,battery:null,error:'No error',supported_features:16}});assert.doesNotMatch(missing,/ha-battery|À vérifier/);assert.match(missing,/ha-call:vacuum:return_to_base:/);assert.match(missing,/ha-call:vacuum:start:vacuum.robot"[^>]+disabled/);
+});

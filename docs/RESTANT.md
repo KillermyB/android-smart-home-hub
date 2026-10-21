@@ -282,3 +282,9 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Masquer les raccourcis génériques Turn On / Turn Off et leurs copies numérotées, sans supprimer les scènes d’origine ; conserver les ambiances nommées.
 - [x] Vérification syntaxique et 93 tests réussis, dont le filtrage des raccourcis et la conservation des scènes nommées.
 - [x] v0.18.1 publiée sur GitHub et Sites privé, installée par Wi-Fi ; cinq scènes affichées sur le vrai cadre à 1280 × 800.
+
+## Dreame v0.18.2
+
+- [x] Deux robots existants vérifiés par leurs états réels ; noms dupliqués corrigés dans Home Assistant.
+- [x] Robots placés avant les médias, batterie/état/mode/alertes visibles et commandes liées aux capacités ; 94 tests réussis.
+- [ ] Vérifier les alertes réservoir d’eau vide / retirer la serpillière sur les appareils, puis faire un essai physique des commandes. Aucun nettoyage ni changement de programme effectué pendant la configuration.
