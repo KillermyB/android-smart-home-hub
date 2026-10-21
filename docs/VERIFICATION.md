@@ -329,3 +329,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Contrôle étroit 320 px du nouveau module non réalisé : l’infrastructure de contrôle du navigateur est indisponible dans cette session. CSS adaptative présente ; ne pas confondre avec une validation visuelle à cette taille.
 - Aucune extinction d’appareil, aucun nettoyage ni changement de morceau réels envoyés pendant les tests. Sélection des appareils Je pars, pièces/scripts de chaque robot et trajets privés à configurer par l’utilisateur.
 - Contrôle Gitleaks du répertoire sans secret détecté. Les captures et données privées de QA restent hors Git.
+
+
+## v0.22.0 — Brief fusionné et trajets routiers
+
+- Syntaxe et 163 tests réussis. Fusion sans planificateur ni carte Je pars dans la vue Aujourd’hui ; conservation des notes et connexions.
+- Navigateur Chrome natif, origine de test isolée localhost:4179 : brief clair/sombre au format 1280 × 800, empilement des cartes à 375 × 667, panneau Position et explication du partage avant permission. Pas de demande réelle de localisation. Console du contexte de test sans message ; le compteur général de DevTools préexistant n’est pas utilisé comme preuve.
+- Les deux requêtes publiques OSRM depuis le centre de Moudon ont répondu : 27 min / 23,4 km vers Saint-François et 73 min / 88,8 km vers Bel-Air au moment du contrôle, sans trafic en direct. Le navigateur a reçu et affiché ces résultats et les prochains départs de Moudon, gare.
+- GPS validé par client simulé : refus, timeout, données invalides et absence de persistance. La localisation effective du vrai cadre n’est pas prouvée. Aucun compte ni appareil commandé pendant ces tests.

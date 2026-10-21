@@ -227,3 +227,7 @@ test('standby progress updates each second only for visible active playback',()=
  vm.runInContext(app.split('\n').find(line=>line.startsWith('  function lyricsLifecycle()')),context);
  context.lyricsLifecycle();assert.deepEqual(delays,[1000]);delays=[];context.document.hidden=true;context.lyricsLifecycle();assert.deepEqual(delays,[]);context.document.hidden=false;context.music.data.is_playing=false;context.lyricsLifecycle();assert.deepEqual(delays,[]);
 });
+
+test('brief shortcut returns from Notes to the merged overview and legacy daily navigation resolves to the same page',async()=>{
+ let renders=0;const c=vm.createContext({state:{page:'brief',recipeId:null},dayTools:{tab:'notes'},render(){renders++;},$(){return {focus(){},scrollTop:10};},window:{scrollTo(){}},animateEnter(){},resetIdle(){}});vm.runInContext(section('  async function handle(name)',"  document.addEventListener('click'"),c);await c.handle('nav:brief');assert.equal(c.dayTools.tab,'overview');assert.equal(renders,1);c.state.page='home';await c.handle('nav:daily');assert.equal(c.state.page,'brief');assert.equal(renders,2);
+});

@@ -367,3 +367,12 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [ ] Choisir les appareils du scénario Je pars et vérifier leurs réactions physiques. Aucun arrêt réel envoyé pendant les tests.
 - [ ] Confirmer les pièces de chaque vrai robot et lancer un nettoyage ciblé voulu par le propriétaire.
 - [ ] Choisir l’arrêt préféré et préparer les trajets des rendez-vous ; aucune adresse privée inventée.
+
+
+## Brief fusionné v0.22.0
+
+- [x] Une seule entrée Brief dans l’en-tête ; ancienne route Quotidien conservée comme alias.
+- [x] Note maison, trois prochains départs et estimations Lausanne centre / Genève centre ; planning déplacé exclusivement vers Cuisine, Je pars conservé dans Domotique.
+- [x] Localisation ponctuelle explicite, point public Moudon de repli, aucune position persistée ; cache et provenance des estimations hors trafic.
+- [x] Contrôle navigateur natif clair/sombre, format 1280 × 800 et empilement mobile 375 × 667 ; deux estimations et horaires réels reçus.
+- [ ] Position réelle et précision du service de localisation du cadre à confirmer par son propriétaire ; aucune demande GPS déclenchée pendant les tests.

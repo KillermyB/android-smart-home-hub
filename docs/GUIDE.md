@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.21.1.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](VERIFICATION.md).
+**Version : v0.22.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](VERIFICATION.md).
 
-Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.21.1`.
+Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.22.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](MAINTENANCE-CADRE.md).
 
@@ -86,3 +86,12 @@ Le bouton **···** dans l’en-tête ouvre Quotidien : départs de transports 
 - **Musique → À suivre** : vingt prochains titres au maximum. Écouter un titre précis demande confirmation car Spotify peut remplacer le contexte et la file de lecture.
 
 Sources : [Transport API](https://transport.opendata.ch/docs.html), horaires opentransportdata.swiss ; [Spotify Web API](https://developer.spotify.com/documentation/web-api/reference/get-queue) ; [Dreame Vacuum](https://github.com/Tasshack/dreame-vacuum). Aucun serveur supplémentaire.
+
+
+## Brief fusionné · v0.22.0
+
+Le bouton soleil levant ouvre le **Brief du jour**. Il remplace les deux anciennes entrées Brief / Quotidien et réunit la note maison, les trois prochains départs de l’arrêt choisi et deux estimations routières. Les onglets Départs, Notes et Connexions restent accessibles dans la même vue. Le planning est uniquement dans Cuisine → La semaine ; Je pars reste dans Domotique. Les repas, portions, notes et connexions existants sont conservés.
+
+Les trajets en voiture ciblent Lausanne centre / Saint-François et Genève centre / Bel-Air, pas l’aéroport. Sans localisation, le départ est le centre approximatif de Moudon. **Position → Utiliser ma position** demande un seul relevé au navigateur après explication du partage avec OSRM. La position reste en mémoire, n’est ni enregistrée ni suivie ; les capacités du navigateur et du cadre peuvent rendre la localisation indisponible. Le bouton Moudon rétablit le point public approximatif.
+
+Les temps OSRM sont des estimations routières **sans trafic en direct**, datées, avec kilomètres et lien d’itinéraire Google Maps. Cache en mémoire de dix minutes, requêtes espacées de plus d’une seconde, aucun nouveau calcul automatique lancé lorsque Hub est masqué ou en veille ; un calcul déjà en cours peut se terminer. Le service public OSRM est sans garantie de disponibilité ; les derniers résultats utilisables sont signalés anciens en cas d’échec. Sources : [OSRM](https://project-osrm.org/docs/v5.24.0/api/) et © [OpenStreetMap](https://www.openstreetmap.org/copyright). Aucun jeton ni serveur ajouté.

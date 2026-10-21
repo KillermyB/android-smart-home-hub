@@ -7,6 +7,7 @@ function context(){
  const saved=[],commands=[],messages=[];let refreshed=0;
  const c=vm.createContext({URL,URLSearchParams,AbortController,Date,Intl,setTimeout,clearTimeout,read:(_k,f)=>f,save:(...args)=>saved.push(args),today:'2026-10-21',state:{recipes:[{id:'pasta',title:'Pâtes',servings:2,time:15,ingredients:[{qty:100,unit:'g',name:'Pâtes'}]}],page:'daily',modal:null,filters:['work']},meals:{},hiddenRecipes:[],document:{hidden:false,body:{appendChild(){}},querySelectorAll:()=>[]},house:{status:'connected',generation:1,entities:[],client:{confirmedCall:async(...args)=>{commands.push(args);return {confirmed:true};}},pending:''},$(){return null;},esc:String,icon:()=>'',title:()=>'',action:(name,label)=>`<button data-action="${name}">${label}</button>`,events:()=>[],houseUpdate(){},renderOverlay(){},render(){refreshed++;},toast:(...args)=>messages.push(args),houseError:e=>e.message,timeText:()=> '12:00',dateText:k=>k,shiftDay:(d,n)=>c.HubDaily.addDays(d,n),dashboardQuote:()=>'<quote>',openModal(name){c.state.modal=name;},closeModal(){c.state.modal=null;},spotify:{connected:()=>true},HubHA:{group:x=>x.entity_id.startsWith('light.')?'lighting':'media_player',supports:(_x,s)=>s==='media_pause'},music:{busy:false},musicTime:String,selectedAppointment:'meeting',HubConnect:{},daily:{},shop:{}});
  vm.runInContext(readFileSync(new URL('../dist/daily-life.js',import.meta.url),'utf8'),c);
+ vm.runInContext(readFileSync(new URL('../dist/road-travel.js',import.meta.url),'utf8'),c);
  vm.runInContext(app.slice(app.indexOf('  // Daily tools'),app.indexOf('  var morningHour=')),c);
  return {c,saved,commands,messages,refreshed:()=>refreshed};
 }
@@ -42,4 +43,17 @@ test('late transit search never attaches a previous appointment route to the new
 
 test('home meal shows planned portions instead of recipe default',()=>{
  const {c}=context();c.meal=()=>c.state.recipes[0];c.dayTools.plan['2026-10-21']={recipeId:'pasta',portions:4};vm.runInContext(app.slice(app.indexOf('  function dashboardMeal()'),app.indexOf('  function dashboardQuote()')),c);assert.match(c.dashboardMeal(),/4 personnes/);
+});
+
+test('merged brief contains only house note, departures and driving estimates, without meal or leaving cards',()=>{
+ const {c}=context();c.dayTools.notes=[{id:'n',text:'Note maison',pinned:true}];const html=c.briefOverview();assert.match(html,/Note maison/);assert.match(html,/Moudon, gare/);assert.match(html,/Lausanne · centre/);assert.match(html,/Genève · centre/);assert.match(html,/centre approximatif/);assert.match(html,/hors trafic en direct/);assert.doesNotMatch(html,/meal-plan|leave-review|La maison se repose|Aéroport/);
+});
+test('road display distinguishes failures from estimates and keeps provenance',()=>{
+ const {c}=context();c.dayTools.road.results={lausanne:{error:'Service indisponible'},geneve:{minutes:73,kilometers:88.8,updatedAt:Date.now(),stale:true}};const html=c.roadPanel();assert.match(html,/Service indisponible/);assert.match(html,/1 h 13/);assert.match(html,/à actualiser/);assert.doesNotMatch(html,/NaN|undefined/);assert.match(html,/OpenStreetMap/);
+});
+test('location is never requested by brief lifecycle and cannot persist precise coordinates',async()=>{
+ const {c,saved}=context();let requests=0;c.state.page='brief';c.briefVisible=()=>true;c.refreshTransit=()=>{};c.refreshRoad=async()=>{};c.dayTools.road.client.route=async()=>{};c.HubRoad.locate=async()=>{requests++;return {latitude:46.6,longitude:6.7,label:'Position actuelle'};};c.navigator={geolocation:{}};c.briefLifecycle();assert.equal(requests,0);await c.roadAction('road-gps');assert.equal(requests,1);assert.equal(c.dayTools.road.origin.label,'Position actuelle');assert.equal(saved.length,0);await c.roadAction('road-moudon');assert.match(c.dayTools.road.origin.label,/Moudon/);
+});
+test('late road estimates cannot replace a newer origin after switching back to Moudon',async()=>{
+ const {c}=context();let resolve;c.dayTools.road.client.route=()=>new Promise(r=>{resolve=r;});c.HubRoad.destinations=c.HubRoad.destinations.slice(0,1);const pending=c.refreshRoad();c.dayTools.road.revision++;c.dayTools.road.results={};resolve({minutes:99});await pending;assert.equal(c.dayTools.road.results.lausanne,undefined);
 });
