@@ -22,32 +22,11 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_III#VI"
   },
   {
-    "text": "Quelle vertu dois-je exercer à son occasion : douceur, courage, véracité, confiance, simplicité, indépendance ?",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, III, XI · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_III#XI"
-  },
-  {
-    "text": "L’obstacle qu’il rencontre lui devient une matière à s’exercer.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, IV, I · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#I"
-  },
-  {
     "text": "Ne fais jamais quoi que ce soit à la légère ; et règle uniquement tous tes actes d’après la réflexion, complément nécessaire de la pratique.",
     "author": "Marc Aurèle",
     "work": "Pensées pour moi-même, IV, II · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
     "category": "Stoïcisme",
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#II"
-  },
-  {
-    "text": "Tâche donc de t’assurer ce constant refuge, et viens t’y renouveler toi-même perpétuellement.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, IV, III · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#III"
   },
   {
     "text": "La terre entière n’est qu’un point, et la partie que nous habitons n’en est que le coin le plus étroit.",
@@ -106,13 +85,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#XX"
   },
   {
-    "text": "De tous ces biens, en est-il un qui soit beau parce qu’on le loue, ou qui puisse périr parce qu’on le critique ?",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, IV, XX · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#XX"
-  },
-  {
     "text": "Une émeraude perd-elle du prix qu’elle avait parce qu’on ne la loue pas ?",
     "author": "Marc Aurèle",
     "work": "Pensées pour moi-même, IV, XX · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
@@ -153,13 +125,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "work": "Pensées pour moi-même, IV, XXVI · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
     "category": "Stoïcisme",
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#XXVI"
-  },
-  {
-    "text": "Une autre chose non moins nécessaire, c’est de te souvenir que chacun des actes auxquels on se livre a son mérite propre et son harmonie avec le tout.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, IV, XXXII · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_IV#XXXII"
   },
   {
     "text": "En prenant ainsi les choses, tu n’auras jamais de mécomptes, puisque tu n’auras pas donné à des choses inférieures plus de prix qu’elles n’en ont réellement.",
@@ -226,13 +191,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
   },
   {
     "text": "Juge digne de toi toute parole et tout acte qui est selon la nature.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, V, III · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_V#III"
-  },
-  {
-    "text": "Ne t’en laisse détourner ni par le blâme, ni par les calomnies, dont parfois le blâme est suivi.",
     "author": "Marc Aurèle",
     "work": "Pensées pour moi-même, V, III · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
     "category": "Stoïcisme",
@@ -337,13 +295,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VI#XLV"
   },
   {
-    "text": "Efforçons-nous de persuader les gens ; mais, s’ils ne t’écoutent pas, n’en agis pas moins selon les lois de la justice, qui doit seule te conduire.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, VI, L · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VI#L"
-  },
-  {
     "text": "Que l’obstacle même qui te gêne soit l’occasion pour toi de t’exercer à une autre vertu.",
     "author": "Marc Aurèle",
     "work": "Pensées pour moi-même, VI, L · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
@@ -372,25 +323,11 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VI#LVIII"
   },
   {
-    "text": "Je puis toujours m’en faire l’idée qu’il faut en avoir ; et, du moment que je le puis, pourquoi m’en troubler ?",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, VII, II · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VII#II"
-  },
-  {
     "text": "Les choses du dehors, puisqu’elles ne résident pas dans mon esprit, ne peuvent absolument quoi que ce soit sur mon esprit lui-même.",
     "author": "Marc Aurèle",
     "work": "Pensées pour moi-même, VII, II · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
     "category": "Stoïcisme",
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VII#II"
-  },
-  {
-    "text": "Contre toutes ces séductions, il faut savoir conserver son cœur parfaitement calme, et ne pas montrer non plus un mépris trop altier.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, VII, III · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VII#III"
   },
   {
     "text": "S’il s’agit d’un discours, il faut regarder à chaque mot ; s’il est question d’un acte, il faut regarder à l’intention.",
@@ -440,13 +377,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "work": "Pensées pour moi-même, VIII, XLIX · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
     "category": "Stoïcisme",
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VIII#XLIX"
-  },
-  {
-    "text": "Le seul moyen, c’est de te rendre à tout instant de plus en plus libre, sans jamais te départir de la bienveillance, de la simplicité et de la modestie indispensables.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, VIII, LI · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_VIII#LI"
   },
   {
     "text": "Le soleil semble épancher et répandre sa lumière, et en effet il l’épanche dans le monde entier ; mais, en s’épanchant, il ne s’épuise jamais.",
@@ -510,13 +440,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "work": "Pensées pour moi-même, XI, XXI · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
     "category": "Stoïcisme",
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_XI#XXI"
-  },
-  {
-    "text": "À bien plus forte raison, cette éducation préalable est-elle nécessaire pour l’art de la vie.",
-    "author": "Marc Aurèle",
-    "work": "Pensées pour moi-même, XI, XXIX · extrait, trad. Barthélemy-Saint-Hilaire, 1876",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_pour_moi-m%C3%AAme/Livre_XI#XXIX"
   },
   {
     "text": "Apprends à faire par l’habitude les choses mêmes qui te répugnent.",
@@ -953,9 +876,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Le bonheur et le malheur des hommes ne dépend pas moins de leur humeur que de la fortune.",
+    "text": "Il est plus nécessaire d’étudier les hommes que les livres.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, LXI · éd. Hachette, 1868",
+    "work": "Maximes, DL · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -967,9 +890,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Le silence est le parti le plus sur de celui qui se défie de soi-même.",
+    "text": "Il est bien plus aisé d’éteindre un premier désir que de satisfaire tous ceux qui le suivent.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, LXXIX · éd. Hachette, 1868",
+    "work": "Maximes, DXL · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1002,16 +925,16 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Tous ceux qui connoissent leur esprit ne connoissent pas leur cœur.",
+    "text": "Nous nous tourmentons moins pour devenir heureux que pour faire croire que nous le sommes.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CIII · éd. Hachette, 1868",
+    "work": "Maximes, DXXXIX · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
     "text": "On ne donne rien si libéralement que ses conseils.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CVX · éd. Hachette, 1868",
+    "work": "Maximes, 110 · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1051,9 +974,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Les occasions nous font connoître aux autres, et encore plus à nous-mêmes.",
+    "text": "On est quelquefois un sot avec de l’esprit, mais on ne l’est jamais avec du jugement.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CCCXLV · éd. Hachette, 1868",
+    "work": "Maximes, CDLVI · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1128,9 +1051,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Rien n’empêche tant d’être naturel que l’envie de le paroître.",
+    "text": "Il n’est jamais plus difficile de bien parler que quand on a honte de se taire.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CDXXXI · éd. Hachette, 1868",
+    "work": "Maximes, DLVI · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1156,9 +1079,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Nous ne désirerions guère de choses avec ardeur, si nous connoissions parfaitement ce que nous desirons.",
+    "text": "L’intérêt, qui aveugle les uns, fait la lumière des autres.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CDXXXIX · éd. Hachette, 1868",
+    "work": "Maximes, XL · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1184,9 +1107,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Nous gagnerions plus de nous laisser voir tels que nous sommes, que d’essayer de paroître ce que nous ne sommes pas.",
+    "text": "Nous n’avons pas assez de force pour suivre toute notre raison.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CDLVII · éd. Hachette, 1868",
+    "work": "Maximes, XLII · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1198,9 +1121,9 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
   {
-    "text": "Les querelles ne dureroient pas longtemps si le tort n’étoit que d’un côté.",
+    "text": "Notre sagesse n’est pas moins à la merci de la fortune que nos biens.",
     "author": "François de La Rochefoucauld",
-    "work": "Maximes, CDXCVI · éd. Hachette, 1868",
+    "work": "Maximes, CCCXXIII · éd. Hachette, 1868",
     "category": "Littérature",
     "source": "https://fr.wikisource.org/wiki/%C5%92uvres_de_La_Rochefoucauld_-_T.1/R%C3%A9flexions_ou_sentences_et_maximes_morales"
   },
@@ -1313,13 +1236,6 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "text": "Si tu prends un rôle au-dessus de tes forces, tu le joues mal ; et celui que tu pouvais remplir, tu l’abandonnes.",
     "author": "Épictète",
     "work": "Manuel, XXXVII · extrait, trad. Jean-Marie Guyau, 1875",
-    "category": "Stoïcisme",
-    "source": "https://fr.wikisource.org/wiki/Manuel_d%E2%80%99%C3%89pict%C3%A8te_%28trad._Guyau%29/Manuel"
-  },
-  {
-    "text": "Si nous songeons à cela dans chaque action, plus sûrement nous pourrons nous mettre à l’œuvre.",
-    "author": "Épictète",
-    "work": "Manuel, XXXVIII · extrait, trad. Jean-Marie Guyau, 1875",
     "category": "Stoïcisme",
     "source": "https://fr.wikisource.org/wiki/Manuel_d%E2%80%99%C3%89pict%C3%A8te_%28trad._Guyau%29/Manuel"
   },
@@ -1650,11 +1566,141 @@ HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
   },
   {
-    "text": "Voulez-vous qu’on croie du bien de vous ? n’en dites pas.",
+    "text": "Voulez-vous qu’on croie du bien de vous ? N’en dites pas.",
     "author": "Blaise Pascal",
-    "work": "Pensées, section I, fragment 44 · éd. Brunschvicg, Hachette, 1925",
+    "work": "Pensées, section I, fragment 44 · éd. Brunschvicg, Hachette, 1925 · majuscule normalisée",
     "category": "Philosophie",
     "source": "https://fr.wikisource.org/wiki/Pens%C3%A9es_(Pascal,_%C3%A9d._Brunschvicg)/Pens%C3%A9es/Section_I"
+  }
+]);
+
+// Literary additions checked against the linked primary editions.
+HUB_DATA.quotes.push.apply(HUB_DATA.quotes, [
+  {
+    "text": "Patience et longueur de temps\nFont plus que force ni que rage.",
+    "author": "Jean de La Fontaine",
+    "work": "Fables, II, XI, Le Lion et le Rat · éd. 1874 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Fables_de_La_Fontaine_(%C3%A9d._1874)/Le_Lion_et_le_Rat"
+  },
+  {
+    "text": "Il faut, autant qu’on peut, obliger tout le monde :\nOn a souvent besoin d’un plus petit que soi.",
+    "author": "Jean de La Fontaine",
+    "work": "Fables, II, XI, Le Lion et le Rat · éd. 1874 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Fables_de_La_Fontaine_(%C3%A9d._1874)/Le_Lion_et_le_Rat"
+  },
+  {
+    "text": "Rien ne sert de courir ; il faut partir à point :\nLe lièvre et la tortue en sont un témoignage.",
+    "author": "Jean de La Fontaine",
+    "work": "Fables, VI, X, Le Lièvre et la Tortue · éd. 1874 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Fables_de_La_Fontaine_(%C3%A9d._1874)/Le_Li%C3%A8vre_et_la_Tortue"
+  },
+  {
+    "text": "Travaillez, prenez de la peine :\nC’est le fonds qui manque le moins.",
+    "author": "Jean de La Fontaine",
+    "work": "Fables, V, IX, Le Laboureur et ses enfants · éd. 1874 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Fables_de_La_Fontaine_(%C3%A9d._1874)/Le_Laboureur_et_ses_enfants"
+  },
+  {
+    "text": "Les mots sont les passants mystérieux de l’âme.",
+    "author": "Victor Hugo",
+    "work": "Les Contemplations, I, VIII, Suite · 1856 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Les_Contemplations/Suite"
+  },
+  {
+    "text": "J’ai cueilli cette fleur pour toi sur la colline.",
+    "author": "Victor Hugo",
+    "work": "Les Contemplations, V, XXIV · 1856 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Les_Contemplations/%C2%AB_J%E2%80%99ai_cueilli_cette_fleur_pour_toi_sur_la_colline_%C2%BB"
+  },
+  {
+    "text": "On n’est pas sérieux, quand on a dix-sept ans.",
+    "author": "Arthur Rimbaud",
+    "work": "Roman, I · 1870 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/%C5%92uvres_(Rimbaud)/Po%C3%A9sies/Roman"
+  },
+  {
+    "text": "Je laisserai le vent baigner ma tête nue.",
+    "author": "Arthur Rimbaud",
+    "work": "Sensation · 1870 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/%C5%92uvres_(Rimbaud)/Po%C3%A9sies/Sensation"
+  },
+  {
+    "text": "Là, tout n’est qu’ordre et beauté,\nLuxe, calme et volupté.",
+    "author": "Charles Baudelaire",
+    "work": "Les Fleurs du mal, LIII, L’Invitation au voyage · 1861 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Les_Fleurs_du_mal_(1861)/L%E2%80%99Invitation_au_voyage"
+  },
+  {
+    "text": "La musique souvent me prend comme une mer !",
+    "author": "Charles Baudelaire",
+    "work": "Les Fleurs du mal, LXIX, La Musique · 1861 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Les_Fleurs_du_mal_(1861)/La_Musique"
+  },
+  {
+    "text": "La bouche garde le silence\nPour écouter parler le cœur.",
+    "author": "Alfred de Musset",
+    "work": "La Nuit de mai · 1835 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Po%C3%A9sies_(Musset,_%C3%A9d._Nelson)/La_Nuit_de_mai"
+  },
+  {
+    "text": "Les plus désespérés sont les chants les plus beaux,\nEt j’en sais d’immortels qui sont de purs sanglots.",
+    "author": "Alfred de Musset",
+    "work": "La Nuit de mai · 1835 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Po%C3%A9sies_(Musset,_%C3%A9d._Nelson)/La_Nuit_de_mai"
+  },
+  {
+    "text": "La vague en a paru rouge et comme enflammée :\nCe soir ma robe encore en est toute embaumée…",
+    "author": "Marceline Desbordes-Valmore",
+    "work": "Poésies inédites, Les Roses de Saadi · 1860 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Po%C3%A9sies_in%C3%A9dites_(Marceline_Desbordes-Valmore)/Les_Roses_de_Saadi"
+  },
+  {
+    "text": "Une chère écriture est un portrait vivant.",
+    "author": "Marceline Desbordes-Valmore",
+    "work": "Les Séparés, troisième strophe · éd. Lemerre, 1886 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Les_S%C3%A9par%C3%A9s"
+  },
+  {
+    "text": "Prenez donc votre temps, faites l’école buissonnière, et franchissez le plus tard que vous pourrez le seuil de l’école où l’on apprend la vie.",
+    "author": "George Sand",
+    "work": "Lélia, chapitre V · éd. 1854, p. 6 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Page:Sand_-_%C5%92uvres_illustr%C3%A9es_de_George_Sand,_vol_7,_1854.djvu/14"
+  },
+  {
+    "text": "Comme le jour dépend de l’innocence\nLe monde entier dépend de tes yeux purs\nEt tout mon sang coule dans leurs regards.",
+    "author": "Paul Éluard",
+    "work": "Capitale de la douleur, La courbe de tes yeux · 1926 · derniers vers",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Capitale_de_la_douleur/Nouveaux_Po%C3%A8mes/La_courbe_de_tes_yeux"
+  },
+  {
+    "text": "Demain viendra beau comme les autres jours de ta jeunesse, paré du plus grand bienfait de la Providence, le voile qui cache l’avenir.",
+    "author": "George Sand",
+    "work": "Lélia, chapitre V · éd. 1854, p. 6 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Page:Sand_-_%C5%92uvres_illustr%C3%A9es_de_George_Sand,_vol_7,_1854.djvu/14"
+  },
+  {
+    "text": "Inventons quelque part des lieux où l’on oublie ;\nPartons, nous sommes seuls, l’univers est à nous.",
+    "author": "Alfred de Musset",
+    "work": "La Nuit de mai · 1835 · extrait",
+    "category": "Littérature",
+    "source": "https://fr.wikisource.org/wiki/Po%C3%A9sies_(Musset,_%C3%A9d._Nelson)/La_Nuit_de_mai"
   }
 ]);
 

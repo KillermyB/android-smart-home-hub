@@ -3,16 +3,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-test('240 unique sourced quotations remain readable and alternate authors', () => {
+test('curated sourced quotations remain unique, readable and alternate authors', () => {
   const context = vm.createContext({});
   context.window = context;
   vm.runInContext(readFileSync(new URL('../dist/data.js', import.meta.url), 'utf8'), context);
   context.HUB_DATA = context.window.HUB_DATA;
   vm.runInContext(readFileSync(new URL('../dist/quotes.js', import.meta.url), 'utf8'), context);
   const quotes = context.HUB_DATA.quotes;
-  assert.equal(quotes.length, 240);
-  assert.equal(new Set(quotes.map(q => q.text.toLocaleLowerCase('fr'))).size, 240);
-  assert.equal(new Set(quotes.map(q => q.author)).size, 8);
+  assert.ok(quotes.length >= 240);
+  assert.equal(new Set(quotes.map(q => q.text.toLocaleLowerCase('fr'))).size, quotes.length);
+  assert.ok(new Set(quotes.map(q => q.author)).size >= 16);
+  for (const author of ['George Sand', 'Victor Hugo', 'Marceline Desbordes-Valmore', 'Jean de La Fontaine']) assert.ok(quotes.some(q => q.author === author));
+  assert.ok(quotes.every(q => !/connoiss|connoître|paroître|dureroient|n’étoit|ne dépend pas moins/.test(q.text)));
   quotes.forEach((q, i) => {
     assert.ok(q.text.length > 5 && q.text.length <= 240);
     assert.ok(q.author && q.work);

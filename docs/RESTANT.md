@@ -19,7 +19,7 @@
 - [x] Tâches sur toute la largeur : 18 éléments courts visibles en deux colonnes à 1280 × 800 ; courses toujours exclues.
 - [x] Défilement du document supprimé ; seuls le contenu débordant, les listes et les grilles dédiées défilent.
 - [x] Détail météo réel : ressenti, vent, humidité, pluie, soleil, UV, sept jours et 24 heures, repli sur le relevé précédent en cas d’erreur.
-- [x] 240 citations sourcées, cycle mélangé sans répétition, historique précédent/suivant et mémoire des dernières lectures.
+- [x] 246 citations sourcées de 16 auteurs, cycle mélangé sans répétition, historique précédent/suivant et mémoire des dernières lectures.
 
 ## Widgets et configuration v0.14.0
 
@@ -385,7 +385,7 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Surface Wi-Fi optionnelle séparée sur 4180 ; application principale toujours sur 127.0.0.1:4173, lancement et surveillance depuis les scripts existants sans nouvelle écriture système.
 - [x] Clavier natif passé de français à français Suisse (QWERTZ), réglages précédents sauvegardés en privé sur le cadre.
 - [x] v0.23.1 publiée sur GitHub et Sites, fichiers vérifiés et plein écran confirmé sur le cadre en Wi-Fi. 169 tests réussis.
-- [ ] Activation persistante du port 4180 en attente de l’accord explicite demandé : la validation automatique a refusé cette seule étape ; aucun listener distant activé.
+- [x] Activation persistante du port 4180 autorisée et appliquée ; accès HTTP local et état associé vérifiés. Voir v0.25.0.
 - [ ] Association et ergonomie sur le téléphone réel à confirmer par le propriétaire. HTTP local uniquement, pas de chiffrement réseau ; Wi-Fi domestique de confiance requis.
 - [ ] Adresse stable toujours à traiter dans le routeur ; rescanner le QR si DHCP change l’IP. Le navigateur Hub doit rester ouvert, y compris en veille Hub. Son du minuteur selon son activation sur le cadre.
 
@@ -403,4 +403,15 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Volume absolu borné, actions domotiques autorisées explicitement et capacités revérifiées sur le cadre à l’exécution ; pas de service arbitraire, pas de répétition automatique.
 - [x] Demandes rattachées à la session du cadre : ancienne demande refusée après interruption, retour d’arrière-plan ou rechargement.
 - [x] Scène/volume/piste envoyés distingués d’un état confirmé ; notes, tâches et minuteurs conservés, sans navigation du cadre.
-- [ ] Écoute Wi-Fi persistante et essai du téléphone physique toujours en attente de l’accord explicite ; aucune commande à un vrai appareil pendant les vérifications.
+- [x] Écoute Wi-Fi persistante autorisée et activée en v0.25.0.
+- [ ] Essai du téléphone physique ; aucune commande à un vrai appareil pendant les vérifications.
+
+
+## Citations et activation locale v0.25.0
+
+- [x] Lecture des 240 citations : douze extraits sans contexte retirés, huit maximes ambiguës ou en graphie ancienne remplacées, ponctuation et références corrigées. Cas douteux collationnés avec les éditions citées ; aucune réécriture silencieuse des auteurs.
+- [x] Dix-huit textes ajoutés : La Fontaine, Hugo, Rimbaud, Baudelaire, Musset, Desbordes-Valmore, Sand et Éluard. Total : 246 citations, 16 auteurs, sources accessibles dans la bibliothèque.
+- [x] Télécommande activée avec accord explicite ; sous-réseau du serveur ancien corrigé, contrôle de provenance compatible avec son CGI sans en-tête Origin. Clé invalide, provenance absente ou étrangère refusées ; état associé reçu, sans action aux appareils.
+- [ ] Association et ergonomie à confirmer sur le téléphone réel depuis Réglages → Télécommande sur le cadre.
+
+- [x] v0.25.0 installée en Wi-Fi, empreintes des fichiers vérifiées ; onglet existant actualisé et affichage réel en plein écran confirmé. Télécommande toujours active avec un état récent après actualisation.

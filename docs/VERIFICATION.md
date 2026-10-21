@@ -365,3 +365,14 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Session changée au rechargement, après interruption ou retour du navigateur : commandes de l’ancienne session refusées sans exécution, avec accusé d’échec. Aucune commande aux appareils réels pendant ces tests.
 - Contrôle visuel navigateur indisponible cette fois : Computer Use renvoie `cgWindowNotFound` et son inventaire de navigateurs échoue. Les tests de rendu ne constituent pas une vérification visuelle sur téléphone physique.
 - L’écoute Wi-Fi reste désactivée en attente de l’accord explicite précédent.
+
+
+## v0.25.0 — Citations relues et télécommande activée
+
+- Syntaxe et 173 tests réussis, dont corpus unique, diversité des auteurs, cycle/historique et refus des provenances invalides.
+- Les 240 anciennes phrases ont été lues ; les cas douteux et dix-huit ajouts ont été comparés aux sources primaires liées. Douze extraits sans contexte retirés, huit maximes remplacées, références Camus/Montaigne/Descartes/Épictète corrigées. Total : 246 citations de 16 auteurs. Il ne s’agit pas d’une collation exhaustive de 240 fac-similés.
+- Activation persistante de la télécommande avec accord explicite : page HTTP 200, requête d’état avec clé valide HTTP 200 et copie présente ; clé invalide et provenance absente/étrangère HTTP 403. Aucune commande à un appareil ni tâche cochée.
+- Correction de deux incompatibilités BusyBox 1.20 observées sur le cadre : règle réseau basée sur l’adresse du sous-réseau, et repli strict sur Referer lorsque Origin n’est pas exporté au CGI.
+- Navigateur du Mac indisponible via le contrôle graphique ; vérification du téléphone physique toujours en attente.
+
+- v0.25.0 installée en Wi-Fi, empreintes des fichiers vérifiées ; onglet existant actualisé et affichage réel en plein écran confirmé. Télécommande toujours active avec un état récent après actualisation.

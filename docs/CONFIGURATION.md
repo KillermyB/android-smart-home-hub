@@ -65,4 +65,4 @@ Ouvrir le bouton **Domotique** dans la barre du haut après avoir préparé l’
 Le petit widget météo affiche l’indice **européen** et l’UV, séparément. Données modélisées [Open-Meteo / CAMS ENSEMBLE](https://open-meteo.com/en/docs/air-quality-api), actualisées toutes les 30 minutes lorsque la page est visible. Le relevé daté est conservé en cas de coupure ; ce ne sont pas des mesures de capteurs intérieurs.
 
 
-Les 240 citations disposent d’un cycle mélangé, d’un historique récent local et des commandes précédente/suivante. Les thèmes et la fréquence restent dans les réglages. La date et les salutations utilisent Europe/Zurich. La police Inter et la marque Spotify sont incluses localement avec leurs références de licence.
+Les 246 citations de 16 auteurs disposent d’un cycle mélangé, d’un historique récent local et des commandes précédente/suivante. Les thèmes et la fréquence restent dans les réglages. La date et les salutations utilisent Europe/Zurich. La police Inter et la marque Spotify sont incluses localement avec leurs références de licence.
