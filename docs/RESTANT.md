@@ -258,3 +258,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Connexion et rechargement vérifiés sur le Mac avec les vrais états. Nouvelle vue Maison dans Home Assistant ; ScreenK conservé et sauvegardé localement.
 - [x] QR Smart Life / Tuya validé par l’utilisateur : 11 appareils, 30 entités, dont 11 lumières/prises et 9 scènes. Plusieurs lumières sont signalées indisponibles par Home Assistant ; vérifier leur alimentation et leur état dans Smart Life.
 - [ ] Ajouter les robots dans Home Assistant suivant leur marque et leur application.
+
+## Correctifs v0.17.2
+
+- [x] Reculer le contour musical pour éviter son découpage dans les angles inférieurs.
+- [x] Autoriser les scènes dont la date de dernière activation est encore inconnue ; laisser les appareils indisponibles désactivés.
+- [x] Installer les correctifs sur le cadre par Wi-Fi ; connexion HA mémorisée et appareils réels affichés.
+- [ ] Vérifier physiquement une commande de lumière et un scénario avec l’utilisateur ; aucune commande réelle n’a été lancée pendant ces contrôles.

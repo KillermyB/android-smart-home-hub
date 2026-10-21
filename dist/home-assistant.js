@@ -23,8 +23,9 @@
   function forget() { try { root.localStorage.removeItem('hub.ha.connection'); } catch (_) {} }
   // Home Assistant core vacuum/const.py: START=8192, PAUSE=4, STOP=8, RETURN_HOME=16.
   function supports(value, service) {
-    if (!validState(value) || value.state === 'unavailable' || value.state === 'unknown') return false;
+    if (!validState(value) || value.state === 'unavailable') return false;
     var domain = value.entity_id.split('.')[0];
+    if(value.state==='unknown'&&domain!=='scene')return false;
     if (domain === 'light' || domain === 'switch') return ['turn_on','turn_off','toggle'].indexOf(service) >= 0;
     if (domain === 'scene') return service === 'turn_on';
     if(domain==='media_player'){var media={media_pause:1,volume_set:4,media_previous_track:16,media_next_track:32,media_stop:4096,media_play:16384};return Object.prototype.hasOwnProperty.call(media,service)&&(Number(value.attributes.supported_features)&media[service])===media[service];}
@@ -121,7 +122,7 @@
       if (!target || typeof target !== 'object' || Array.isArray(target) || Object.keys(target).some(function (key) { return key !== 'entity_id'; })) throw failure('invalid_target', 'Choisis un appareil précis de cette connexion.');
       var ids = Array.isArray(target.entity_id) ? target.entity_id.slice() : [target.entity_id];
       if (!ids.length || ids.some(function (id) { return !entity(id) || id.split('.')[0] !== domain || !Object.prototype.hasOwnProperty.call(cache,id); })) throw failure('invalid_target', 'Cet appareil n’appartient pas aux états Home Assistant chargés.');
-      if (ids.some(function (id) { return cache[id].state === 'unavailable' || cache[id].state === 'unknown'; })) throw failure('unavailable', 'Cet appareil est actuellement indisponible.');
+      if (ids.some(function (id) { return cache[id].state === 'unavailable' || cache[id].state === 'unknown' && domain !== 'scene'; })) throw failure('unavailable', 'Cet appareil est actuellement indisponible.');
       if (ids.some(function (id) { return !supports(cache[id],service); })) throw failure('unsupported_service', 'Cette commande n’est pas disponible pour cet appareil.');
       data = data == null ? {} : data;
       if (typeof data !== 'object' || Array.isArray(data) || ['entity_id','device_id','area_id','floor_id','label_id'].some(function (key) { return Object.prototype.hasOwnProperty.call(data,key); })) throw failure('invalid_data', 'Les paramètres ne peuvent pas changer les appareils ciblés.');

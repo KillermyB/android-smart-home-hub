@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.17.1.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](docs/DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
+**Version : v0.17.2.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](docs/DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](docs/VERIFICATION.md).
 
-Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.17.1`.
+Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.17.2`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](docs/MAINTENANCE-CADRE.md).
 
@@ -54,7 +54,7 @@ Le jeton Todoist reste en session ou, avec « Rester connecté », dans le stock
 
 La copie autonome du cadre et le [site privé HTTPS](https://smart-hub-maison.kbo1.chatgpt.site/) évitent de garder la tour allumée pour les fonctions locales, météo, GitHub public, courses Todoist et télécommande Spotify. Les calendriers Perso/Myrak/Travail peuvent être importés par fichiers ICS sans serveur ; ce sont des instantanés à réimporter après modification. Les anciennes connexions OAuth calendriers restent propres au serveur Node optionnel. Choisir une couleur ou un nom de source ne connecte pas un compte.
 
-La domotique exige une instance Home Assistant existante, accessible depuis le navigateur. Depuis Hub. en HTTPS, son adresse doit également être HTTPS. Aucun serveur domotique n’est installé par cette app et aucun appareil réel n’a encore été testé. Voir [DOMOTIQUE.md](docs/DOMOTIQUE.md).
+La domotique exige une instance Home Assistant existante, accessible depuis le navigateur. Depuis Hub. en HTTPS, son adresse doit également être HTTPS. Aucun serveur domotique n’est installé par cette app et les vrais états sont vérifiés sur le Mac et le cadre ; les commandes physiques restent à valider avec l’utilisateur. Voir [DOMOTIQUE.md](docs/DOMOTIQUE.md).
 
 Pour Todoist/Spotify, voir [COURSES-SPOTIFY.md](docs/COURSES-SPOTIFY.md). Pour Outlook/Google et le mode LAN, voir [CONNEXIONS.md](docs/CONNEXIONS.md). Spotify pilote un appareil existant et nécessite les droits du compte, Premium et un appareil actif ; il ne transforme pas le cadre en haut-parleur. Spotify mémorisé reprend sans nouvelle connexion tant que son autorisation reste valide.
 

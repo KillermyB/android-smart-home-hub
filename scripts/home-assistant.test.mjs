@@ -152,3 +152,11 @@ test('HA remembering is explicit, survives reload, validates data and forgets on
  assert.throws(()=>api.remember({url:'http://home.test',token:'bad\nvalue'}),e=>e.code==='invalid_token');
  storage.set('hub.ha.connection','{broken');assert.equal(api.saved(),null);
 });
+
+
+test('a scene never activated has unknown timestamp but can be explicitly activated',async t=>{
+ const h=setup();t.after(()=>h.client.disconnect());const scene={entity_id:'scene.evening',state:'unknown',attributes:{friendly_name:'Evening'}};const {socket}=await ready(h,[scene]);
+ assert.equal(h.api.supports(scene,'turn_on'),true);assert.equal(h.api.supports({...scene,state:'unavailable'},'turn_on'),false);
+ const promise=h.client.call('scene','turn_on',{entity_id:scene.entity_id});const command=socket.sent.at(-1);assert.equal(command.type,'call_service');socket.reply(command);await promise;
+ assert.equal(h.client.states()[0].state,'unknown');
+});
