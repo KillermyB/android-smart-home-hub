@@ -1,6 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFileSync} from 'node:fs';import {webcrypto,randomBytes,createCipheriv} from 'node:crypto';
-const c=vm.createContext({TextEncoder,TextDecoder,crypto:webcrypto,Uint8Array,atob,Date});vm.runInContext(readFileSync(new URL('../dist/connection-bundle.js',import.meta.url),'utf8'),c);
+const c=vm.createContext({URL,TextEncoder,TextDecoder,crypto:webcrypto,Uint8Array,atob,Date});vm.runInContext(readFileSync(new URL('../dist/home-assistant.js',import.meta.url),'utf8'),c);vm.runInContext(readFileSync(new URL('../dist/connection-bundle.js',import.meta.url),'utf8'),c);
 function seal(value){const key=randomBytes(32),iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',key,iv);cipher.setAAD(Buffer.from('hub-connections-v1'));const data=Buffer.concat([cipher.update(JSON.stringify(value),'utf8'),cipher.final(),cipher.getAuthTag()]);return {code:key.toString('base64url'),packet:{format:'hub-connections',version:1,iv:iv.toString('base64url'),data:data.toString('base64url')}};}
 test('connection transfers decrypt only with their separate key and reject expiry and tampering',async()=>{
  const value={calendars:[{source:'work',text:'private-calendar'}],todoist:{token:'private-test-token'},expires:Date.now()+1800000},s=seal(value);assert.ok(!JSON.stringify(s.packet).includes('private-test-token'));assert.ok(!JSON.stringify(s.packet).includes(s.code));const opened=await c.HubConnectionBundle.open(s.packet,s.code);assert.equal(opened.todoist.token,value.todoist.token);await assert.rejects(c.HubConnectionBundle.open(s.packet,randomBytes(32).toString('base64url')),/incorrect/);await assert.rejects(c.HubConnectionBundle.open({...s.packet,data:s.packet.data.slice(0,-4)+'AAAA'},s.code),/modifié/);const old=seal({...value,expires:Date.now()-1000});await assert.rejects(c.HubConnectionBundle.open(old.packet,old.code),/expirée/);
+});
+
+
+test('encrypted HA association validates its address and token before import',async()=>{
+ const value={calendars:[],homeAssistant:{url:'http://home.test:8123',token:'private-ha-token'},expires:Date.now()+1800000};let s=seal(value);const opened=await c.HubConnectionBundle.open(s.packet,s.code);assert.equal(opened.homeAssistant.token,'private-ha-token');assert.ok(!JSON.stringify(s.packet).includes('private-ha-token'));
+ s=seal({...value,homeAssistant:{url:'http://home.test/?token=secret',token:'test'}});await assert.rejects(c.HubConnectionBundle.open(s.packet,s.code),/Home Assistant invalide/);
 });

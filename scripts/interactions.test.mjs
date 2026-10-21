@@ -15,10 +15,10 @@ test('idle context shows the next visible calendar appointment beside real weath
  context.state.weather=null;assert.doesNotMatch(context.sleepContext(),/sleep-weather/);
 });
 
-test('the music tile bar represents elapsed playback time',()=>{
+test('the music tile perimeter represents elapsed playback time',()=>{
  const context=vm.createContext({music:{data:{item:{duration_ms:10000}}},musicProgress:()=>3000,musicTime:value=>String(value)});
  vm.runInContext(section('  function musicOrbit()', '  function musicArtwork()'),context);
- assert.match(context.musicOrbit(),/max="10000" value="3000"/);assert.doesNotMatch(context.musicOrbit(),/<svg/);
+ assert.match(context.musicOrbit(),/aria-valuenow="30"/);assert.match(context.musicOrbit(),/pathLength="100" data-tile-progress stroke-dasharray="30 100"/);assert.doesNotMatch(context.musicOrbit(),/<progress/);
  context.music.data=null;assert.equal(context.musicOrbit(),'');
 });
 
@@ -178,4 +178,13 @@ test('navigation renders synchronously without waiting for unrelated service han
   const pending = context.handle('nav:calendar');
   assert.equal(context.state.page, 'calendar'); assert.equal(renders, 1);
   await pending;
+});
+
+
+test('remembered HA reconnect waits with backoff, pauses while hidden, and never dispatches a device command',async()=>{
+ const timers=[],cleared=[];let attempts=0;const context=vm.createContext({house:{retry:0,retryDelay:2000,client:{connect:async()=>{attempts++;}},status:'disconnected'},document:{hidden:false},HubHA:{saved:()=>({url:'http://home.test',token:'test'})},setTimeout:(fn,delay)=>{timers.push({fn,delay});return timers.length;},clearTimeout:id=>cleared.push(id)});
+ vm.runInContext(section('  function houseRetry()', '  async function houseStart('),context);
+ context.houseRetry();assert.equal(timers[0].delay,2000);await timers[0].fn();assert.equal(attempts,1);
+ context.houseRetry();assert.equal(timers[1].delay,4000);context.document.hidden=true;await timers[1].fn();assert.equal(attempts,1);
+ context.houseRetry();assert.equal(timers.length,2);context.document.hidden=false;context.house.status='connected';context.houseRetry();assert.equal(timers.length,2);
 });

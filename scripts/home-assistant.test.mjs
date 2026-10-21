@@ -141,3 +141,14 @@ test('HA reports unreachable instance separately from bad credentials',async t=>
 });
 
 test('media players only expose advertised transport controls and bounded volume',async t=>{const h=setup();t.after(()=>h.client.disconnect());const speaker={entity_id:'media_player.sonos',state:'playing',attributes:{supported_features:1|4|16|32|16384,volume_level:.4}};const {socket}=await ready(h,[speaker]);assert.equal(h.api.supports(speaker,'media_pause'),true);assert.equal(h.api.supports(speaker,'media_stop'),false);for(const value of [-1,1.1,null,'0.4',NaN])await assert.rejects(h.client.call('media_player','volume_set',{entity_id:speaker.entity_id},{volume_level:value}),e=>e.code==='invalid_data');const request=h.client.call('media_player','volume_set',{entity_id:speaker.entity_id},{volume_level:.6});const sent=socket.sent.at(-1);assert.equal(sent.service_data.volume_level,.6);socket.reply(sent);await request;assert.equal(h.client.states()[0].attributes.volume_level,.4);});
+
+
+test('HA remembering is explicit, survives reload, validates data and forgets only its credential',()=>{
+ const storage=new Map([['hub.other','preserved']]);const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
+ const load=()=>{const c=vm.createContext({URL,localStorage});vm.runInContext(source,c);return c.HubHA;};
+ let api=load();assert.equal(api.saved(),null);api.remember({url:'http://home.test:8123/',token:'private-test-token'});api=load();assert.equal(api.saved().token,'private-test-token');assert.equal(api.saved().url,'http://home.test:8123');
+ api.forget();assert.equal(api.saved(),null);assert.equal(storage.get('hub.other'),'preserved');
+ assert.throws(()=>api.remember({url:'http://user:secret@home.test',token:'test'}),e=>e.code==='invalid_url');
+ assert.throws(()=>api.remember({url:'http://home.test',token:'bad\nvalue'}),e=>e.code==='invalid_token');
+ storage.set('hub.ha.connection','{broken');assert.equal(api.saved(),null);
+});

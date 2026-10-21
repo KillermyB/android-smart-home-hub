@@ -9,9 +9,11 @@ Hub. peut se connecter directement à **une instance Home Assistant déjà insta
 3. Dans Hub., saisir l’adresse de ton instance et ce jeton, puis **Connecter**. Utiliser une adresse HTTP(S) sans identifiants, paramètres ni fragment. Ne jamais mettre le jeton dans l’URL.
 4. Attendre l’état **Connecté**. Les appareils affichés viennent uniquement des états retournés par Home Assistant ; aucune maison fictive n’est ajoutée.
 
-**Le jeton reste en mémoire de cette page.** Il n’est enregistré ni dans localStorage, ni dans sessionStorage, ni dans les exports, ni dans le dépôt. Le champ de saisie est vidé dès l’envoi du formulaire. Fermer/recharger la page ou choisir **Déconnecter et oublier le jeton** demande une nouvelle saisie. Le jeton reste révocable depuis Home Assistant.
+**Le jeton reste en mémoire par défaut.** Avec **Rester connecté sur cet appareil**, Hub mémorise l’adresse et le jeton dans le stockage local du navigateur, puis se reconnecte au rechargement. Le champ est vidé dès l’envoi. **Déconnecter et oublier le jeton** efface cette copie, sans révoquer le jeton dans Home Assistant.
 
-Seule l’adresse, sans secret, peut être mémorisée en cochant l’option correspondante. Pour effacer une adresse déjà mémorisée, se déconnecter puis établir la prochaine connexion avec cette case décochée.
+Ce stockage n’est pas un coffre chiffré : une personne ayant accès au navigateur peut accéder à cette connexion. Ne cocher cette option que sur son Mac ou son cadre personnel. Un transfert vers le cadre peut passer par **Associer mes connexions**, avec un fichier AES-GCM et un code séparé valables 30 minutes ; les fichiers temporaires doivent ensuite être supprimés. Rien n’est inclus dans Git.
+
+Après une interruption réseau, une connexion mémorisée retente uniquement l’authentification et la lecture des états, avec un délai de 2 à 60 secondes et suspension des tentatives lorsque la page est masquée. Les commandes d’appareils ne sont jamais répétées. Un jeton refusé exige une intervention.
 
 ## Réseau et HTTPS
 
@@ -35,11 +37,11 @@ Les noms et les états viennent de Home Assistant. Les robots peuvent afficher l
 
 Une réponse positive signifie **« commande acceptée par Home Assistant »**. L’état affiché attend la mise à jour réelle de l’entité : Hub. ne simule pas l’allumage ou le démarrage d’un robot. Aucune commande n’est envoyée en ouvrant la page ou en se connectant, aucune commande en échec n’est répétée automatiquement, et seules les entités identifiées explicitement sont ciblées.
 
-## Validation restant à faire
+## Validation
 
-Le module et l’interface sont préparés en v0.6.0. La connexion à ton instance, les autorisations du compte, les vrais appareils, le réseau du cadre, le tactile et la reconnexion après coupure restent à vérifier avec toi. Aucun test simulé ne prouve l’activation d’une lumière ou d’un robot réel.
+En v0.17.0, le jeton dédié autorisé a été créé et la lecture réelle des états a été vérifiée sur le Mac. La connexion persistante a été retrouvée après rechargement, sans nouvelle saisie. La Sonos Home et les deux télévisions sont détectées ; aucune commande d’appareil n’a été exécutée pour ces contrôles.
 
-Commencer par consulter les états. Tester ensuite une seule lumière clairement identifiée, puis vérifier physiquement son état et son retour dans l’interface. Pour un robot, vérifier d’abord que la zone est prête et que les commandes sont disponibles dans Home Assistant.
+Les lumières Smart Life s’ajoutent via l’intégration officielle **Tuya** dans Home Assistant : code utilisateur depuis **Moi → Réglages → Compte et sécurité**, puis QR à scanner avec **+ → Scanner**. Hub reçoit ensuite les entités `light` et `switch` automatiquement. Les robots doivent également être intégrés dans Home Assistant avant d’apparaître dans Hub.
 
 Références : [API WebSocket officielle](https://developers.home-assistant.io/docs/api/websocket/), [authentification Home Assistant](https://www.home-assistant.io/docs/authentication/), [capacités officielles vacuum](https://github.com/home-assistant/core/blob/dev/homeassistant/components/vacuum/const.py).
 

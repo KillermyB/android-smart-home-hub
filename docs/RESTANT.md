@@ -249,3 +249,12 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Ajouter Toutes / Aujourd’hui à Todoist : futures et sans date accessibles, courses et sous-projets exclus ; trois colonnes à 1280 px, 27 tâches visibles et défilement interne vérifiés avec 36 tâches locales de contrôle.
 - [x] Jeu météo rempli Meteocons statique, local, sous licence MIT, utilisé sur l’accueil, le détail et la veille ; 85 tests passés.
 - [x] Transférer et vérifier v0.16.0 sur le cadre par SSH Wi-Fi, sans nouvelle ouverture d’onglet ni suppression des données.
+
+
+## Maison et carte musicale v0.17.0
+
+- [x] Pochette intégrée à la carte de lecture, dégradé sombre de lisibilité, contour blanc indiquant la progression et symbole pause plein.
+- [x] Home Assistant : mémorisation explicitement choisie, reconnexion au rechargement et après coupure réseau sans répétition de commande ; transfert chiffré vers le cadre préparé.
+- [x] Connexion et rechargement vérifiés sur le Mac avec les vrais états. Nouvelle vue Maison dans Home Assistant ; ScreenK conservé et sauvegardé localement.
+- [x] QR Smart Life / Tuya validé par l’utilisateur : 11 appareils, 30 entités, dont 11 lumières/prises et 9 scènes. Plusieurs lumières sont signalées indisponibles par Home Assistant ; vérifier leur alimentation et leur état dans Smart Life.
+- [ ] Ajouter les robots dans Home Assistant suivant leur marque et leur application.

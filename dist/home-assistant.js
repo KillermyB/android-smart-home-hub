@@ -1,6 +1,6 @@
 /* Direct Home Assistant WebSocket client, Chrome/WebView 106+.
  * Protocol: https://developers.home-assistant.io/docs/api/websocket/
- * Credentials are held only in this closure. Commands are never retried.
+ * Credentials are in memory unless explicitly remembered. Commands are never retried.
  */
 (function (root) {
   'use strict';
@@ -14,6 +14,13 @@
     return url.href;
   }
   function normalizeURL(value) { var url = new URL(endpoint(value)); url.protocol = url.protocol === 'wss:' ? 'https:' : 'http:'; url.pathname = url.pathname.replace(/\/api\/websocket$/, '') || '/'; return url.href.replace(/\/$/, ''); }
+  function credentials(value) {
+    if (!value || typeof value.token !== 'string' || !value.token.trim() || value.token.length > 8192 || /[\r\n]/.test(value.token)) throw failure('invalid_token','Jeton Home Assistant invalide.');
+    return {url:normalizeURL(value.url),token:value.token.trim()};
+  }
+  function saved() { try { var value=root.localStorage.getItem('hub.ha.connection'); return value?credentials(JSON.parse(value)):null; } catch (_) { return null; } }
+  function remember(value) { value=credentials(value); try { root.localStorage.setItem('hub.ha.connection',JSON.stringify(value)); } catch (_) { throw failure('storage_unavailable','Connexion établie, mais mémorisation impossible sur cet appareil.'); } }
+  function forget() { try { root.localStorage.removeItem('hub.ha.connection'); } catch (_) {} }
   // Home Assistant core vacuum/const.py: START=8192, PAUSE=4, STOP=8, RETURN_HOME=16.
   function supports(value, service) {
     if (!validState(value) || value.state === 'unavailable' || value.state === 'unknown') return false;
@@ -125,7 +132,7 @@
     }
     return {url:normalizeURL(address.replace(/^ws:/,'http:').replace(/^wss:/,'https:')), connect:connect, states:states, status:status, call:call, subscribe:function (listener) { if (typeof listener !== 'function') throw failure('invalid_listener','Écouteur Home Assistant invalide.'); listeners.add(listener); try { listener(states(),status()); } catch (_) {} return function () { listeners.delete(listener); }; }, disconnect:function () { close(null,'disconnected',true); }};
   }
-  var api = {create:create, endpoint:endpoint, normalizeURL:normalizeURL, supports:supports};
+  var api = {create:create, endpoint:endpoint, normalizeURL:normalizeURL, supports:supports, credentials:credentials, saved:saved, remember:remember, forget:forget};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.HubHA = api;
 })(typeof window !== 'undefined' ? window : globalThis);
