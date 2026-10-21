@@ -1,5 +1,12 @@
 # Vérification
 
+## v0.15.2 — Titres Todoist longs
+
+- La vérification de la vraie liste du cadre a révélé un titre Markdown avec URL longue qui recouvrait une autre ligne. Les aperçus gardent le texte du lien et deux lignes maximum ; une action séparée ouvre le texte complet sans cocher la tâche.
+- 82 tests réussis, dont texte Markdown, échappement HTML et refus de lien JavaScript. Sur l’origine de contrôle : texte limité à 42 px dans une ligne de 48 px ; détail lisible avec lien HTTP(S), fermeture et retrait de la seule tâche locale ajoutée pour ce cas.
+- v0.15.2 installée par Wi-Fi après contrôle d’identité, avec empreintes et contenu HTTP vérifiés. Les comptes et données sont conservés ; aucun appel de modification de tâche Todoist n’a été envoyé pendant les contrôles.
+
+
 ## v0.15.1 — Hauteurs réduites et polices du cadre
 
 - 81 tests et contrôles syntaxiques conservés. Le contrôle physique de v0.15.0 a révélé un débordement météo à 744 px de haut lorsque Firefox affiche sa barre. La grille et la météo sont compactées dans ce cas, sans masquer les prévisions. À 1280 × 744 : prévisions à y=202–230 dans la tuile y=96–242 ; document 1280 × 744, défilement limité au contenu plus haut que le viewport.

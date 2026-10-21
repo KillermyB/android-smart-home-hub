@@ -1,5 +1,11 @@
 # Liste de reprise
 
+## Titres Todoist v0.15.2
+
+- [x] Liens Markdown affichés avec leur libellé ; titres limités à deux lignes pour éviter de recouvrir une autre tâche.
+- [x] Bouton de détail pour les textes longs, contenu complet et liens HTTP(S) sécurisés ; aucune tâche réelle modifiée pendant les contrôles.
+- [x] 82 tests, contrôle local du détail et conservation de la liste / position de défilement.
+
 ## Ajustements cadre v0.15.1
 
 - [x] Météo contenue dans sa tuile avec la barre Firefox ouverte ; repas longs sur deux lignes sans masquer les détails.
