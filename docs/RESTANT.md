@@ -444,4 +444,13 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Syntaxe et 179 tests réussis. Rendu audio hors ligne réel : crête 0,516, fin à 1,87 s, sans écrêtage numérique.
 - [x] v0.26.1 installée sur le cadre après contrôle USB de son identité et vérification de la clé SSH existante sur sa nouvelle adresse Wi-Fi. Empreintes et contenu servi validés ; onglet unique actualisé, accueil plein écran 1280 × 800 constaté.
 - [x] Volume média natif augmenté de 5 à 6 sur 8 et relu dans Android ; bouton Tester le son déclenché avec confirmation applicative. Télécommande HTTP 200, minuteurs existants conservés.
-- [ ] Retour utilisateur sur le volume perçu du nouveau carillon.
+- [x] Nouveau carillon et volume 6 sur 8 validés à l’écoute par l’utilisateur.
+
+
+## v0.26.2 — Accès plein écran dans les réglages
+
+- [x] Bloc Affichage en tête des réglages, bouton orange de 52 px « Remettre en plein écran » ; libellé « Quitter le plein écran » quand il est actif. Raccourci redondant supprimé, commande de secours hors plein écran conservée.
+- [x] Syntaxe, 179 tests, contrôle 1280/320 px clair/sombre et vraies actions d’entrée/sortie du plein écran dans un navigateur isolé. Analyse de secrets sans détection.
+- [x] v0.26.2 copiée sur le cadre, 83 fichiers et manifeste servis vérifiés. Ancien PID du serveur local réparé après restauration automatique de sécurité ; aucun compte ni minuteur supprimé.
+
+- [x] Nouveau bouton testé sur le cadre : réglages ouverts, bouton touché, fermeture du panneau et accueil plein écran 1280 × 800 sans barre de navigateur constatés.

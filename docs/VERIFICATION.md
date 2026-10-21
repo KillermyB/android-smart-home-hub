@@ -406,3 +406,12 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Déploiement v0.26.1 terminé : empreintes de tous les fichiers et manifeste HTTP validés. Onglet Firefox existant actualisé, unique onglet constaté ; accueil réellement revenu à 1280 × 800 en plein écran après le test.
 - Volume média Android relevé à 5 sur 8, réglé explicitement à 6 et relu à 6. Canal de notification conservé à son niveau initial. Bouton Tester le son activé, message « Alerte sonore en cours. » constaté ; écoute perçue en attente du retour utilisateur. Aucun minuteur existant supprimé ou relancé.
 - Télécommande accessible en HTTP 200 après installation. Aucun redémarrage ni changement des identifiants de compte.
+
+
+## v0.26.2 — Commande plein écran visible
+
+- Réglages : bloc Affichage prioritaire et bouton orange d’au moins 52 px, sans raccourci plein écran en double. Libellé actualisé sur changement du mode.
+- Syntaxe et 179 tests réussis ; navigateur isolé à 1280 × 800 et 320 × 800, clair/sombre et mouvement réduit : bloc visible en tête, aucun débordement horizontal, entrée/sortie du plein écran par clic réel vérifiées. Analyse de secrets sans détection.
+- Cadre identifié en USB, service de maintenance existant relancé depuis son activité. Le premier essai de déploiement a correctement restauré la version précédente : serveur local actif mais PID sauvegardé périmé. Processus identifié par sa ligne exacte, référence corrigée, puis v0.26.2 activée avec empreintes et manifeste HTTP identiques (83 fichiers). Aucun changement du démarrage système.
+
+- Nouveau bouton constaté en tête des réglages du cadre, puis activé : retour à l’accueil avec document [0,0][1280,800], aucune barre de navigateur et capture réelle vérifiée.
