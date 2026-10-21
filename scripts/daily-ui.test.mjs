@@ -57,3 +57,8 @@ test('location is never requested by brief lifecycle and cannot persist precise 
 test('late road estimates cannot replace a newer origin after switching back to Moudon',async()=>{
  const {c}=context();let resolve;c.dayTools.road.client.route=()=>new Promise(r=>{resolve=r;});c.HubRoad.destinations=c.HubRoad.destinations.slice(0,1);const pending=c.refreshRoad();c.dayTools.road.revision++;c.dayTools.road.results={};resolve({minutes:99});await pending;assert.equal(c.dayTools.road.results.lausanne,undefined);
 });
+
+test('departures refresh road estimates only while visible and respect the shared cooldown',async()=>{
+ const {c}=context();let requests=0;c.state.page='brief';c.dayTools.tab='transport';c.dayTools.updated=Date.now();c.dayTools.road.client.route=async()=>{requests++;return {minutes:35,kilometers:27,updatedAt:Date.now()};};c.document.hidden=true;c.briefLifecycle();assert.equal(requests,0);c.document.hidden=false;c.briefLifecycle();await new Promise(r=>setTimeout(r,0));assert.equal(requests,2);assert.equal(c.dayTools.road.results.lausanne.minutes,35);c.briefLifecycle();await new Promise(r=>setTimeout(r,0));assert.equal(requests,2);c.dayTools.tab='notes';c.dayTools.road.attempted=0;c.briefLifecycle();assert.equal(requests,2);
+ const html=c.transportPanel();assert.match(html,/<\/aside><section class="card road-card"/);assert.match(html,/Lausanne · centre/);assert.match(html,/Genève · centre/);assert.match(html,/35 min/);
+});

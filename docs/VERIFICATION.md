@@ -454,3 +454,12 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Calendrier, tâches (36 visibles dans la liste), bibliothèque et étapes de recette, domotique, météo détaillée, brief, lecteur avec paroles et trois minuteurs du header vérifiés sur tablette portrait. Thème sombre et mouvement réduit conservés. Les données et commandes de ces contrôles sont simulées.
 
 - v0.27.1 installée par la maintenance Wi-Fi après lecture de l’identité du cadre et correction du suivi de son seul serveur HTTP : fichiers vérifiés et manifeste servi conformes. Le capteur de rotation n’a pas été modifié ; l’essai portrait physique reste distinct des contrôles de viewport.
+
+
+## v0.27.2 — Portrait compact et trajets horizontaux
+
+- Syntaxe et 188 tests réussis. Nouveau contrôle de la mise à jour routière dans Départs : page visible uniquement, deux destinations et délai commun conservé, aucune demande GPS automatique. Les tests serveur nécessitent l’accès au loopback local.
+- Navigateur isolé : 800 × 1280, 768 × 1024, 1024 × 1366, 600 × 960, 390 × 844, 320 × 740 et 1280 × 800 ; aucun débordement horizontal du document. À 800 × 1280, égalité entre hauteur utile et hauteur défilante de l’accueil pour le contenu contrôlé ; GitHub visible avant la citation en largeur. Les petits écrans conservent le défilement de contenu nécessaire.
+- Huit vues contrôlées, menu portrait par icônes, trois minuteurs, ordre/masquage personnalisés, sombre et mouvement réduit. Départs présente une colonne principale plus large que le rappel et les trajets côte à côte en dessous. Musique de veille centrée et contenu contenu dans la fenêtre. Aucun appareil réel commandé par les fixtures.
+
+- Installation Wi-Fi v0.27.2 vérifiée après lecture de l’identité USB ; PID du seul serveur HTTP Hub réconcilié avant activation. Onglet existant actualisé. La capture réelle et la racine WebView confirment le plein écran portrait 800 × 1280, avec GitHub et la citation visibles. Le contrôle initial attendait à tort les dimensions paysage ; vérification reprise avec les dimensions portrait actives, sans changement de rotation Android.

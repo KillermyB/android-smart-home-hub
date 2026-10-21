@@ -11,3 +11,13 @@
 @media(prefers-reduced-motion:reduce){.merged-brief *{scroll-behavior:auto}}
 
 .header [data-action="nav:brief"].is-selected{background:var(--accent);color:var(--accent-ink)}
+
+/* Departures keep the board prominent, with compact route tools alongside it. */
+.daily-grid.transport-layout{grid-template-columns:minmax(0,1.6fr) minmax(250px,.85fr);align-items:start}
+.transport-sidebar{display:grid;gap:14px;min-width:0}
+.transport-sidebar .daily-card{padding:20px}
+.transport-sidebar .daily-card h2{font-size:21px;margin:8px 0 12px}
+.transport-sidebar .daily-card p{font-size:13px;line-height:1.5}
+.transport-sidebar .daily-card>.pill{font-size:12px;white-space:normal;margin-top:10px}
+.transport-layout>.road-card{grid-column:1/-1}
+@media(max-width:720px){.daily-grid.transport-layout{grid-template-columns:minmax(0,1fr)}}

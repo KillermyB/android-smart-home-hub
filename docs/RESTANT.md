@@ -491,3 +491,12 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Textes et cibles tactiles agrandis sur tablette ; navigation sur sa propre ligne. Cuisine empilée, lecteur musical vertical, météo détaillée en largeur, scènes et éclairages adaptés au portrait. Semaine du calendrier défilante horizontalement dans son propre panneau.
 - [x] Veille : heure et citation agrandies, informations espacées, musique compacte conservée en haut à gauche.
 - [ ] Portrait physique du cadre : valider après rotation réelle ; les contrôles de navigateur ne prouvent pas le comportement du capteur d’orientation Android.
+
+
+## v0.27.2 — Portrait compact et trajets
+
+- [x] Accueil portrait : menus par icônes avec noms accessibles, commandes remontées sur la même ligne, rangée des minuteurs uniquement lorsqu’elle contient un minuteur. GitHub compact à côté de Cuisine, citation ou note sur toute la largeur. L’accueil complet tient à 800 × 1280 avec le texte contrôlé.
+- [x] Brief sans bouton Maison redondant ; Départs conserve son tableau principal et un rappel plus étroit, avec les deux trajets dans une tuile horizontale en dessous. Actualisation routière partagée, limitée et suspendue lorsque la page est masquée.
+- [x] Veille portrait : plus grande occupation verticale, heure et citation espacées, musique compacte centrée.
+- [x] Syntaxe, 188 tests et contrôles de navigateur sur sept formats, paysage, thème sombre, mouvement réduit, personnalisation et trois minuteurs. Données simulées pendant ces contrôles.
+- [x] v0.27.2 installée sur le cadre identifié ; manifeste servi vérifié. Capture réelle en portrait 800 × 1280 : accueil complet, GitHub visible et plein écran confirmé. Aucun réglage Android de rotation modifié.
