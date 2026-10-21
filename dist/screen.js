@@ -17,7 +17,13 @@
       if(percent!==undefined&&(!data.fixed||Math.abs(data.percent-percent)>1))throw Error('La luminosité n’a pas été confirmée.');
       key=data.key;return {percent:data.percent,fixed:data.fixed};
     }
-    return {read:function(){return send();},set:send};
+    async function activity(seconds){
+      if(!eligible(location)||!Number.isInteger(seconds)||seconds<0||seconds>86400)throw Error('Activité invalide.');
+      if(!key)await send();
+      var response=await request('/cgi-bin/activity.cgi',{method:'POST',cache:'no-store',credentials:'omit',referrerPolicy:'same-origin',signal:AbortSignal.timeout(5000),headers:{'Content-Type':'application/json'},body:JSON.stringify({seconds:seconds,key:key})});
+      if(!response.ok)throw Error('Activité non enregistrée.');var value=await response.json();if(value.native!==true||value.saved!==true)throw Error('Activité non confirmée.');return true;
+    }
+    return {read:function(){return send();},set:send,activity:activity};
   }
   root.HubScreen={eligible:eligible,client:client};
 })(typeof window!=='undefined'?window:globalThis);

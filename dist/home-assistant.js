@@ -50,7 +50,7 @@
     var address = endpoint(options.url), token = String(options.token || '').trim(), WS = options.WebSocket || root.WebSocket;
     if (!token || /[\r\n]/.test(token)) throw failure('invalid_token', 'Ajoute un jeton Home Assistant valide.');
     if (typeof WS !== 'function') throw failure('unsupported', 'WebSocket est indisponible dans ce navigateur.');
-    var timeout = Number(options.timeoutMs) || 12000;
+    var confirmMs=Math.min(15000,Math.max(30,Number(options.confirmMs)||8000)),settleMs=Math.min(1500,confirmMs/2),timeout = Number(options.timeoutMs) || 12000;
     options = null;
     if (!Number.isFinite(timeout) || timeout < 1 || timeout > 60000) throw failure('invalid_timeout', 'Délai de connexion invalide.');
     var socket = null, phase = 'disconnected', lastError = null, listeners = new Set(), cache = Object.create(null), pending = new Map(), sequence = 0, subscription = null, loading = false, queued = [], authTimer, connecting = null, resolveConnect, rejectConnect;
@@ -141,7 +141,24 @@
       if(domain==='media_player'&&(Object.keys(payload).some(function(k){return service!=='volume_set'||k!=='volume_level';})||(service==='volume_set'&&(!Number.isFinite(payload.volume_level)||payload.volume_level<0||payload.volume_level>1))))throw failure('invalid_data','Volume attendu entre 0 et 1.');
       return send('call_service', {domain:domain, service:service, target:{entity_id:ids.length === 1 ? ids[0] : ids}, service_data:payload});
     }
-    return {url:normalizeURL(address.replace(/^ws:/,'http:').replace(/^wss:/,'https:')), connect:connect, states:states, status:status, call:call, subscribe:function (listener) { if (typeof listener !== 'function') throw failure('invalid_listener','Écouteur Home Assistant invalide.'); listeners.add(listener); try { listener(states(),status()); } catch (_) {} return function () { listeners.delete(listener); }; }, disconnect:function () { close(null,'disconnected',true); }};
+    async function confirmedCall(domain,service,target,data){
+      var id=target&&target.entity_id,expected={turn_off:'off',turn_on:'on',media_pause:'paused',media_play:'playing',media_stop:'idle',start:'cleaning',pause:'paused',return_to_base:'returning',stop:'idle'}[service];
+      if(typeof id!=='string')throw failure('invalid_target','Choisis un seul appareil.');
+      // Resolve toggles once; a second tap cannot invert an in-flight request.
+      if(service==='toggle'){service=cache[id]&&cache[id].state==='on'?'turn_off':'turn_on';expected=service==='turn_off'?'off':'on';}
+      await call(domain,service,target,data);
+      if(!expected||domain==='scene'||service==='volume_set')return {confirmed:false,accepted:true};
+      return new Promise(function(resolve,reject){
+        var done=false,deadline,refresh;
+        function matches(){var value=cache[id]&&cache[id].state;return value===expected||domain==='media_player'&&expected==='on'&&['playing','paused','idle','standby','buffering'].includes(value)||domain==='media_player'&&expected==='off'&&value==='standby'||domain==='vacuum'&&expected==='returning'&&value==='docked';}
+        function finish(error,confirmed){if(done)return;done=true;clearTimeout(deadline);clearTimeout(refresh);listeners.delete(check);if(error)reject(error);else resolve({confirmed:confirmed,accepted:true,state:cache[id]&&cache[id].state});}
+        function check(){if(phase!=='connected')finish(failure('not_connected','Connexion interrompue pendant la vérification.'));else if(matches())finish(null,true);}
+        listeners.add(check);deadline=setTimeout(function(){finish(null,matches());},confirmMs);
+        refresh=setTimeout(async function(){var before=cache[id];try{var values=await send('get_states');if(done)return;var latest=Array.isArray(values)&&values.find(function(value){return value.entity_id===id&&validState(value);});if(latest&&cache[id]===before){cache[id]=copy(latest);emit();}check();}catch(error){if(!done)finish(error);}},settleMs);
+        check();
+      });
+    }
+    return {url:normalizeURL(address.replace(/^ws:/,'http:').replace(/^wss:/,'https:')), connect:connect, states:states, status:status, call:call, confirmedCall:confirmedCall, subscribe:function (listener) { if (typeof listener !== 'function') throw failure('invalid_listener','Écouteur Home Assistant invalide.'); listeners.add(listener); try { listener(states(),status()); } catch (_) {} return function () { listeners.delete(listener); }; }, disconnect:function () { close(null,'disconnected',true); }};
   }
   var api = {create:create, endpoint:endpoint, normalizeURL:normalizeURL, supports:supports, group:group, credentials:credentials, saved:saved, remember:remember, forget:forget};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

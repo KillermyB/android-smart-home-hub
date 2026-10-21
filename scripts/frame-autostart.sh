@@ -50,3 +50,11 @@ fi
 sleep 2
 am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -n org.mozilla.firefox/org.mozilla.gecko.LauncherActivity
 echo 'Hub startup complete'
+
+# Private helpers are installed separately, never served as web assets.
+if [ -f "$BASE/nightly-restart.sh" ] && [ ! -e "$BASE/nightly.disabled" ]; then
+    "$BB" nohup /system/bin/sh "$BASE/nightly-restart.sh" >"$BASE/nightly.log" 2>&1 </dev/null 3>&- 4>&- 5>&- 6>&- 7>&- 8>&- 9>&- &
+fi
+if [ -f "$BASE/fullscreen.sh" ]; then
+    "$BB" nohup /system/bin/sh "$BASE/fullscreen.sh" >"$BASE/fullscreen.log" 2>&1 </dev/null 3>&- 4>&- 5>&- 6>&- 7>&- 8>&- 9>&- &
+fi

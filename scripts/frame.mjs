@@ -84,6 +84,8 @@ async function main() {
     if (!/^\d+\.\d+\.\d+$/.test(version)) throw Error('Version invalide');
     const assets = await collectAssets(join(project, 'dist'));
     const screenScript = await readFile(join(project, 'scripts/device/screen.cgi'));
+    const activityScript = await readFile(join(project, 'scripts/device/activity.cgi'));
+    assets.push({ path: 'cgi-bin/activity.cgi', sha256: createHash('sha256').update(activityScript).digest('hex') });
     assets.push({ path: 'cgi-bin/screen.cgi', sha256: createHash('sha256').update(screenScript).digest('hex') });
     if (!assets.some(x => x.path === 'index.html')) throw Error('index.html absent');
     const manifest = JSON.stringify({ version, assets });
@@ -94,7 +96,7 @@ async function main() {
     // Only migrate our known managed startup file; preserve any unexpected edits.
     const oldStartupHash = 'bbb626b3e3a04374d1e959851b96dc82320e6422e276a495689454354202c586';
     const actualStartup = (await remote(`if [ -f ${base}/autostart.sh ]; then ${busybox} sha256sum ${base}/autostart.sh; fi`)).trim().split(/\s/)[0];
-    if (actualStartup && ![oldStartupHash, startupHash].includes(actualStartup)) throw Error('Script de démarrage modifié : conserver et examiner ses différences avant migration.');
+    if (actualStartup && ![oldStartupHash, '860a384633ab0802fbe31e6db6648fdd2cf115eba184cbd3b779b4a9c3e64ac7', startupHash].includes(actualStartup)) throw Error('Script de démarrage modifié : conserver et examiner ses différences avant migration.');
     const preparation = `set -e
 if [ -e ${base} ] && [ ! -f ${base}/.hub-managed ]; then echo 'Dossier distant non géré' >&2; exit 1; fi
 mkdir -p ${base}/releases
@@ -113,18 +115,32 @@ mkdir -p ${base}/incoming
 chmod 700 ${base}/screen-restore.next ${base}/autostart-screen.next
 mv ${base}/screen-restore.next ${base}/screen-restore.sh
 if [ -f ${base}/autostart.sh ]; then
+  [ -f ${base}/autostart.before-v0.20.sh ] || cp ${base}/autostart.sh ${base}/autostart.before-v0.20.sh
   [ -f ${base}/autostart.before-screen.sh ] || cp ${base}/autostart.sh ${base}/autostart.before-screen.sh
   mv ${base}/autostart-screen.next ${base}/autostart.sh
 else
   rm ${base}/autostart-screen.next
 fi
 `);
+    for (const name of ['nightly-restart.sh','fullscreen.sh']) {
+      const content=await readFile(join(project,'scripts/device',name));
+      const hash=createHash('sha256').update(content).digest('hex');
+      await remote(`umask 077; cat >${base}/${name}.next`,content);
+      await remote(`set -e
+[ "$(${busybox} sha256sum ${base}/${name}.next | ${busybox} cut -d' ' -f1)" = '${hash}' ]
+/system/bin/sh -n ${base}/${name}.next
+chmod 700 ${base}/${name}.next
+if [ -f ${base}/${name} ] && [ ! -f ${base}/${name}.before-v0.20 ]; then cp ${base}/${name} ${base}/${name}.before-v0.20; fi
+mv ${base}/${name}.next ${base}/${name}
+`);
+    }
     const temp = await mkdtemp(join(tmpdir(), 'hub-frame-'));
     try {
       const payload = join(temp, 'www'); await mkdir(payload);
       for (const asset of assets) {
         await mkdir(dirname(join(payload, asset.path)), { recursive: true });
         if (asset.path === 'cgi-bin/screen.cgi') await writeFile(join(payload, asset.path), screenScript, { mode: 0o700 });
+        else if (asset.path === 'cgi-bin/activity.cgi') await writeFile(join(payload, asset.path), activityScript, { mode: 0o700 });
         else await copyFile(join(project, 'dist', asset.path), join(payload, asset.path));
       }
       await writeFile(join(payload, 'hub-release.json'), manifest);

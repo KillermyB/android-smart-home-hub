@@ -17,3 +17,8 @@ test('private GitHub snapshots accept aggregate counts only and remain distinct 
  const snapshot={format:'hub-github-contributions',user:'person',start:'2026-09-24',end:'2026-10-21',updated:Date.now(),days:{'2026-10-21':8},token:'do-not-import',items:[{repo:'private-name'}]};
  const r=HubGithub.snapshot(snapshot,'person');assert.equal(r.total,8);assert.equal(r.kind,'contributions');assert.deepEqual(r.items,[]);assert.equal(r.token,undefined);assert.equal(JSON.stringify(r).includes('private-name'),false);assert.throws(()=>HubGithub.snapshot(snapshot,'different'),/compte/);assert.throws(()=>HubGithub.snapshot({...snapshot,days:{'2026-10-21':-1}},'person'),/invalide/);
 });
+
+
+test('detail counts active days, peak and longest streak from the actual 28-day window',()=>{
+ const d=HubGithub.detail({start:'2026-10-01',days:{'2026-10-01':2,'2026-10-02':3,'2026-10-04':10}});assert.equal(d.days.length,28);assert.equal(d.total,15);assert.equal(d.active,3);assert.equal(d.best,10);assert.equal(d.streak,2);
+});

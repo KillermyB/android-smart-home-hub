@@ -26,7 +26,7 @@ function services(){
     music:{data:{is_playing:true,progress_ms:100,item:{id:'one',name:'Track',duration_ms:10000,artists:[{name:'Artist'}],album:{name:'Album',images:[]}},device:{id:'home',name:'Home',supports_volume:true,volume_percent:30}},error:'',devicesBusy:false},
     spotify:{connected:()=>true},shop:{project:'courses',active:[],completed:[],sections:[],loaded:true},daily:{items:[],loaded:true,error:''},
     document:{hidden:false,activeElement:{tagName:'BODY'},querySelectorAll:()=>[]},$:selector=>selector==='.dash-music'||selector==='.dash-tasks'?tile:null,
-    musicTile:()=>'<music>',dashboardTasks:()=>'<tasks>',HubMusicOrbit:{mount(){orbitMounts++;}},render(){renders++;ctx.serviceRendered();}
+    renderSleepMusic(){},musicTile:()=>'<music>',dashboardTasks:()=>'<tasks>',HubMusicOrbit:{mount(){orbitMounts++;}},render(){renders++;ctx.serviceRendered();}
   });
   vm.runInContext(section('  var serviceKeys=', '  async function refreshShopping()'),ctx);
   ctx.serviceRendered();return {ctx,counts:()=>({renders,tileWrites,orbitMounts})};
@@ -83,7 +83,7 @@ test('unchanged shopping snapshots refresh their visible timestamp without repla
 });
 
 test('the actual focus player renders with and without a controllable volume',()=>{
-  const ctx=vm.createContext({music:{data:null,error:'',busy:false},spotify:{connected:()=>false},musicProgress:()=>0,musicTime:String,HubConnect:{normalize:s=>s},read:(_key,value)=>value,esc:String,action:(_cmd,text)=>text,icon:()=>'',musicArtwork:()=>'<cover>',musicControls:()=>'<controls>',lyricsState:{open:false}});
+  const ctx=vm.createContext({music:{data:null,error:'',busy:false},spotify:{connected:()=>false},musicProgress:()=>0,musicTime:String,HubConnect:{normalize:s=>s},read:(_key,value)=>value,esc:String,action:(_cmd,text)=>text,icon:()=>'',iconButton:()=>'',musicArtwork:()=>'<cover>',musicControls:()=>'<controls>',lyricsState:{open:false}});
   vm.runInContext(section('  function musicVolume()', '  function musicDevices()'),ctx);
   assert.match(ctx.musicPage(),/À ton rythme/);assert.doesNotMatch(ctx.musicPage(),/id="music-volume"/);
   ctx.spotify.connected=()=>true;ctx.music.data={item:{name:'Song',artists:[{name:'Artist'}],duration_ms:300000},device:{id:'home',name:'Home',supports_volume:true,volume_percent:42}};

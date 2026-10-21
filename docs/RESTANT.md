@@ -330,3 +330,18 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Suppression du fin halo sombre en clair : débord de 1 px sous le découpage unique de la carte, largeur visible de 3 px conservée.
 - [x] Comparaison en gros plan avant/après, densité 2 et coordonnées fractionnaires ; clair/sombre conservés, 113 tests réussis.
 - [x] Version installée et fichiers vérifiés sur le cadre par Wi-Fi, sans USB ni modification des connexions.
+
+
+## v0.20.0 — minuteurs, veille et maintenance nocturne
+
+- [x] Trois minuteurs indépendants et numérotés, noms/tags libres, tag d’étape depuis une recette, pause/reprise/+1 minute/retrait, reprise après rechargement et migration de l’ancien minuteur.
+- [x] Alerte sonore Web Audio avec test et désactivation ; signal visuel nommé et réveil de la veille à échéance. L’audibilité dépend du volume et de l’autorisation audio du navigateur.
+- [x] Spotify au repos sans titre « Musique », symbole intégré ; icônes météo embarquées pour éviter les images absentes.
+- [x] Vérification Spotify toutes les 4–5 secondes quand visible, requêtes indépendantes de Todoist, suspension en arrière-plan et respect du délai de limitation API.
+- [x] Musique en veille sous la météo, titre/artiste/pochette/appareil, accès au lecteur ; citations renouvelées chaque minute, sans reconstruire la musique.
+- [x] Détail GitHub sur 28 jours, sélection d’un jour, jours actifs/pic/meilleure série et jusqu’à 50 messages publics chargés ; relevés privés conservés agrégés.
+- [x] Domotique : attente du retour d’état, lecture de contrôle si nécessaire, double appui bloqué pendant l’envoi. Une acceptation sans état confirmé est présentée distinctement ; aucune répétition automatique de commande.
+- [x] Planificateur natif réversible à 4 h 30 (fenêtre jusqu’à 5 h 29), une fois par date, après au moins 15 minutes d’activité et report si un minuteur est actif ; contrôle du serveur local toutes les 30 secondes.
+- [x] Aide au plein écran par recherche du bouton accessible exact et toucher natif ; aucune coordonnée aveugle, aucun nouvel onglet et aucune écriture système supplémentaire.
+- [x] 124 tests de code et parcours navigateur synthétique 1280/768/320 px ; rotation réelle d’une minute vérifiée avec conservation du nœud musique.
+- [ ] Audibilité réelle de l’alarme et réaction physique des télévisions : à confirmer sur les appareils, sans commande domotique envoyée pour les tests.

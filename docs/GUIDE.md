@@ -2,9 +2,9 @@
 
 Un tableau de bord tactile pour le cadre AiMOR PF1007/PF1007L : heure, météo, calendriers, tâches, cuisine et musique.
 
-**Version : v0.19.3.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](VERIFICATION.md).
+**Version : v0.20.0.** Hub est installé sur le cadre physique dans Firefox 143.0.4. Les tuiles s’ouvrent par tout leur contenu sans flèche, les commandes internes restent indépendantes et la veille élargit les citations avec météo et prochain rendez-vous côte à côte. Les exemples sont désactivés sans effacer les données locales ; Moudon est la ville météo initiale. La navigation conserve les optimisations de v0.7.1. Spotify est associé au Mac et au cadre ; la connexion du cadre a été retrouvée après fermeture et réouverture de Firefox, sans mot de passe. La mémorisation du jeton permet son renouvellement automatique. Le démarrage automatique du serveur local, de SSH restreint et de Firefox a été validé après redémarrage Android le 21 octobre ; le plein écran HTML demande encore son bouton après reprise. L’IP reste en DHCP, voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md). Résultats et limites dans [VERIFICATION.md](VERIFICATION.md).
 
-Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.19.3`.
+Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.20.0`.
 
 Le cadre utilise désormais ses propres fichiers à `http://127.0.0.1:4173/`, sans Mac ni tour allumés. Les mises à jour Wi-Fi depuis ce Mac sont décrites dans [MAINTENANCE-CADRE.md](MAINTENANCE-CADRE.md).
 
@@ -38,7 +38,7 @@ Pour reprendre l’installation du cadre, suivre [INSTALLATION-CADRE.md](INSTALL
 - **Musique** : widget et focus immersif allégé ; pochette conservée, paroles LRCLIB en dessous quand disponibles, bouton Home pour la sono, volume selon les capacités de l’appareil et fond coloré à partir de la pochette. Aucune lecture ni parole fictive n’est présentée comme réelle.
 - **Domotique** : page Maison connectée depuis Réglages, liaison directe à une instance Home Assistant existante, vrais états et commandes des lumières/interrupteurs/robots/scènes, connexion mémorisable avec accord explicite, reconnexion et transfert chiffré. [Guide Home Assistant](DOMOTIQUE.md).
 - **Brief du matin** : prochain rendez-vous, trois priorités, météo et repas choisi ; ouverture matinale facultative.
-- **Minuteur** : accessible depuis chaque page, durée libre, pause/reprise, ajout d’une minute, persistance et alerte visuelle.
+- **Minuteurs** : trois décomptes numérotés, noms et tags libres, étape de recette automatique, pause/reprise, ajout d’une minute, persistance et alerte sonore/visuelle.
 - **Compagnon local** : notes, photos, liens et recettes conservés sur l’appareil ; transfert manuel par fichier, sans serveur de synchronisation. [Guide de transfert](TRANSFERT-LOCAL.md).
 - **GitHub** : commits publics sur 28 jours ou relevé importé des contributions agrégées, y compris privées selon GitHub ; aucun jeton GitHub transféré au cadre.
 - **Veille** : grande heure, météo de la ville choisie et 200 citations sourcées en police sans sérif ; réveil par toucher ou Échap.

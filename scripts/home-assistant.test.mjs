@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 const source=readFileSync(new URL('../dist/home-assistant.js',import.meta.url),'utf8');
 const turn=()=>new Promise(resolve=>setImmediate(resolve));
-function setup(timeoutMs=1000){
+function setup(timeoutMs=1000,extra={}){
   class Socket {
     static instances=[];
     constructor(url){this.url=url;this.readyState=1;this.sent=[];Socket.instances.push(this);}
@@ -16,7 +16,7 @@ function setup(timeoutMs=1000){
   }
   const context=vm.createContext({module:{exports:{}},URL,WebSocket:Socket,setTimeout,clearTimeout});
   vm.runInContext(source,context);
-  const api=context.module.exports,client=api.create({url:'http://home.test:8123/base/',token:'test-token',timeoutMs});
+  const api=context.module.exports,client=api.create({url:'http://home.test:8123/base/',token:'test-token',timeoutMs,...extra});
   return {api,client,Socket};
 }
 const light={entity_id:'light.salon',state:'off',attributes:{friendly_name:'Salon',brightness:90},last_updated:'2026-10-20T10:00:00Z'};
@@ -181,4 +181,17 @@ test('media power commands follow announced HA feature bits and never infer wake
  assert.equal(h.api.supports(tv,'turn_on'),true);assert.equal(h.api.supports(tv,'turn_off'),true);assert.equal(h.api.supports(speaker,'turn_on'),false);
  const {socket}=await ready(h,[tv,speaker]);const p=h.client.call('media_player','turn_on',{entity_id:tv.entity_id});const command=socket.sent.at(-1);assert.deepEqual(command.target,{entity_id:tv.entity_id});assert.equal(command.service,'turn_on');socket.reply(command);await p;assert.equal(h.client.states().find(x=>x.entity_id===tv.entity_id).state,'off');
  await assert.rejects(h.client.call('media_player','turn_on',{entity_id:speaker.entity_id}),e=>e.code==='unsupported_service');
+});
+
+
+test('confirmed commands wait for the requested state, including events arriving before the service acknowledgement',async()=>{
+ const h=setup(1000,{confirmMs:100});const {socket,subscription}=await ready(h);let resolved=false;const command=h.client.confirmedCall('light','toggle',{entity_id:'light.salon'}).then(r=>{resolved=true;return r;});
+ const request=socket.sent.at(-1);assert.equal(request.service,'turn_on');await turn();assert.equal(resolved,false);
+ changed(socket,subscription,{...light,state:'on'});socket.reply(request);const result=await command;assert.equal(result.confirmed,true);assert.equal(socket.sent.filter(x=>x.type==='call_service').length,1);h.client.disconnect();
+});
+test('unconfirmed TV power commands read back states but are never repeated automatically',async()=>{
+ const h=setup(1000,{confirmMs:60});const tv={entity_id:'media_player.tv',state:'playing',attributes:{supported_features:256}};const {socket}=await ready(h,[tv]);const command=h.client.confirmedCall('media_player','turn_off',{entity_id:tv.entity_id});socket.reply(socket.sent.at(-1));await new Promise(r=>setTimeout(r,40));const readback=socket.sent.at(-1);assert.equal(readback.type,'get_states');socket.reply(readback,[tv]);const result=await command;assert.equal(result.accepted,true);assert.equal(result.confirmed,false);assert.equal(socket.sent.filter(x=>x.type==='call_service').length,1);h.client.disconnect();
+});
+test('confirmation fails clearly if HA disconnects while a command is being checked',async()=>{
+ const h=setup(1000,{confirmMs:100});const {socket}=await ready(h);const command=h.client.confirmedCall('light','turn_on',{entity_id:light.entity_id});socket.reply(socket.sent.at(-1));await turn();socket.remoteClose();await assert.rejects(command,e=>e.code==='not_connected');
 });
