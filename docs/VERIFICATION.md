@@ -423,3 +423,14 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Syntaxe, 179 tests et analyse de secrets réussis. Lecture simulée en navigateur isolé : carte 240 px à 1280 × 800, titres longs contenus, contour blanc fermé avec progression effective sans recréer le lecteur, pas de débordement à 320 px, mouvement réduit et masquage au repos vérifiés.
 
 - v0.26.3 installée sur le cadre identifié : empreintes et manifeste HTTP validés. Veille réelle plein écran 1280 × 800, lecteur de 240 px en haut à gauche, pochette et contour blanc constatés sans lancer ni modifier la lecture musicale.
+
+
+## v0.26.4 — Citations relues et ponctuation cohérente
+
+- Corpus entier de 246 textes relu ; 70 présentations modifiées, dont dix extraits en vers remis en lecture continue. Virgules entre sujet et verbe ou dans certaines comparaisons retirées, majuscules de vers abaissées dans la phrase, une graphie ancienne modernisée. Typographie française insécable avant les signes doubles.
+- Sources et auteurs inchangés ; comparaison des séquences de lettres identiques après normalisation de casse/ponctuation, hormis « Jusques à » → « Jusqu’à », signalé dans la référence. Les sources conservent la ponctuation et la disposition historiques. Contrôles ponctuels des éditions Wikisource de La Fontaine, Musset, Desbordes-Valmore, Éluard, Pascal, Vauvenargues et Marc Aurèle.
+- Syntaxe et 179 tests réussis : majuscule initiale, ponctuation terminale, absence de retour de vers résiduel et espacements français sur l’intégralité du corpus.
+
+- Six rendus contrôlés dans la bibliothèque et en veille à 1280 × 800 et 320 × 800 : cas La Fontaine, long extrait de Vauvenargues et Éluard ; texte exact, pas de débordement horizontal ni erreur JS.
+
+- v0.26.4 installée sur le cadre après contrôle d’identité : empreintes et manifeste HTTP validés, onglet existant actualisé, veille réelle en plein écran constatée.

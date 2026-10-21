@@ -462,3 +462,14 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Syntaxe et 179 tests réussis. Navigateur isolé 1280/320 px : largeur 240 px, contour fermé et progressif, titres longs, absence de débordement, disparition au repos et mouvement réduit vérifiés ; aucune commande à un appareil réel. Analyse de secrets sans détection.
 
 - [x] v0.26.3 installée sur le cadre, empreintes et manifeste servis vérifiés ; onglet existant actualisé, veille plein écran et lecteur de 240 px avec vraie lecture musicale constatés.
+
+
+## v0.26.4 — Relecture des citations
+
+- [x] Les 246 citations relues ; 70 textes retouchés pour les virgules, majuscules et espacements français. Les dix extraits en vers sont adaptés à une lecture continue et signalés dans leur référence. Une graphie ancienne (« Jusques à ») modernisée et signalée.
+- [x] Auteurs, ordre du corpus, catégories et liens de source conservés. Contrôle comparatif des mots : aucune réécriture lexicale, hors la graphie explicitement modernisée. Les ponctuations d’édition ne sont pas présentées comme des fautes d’auteur ; leur présentation est harmonisée pour l’écran.
+- [x] Syntaxe et 179 tests réussis, avec garde-fous sur la casse initiale, la ponctuation finale, les espaces insécables et les anciens débuts de vers. Liste complète relue exportée localement.
+
+- [x] Six contrôles de rendu bibliothèque/veille à 1280 et 320 px, dont prose longue et extrait de poésie : texte relu affiché intégralement, aucun débordement horizontal ni erreur JS.
+
+- [x] v0.26.4 installée sur le cadre, empreintes et manifeste servis vérifiés ; onglet unique actualisé et veille plein écran réelle constatée après chargement des textes corrigés.

@@ -2,7 +2,7 @@ window.HUB_DATA = {
   quotes: [
     { text: 'Ce qui trouble les hommes, ce ne sont pas les choses, mais leurs opinions sur les choses.', author: 'Épictète', work: 'Manuel, V · traduction J.-M. Guyau, 1875', category: 'Stoïcisme', source: 'https://fr.wikisource.org/wiki/Manuel_d’Épictète_(trad._Guyau)/Manuel' },
     { text: 'Il faut imaginer Sisyphe heureux.', author: 'Albert Camus', work: 'Le Mythe de Sisyphe, 1942', category: 'Littérature', source: 'https://www.cercle-enseignement.com/Ouvrages/Gallimard/NRF-Essais/Le-mythe-de-Sisyphe' },
-    { text: 'Que sais-je ?', author: 'Michel de Montaigne', work: 'Essais, livre II, chapitre XII · orthographe modernisée', category: 'Philosophie', source: 'https://fr.wikisource.org/wiki/Essais/Livre_II/Chapitre_12' },
+    { text: 'Que sais-je ?', author: 'Michel de Montaigne', work: 'Essais, livre II, chapitre XII · orthographe modernisée', category: 'Philosophie', source: 'https://fr.wikisource.org/wiki/Essais/Livre_II/Chapitre_12' },
     { text: 'Je pense, donc je suis.', author: 'René Descartes', work: 'Discours de la méthode, quatrième partie · extrait, éd. Cousin, 1824', category: 'Philosophie', source: 'https://fr.wikisource.org/wiki/Discours_de_la_méthode_(éd._Cousin)/Quatrième_partie' }
   ],
   recipes: [
