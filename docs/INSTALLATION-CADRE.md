@@ -1,6 +1,6 @@
 # Installer Hub. sur le cadre
 
-Guide de reprise pour la livraison **v0.7.0**. Dépôt privé : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.0`.
+Guide de reprise pour la livraison **v0.7.0**. Dépôt public : [KillermyB/smart-hub](https://github.com/KillermyB/smart-hub), branche `main`, version `v0.7.0`.
 
 Le code peut être récupéré sur la tour Windows. Le cadre, lui, doit ouvrir Hub. dans un navigateur compatible : il n’a pas besoin de Git ou de Node.js. Firefox et Hub sont maintenant installés sur cet exemplaire AiMOR. La procédure actuelle et la mise à jour Wi-Fi sont dans [MAINTENANCE-CADRE.md](MAINTENANCE-CADRE.md). Les étapes ci-dessous servent aussi à une reprise sur une autre machine.
 
@@ -17,7 +17,7 @@ npm test
 npm start
 ```
 
-Un dépôt privé demande une connexion GitHub autorisée. Utiliser le gestionnaire d’identifiants de Git ou GitHub Desktop ; ne pas inscrire de jeton dans l’adresse du dépôt ou dans un fichier du projet.
+Le dépôt public se clone sans identifiant. Ne jamais inscrire de jeton dans son adresse ou dans les fichiers du projet.
 
 Ouvrir `http://localhost:4173/` sur la tour. Aucun `npm install` n’est nécessaire pour cette version. `npm start` fonctionne sans `.env` pour l’interface et les fonctions locales. Arrêter avec `Ctrl+C`.
 
