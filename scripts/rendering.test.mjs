@@ -16,7 +16,7 @@ test('stable music progress never rereads layout or rewrites perimeter geometry'
   assert.deepEqual({layout,styles,paths,viewboxes},{layout:1,styles:1,paths:2,viewboxes:1});
   resize([{contentRect:{width:300,height:180}}]);assert.equal(paths,2);
   resize([{contentRect:{width:400,height:200}}]);assert.equal(paths,4);assert.equal(layout,1);
-  const g=ctx.HubMusicOrbit.geometry(300,180,25);assert.match(g.path,/^M 25 1\.5 H 275 /);assert.match(g.path,/298\.5 25/);assert.match(g.path,/178\.5/);
+  const g=ctx.HubMusicOrbit.geometry(300,180,25);assert.match(g.path,/^M 25 1 H 275 /);assert.match(g.path,/299 25/);assert.match(g.path,/179/); // The 4px stroke extends 1px beyond the shared card clip.
 });
 
 function services(){

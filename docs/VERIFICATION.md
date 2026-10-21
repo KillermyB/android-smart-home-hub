@@ -298,3 +298,9 @@ Trois agents indépendants ont examiné performances, mouvements et non-régress
 `npm run check` et les 113 tests passent. Les nouveaux cas couvrent les réponses Spotify tardives après déconnexion/import/PKCE, les relevés identiques et les pages sans rapport, les brouillons et la soumission de tâches, l’horodatage des courses, le vrai lecteur musique, les événements HA sans effet affiché et la légende.
 
 Sur navigateur isolé à 1280 × 800 puis 320 px : navigation accueil/lecteur/agenda (quatre vues)/tâches/cuisine/minuteur/domotique/météo/veille/réglages, titre long et recherche, ajout par Entrée, focus de modale et champs de détails fermés, mouvement réduit. Pas d’exception JavaScript. Les API sont remplacées par des réponses synthétiques dans ce profil privé de test, sans vraies commandes. Après un cycle de relevé Spotify identique, musique/horloge/priorités gardent leurs nœuds. Les quatre écarts entre l’extérieur du tracé musical et le bord SVG valent 0 px dans ce contrôle ; 60 mises à jour de progression n’ajoutent aucune lecture de géométrie/style ni écriture des chemins. Cela ne mesure ni le tactile physique ni les FPS Android.
+
+## v0.19.3 — bord du contour musical
+
+Le contrôle géométrique précédent ne détectait pas le liseré sombre produit par le lissage de deux arrondis superposés. Le trait déborde désormais de 1 px sous le découpage unique de la carte ; sa largeur visible reste de 3 px. Le SVG n’applique plus de second arrondi. Orange en clair et blanc en sombre sont conservés.
+
+Comparaison avant/après dans un navigateur isolé à densité 2, dimensions et positions fractionnaires, puis gros plan de l’arrondi supérieur droit : liseré sombre visible avant et absent après. Les 113 tests, la vérification syntaxique et le diff passent. Installation v0.19.3 vérifiée par les empreintes et le serveur local du cadre ; aucun compte ni appareil connecté modifié.

@@ -1,9 +1,10 @@
 (function(root){
   'use strict';
-  var stroke=3,cache=new WeakMap(),observer,node;
-  // The outside of the stroke coincides with the card edge, including its corners.
+  var stroke=4,bleed=1,cache=new WeakMap(),observer,node;
+  // Bleed under the card clip: a single antialiased edge prevents a dark halo.
+  // One pixel is clipped outside; the visible border remains three pixels wide.
   function geometry(width,height,radius){
-    var inset=stroke/2,w=Math.max(1,width-stroke),h=Math.max(1,height-stroke),r=Math.max(0,Math.min(radius-inset,w/2,h/2)),x=inset,y=inset,right=x+w,bottom=y+h;
+    var inset=stroke/2-bleed,w=Math.max(1,width-2*inset),h=Math.max(1,height-2*inset),r=Math.max(0,Math.min(radius-inset,w/2,h/2)),x=inset,y=inset,right=x+w,bottom=y+h;
     return {length:2*(w+h-4*r)+2*Math.PI*r,path:'M '+(x+r)+' '+y+' H '+(right-r)+' A '+r+' '+r+' 0 0 1 '+right+' '+(y+r)+' V '+(bottom-r)+' A '+r+' '+r+' 0 0 1 '+(right-r)+' '+bottom+' H '+(x+r)+' A '+r+' '+r+' 0 0 1 '+x+' '+(bottom-r)+' V '+(y+r)+' A '+r+' '+r+' 0 0 1 '+(x+r)+' '+y+' Z'};
   }
   function resize(svg,width,height){

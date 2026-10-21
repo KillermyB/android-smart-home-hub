@@ -324,3 +324,9 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Entrée modale 200 ms, clavier/mouvement réduit sans déplacement ni fondu de coche ; thème du cadre sans capture plein écran. Focus et contrôles masqués des modales vérifiés au clavier.
 - [x] 113 tests, syntaxe, parcours navigateur 1280 × 800 / 320 px, clair/sombre, cycle Spotify inchangé avec conservation des mêmes nœuds, et absence de débordement horizontal.
 - [ ] Endurance longue durée / cadence tactile physique et FPS sur le cadre : non mesurés par les tests de code ou le navigateur isolé.
+
+## Contour sans liseré v0.19.3
+
+- [x] Suppression du fin halo sombre en clair : débord de 1 px sous le découpage unique de la carte, largeur visible de 3 px conservée.
+- [x] Comparaison en gros plan avant/après, densité 2 et coordonnées fractionnaires ; clair/sombre conservés, 113 tests réussis.
+- [x] Version installée et fichiers vérifiés sur le cadre par Wi-Fi, sans USB ni modification des connexions.
