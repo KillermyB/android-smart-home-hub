@@ -83,7 +83,7 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 .dash-music.has-cover .music-mini{min-height:64px;max-width:90%}.dash-music.has-cover .music-mini strong{font-size:17px;line-height:1.25;text-shadow:0 1px 8px #0008}.dash-music.has-cover .music-mini small{color:#ddd7d0;text-shadow:0 1px 6px #000}
 .dash-music.has-cover>.music-controls{justify-content:flex-start;gap:17px}.dash-music.has-cover .tile-device{color:#d4cec6}
 .dash-music .music-orbit{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2;fill:none}
-.dash-music .music-orbit rect{width:calc(100% - 4px);height:calc(100% - 4px);stroke-width:2.5;fill:none}
+.dash-music .music-orbit rect{width:calc(100% - 6px);height:calc(100% - 6px);stroke-width:2.5;fill:none;vector-effect:non-scaling-stroke}
 .dash-music .music-orbit-track{stroke:#ffffff25}.dash-music .music-orbit-line{stroke:#f6f2ec;stroke-linecap:round;transition:stroke-dasharray 1s linear}
 @media(prefers-reduced-motion:reduce){.dash-music .music-orbit-line{transition:none}}
 .ha-layout.is-connected{grid-template-columns:minmax(0,1fr)}
