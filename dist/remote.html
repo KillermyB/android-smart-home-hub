@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eeede9">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Maison">
+  <title>Maison · Télécommande</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="remote.css">
+  <script src="remote-core.js" defer></script>
+  <script src="remote.js" defer></script>
+</head>
+<body>
+  <div class="remote-shell">
+    <header><div><span class="eyebrow">À portée de main</span><h1>La maison.</h1></div><button id="theme" class="round" aria-label="Changer le thème"></button></header>
+    <div class="connection"><span id="connection-dot"></span><p id="connection-status" role="status">Association au cadre</p><button id="refresh" class="round" aria-label="Actualiser"></button></div>
+    <section id="pairing" class="card pairing" hidden><span class="pair-icon" aria-hidden="true"></span><h2>Ton cadre, en poche.</h2><p>Sur le cadre, ouvre Réglages → Télécommande, puis scanne le QR avec ton téléphone.</p><p class="muted">Même Wi-Fi · aucun compte à reconnecter.</p><details><summary>Entrer une clé d’association</summary><form id="pair-form"><label for="pair-key">Clé affichée dans le lien du cadre</label><input id="pair-key" name="key" required autocomplete="off" spellcheck="false" autocapitalize="off" maxlength="64"><button class="primary" type="submit">Associer</button></form></details></section>
+    <div id="connected-content" hidden>
+      <nav aria-label="Télécommande"><button data-tab="notes" aria-selected="true"></button><button data-tab="lights" aria-selected="false"></button><button data-tab="timers" aria-selected="false"></button><button data-tab="tasks" aria-selected="false"></button></nav>
+      <main id="remote-main" tabindex="-1"></main>
+      <p class="footnote">Le cadre reste sur sa page.</p>
+      <button id="forget" class="text-button">Dissocier ce téléphone</button>
+    </div>
+  </div>
+  <div id="remote-toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

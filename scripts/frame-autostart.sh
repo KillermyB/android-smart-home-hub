@@ -28,6 +28,11 @@ if ! "$BB" wget -q -T 4 -O /dev/null http://127.0.0.1:4173/; then
     echo $! >"$BASE/httpd.pid"
 fi
 
+# Optional phone-only surface; account tokens remain in the loopback browser.
+if [ -f "$BASE/remote-enabled" ] && [ -f "$BASE/remote-service.sh" ]; then
+    /system/bin/sh "$BASE/remote-service.sh"
+fi
+
 # Keep the same authorized Mac and existing key-only SSH configuration.
 # A missing/invalid private address leaves SSH closed; it does not block Hub.
 mac_ip=$(cat "$BASE/maintenance-ip" 2>/dev/null)

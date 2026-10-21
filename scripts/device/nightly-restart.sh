@@ -16,6 +16,9 @@ while [ ! -e "$BASE/nightly.disabled" ]; do
             "$BB" nohup "$BB" httpd -f -p 127.0.0.1:4173 -h "$BASE/www" -c "$BASE/httpd.conf" > "$BASE/httpd.log" 2>&1 </dev/null 3>&- 4>&- 5>&- 6>&- 7>&- 8>&- 9>&- &
         fi
     fi
+    if [ -f "$BASE/remote-enabled" ] && [ -f "$BASE/remote-service.sh" ]; then
+        /system/bin/sh "$BASE/remote-service.sh"
+    fi
     day=$(date +%F); clock=$(date +%H%M); now=$(date +%s)
     last=$(cat "$BASE/nightly-last-date" 2>/dev/null)
     uptime=$(cut -d. -f1 /proc/uptime)

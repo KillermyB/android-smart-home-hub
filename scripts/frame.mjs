@@ -65,7 +65,7 @@ echo $! >${base}/httpd.pid
 
 async function main() {
   const [command, flag, configFile] = process.argv.slice(2);
-  if (!['status', 'deploy', 'start', 'open'].includes(command) || flag !== '--config' || !configFile) throw Error('Usage : npm run frame -- status|deploy|start|open --config /chemin/prive/connection.json');
+  if (!['status', 'deploy', 'start', 'open', 'remote-enable', 'remote-disable'].includes(command) || flag !== '--config' || !configFile) throw Error('Usage : npm run frame -- status|deploy|start|open|remote-enable|remote-disable --config /chemin/prive/connection.json');
   const configPath = resolve(configFile), config = validateConnection(JSON.parse(await readFile(configPath, 'utf8')));
   const known = join(dirname(configPath), 'known_hosts');
   await readFile(known); // Pin the host key over trusted USB before using this command.
@@ -79,12 +79,37 @@ async function main() {
     console.log(manifest ? 'Hub v' + JSON.parse(manifest).version + ' installé' : 'Hub pas encore installé');
     return;
   }
+  if (command === 'remote-enable') {
+    await remote(`set -e
+[ -f ${base}/remote-service.sh ] && [ -f ${base}/www/cgi-bin/remote.cgi ]
+umask 077
+touch ${base}/remote-enabled
+/system/bin/sh ${base}/remote-service.sh
+`);
+    console.log('Télécommande Wi-Fi activée · association dans les réglages du cadre');
+    return;
+  }
+  if (command === 'remote-disable') {
+    await remote(`rm -f ${base}/remote-enabled
+if [ -f ${base}/remote.pid ]; then
+ pid=$(cat ${base}/remote.pid)
+ case "$pid" in ''|*[!0-9]*) exit 1;; esac
+ cmd=$(${busybox} tr '\\000' ' ' </proc/$pid/cmdline 2>/dev/null)
+ case "$cmd" in *'httpd -f -p '*" -h ${base}/remote-www "*) kill "$pid";; esac
+fi
+rm -f ${base}/remote-data/access-key ${base}/remote-data/*.cmd ${base}/remote-data/*.run ${base}/remote-data/*.result ${base}/remote-data/snapshot ${base}/remote-data/heartbeat
+`);
+    console.log('Télécommande désactivée · anciennes associations révoquées');
+    return;
+  }
   if (command === 'deploy') {
     const { version } = JSON.parse(await readFile(join(project, 'package.json'), 'utf8'));
     if (!/^\d+\.\d+\.\d+$/.test(version)) throw Error('Version invalide');
     const assets = await collectAssets(join(project, 'dist'));
     const screenScript = await readFile(join(project, 'scripts/device/screen.cgi'));
     const activityScript = await readFile(join(project, 'scripts/device/activity.cgi'));
+    const remoteScript = await readFile(join(project, 'scripts/device/remote.cgi'));
+    assets.push({ path: 'cgi-bin/remote.cgi', sha256: createHash('sha256').update(remoteScript).digest('hex') });
     assets.push({ path: 'cgi-bin/activity.cgi', sha256: createHash('sha256').update(activityScript).digest('hex') });
     assets.push({ path: 'cgi-bin/screen.cgi', sha256: createHash('sha256').update(screenScript).digest('hex') });
     if (!assets.some(x => x.path === 'index.html')) throw Error('index.html absent');
@@ -96,7 +121,7 @@ async function main() {
     // Only migrate our known managed startup file; preserve any unexpected edits.
     const oldStartupHash = 'bbb626b3e3a04374d1e959851b96dc82320e6422e276a495689454354202c586';
     const actualStartup = (await remote(`if [ -f ${base}/autostart.sh ]; then ${busybox} sha256sum ${base}/autostart.sh; fi`)).trim().split(/\s/)[0];
-    if (actualStartup && ![oldStartupHash, '860a384633ab0802fbe31e6db6648fdd2cf115eba184cbd3b779b4a9c3e64ac7', startupHash].includes(actualStartup)) throw Error('Script de démarrage modifié : conserver et examiner ses différences avant migration.');
+    if (actualStartup && ![oldStartupHash, '860a384633ab0802fbe31e6db6648fdd2cf115eba184cbd3b779b4a9c3e64ac7', 'ce4fd52afa1b3f0acaa3d6b43e0ff21adf30a9cf146617a1f440dc1727c62ffb', startupHash].includes(actualStartup)) throw Error('Script de démarrage modifié : conserver et examiner ses différences avant migration.');
     const preparation = `set -e
 if [ -e ${base} ] && [ ! -f ${base}/.hub-managed ]; then echo 'Dossier distant non géré' >&2; exit 1; fi
 mkdir -p ${base}/releases
@@ -122,7 +147,7 @@ else
   rm ${base}/autostart-screen.next
 fi
 `);
-    for (const name of ['nightly-restart.sh','fullscreen.sh']) {
+    for (const name of ['nightly-restart.sh','fullscreen.sh','remote-service.sh']) {
       const content=await readFile(join(project,'scripts/device',name));
       const hash=createHash('sha256').update(content).digest('hex');
       await remote(`umask 077; cat >${base}/${name}.next`,content);
@@ -141,6 +166,7 @@ mv ${base}/${name}.next ${base}/${name}
         await mkdir(dirname(join(payload, asset.path)), { recursive: true });
         if (asset.path === 'cgi-bin/screen.cgi') await writeFile(join(payload, asset.path), screenScript, { mode: 0o700 });
         else if (asset.path === 'cgi-bin/activity.cgi') await writeFile(join(payload, asset.path), activityScript, { mode: 0o700 });
+        else if (asset.path === 'cgi-bin/remote.cgi') await writeFile(join(payload, asset.path), remoteScript, { mode: 0o700 });
         else await copyFile(join(project, 'dist', asset.path), join(payload, asset.path));
       }
       await writeFile(join(payload, 'hub-release.json'), manifest);
@@ -151,7 +177,7 @@ mv ${base}/${name}.next ${base}/${name}
       await remote(`set -e
 cd ${base}/incoming
 ${busybox} sha256sum -c SHA256SUMS >/dev/null
-chmod 700 cgi-bin/screen.cgi
+chmod 700 cgi-bin/screen.cgi cgi-bin/remote.cgi cgi-bin/activity.cgi
 if [ ! -f ${base}/screen-key ]; then
   umask 077
   ${busybox} od -An -N32 -tx1 /dev/urandom | ${busybox} tr -d ' \\n' >${base}/screen-key
@@ -172,6 +198,7 @@ HUBCONF
 `);
       try {
         await remote(startScript());
+        await remote(`if [ -f ${base}/remote-enabled ]; then /system/bin/sh ${base}/remote-service.sh; fi`);
         const installed = JSON.parse(await remote(`${busybox} wget -q -O - http://127.0.0.1:4173/hub-release.json`));
         if (JSON.stringify(installed) !== manifest) throw Error('Le contenu servi ne correspond pas au déploiement.');
       } catch (error) {

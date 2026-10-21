@@ -376,3 +376,13 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Localisation ponctuelle explicite, point public Moudon de repli, aucune position persistée ; cache et provenance des estimations hors trafic.
 - [x] Contrôle navigateur natif clair/sombre, format 1280 × 800 et empilement mobile 375 × 667 ; deux estimations et horaires réels reçus.
 - [ ] Position réelle et précision du service de localisation du cadre à confirmer par son propriétaire ; aucune demande GPS déclenchée pendant les tests.
+
+
+## Télécommande locale v0.23.1
+
+- [x] Interface mobile assortie, thèmes clair/sombre, notes épinglées, état et commandes des lumières/prises, trois minuteurs et tâches Todoist hors courses.
+- [x] Pont discret sans navigation/réveil lors d’une action, clé d’association distincte révocable, quatre actions bornées, file FIFO à usage unique et expiration courte. Aucun jeton de compte envoyé au téléphone.
+- [x] Surface Wi-Fi optionnelle séparée sur 4180 ; application principale toujours sur 127.0.0.1:4173, lancement et surveillance depuis les scripts existants sans nouvelle écriture système.
+- [x] Clavier natif passé de français à français Suisse (QWERTZ), réglages précédents sauvegardés en privé sur le cadre.
+- [ ] Association et ergonomie sur le téléphone réel à confirmer par le propriétaire. HTTP local uniquement, pas de chiffrement réseau ; Wi-Fi domestique de confiance requis.
+- [ ] Adresse stable toujours à traiter dans le routeur ; rescanner le QR si DHCP change l’IP. Le navigateur Hub doit rester ouvert, y compris en veille Hub. Son du minuteur selon son activation sur le cadre.

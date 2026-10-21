@@ -337,3 +337,12 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur Chrome natif, origine de test isolée localhost:4179 : brief clair/sombre au format 1280 × 800, empilement des cartes à 375 × 667, panneau Position et explication du partage avant permission. Pas de demande réelle de localisation. Console du contexte de test sans message ; le compteur général de DevTools préexistant n’est pas utilisé comme preuve.
 - Les deux requêtes publiques OSRM depuis le centre de Moudon ont répondu : 27 min / 23,4 km vers Saint-François et 73 min / 88,8 km vers Bel-Air au moment du contrôle, sans trafic en direct. Le navigateur a reçu et affiché ces résultats et les prochains départs de Moudon, gare.
 - GPS validé par client simulé : refus, timeout, données invalides et absence de persistance. La localisation effective du vrai cadre n’est pas prouvée. Aucun compte ni appareil commandé pendant ces tests.
+
+
+## v0.23.1 — Télécommande locale
+
+- Vérification native : français Suisse `fr_CH` et touches QWERTZ vues sur capture ; anciens réglages sauvegardés en privé.
+- 169 tests, budget de transmission linéaire, syntaxe et analyse de secrets sans détection ; commandes limitées à note/minuteur/lampe/tâche, TTL, origine/hôte/sous-réseau, double identifiant, file FIFO, accusés, taille Unicode, quota et séparation des courses vérifiés.
+- Protocole CGI testé sur le vrai BusyBox Android dans une file fictive isolée : publication, verrou, prise unique, résultat et état. Aucune action aux lampes ou tâches réelles pendant ces contrôles.
+- Navigateur à 375 × 667 : clair/sombre, vues notes/lumières/minuteurs/tâches, lampe/minuteur/tâche simulés et confirmation. Aucun compte réel utilisé dans la prévisualisation.
+- Publication Git, installation et test réseau réel consignés séparément après exécution. Association et ergonomie du téléphone physique restent à confirmer par le propriétaire.
