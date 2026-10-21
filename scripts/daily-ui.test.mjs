@@ -39,3 +39,7 @@ test('changed robot map blocks a stale room selection even when segment numbers 
 test('late transit search never attaches a previous appointment route to the newly selected appointment',async()=>{
  const {c}=context();let resolve;c.events=()=>[{id:'meeting',date:'2026-10-21',start:'16:00'}];c.dayTools.transit.connections=()=>new Promise(r=>resolve=r);const p=c.dailySubmit({id:'route-search',elements:{from:{value:'Moudon'},to:{value:'Lausanne'}}});c.selectedAppointment='new-meeting';resolve([{departureAt:1}]);await p;assert.equal(c.dayTools.routeResults.length,0);
 });
+
+test('home meal shows planned portions instead of recipe default',()=>{
+ const {c}=context();c.meal=()=>c.state.recipes[0];c.dayTools.plan['2026-10-21']={recipeId:'pasta',portions:4};vm.runInContext(app.slice(app.indexOf('  function dashboardMeal()'),app.indexOf('  function dashboardQuote()')),c);assert.match(c.dashboardMeal(),/4 personnes/);
+});

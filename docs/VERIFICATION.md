@@ -320,3 +320,12 @@ Comparaison avant/après dans un navigateur isolé à densité 2, dimensions et 
 Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour blanc utilisant le même chemin fermé et le même cache de géométrie que l’accueil ; progression une fois par seconde uniquement pendant une lecture visible. Le lecteur garde son nœud lors de ces mises à jour. Reprise de l’observation du contour de l’accueil au réveil.
 
 126 tests passent. Navigateur synthétique : blanc réel dans le style calculé, progression croissante après deux secondes, même carte conservée, étapes 0/48/99/100 %, redimensionnement, mouvement réduit, arrêt/reprise et retour à l’accueil, sans exception ni commande domotique. Le propriétaire confirme aussi avoir entendu l’alarme du minuteur sur le cadre.
+
+## v0.21.1 — Quotidien, trajets et maison
+
+- Syntaxe et 152 tests réussis, dont persistance des portions et notes, erreurs partielles Je pars sans répétition, file Spotify avec confirmation, changement de carte robot et réponses de trajet tardives.
+- API transports suisse vérifiée en lecture : HTTP 200, CORS autorisé, horaires Moudon interprétés. Arrêt initial demandé : Moudon, gare (bus), distinct de la gare ferroviaire Moudon.
+- Identité du cadre relue : root, sun8i, Android 6.0.1, ARMv7, 1280 × 800. v0.21.0 installée avec empreintes et HTTP vérifiés ; chargement réel de l’accueil et de Quotidien en plein écran contrôlé, connexions et données conservées. Les six prochains départs de Moudon, gare ont été reçus et affichés sur le vrai cadre.
+- Contrôle étroit 320 px du nouveau module non réalisé : l’infrastructure de contrôle du navigateur est indisponible dans cette session. CSS adaptative présente ; ne pas confondre avec une validation visuelle à cette taille.
+- Aucune extinction d’appareil, aucun nettoyage ni changement de morceau réels envoyés pendant les tests. Sélection des appareils Je pars, pièces/scripts de chaque robot et trajets privés à configurer par l’utilisateur.
+- Contrôle Gitleaks du répertoire sans secret détecté. Les captures et données privées de QA restent hors Git.
