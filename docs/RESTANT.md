@@ -293,3 +293,8 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 
 - [x] Barre de connexion retirée en mode connecté ; retours de commande en notification temporaire en bas à droite, erreurs distinctes, déconnexion déplacée dans Réglages.
 - [x] TV/Sonos plus compacts avec volume sur la ligne des commandes quand la largeur le permet ; 95 tests réussis, dont les notifications et les réponses tardives d’anciennes connexions.
+
+## Finitions v0.18.4
+
+- [x] Interrupteur actif assorti à l’orange du menu ; notification blanche avec petite pastille orange, texte sombre et ombre légère, y compris en thème sombre.
+- [x] Les confirmations et erreurs gardent leurs durées et leur annonce accessible. Le bandeau gris d’aide plein écran appartient à Firefox et n’est pas une notification Hub.
