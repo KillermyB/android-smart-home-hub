@@ -17,6 +17,9 @@ while [ "$(getprop sys.boot_completed)" != 1 ]; do
 done
 [ ! -e "$BASE/autostart.disabled" ] || exit 0
 
+# Restore a saved fixed level without touching the system startup hook.
+[ ! -f "$BASE/screen-restore.sh" ] || /system/bin/sh "$BASE/screen-restore.sh"
+
 # Start one loopback-only server. Never expose personal browser data on the LAN.
 if ! "$BB" wget -q -T 4 -O /dev/null http://127.0.0.1:4173/; then
     [ -f "$BASE/www/index.html" ] && [ -f "$BASE/httpd.conf" ] || exit 1

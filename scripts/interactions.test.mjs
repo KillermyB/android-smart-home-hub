@@ -18,7 +18,7 @@ test('idle context shows the next visible calendar appointment beside real weath
 test('the music tile perimeter represents elapsed playback time',()=>{
  const context=vm.createContext({music:{data:{item:{duration_ms:10000}}},musicProgress:()=>3000,musicTime:value=>String(value)});
  vm.runInContext(section('  function musicOrbit()', '  function musicArtwork()'),context);
- assert.match(context.musicOrbit(),/aria-valuenow="30"/);assert.match(context.musicOrbit(),/pathLength="100" data-tile-progress stroke-dasharray="30 100"/);assert.doesNotMatch(context.musicOrbit(),/<progress/);
+ assert.match(context.musicOrbit(),/aria-valuenow="30"/);assert.match(context.musicOrbit(),/<path class="music-orbit-line" data-tile-progress/);assert.doesNotMatch(context.musicOrbit(),/pathLength|<rect/);assert.doesNotMatch(context.musicOrbit(),/<progress/);
  context.music.data=null;assert.equal(context.musicOrbit(),'');
 });
 
@@ -131,7 +131,7 @@ test('page rendering preserves the shell, navigation, and an open modal', () => 
     state: { page: 'home', recipeId: null, demo: true, modal: 'settings' }, inputMode: 'pointer', mainDirty: true,
     document: { activeElement: null, querySelectorAll: () => [button] },
     $: selector => ({ '#main': main, '.modal': modal, '.footer [data-action="settings"]': footer })[selector] || null,
-    applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, updateClock() {}, updateKeptFields() {}, lyricsLifecycle() {}, houseUpdate() {}
+    HubMusicOrbit:{mount(){}}, applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, updateClock() {}, updateKeptFields() {}, lyricsLifecycle() {}, houseUpdate() {}
   });
   for (const name of ['home', 'calendar', 'taskPage', 'kitchen', 'briefPage', 'companionPage', 'linksPage', 'shoppingPage', 'musicPage', 'housePage', 'weatherPage']) context[name] = () => name;
   vm.runInContext(section('  function render() {', '  function title('), context);

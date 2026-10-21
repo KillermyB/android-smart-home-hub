@@ -298,3 +298,14 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 
 - [x] Interrupteur actif assorti à l’orange du menu ; notification blanche avec petite pastille orange, texte sombre et ombre légère, y compris en thème sombre.
 - [x] Les confirmations et erreurs gardent leurs durées et leur annonce accessible. Le bandeau gris d’aide plein écran appartient à Firefox et n’est pas une notification Hub.
+
+
+## Luminosité native et contour musical v0.19.1
+
+- [x] Réglages → Luminosité de l’écran sur le cadre : curseur, boutons ± et raccourcis 25 / 50 / 75 / 100 %, minimum 10 % pour garder l’écran utilisable.
+- [x] Niveau Android réel, mode automatique désactivé, confirmation relue avant affichage ; valeur sauvegardée hors du navigateur et script de restauration au démarrage. Aucun filtre d’opacité utilisé.
+- [x] Commande limitée à la boucle locale, origine / référent vérifiés, JSON et clé locale par cadre requis, aucune commande shell fournie par la page. Pas de clé dans Git ni dans le site hébergé.
+- [x] Script de démarrage géré sauvegardé puis modifié uniquement dans `/data/local/hub`, sans nouvelle écriture `/system` ; syntaxe Android et restauration manuelle contrôlées.
+- [x] Contour musical en chemin SVG fermé, coordonnées physiques et longueur réelle ; fermeture complète à 100 %, aucun point à 0 %, adaptation à la taille par ResizeObserver.
+- [x] 98 tests, syntaxe, contour à huit progressions, réglage à 1280 × 800 sur le cadre et 320 px en navigateur isolé.
+- [ ] Nouvelle coupure électrique / redémarrage physique avec ce réglage : non déclenché pendant l’utilisation en cours. La restauration au démarrage est installée ; seul son lancement manuel a été revérifié dans cette livraison.

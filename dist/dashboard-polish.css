@@ -83,7 +83,7 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 .dash-music.has-cover .music-mini{min-height:64px;max-width:90%}.dash-music.has-cover .music-mini strong{font-size:17px;line-height:1.25;text-shadow:0 1px 8px #0008}.dash-music.has-cover .music-mini small{color:#ddd7d0;text-shadow:0 1px 6px #000}
 .dash-music.has-cover>.music-controls{justify-content:flex-start;gap:17px}.dash-music.has-cover .tile-device{color:#d4cec6}
 .dash-music .music-orbit{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2;fill:none}
-.dash-music .music-orbit rect{width:calc(100% - 6px);height:calc(100% - 6px);stroke-width:2.5;fill:none;vector-effect:non-scaling-stroke}
+.dash-music .music-orbit path{stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .dash-music .music-orbit-track{stroke:#ffffff25}.dash-music .music-orbit-line{stroke:#f6f2ec;stroke-linecap:round;transition:stroke-dasharray 1s linear}
 @media(prefers-reduced-motion:reduce){.dash-music .music-orbit-line{transition:none}}
 .ha-layout.is-connected{grid-template-columns:minmax(0,1fr)}
@@ -115,3 +115,5 @@ h1,h2,h3,.recipe-content h2,.cook-step h2,.music-info h1{font-family:Inter,'DM S
 /* Use the same orange as navigation on active light controls. */
 .ha-lamp.ha-is-on .ha-icon-control,.dark .ha-lamp.ha-is-on .ha-icon-control{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 #toast{display:flex;align-items:center;gap:11px;background:#fff;color:#252725;border:1px solid #e9e5df;border-radius:17px;padding:14px 17px;box-shadow:0 10px 34px #0002;overflow-wrap:anywhere}#toast::before{content:"i";display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:9px;background:#fff0e3;color:#ff821c;font-size:15px;font-weight:700;line-height:1}#toast[data-tone="success"],#toast[data-tone="error"]{border-left:1px solid #e9e5df}#toast[data-tone="success"]::before{content:"✓"}#toast[data-tone="error"]::before{content:"!"}
+
+.screen-control{text-align:center;padding:16px 0 8px}.screen-sun{display:grid;place-items:center;color:var(--accent);margin:0 auto 15px}.screen-sun svg{width:36px;height:36px}.screen-control output{font-size:58px;font-weight:600;letter-spacing:-2px;font-variant-numeric:tabular-nums}.screen-control>p{color:var(--muted);font-size:13px;margin:12px 0}.screen-buttons{display:flex;align-items:center;gap:18px;margin:30px 0}.screen-buttons input{flex:1;min-width:0;width:100%;padding:0;accent-color:var(--accent);height:44px}.screen-buttons button{flex:none;width:48px;height:48px}.screen-presets{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.screen-presets .pill{min-width:60px;padding:0 14px}

@@ -74,3 +74,12 @@ Cette application n’est pas encore livrée. Prévoir un moteur compatible Andr
 `frame deploy` met à jour les fichiers et vérifie le service, puis s’arrête. `frame start` relance uniquement le service. Actualiser l’onglet Hub déjà ouvert pour charger la nouvelle version ; ces commandes n’ouvrent plus d’onglet supplémentaire. `frame open` reste une ouverture explicite de Firefox, utile si aucun onglet Hub n’existe. Le paramètre `?v=` d’une ancienne URL ne bloque pas la lecture des fichiers les plus récents après actualisation.
 
 Les quatre onglets provenaient des ouvertures successives pendant l’installation et les déploiements. Les trois doublons Hub ont été fermés après contrôle ; un seul onglet a été conservé, sans effacement des données Firefox.
+
+
+## Luminosité native (v0.19.1)
+
+Sur la copie locale du cadre : **Réglages → Luminosité de l’écran**. Le niveau de 10 à 100 % est appliqué à `screen_brightness`, avec `screen_brightness_mode=0` pour empêcher l’adaptation automatique. Il reste dans les réglages Android et dans le fichier privé `/data/local/hub/screen-percent`. Le démarrage géré réapplique cette valeur avant Firefox via `screen-restore.sh` ; aucun fichier système n’est réécrit pour cette évolution.
+
+`frame deploy` ajoute uniquement sur le cadre `cgi-bin/screen.cgi`, vérifié avec le manifeste de la version. Ce script ne fait pas partie des fichiers statiques publiés. Les requêtes passent par le même service 127.0.0.1:4173, avec référent / hôte exacts et, pour une écriture, JSON strict et clé aléatoire générée sur chaque cadre. Le niveau n’est confirmé dans Hub qu’après relecture Android. La copie web distante et les autres ordinateurs ne pilotent pas l’écran.
+
+Retour à la luminosité automatique si nécessaire, depuis l’accès SSH privé : supprimer le fichier `screen-percent`, puis appliquer `settings put system screen_brightness_mode 1`. La sauvegarde `autostart.before-screen.sh` conserve le script géré précédent ; ne pas modifier le hook système pour annuler uniquement la luminosité.

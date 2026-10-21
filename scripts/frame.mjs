@@ -83,9 +83,18 @@ async function main() {
     const { version } = JSON.parse(await readFile(join(project, 'package.json'), 'utf8'));
     if (!/^\d+\.\d+\.\d+$/.test(version)) throw Error('Version invalide');
     const assets = await collectAssets(join(project, 'dist'));
+    const screenScript = await readFile(join(project, 'scripts/device/screen.cgi'));
+    assets.push({ path: 'cgi-bin/screen.cgi', sha256: createHash('sha256').update(screenScript).digest('hex') });
     if (!assets.some(x => x.path === 'index.html')) throw Error('index.html absent');
     const manifest = JSON.stringify({ version, assets });
     const target = base + '/releases/v' + version;
+    const restore = await readFile(join(project, 'scripts/device/screen-restore.sh'));
+    const startup = await readFile(join(project, 'scripts/frame-autostart.sh'));
+    const startupHash = createHash('sha256').update(startup).digest('hex');
+    // Only migrate our known managed startup file; preserve any unexpected edits.
+    const oldStartupHash = 'bbb626b3e3a04374d1e959851b96dc82320e6422e276a495689454354202c586';
+    const actualStartup = (await remote(`if [ -f ${base}/autostart.sh ]; then ${busybox} sha256sum ${base}/autostart.sh; fi`)).trim().split(/\s/)[0];
+    if (actualStartup && ![oldStartupHash, startupHash].includes(actualStartup)) throw Error('Script de démarrage modifié : conserver et examiner ses différences avant migration.');
     const preparation = `set -e
 if [ -e ${base} ] && [ ! -f ${base}/.hub-managed ]; then echo 'Dossier distant non géré' >&2; exit 1; fi
 mkdir -p ${base}/releases
@@ -96,10 +105,28 @@ rm -rf ${base}/incoming
 mkdir -p ${base}/incoming
 `;
     await remote(preparation);
+    await remote(`umask 077; cat >${base}/screen-restore.next`, restore);
+    await remote(`umask 077; cat >${base}/autostart-screen.next`, startup);
+    await remote(`set -e
+[ "$(${busybox} sha256sum ${base}/screen-restore.next | ${busybox} cut -d' ' -f1)" = '${createHash('sha256').update(restore).digest('hex')}' ]
+[ "$(${busybox} sha256sum ${base}/autostart-screen.next | ${busybox} cut -d' ' -f1)" = '${startupHash}' ]
+chmod 700 ${base}/screen-restore.next ${base}/autostart-screen.next
+mv ${base}/screen-restore.next ${base}/screen-restore.sh
+if [ -f ${base}/autostart.sh ]; then
+  [ -f ${base}/autostart.before-screen.sh ] || cp ${base}/autostart.sh ${base}/autostart.before-screen.sh
+  mv ${base}/autostart-screen.next ${base}/autostart.sh
+else
+  rm ${base}/autostart-screen.next
+fi
+`);
     const temp = await mkdtemp(join(tmpdir(), 'hub-frame-'));
     try {
       const payload = join(temp, 'www'); await mkdir(payload);
-      for (const asset of assets) { await mkdir(dirname(join(payload, asset.path)), { recursive: true }); await copyFile(join(project, 'dist', asset.path), join(payload, asset.path)); }
+      for (const asset of assets) {
+        await mkdir(dirname(join(payload, asset.path)), { recursive: true });
+        if (asset.path === 'cgi-bin/screen.cgi') await writeFile(join(payload, asset.path), screenScript, { mode: 0o700 });
+        else await copyFile(join(project, 'dist', asset.path), join(payload, asset.path));
+      }
       await writeFile(join(payload, 'hub-release.json'), manifest);
       await writeFile(join(payload, 'SHA256SUMS'), assets.map(x => x.sha256 + '  ' + x.path).join('\n') + '\n');
       const archive = join(temp, 'hub.tar');
@@ -108,6 +135,12 @@ mkdir -p ${base}/incoming
       await remote(`set -e
 cd ${base}/incoming
 ${busybox} sha256sum -c SHA256SUMS >/dev/null
+chmod 700 cgi-bin/screen.cgi
+if [ ! -f ${base}/screen-key ]; then
+  umask 077
+  ${busybox} od -An -N32 -tx1 /dev/urandom | ${busybox} tr -d ' \\n' >${base}/screen-key
+fi
+[ "$(wc -c <${base}/screen-key)" -eq 64 ]
 mv ${base}/incoming ${target}
 if [ -L ${base}/www ]; then ${busybox} readlink ${base}/www >${base}/previous; elif [ -e ${base}/www ]; then exit 1; fi
 ${busybox} ln -sfn ${target} ${base}/www
