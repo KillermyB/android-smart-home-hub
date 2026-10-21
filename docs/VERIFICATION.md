@@ -494,3 +494,11 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Navigateur isolé : 1280 × 800, 800 × 1280, 768 × 1024, 1024 × 1366, 600 × 960, 390 × 844, 320 × 740 et 1024 × 600. Pochette synthétique, titre long, absence de pochette, arrêt/reprise, contour qui progresse et conservation du même élément pendant la progression vérifiés. Pas de boutons dans la carte, citation distincte, défilement nécessaire conservé sur petit écran, aucun débordement horizontal. Mouvement réduit et réveil testés ; aucune commande réelle envoyée.
 
 - v0.27.6 copiée après lecture de l’identité USB du cadre ; suivi PID de son seul serveur HTTP réconcilié avant activation, empreintes et manifeste servi vérifiés. La lecture active et son illustration ont été contrôlées avec des données simulées ; aucune musique n’a été déclenchée pour le test matériel.
+
+
+## v0.27.7 — Pochette en plein fond
+
+- Ajustement CSS portrait uniquement : vignette masquée, largeur utile entière (744 px à 800 × 1280), hauteur souple et dégradé horizontal depuis la gauche. Les métadonnées et le contour de progression existants restent inchangés.
+- Syntaxe et 188 tests réussis. Navigateur isolé sur huit formats de 320 à 1280 px, pochette synthétique, titre long, absence de pochette, lecture inactive, maintien de la citation basse, progression sans remplacement de carte, mouvement réduit et réveil contrôlés. Aucun débordement horizontal du document ; pas de lecture réelle déclenchée.
+
+- v0.27.7 installée après lecture de l’identité USB : empreintes et manifeste servi conformes. Le rendu musical actif est contrôlé avec des données simulées ; aucune lecture réelle lancée sur le cadre.

@@ -186,14 +186,14 @@
   .screensaver .sleep-thought.is-long .sleep-quote { font-size:clamp(22px,3.5vw,36px) }
   .screensaver [data-sleep-music] { position:static;order:0;display:flex;flex:1 0 auto;align-self:center;align-items:center;justify-content:center;width:100%;max-width:100%;margin:32px 0 0 }
   .screensaver [data-sleep-music]:empty { display:none }
-  .screensaver .sleep-music { margin:0 auto;width:min(520px,100%);max-width:100%;min-height:204px;padding:30px;gap:24px;border-radius:28px;background:linear-gradient(125deg,#161616,#38271f);box-shadow:inset 0 0 0 1px #ffffff18 }
-  .screensaver .sleep-music>img,.screensaver .sleep-music-symbol { width:112px;height:112px;border-radius:18px;position:relative;z-index:1;flex:none }
-  .screensaver .sleep-music>span:nth-child(2) { position:relative;z-index:1 }
+  .screensaver .sleep-music { margin:0 auto;width:100%;max-width:100%;min-height:clamp(210px,22vh,290px);padding:36px;gap:0;border-radius:28px;background:linear-gradient(125deg,#161616,#38271f);box-shadow:inset 0 0 0 1px #ffffff18 }
+  .screensaver .sleep-music>img,.screensaver .sleep-music-symbol { display:none }
+  .screensaver .sleep-music>span:nth-child(2) { position:relative;z-index:1;flex:0 1 56%;max-width:56%;text-shadow:0 1px 6px #0009 }
   .screensaver .sleep-music strong { font-size:28px;line-height:1.22;font-weight:600;letter-spacing:-.65px;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;overflow-wrap:anywhere }
-  .screensaver .sleep-music small { margin-top:12px;font-size:15px;line-height:1.5;color:#d0c9c3;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere }
+  .screensaver .sleep-music small { margin-top:12px;font-size:15px;line-height:1.5;color:#f0ebe6;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere }
   .screensaver .sleep-music-backdrop { display:block;position:absolute;inset:0;z-index:-1;pointer-events:none }
   .screensaver .sleep-music-backdrop img { width:100%;height:100%;object-fit:cover;object-position:center }
-  .screensaver .sleep-music-backdrop::after { content:'';position:absolute;inset:0;background:linear-gradient(115deg,#090909e8,#09090980),linear-gradient(0deg,#090909a6,transparent 80%) }
+  .screensaver .sleep-music-backdrop::after { content:'';position:absolute;inset:0;background:linear-gradient(90deg,#090909df 0%,#09090999 36%,#09090933 65%,transparent 85%) }
   .screensaver .sleep-music .music-orbit-track { stroke:#ffffff21 }
 }
 
@@ -214,8 +214,8 @@
 }
 
 @media (orientation:portrait) and (max-width:599px) {
-  .screensaver .sleep-music { min-height:158px;padding:22px;gap:16px;border-radius:24px }
-  .screensaver .sleep-music>img,.screensaver .sleep-music-symbol { width:76px;height:76px;border-radius:14px }
+  .screensaver .sleep-music { min-height:158px;padding:22px;gap:0;border-radius:24px }
+  .screensaver .sleep-music>span:nth-child(2) { flex-basis:76%;max-width:76% }
   .screensaver .sleep-music strong { font-size:22px;letter-spacing:-.4px }
   .screensaver .sleep-music small { font-size:13px;margin-top:8px }
 }

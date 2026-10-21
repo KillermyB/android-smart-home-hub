@@ -527,3 +527,10 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Carte passive sans commandes de lecture ; contour blanc de progression conservé. Pas de flou animé, de calcul de palette ni de nouveau rafraîchissement ; la carte reste stable pendant la progression.
 - [x] Métadonnées sans pochette et absence de lecture prises en charge ; citation basse et réveil au toucher conservés.
 - [x] v0.27.6 installée sur le cadre ; fichiers et manifeste HTTP validés.
+
+
+## v0.27.7 — Pochette en plein fond portrait
+
+- [x] Carte musicale sur toute la largeur disponible en portrait, sans vignette séparée. Pochette en plein fond, dégradé uniquement depuis la gauche et texte blanc à gauche. Contour blanc de progression conservé, aucun bouton de lecture.
+- [x] Taille adaptée aux téléphones, paysage compact conservé ; huit formats, titre long, pochette absente et lecture inactive contrôlés.
+- [x] v0.27.7 installée sur le cadre identifié ; fichiers et manifeste servi vérifiés.
