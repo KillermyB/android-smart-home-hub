@@ -48,7 +48,9 @@ npm run frame -- start --config '../.private-frame-access/connection.json'
 
 ## Après une coupure
 
-Un redémarrage réel a été effectué : USB et Wi-Fi reviennent, les réglages heure/écran et les fichiers sont conservés. La préférence SimpleSSHD de lancement au démarrage a été activée après accord explicite, mais le journal constructeur confirme que `BackgroundManagerService` bloque son `BOOT_COMPLETED`. SSH a été relancé manuellement par USB, puis Hub par Wi-Fi. Le démarrage automatique de SSH et de Hub n’est donc pas opérationnel. Le service web en mémoire doit être relancé après coupure. Les fichiers Hub et les données Firefox sont persistants ; la présence des fichiers n’est pas une preuve d’autostart.
+Installation du 21 octobre : une solution réversible de démarrage sans remplacement d’AiMOR est installée après accord explicite. Le premier redémarrage a confirmé la reprise du serveur local et de SSH. L’IP reste en DHCP. Voir [DEMARRAGE-RESEAU.md](DEMARRAGE-RESEAU.md) pour le mécanisme, les contrôles et le retour arrière. Le paragraphe ci-dessous décrit le constat historique avant cette correction.
+
+Lors du premier contrôle du 20 octobre, USB et Wi-Fi revenaient après redémarrage, avec réglages heure/écran et fichiers conservés. La préférence SimpleSSHD avait été activée après accord, mais `BackgroundManagerService` bloquait son `BOOT_COMPLETED` : SSH puis Hub avaient nécessité une relance manuelle. Le script installé le 21 octobre corrige cette reprise sans modifier cette politique globale. Les fichiers persistants seuls n’auraient pas suffi à prouver l’autostart ; le nouveau contrôle comprend un véritable redémarrage et la reprise constatée des services.
 
 Si SSH répond, utiliser `frame start`. Sinon, reprendre l’accès USB/ADB avec le câble de données validé. Le Mac a utilisé ADB sur 5038 avant le redémarrage ; le serveur 5037 a repris l’USB ensuite. Vérifier lequel voit le cadre plutôt que réutiliser un port figé ; ce n’est pas un paramètre à imposer sur Windows. Ne pas ouvrir ADB TCP 5555 pour contourner une reprise difficile.
 
@@ -58,7 +60,7 @@ Avant de remplacer le launcher ou d’installer un kiosk permanent, l’utilisat
 
 La copie du cadre et le site HTTPS ont des stockages séparés. Un push GitHub ne transfère aucun favori, photo, note ou jeton du navigateur du Mac. Les notes/photos/recettes peuvent être transférées manuellement avec le compagnon ; conserver les exports utiles avant toute opération sur les données Firefox.
 
-La vraie ville météo reste à choisir. GitHub public se charge sans clé. Les comptes Todoist, Spotify, calendriers et Home Assistant doivent être autorisés séparément par leur propriétaire. Pour Spotify, déclarer exactement le callback affiché, avec `http://127.0.0.1:4173/` pour cette copie locale. Les calendriers Outlook/Google utilisent encore le serveur Node et ne sont pas connectés par la copie statique. Voir [CONNEXIONS.md](CONNEXIONS.md), [COURSES-SPOTIFY.md](COURSES-SPOTIFY.md) et [DOMOTIQUE.md](DOMOTIQUE.md).
+Moudon est configurée pour la météo. Spotify et Todoist ont été associés au cadre avec accord ; leurs connexions restent dans Firefox, hors Git. Les cinq imports ICS Google/Outlook/iCloud restent des instantanés à réimporter après modification. Le relevé GitHub importé est distinct des commits publics lus sans clé. Home Assistant reste à connecter à l’instance du propriétaire. Pour Spotify, déclarer exactement le callback affiché, avec `http://127.0.0.1:4173/` pour cette copie locale. Voir [AGENDAS-IMPORT.md](AGENDAS-IMPORT.md), [COURSES-SPOTIFY.md](COURSES-SPOTIFY.md) et [DOMOTIQUE.md](DOMOTIQUE.md).
 
 
 ## Affichage comme application Android

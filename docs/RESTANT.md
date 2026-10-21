@@ -109,7 +109,9 @@ Procédure et limites : [CONFIGURATION.md](CONFIGURATION.md).
 - [x] Fuseau Europe/Zurich, heure automatique, fuseau manuel et maintien allumé sur alimentation appliqués avec accord explicite.
 - [x] SSH root par clé sur 2222 testé en Wi-Fi depuis le Mac ; clé privée et clé hôte épinglée hors Git, redirections interdites, autre source refusée par le shell.
 - [x] Redémarrage Android réel : USB/Wi-Fi, réglages heure/écran et fichiers persistants contrôlés ; SSH relancé par USB puis Hub par Wi-Fi.
-- [ ] Démarrage automatique SSH/Hub : option SimpleSSHD approuvée et activée, mais `BackgroundManagerService` filtre son signal de boot. Intégrer la reprise au futur kiosque d’accueil, après validation physique de l’accès aux réglages. Tester aussi une coupure électrique. Voir `MAINTENANCE-CADRE.md`.
+- [x] Démarrage automatique SSH/Hub le 21 octobre : ajout réversible au script système existant après accord explicite, original sauvegardé, `/system` remis en lecture seule. Dernier redémarrage réel : serveur loopback, SSH par clé, pare-feu limité et Hub dans un seul onglet Firefox revenus sans relance manuelle. Voir `DEMARRAGE-RESEAU.md`.
+- [ ] Plein écran HTML automatique et vraie coupure électrique : le plein écran est actuellement réactivé par son bouton après le démarrage ; les tests réalisés sont des redémarrages Android.
+- [ ] IP stable : réservation DHCP du cadre à faire dans la box, après connexion du propriétaire et vérification de la stabilité de la MAC. Aucun changement réseau appliqué le 21 octobre.
 
 ## Livraison v0.6.0
 
