@@ -23,7 +23,7 @@ button,a,label{touch-action:manipulation}
 #toast.visible{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .screensaver{contain:layout paint}.clock-time,.sleep-time{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:no-preference){
-  .icon-button,.pill,.nav-button,.arrow,.recipe-card,.task-toggle{transition:transform 130ms var(--ease-out),background-color 160ms ease,box-shadow 160ms ease}
+  .icon-button,.pill,.nav-button,.arrow,.recipe-card,.task-toggle{transition:transform 130ms var(--ease-out)}
   .icon-button:active,.pill:active,.nav-button:active,.arrow:active{transform:scale(.96)}
   .recipe-card:active,.recipe-teaser:active{transform:scale(.988)}
   .check-circle{transition:background-color 150ms ease,border-color 150ms ease,transform 150ms var(--ease-out)}
@@ -126,3 +126,8 @@ input[type=checkbox]{accent-color:var(--accent)}
 @media(max-width:720px){.brief-grid{grid-template-columns:1fr}.brief-grid .card{min-height:210px}.brief-grid h2{font-size:26px}.brief-bottom{flex-wrap:wrap}.local-banner{flex-direction:column;padding:22px;gap:20px}.local-transfer-actions{width:100%}.local-transfer-actions .pill{width:100%}.link-grid{grid-template-columns:1fr}.local-form>button{width:100%}.timer-floating{bottom:14px;right:14px}.header-actions{max-width:100%}.recipe-actions{top:9px;right:9px}.recipe-actions .favorite-button,.recipe-actions .recipe-remove{width:40px;height:40px;min-height:40px}}
 
 .timer-actions [hidden]{display:none}
+
+/* Keyboard and reduced-motion presses retain focus without any size jump. */
+.keyboard-input .check-circle{transition:none!important}
+.keyboard-input button:active,.keyboard-input button:active .check-circle{transform:none!important}
+@media(prefers-reduced-motion:reduce){button:active,button:active .check-circle{transform:none!important}}

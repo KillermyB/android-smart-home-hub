@@ -309,3 +309,18 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Contour musical en chemin SVG fermé, coordonnées physiques et longueur réelle ; fermeture complète à 100 %, aucun point à 0 %, adaptation à la taille par ResizeObserver.
 - [x] 98 tests, syntaxe, contour à huit progressions, réglage à 1280 × 800 sur le cadre et 320 px en navigateur isolé.
 - [ ] Nouvelle coupure électrique / redémarrage physique avec ce réglage : non déclenché pendant l’utilisation en cours. La restauration au démarrage est installée ; seul son lancement manuel a été revérifié dans cette livraison.
+
+
+## Fluidité et finitions v0.19.2
+
+- [x] Progression musicale orange en clair / blanche en sombre ; extérieur du trait aligné sur les quatre bords et les arrondis, sans bande de fond entre le contour et la carte.
+- [x] Légende GitHub « − / dégradé / + », mêmes couleurs et seuils journaliers que la grille : 0, 1–2, 3–5, 6–9, 10+. Le détail conserve date du relevé / limites / actualisation.
+- [x] Trois agents : audits performance, mouvement et non-régression, puis relecture des corrections. Les contrôles utilisent des sessions synthétiques ; aucune commande aux appareils de la maison.
+- [x] Actualisations musique / courses / tâches limitées aux vues concernées ; pas de reconstruction sur relevé inchangé ; seules les tuiles musique/priorités changent sur l’accueil.
+- [x] Géométrie SVG gardée au montage/redimensionnement. Mesure navigateur : 60 progressions stables → 0 nouvelle lecture de dimensions, 0 style calculé, 0 réécriture du chemin. Mesure de travail, pas une promesse de fréquence d’images.
+- [x] Grille domotique conservée pour événements sans changement affiché ; focus du volume conservé sans reprise après navigation volontaire.
+- [x] Lecteur plein écran réparé : fonction volume manquante, capacités et volume inconnu gérés ; ancien refresh Spotify ne peut recréer une connexion effacée ou remplacer un nouveau compte.
+- [x] Brouillon Todoist et sélection conservés sur actualisation, soumission en vol protégée, texte envoyé seul effacé ; heure Courses actualisée séparément.
+- [x] Entrée modale 200 ms, clavier/mouvement réduit sans déplacement ni fondu de coche ; thème du cadre sans capture plein écran. Focus et contrôles masqués des modales vérifiés au clavier.
+- [x] 113 tests, syntaxe, parcours navigateur 1280 × 800 / 320 px, clair/sombre, cycle Spotify inchangé avec conservation des mêmes nœuds, et absence de débordement horizontal.
+- [ ] Endurance longue durée / cadence tactile physique et FPS sur le cadre : non mesurés par les tests de code ou le navigateur isolé.

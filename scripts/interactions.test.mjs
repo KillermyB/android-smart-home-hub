@@ -131,7 +131,7 @@ test('page rendering preserves the shell, navigation, and an open modal', () => 
     state: { page: 'home', recipeId: null, demo: true, modal: 'settings' }, inputMode: 'pointer', mainDirty: true,
     document: { activeElement: null, querySelectorAll: () => [button] },
     $: selector => ({ '#main': main, '.modal': modal, '.footer [data-action="settings"]': footer })[selector] || null,
-    HubMusicOrbit:{mount(){}}, applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, updateClock() {}, updateKeptFields() {}, lyricsLifecycle() {}, houseUpdate() {}
+    HubMusicOrbit:{mount(){}}, applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, updateClock() {}, updateKeptFields() {}, serviceRendered() {}, lyricsLifecycle() {}, houseUpdate() {}
   });
   for (const name of ['home', 'calendar', 'taskPage', 'kitchen', 'briefPage', 'companionPage', 'linksPage', 'shoppingPage', 'musicPage', 'housePage', 'weatherPage']) context[name] = () => name;
   vm.runInContext(section('  function render() {', '  function title('), context);

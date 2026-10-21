@@ -289,3 +289,12 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - À 320 × 740 : deux colonnes d’éclairage, tuiles de 80 px, barre de connexion de 52 px et absence de débordement horizontal. Mode sombre contrôlé ; préférence de mouvement réduit conservée. Les réglages avancés restent repliables et leur ouverture survit aux mises à jour d’état.
 - Diagnostic Tuya : un rechargement de l’intégration a été confirmé par Home Assistant. Il n’a pas changé les sept lampes indisponibles ; Fado et les deux prises restent en ligne. Le bref délai de connexion de Smart Life au démarrage ne suffit donc pas à expliquer la disponibilité durablement différente de ces entités.
 - L’utilisateur confirme des ampoules ANTELA 9 W. La liste HA identifie Bureau/Couloir en ANTELA-9W-RGB+CCT et les autres avec des modèles génériques. Compatibilité Tuya Local non prouvée, aucune installation HACS/custom component ni réassociation d’ampoule effectuée.
+
+
+## v0.19.2 — audit de fluidité et contours
+
+Trois agents indépendants ont examiné performances, mouvements et non-régression. Les correctifs ciblent les reconstructions de DOM, la géométrie du contour musical, la stabilité des connexions et du focus. Aucun changement de protocole Home Assistant, de compte, de calendrier ou d’appareil n’est inclus.
+
+`npm run check` et les 113 tests passent. Les nouveaux cas couvrent les réponses Spotify tardives après déconnexion/import/PKCE, les relevés identiques et les pages sans rapport, les brouillons et la soumission de tâches, l’horodatage des courses, le vrai lecteur musique, les événements HA sans effet affiché et la légende.
+
+Sur navigateur isolé à 1280 × 800 puis 320 px : navigation accueil/lecteur/agenda (quatre vues)/tâches/cuisine/minuteur/domotique/météo/veille/réglages, titre long et recherche, ajout par Entrée, focus de modale et champs de détails fermés, mouvement réduit. Pas d’exception JavaScript. Les API sont remplacées par des réponses synthétiques dans ce profil privé de test, sans vraies commandes. Après un cycle de relevé Spotify identique, musique/horloge/priorités gardent leurs nœuds. Les quatre écarts entre l’extérieur du tracé musical et le bord SVG valent 0 px dans ce contrôle ; 60 mises à jour de progression n’ajoutent aucune lecture de géométrie/style ni écriture des chemins. Cela ne mesure ni le tactile physique ni les FPS Android.
