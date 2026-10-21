@@ -265,3 +265,11 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Autoriser les scènes dont la date de dernière activation est encore inconnue ; laisser les appareils indisponibles désactivés.
 - [x] Installer les correctifs sur le cadre par Wi-Fi ; connexion HA mémorisée et appareils réels affichés.
 - [ ] Vérifier physiquement une commande de lumière et un scénario avec l’utilisateur ; aucune commande réelle n’a été lancée pendant ces contrôles.
+
+## Domotique compacte v0.18.0
+
+- [x] Scènes du salon en premier, puis lampes et prises, médias et robots ; réglages des appareils repliés.
+- [x] Tuiles d’éclairage réduites à 78 px à 1280 px, effet ambré allumé et états distincts éteint / indisponible ; bouton Accueil de la page supprimé.
+- [x] Commandes TV marche/arrêt limitées aux capacités déclarées ; 92 tests passent sans commande domotique réelle.
+- [ ] Tester une ANTELA 9 W en Wi-Fi local avant de confirmer sa compatibilité Tuya Local ; installation communautaire non effectuée.
+- [ ] Diagnostiquer séparément Champignon et Japonaise, impossibles à réassocier selon l’utilisateur ; ne pas déduire un défaut de toutes les lampes du bref délai Smart Life à l’ouverture.

@@ -281,3 +281,11 @@ La liste des étapes suivantes reste dans `RESTANT.md`. Les captures de QA local
 - Smart Life/Tuya associé après validation du QR par l’utilisateur : 11 appareils et 30 entités. Lumières, prises et neuf scènes visibles. Plusieurs lumières sont signalées indisponibles par HA ; l’intégration ne prouve pas qu’elles sont alimentées ou en ligne.
 - Vue Maison créée dans Home Assistant avec cartes natives, Sonos, lumières regroupées par pièce, télévisions, raccourcis existants et scènes. ScreenK et ses scripts sont conservés ; copie locale privée de sa configuration avant modification.
 - La copie HTTPS de Hub ne peut pas joindre cette instance HA en HTTP ; la connexion locale du cadre reste la solution installée. Aucun port Internet, certificat ou relais distant ajouté.
+
+## v0.18.0 · Domotique compacte
+
+- 92 tests passent et syntaxe vérifiée : regroupement des prises d’éclairage sans inclure les réglages Sonos, ordre scènes/lampes/médias, ciblage du vrai domaine `switch`, états distincts et commandes de puissance TV uniquement selon les capacités Home Assistant. Aucun appareil réel n’a été allumé, éteint ou modifié pendant les tests.
+- Contrôle avec la connexion réelle mémorisée dans Chrome : 9 scènes, 11 lampes/prises et 3 lecteurs. À 1280 × 800, tuiles d’éclairage de 78 px de haut et six colonnes ; les identifiants techniques et le bouton Accueil ne sont plus affichés. Couleur ambrée pour les trois éclairages allumés, gris distinct pour les indisponibles.
+- À 320 × 740 : deux colonnes d’éclairage, tuiles de 80 px, barre de connexion de 52 px et absence de débordement horizontal. Mode sombre contrôlé ; préférence de mouvement réduit conservée. Les réglages avancés restent repliables et leur ouverture survit aux mises à jour d’état.
+- Diagnostic Tuya : un rechargement de l’intégration a été confirmé par Home Assistant. Il n’a pas changé les sept lampes indisponibles ; Fado et les deux prises restent en ligne. Le bref délai de connexion de Smart Life au démarrage ne suffit donc pas à expliquer la disponibilité durablement différente de ces entités.
+- L’utilisateur confirme des ampoules ANTELA 9 W. La liste HA identifie Bureau/Couloir en ANTELA-9W-RGB+CCT et les autres avec des modèles génériques. Compatibilité Tuya Local non prouvée, aucune installation HACS/custom component ni réassociation d’ampoule effectuée.

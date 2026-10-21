@@ -160,3 +160,18 @@ test('a scene never activated has unknown timestamp but can be explicitly activa
  const promise=h.client.call('scene','turn_on',{entity_id:scene.entity_id});const command=socket.sent.at(-1);assert.equal(command.type,'call_service');socket.reply(command);await promise;
  assert.equal(h.client.states()[0].state,'unknown');
 });
+
+test('HA groups scenes first and lighting outlets separately from Sonos settings',()=>{
+ const {api}=setup();
+ for(const item of [{entity_id:'light.floor',state:'off',attributes:{}},{entity_id:'switch.socket_1',state:'on',attributes:{friendly_name:'VARMBLIXT Prise 1'}},{entity_id:'switch.wall',state:'off',attributes:{friendly_name:'Éclairage cuisine'}},{entity_id:'switch.outlet',state:'off',attributes:{device_class:'outlet'}}])assert.equal(api.group(item),'lighting');
+ assert.equal(api.group({entity_id:'switch.home_loudness',state:'on',attributes:{friendly_name:'Home Loudness'}}),'switch');
+ assert.equal(api.group({entity_id:'scene.salon',state:'unknown',attributes:{}}),'scene');
+ assert.equal(api.group({entity_id:'sensor.temperature',state:'20',attributes:{}}),'');
+});
+
+test('media power commands follow announced HA feature bits and never infer wake support',async t=>{
+ const h=setup();t.after(()=>h.client.disconnect());const tv={entity_id:'media_player.tv',state:'off',attributes:{supported_features:128|256}},speaker={entity_id:'media_player.home',state:'playing',attributes:{supported_features:1|4}};
+ assert.equal(h.api.supports(tv,'turn_on'),true);assert.equal(h.api.supports(tv,'turn_off'),true);assert.equal(h.api.supports(speaker,'turn_on'),false);
+ const {socket}=await ready(h,[tv,speaker]);const p=h.client.call('media_player','turn_on',{entity_id:tv.entity_id});const command=socket.sent.at(-1);assert.deepEqual(command.target,{entity_id:tv.entity_id});assert.equal(command.service,'turn_on');socket.reply(command);await p;assert.equal(h.client.states().find(x=>x.entity_id===tv.entity_id).state,'off');
+ await assert.rejects(h.client.call('media_player','turn_on',{entity_id:speaker.entity_id}),e=>e.code==='unsupported_service');
+});

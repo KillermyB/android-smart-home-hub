@@ -188,3 +188,10 @@ test('remembered HA reconnect waits with backoff, pauses while hidden, and never
  context.houseRetry();assert.equal(timers[1].delay,4000);context.document.hidden=true;await timers[1].fn();assert.equal(attempts,1);
  context.houseRetry();assert.equal(timers.length,2);context.document.hidden=false;context.house.status='connected';context.houseRetry();assert.equal(timers.length,2);
 });
+
+test('compact home groups prioritize scenes and lighting, retain real states, and target the actual switch domain',()=>{
+ const ha=vm.createContext({URL});vm.runInContext(readFileSync(new URL('../dist/home-assistant.js',import.meta.url),'utf8'),ha);
+ const entities=[{entity_id:'media_player.tv',state:'off',attributes:{friendly_name:'TV',supported_features:128|256}},{entity_id:'switch.socket',state:'on',attributes:{friendly_name:'Lampe prise'}},{entity_id:'light.offline',state:'unavailable',attributes:{friendly_name:'Lampe hors ligne'}},{entity_id:'light.off',state:'off',attributes:{friendly_name:'Lampe éteinte'}},{entity_id:'scene.appartement',state:'unknown',attributes:{friendly_name:'Appartement'}},{entity_id:'scene.salon',state:'unknown',attributes:{friendly_name:'Salon'}},{entity_id:'switch.loudness',state:'on',attributes:{friendly_name:'Home Loudness'}}];
+ const context=vm.createContext({house:{status:'connected',pending:'',entities},HubHA:ha.HubHA,icon:()=>'<svg></svg>',esc:String,action:(a,label,cls,attrs)=>'<button class="'+cls+'" data-action="'+a+'" '+(attrs||'')+'>'+label+'</button>'});
+ vm.runInContext(section('  function houseControl(', '  function housePage()'),context);const html=context.houseDevices();assert.ok(html.indexOf('Scènes')<html.indexOf('Lampes et prises'));assert.ok(html.indexOf('Lampes et prises')<html.indexOf('Sonos et télévisions'));assert.ok(html.indexOf('scene.salon')<html.indexOf('scene.appartement'));assert.match(html,/ha-is-on/);assert.match(html,/ha-is-off/);assert.match(html,/ha-unavailable/);assert.match(html,/ha-call:switch:turn_off:switch.socket/);assert.match(html,/ha-call:media_player:turn_on:media_player.tv/);assert.match(html,/<details class="ha-group ha-advanced">/);assert.doesNotMatch(html,/ha-entity/);
+});

@@ -51,3 +51,17 @@ Références : [API WebSocket officielle](https://developers.home-assistant.io/d
 Les entités `media_player` remontées par Home Assistant apparaissent dans **Enceintes · Sonos** : titre, artiste, lecture/pause, précédent/suivant et volume selon les capacités réellement annoncées. Le volume est borné entre 0 et 100 %. Les états attendent les événements Home Assistant ; une commande acceptée ne simule pas un changement d’état. Aucun regroupement Sonos, lancement de contenu ou allumage global implicite. Les pochettes protégées ne reçoivent jamais le jeton dans leur URL.
 
 L’intégration [Sonos](https://www.home-assistant.io/integrations/sonos/) doit être ajoutée à ton instance ; Hub utilise ensuite les services [media_player](https://www.home-assistant.io/integrations/media_player/). Aucun appareil réel n’a encore été commandé par cette nouvelle interface.
+
+## Page compacte · v0.18.0
+
+Ordre de lecture : scènes (celles du salon en premier), lampes et prises d’éclairage, Sonos/télévisions, robots, puis réglages des appareils repliés. Les prises `switch` portant un nom d’éclairage/prise ou la classe `outlet` sont regroupées avec les lampes ; les réglages Sonos restent séparés. Aucun identifiant privé d’appareil n’est inclus dans le code.
+
+Une lampe allumée reçoit une surface ambrée, une icône lumineuse et le texte « Allumé ». Une lampe éteinte garde une surface neutre ; une lampe indisponible reste identifiée comme telle et ses commandes sont désactivées. La commande cible le vrai domaine `light` ou `switch` et attend les états Home Assistant.
+
+Les lecteurs exposant officiellement les capacités `TURN_ON`/`TURN_OFF` proposent une commande de mise sous/hors tension. Ce signal de capacité ne prouve pas le réveil physique après veille profonde : il dépend du modèle, de l’intégration et des réglages réseau de la télévision. Aucun réveil réel n’a été lancé pendant les vérifications.
+
+### Indisponibilités et pilotage local
+
+Tuya documente un bref état hors ligne pendant la reconnexion de Smart Life au cloud à l’ouverture : [explication Tuya](https://support.tuya.com/en/help/_detail/K9hut3kw7xumg). Ce délai ne suffit pas à conclure à un mauvais appairage. Dans Home Assistant, l’intégration officielle reprend l’indicateur `online` de Tuya ; un état durablement indisponible doit être examiné séparément.
+
+Pour les ANTELA 9 W, [Tuya Local](https://github.com/make-all/tuya-local) est une piste de contrôle Wi-Fi local, sous réserve du protocole, de la clé locale et du profil effectivement détectés. Le modèle commercial seul ne garantit pas la compatibilité. Une première ampoule joignable doit être validée avant une migration ; aucune intégration communautaire ni modification du micrologiciel n’a été installée pour cette refonte. Les ampoules qui ne rejoignent plus Smart Life doivent d’abord retrouver une connexion réseau et une alimentation normales.

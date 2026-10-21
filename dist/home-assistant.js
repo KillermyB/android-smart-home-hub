@@ -21,6 +21,15 @@
   function saved() { try { var value=root.localStorage.getItem('hub.ha.connection'); return value?credentials(JSON.parse(value)):null; } catch (_) { return null; } }
   function remember(value) { value=credentials(value); try { root.localStorage.setItem('hub.ha.connection',JSON.stringify(value)); } catch (_) { throw failure('storage_unavailable','Connexion établie, mais mémorisation impossible sur cet appareil.'); } }
   function forget() { try { root.localStorage.removeItem('hub.ha.connection'); } catch (_) {} }
+  function group(value) {
+    if(!validState(value))return '';
+    var domain=value.entity_id.split('.')[0],attr=value.attributes;
+    if(domain==='scene')return 'scene';
+    if(domain==='light')return 'lighting';
+    if(domain!=='switch')return ['media_player','vacuum'].includes(domain)?domain:'';
+    var name=String(attr.friendly_name||value.entity_id).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    return attr.device_class==='outlet'||/lamp|light|eclair|prise|socket|plug/.test(name+' '+String(attr.icon||''))?'lighting':'switch';
+  }
   // Home Assistant core vacuum/const.py: START=8192, PAUSE=4, STOP=8, RETURN_HOME=16.
   function supports(value, service) {
     if (!validState(value) || value.state === 'unavailable') return false;
@@ -28,7 +37,7 @@
     if(value.state==='unknown'&&domain!=='scene')return false;
     if (domain === 'light' || domain === 'switch') return ['turn_on','turn_off','toggle'].indexOf(service) >= 0;
     if (domain === 'scene') return service === 'turn_on';
-    if(domain==='media_player'){var media={media_pause:1,volume_set:4,media_previous_track:16,media_next_track:32,media_stop:4096,media_play:16384};return Object.prototype.hasOwnProperty.call(media,service)&&(Number(value.attributes.supported_features)&media[service])===media[service];}
+    if(domain==='media_player'){var media={media_pause:1,volume_set:4,media_previous_track:16,media_next_track:32,turn_on:128,turn_off:256,media_stop:4096,media_play:16384};return Object.prototype.hasOwnProperty.call(media,service)&&(Number(value.attributes.supported_features)&media[service])===media[service];}
     var bits = {start:8192, pause:4, stop:8, return_to_base:16}, bit = Object.prototype.hasOwnProperty.call(bits,service) ? bits[service] : 0;
     return domain === 'vacuum' && bit > 0 && (Number(value.attributes.supported_features) & bit) === bit;
   }
@@ -133,7 +142,7 @@
     }
     return {url:normalizeURL(address.replace(/^ws:/,'http:').replace(/^wss:/,'https:')), connect:connect, states:states, status:status, call:call, subscribe:function (listener) { if (typeof listener !== 'function') throw failure('invalid_listener','Écouteur Home Assistant invalide.'); listeners.add(listener); try { listener(states(),status()); } catch (_) {} return function () { listeners.delete(listener); }; }, disconnect:function () { close(null,'disconnected',true); }};
   }
-  var api = {create:create, endpoint:endpoint, normalizeURL:normalizeURL, supports:supports, credentials:credentials, saved:saved, remember:remember, forget:forget};
+  var api = {create:create, endpoint:endpoint, normalizeURL:normalizeURL, supports:supports, group:group, credentials:credentials, saved:saved, remember:remember, forget:forget};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.HubHA = api;
 })(typeof window !== 'undefined' ? window : globalThis);
