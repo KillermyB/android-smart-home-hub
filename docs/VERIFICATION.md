@@ -399,3 +399,10 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Syntaxe et 179 tests réussis : reprise du contexte audio, volume renforcé, durée bornée, libération des nœuds, absence de superposition et nouvelle alerte ultérieure.
 - Son réellement rendu par OfflineAudioContext dans Chrome isolé : crête 0,516 / 1, fin à 1,87 s. Aucun son joué sur les appareils pour ce contrôle ; le volume perçu dépend du haut-parleur et du volume système.
 - SSH du cadre encore refusé : aucun déploiement matériel ni changement de volume Android attesté pour cette version.
+
+### Installation physique de v0.26.1
+
+- Cadre retrouvé par le serveur ADB USB existant ; identité root/sun8i/Android 6.0.1/ARMv7/build 20260529/1280 × 800 vérifiée. Nouvelle adresse Wi-Fi reliée à la même clé SSH préalablement approuvée ; configuration privée actualisée hors Git.
+- Déploiement v0.26.1 terminé : empreintes de tous les fichiers et manifeste HTTP validés. Onglet Firefox existant actualisé, unique onglet constaté ; accueil réellement revenu à 1280 × 800 en plein écran après le test.
+- Volume média Android relevé à 5 sur 8, réglé explicitement à 6 et relu à 6. Canal de notification conservé à son niveau initial. Bouton Tester le son activé, message « Alerte sonore en cours. » constaté ; écoute perçue en attente du retour utilisateur. Aucun minuteur existant supprimé ou relancé.
+- Télécommande accessible en HTTP 200 après installation. Aucun redémarrage ni changement des identifiants de compte.

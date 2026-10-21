@@ -434,7 +434,7 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Lecture de contrôle HA précoce à 300 ms, repli conservé et aucune répétition de commande. Pont à 750 ms quand un téléphone est actif, retour en attente à 500 ms ; état publié avant accusé de résultat. Les délais propres à Tuya/HA restent possibles.
 - [x] Musique en haut à gauche de la veille et citations descendues ; contrôle des citations longues sur le format cadre et petits écrans.
 - [x] 179 tests et parcours mobile simulé : filtre projet/priorité, marche/arrêt, glissement tactile réel, corbeille et lancement de 1 h 55. Aucune commande aux appareils physiques pendant ces tests.
-- [ ] Installation du cadre : ancienne adresse de maintenance indisponible, nouvel accès requis.
+- [x] Installation du cadre effectuée avec v0.26.1, qui inclut ces améliorations ; version et empreintes vérifiées.
 - [ ] Essai physique sur iPhone et intégration de la future télécommande commune ScreenK/Raspberry.
 
 
@@ -442,4 +442,6 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 
 - [x] Double carillon montant répété une fois, attaque plus présente ; gain principal de 0,22 à 0,48 et harmonique légère. Alerte bornée à moins de deux secondes, nettoyage audio et absence de superposition pour les fins simultanées. Option sonore et déverrouillage par interaction conservés.
 - [x] Syntaxe et 179 tests réussis. Rendu audio hors ligne réel : crête 0,516, fin à 1,87 s, sans écrêtage numérique.
-- [ ] Installation et écoute sur le cadre : accès Wi-Fi de maintenance toujours refusé. Aucun réglage du volume Android modifié.
+- [x] v0.26.1 installée sur le cadre après contrôle USB de son identité et vérification de la clé SSH existante sur sa nouvelle adresse Wi-Fi. Empreintes et contenu servi validés ; onglet unique actualisé, accueil plein écran 1280 × 800 constaté.
+- [x] Volume média natif augmenté de 5 à 6 sur 8 et relu dans Android ; bouton Tester le son déclenché avec confirmation applicative. Télécommande HTTP 200, minuteurs existants conservés.
+- [ ] Retour utilisateur sur le volume perçu du nouveau carillon.
