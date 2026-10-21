@@ -463,3 +463,9 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Huit vues contrôlées, menu portrait par icônes, trois minuteurs, ordre/masquage personnalisés, sombre et mouvement réduit. Départs présente une colonne principale plus large que le rappel et les trajets côte à côte en dessous. Musique de veille centrée et contenu contenu dans la fenêtre. Aucun appareil réel commandé par les fixtures.
 
 - Installation Wi-Fi v0.27.2 vérifiée après lecture de l’identité USB ; PID du seul serveur HTTP Hub réconcilié avant activation. Onglet existant actualisé. La capture réelle et la racine WebView confirment le plein écran portrait 800 × 1280, avec GitHub et la citation visibles. Le contrôle initial attendait à tort les dimensions paysage ; vérification reprise avec les dimensions portrait actives, sans changement de rotation Android.
+
+
+## v0.27.3 — Centrage du menu portrait
+
+- Le libellé masqué laissait l’icône alignée au début de son bouton. Centrage horizontal explicite dans les seuls menus portrait. Les cinq sélections ont été ouvertes à 800 × 1280, 600 × 960, 390 × 844 et 320 × 740 : un seul menu actif, centres du bouton et de son icône identiques à moins de 0,6 px, aucun débordement horizontal.
+- Syntaxe réussie ; suite de 188 tests déjà passée sur le code JavaScript inchangé de v0.27.2.

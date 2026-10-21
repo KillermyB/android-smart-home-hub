@@ -14,6 +14,7 @@
   .dashboard:not(.custom-dashboard) .dash-quote,
   .dashboard:not(.custom-dashboard) .home-note { order:7 }
   .header nav .nav-label { display:none }
+  .header nav .nav-button { justify-content:center }
   .header-widgets { display:none }
   .header-widgets.has-timers { display:flex }
   .dashboard .github-card .commit-map { min-width:0;grid-template-columns:repeat(14,minmax(0,1fr));grid-template-rows:repeat(2,18px);align-self:center;gap:5px }

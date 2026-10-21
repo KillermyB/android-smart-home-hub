@@ -500,3 +500,8 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Veille portrait : plus grande occupation verticale, heure et citation espacées, musique compacte centrée.
 - [x] Syntaxe, 188 tests et contrôles de navigateur sur sept formats, paysage, thème sombre, mouvement réduit, personnalisation et trois minuteurs. Données simulées pendant ces contrôles.
 - [x] v0.27.2 installée sur le cadre identifié ; manifeste servi vérifié. Capture réelle en portrait 800 × 1280 : accueil complet, GitHub visible et plein écran confirmé. Aucun réglage Android de rotation modifié.
+
+
+## v0.27.3 — Sélection du menu portrait
+
+- [x] Icônes centrées dans leur propre bouton en portrait : le fond orange entoure correctement le menu sélectionné. Sélection unique et alignement des cinq menus contrôlés à 800, 600, 390 et 320 px. Correction CSS uniquement, paysage préservé.
