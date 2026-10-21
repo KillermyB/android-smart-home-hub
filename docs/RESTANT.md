@@ -473,3 +473,13 @@ La réussite des tests en navigateur sur le Mac ne valide aucune de ces étapes 
 - [x] Six contrôles de rendu bibliothèque/veille à 1280 et 320 px, dont prose longue et extrait de poésie : texte relu affiché intégralement, aucun débordement horizontal ni erreur JS.
 
 - [x] v0.26.4 installée sur le cadre, empreintes et manifeste servis vérifiés ; onglet unique actualisé et veille plein écran réelle constatée après chargement des textes corrigés.
+
+
+## v0.27.0 — Réglages personnels et télécommande commune
+
+- [x] État de Spotify, Todoist et Home Assistant dans les réglages, dernière réussite conservée et signal discret sur le bouton Réglages en cas de problème. Un flux Home Assistant connecté reste à jour même sans changement de lampe.
+- [x] +30 secondes, +5 minutes et « Refaire le même » sur le cadre et la télécommande. Trois minuteurs indépendants ; nouvelle identité à chaque répétition, refus des anciennes commandes.
+- [x] Accueil : masquer les tuiles et les déplacer avec les boutons Monter / Descendre. L’horloge reste ancrée en premier ; un bouton restaure la composition d’origine. Veille : date, météo, prochain rendez-vous, citation et musique réglables séparément.
+- [x] Sauvegarde JSON personnelle, aperçu puis restauration explicite : notes de la maison, recettes personnelles, tâches locales et préférences, y compris lieu météo et accès ScreenK. Les notes/recettes/tâches déjà présentes sont conservées. Les comptes, photos, agendas et minuteurs en cours sont exclus ; leur association/transfert reste séparé.
+- [x] Sélecteur Cadre / Écran salon / Miroir sur le téléphone ; liens locaux configurables vers les télécommandes ScreenK existantes, sans transfert d’identifiants ni intégration iframe.
+- [ ] Commandes ScreenK directement dans Hub : transport et authentification à intégrer ultérieurement, indépendamment du sélecteur déjà fonctionnel.

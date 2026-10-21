@@ -7,11 +7,12 @@
   function homeAllowed(entity,service){return typeof entity==='string'&&/^[a-z_]+\.[a-z0-9_]+$/.test(entity)&&Object.prototype.hasOwnProperty.call(homeServices,entity.split('.')[0])&&homeServices[entity.split('.')[0]].includes(service);}
   function validate(c,now){
     if(!c||Object.getPrototypeOf(c)!==Object.prototype||!(/^[a-f0-9]{32}$/).test(c.id)||!(/^[a-f0-9]{32}$/).test(c.session)||!Number.isSafeInteger(c.created)||c.created>(now||Date.now())+10000||(now||Date.now())-c.created>30000)throw Error('La demande a expiré.');
-    var shapes={note:['text','pin'],timer:['seconds','label','tag'],timer_cancel:['timer','instance'],light:['entity','on'],home:['entity','service','volume'],task:['task']},fields=Object.prototype.hasOwnProperty.call(shapes,c.type)?shapes[c.type]:null;
+    var shapes={note:['text','pin'],timer:['seconds','label','tag'],timer_cancel:['timer','instance'],timer_adjust:['timer','instance','seconds'],timer_restart:['timer','instance'],light:['entity','on'],home:['entity','service','volume'],task:['task']},fields=Object.prototype.hasOwnProperty.call(shapes,c.type)?shapes[c.type]:null;
     if(!fields||Object.keys(c).some(function(k){return ['id','created','type','session'].concat(fields).indexOf(k)<0;}))throw Error('Action non autorisée.');
     if(c.type==='note'&&(!text(c.text,400)||typeof c.pin!=='boolean'))throw Error('Note invalide.');
     if(c.type==='timer'&&(!Number.isInteger(c.seconds)||c.seconds<1||c.seconds>86400||!text(c.label,60)||typeof c.tag!=='string'||c.tag.length>40))throw Error('Minuteur invalide.');
-    if(c.type==='timer_cancel'&&(typeof c.timer!=='string'||!/^[123]$/.test(c.timer)||typeof c.instance!=='string'||!/^[a-zA-Z0-9_-]{1,80}$/.test(c.instance)))throw Error('Minuteur invalide.');
+    if(['timer_cancel','timer_adjust','timer_restart'].includes(c.type)&&(typeof c.timer!=='string'||!/^[123]$/.test(c.timer)||typeof c.instance!=='string'||!/^[a-zA-Z0-9_-]{1,80}$/.test(c.instance)))throw Error('Minuteur invalide.');
+    if(c.type==='timer_adjust'&&![30,300].includes(c.seconds))throw Error('Durée non autorisée.');
     if(c.type==='light'&&(!(/^(light|switch)\.[a-z0-9_]+$/).test(c.entity)||typeof c.on!=='boolean'))throw Error('Lampe invalide.');
     if(c.type==='home'&&(!homeAllowed(c.entity,c.service)||(c.service==='volume_set'?(typeof c.volume!=='number'||!Number.isFinite(c.volume)||c.volume<0||c.volume>1):Object.prototype.hasOwnProperty.call(c,'volume'))))throw Error('Commande domotique invalide.');
     if(c.type==='task'&&!(typeof c.task==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(c.task)))throw Error('Tâche invalide.');

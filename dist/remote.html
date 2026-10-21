@@ -16,6 +16,7 @@
     <script src="task-filters.js" defer></script>
   <script src="remote-core.js" defer></script>
   <script src="remote-gestures.js" defer></script>
+  <script src="remote-targets.js" defer></script>
   <script src="remote.js" defer></script>
 </head>
 <body>
@@ -24,6 +25,8 @@
     <div class="connection"><span id="connection-dot"></span><p id="connection-status" role="status">Association au cadre</p><button id="refresh" class="round" aria-label="Actualiser"></button></div>
     <section id="pairing" class="card pairing" hidden><span class="pair-icon" aria-hidden="true"></span><h2>Ton cadre, en poche.</h2><p>Sur le cadre, ouvre Réglages → Télécommande, puis scanne le QR avec ton téléphone.</p><p class="muted">Même Wi-Fi · aucun compte à reconnecter.</p><details><summary>Entrer une clé d’association</summary><form id="pair-form"><label for="pair-key">Clé affichée dans le lien du cadre</label><input id="pair-key" name="key" required autocomplete="off" spellcheck="false" autocapitalize="off" maxlength="64"><button class="primary" type="submit">Associer</button></form></details></section>
     <div id="connected-content" hidden>
+      <label class="screen-target-picker" for="screen-target"><span>Ton écran</span><select id="screen-target"><option value="frame">Cadre</option><option value="salon">Écran salon</option><option value="mirror">Miroir</option></select></label>
+      <section id="screen-target-content" class="card" hidden></section>
       <nav aria-label="Télécommande"><button data-tab="home" aria-selected="true"></button><button data-tab="timers" aria-selected="false"></button><button data-tab="tasks" aria-selected="false"></button><button data-tab="notes" aria-selected="false"></button></nav>
       <main id="remote-main" tabindex="-1"></main>
       <p class="footnote">Le cadre reste sur sa page.</p>

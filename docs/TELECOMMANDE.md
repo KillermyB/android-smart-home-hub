@@ -34,4 +34,8 @@ QR généré localement avec [Project Nayuki](https://www.nayuki.io/page/qr-code
 
 Icône de navigateur dédiée et icône Apple 180 × 180 intégrées. Sur iPhone, créer le raccourci depuis Safari → Partager → Sur l’écran d’accueil. Un ancien raccourci peut garder son ancienne icône et nécessiter d’être recréé. L’installation réelle sur iPhone reste à confirmer.
 
-Une télécommande commune avec ScreenK/Raspberry est prévue pour la suite : le transport et l’authentification de cette autre télécommande restent à examiner. Aucun contrôle ni partage de clés entre les deux systèmes n’est encore configuré. Les adresses locales fournies restent dans les notes privées hors Git.
+Le sélecteur « Cadre · Écran salon · Miroir » est disponible. Dans Hub → Réglages → Mes écrans, enregistrer les adresses locales HTTP(S) des télécommandes ScreenK. Elles restent dans le stockage privé de cet appareil et sont communiquées uniquement au téléphone associé. Aucun identifiant, clé, paramètre ou fragment n’est accepté dans ces liens.
+
+Les choix ScreenK ouvrent leurs télécommandes existantes dans un autre onglet. Leurs sessions et protections restent indépendantes ; leurs commandes ne sont pas encore réunies dans Hub. Aucune intégration par iframe ni transfert de clés.
+
+Sur chaque minuteur : +30 secondes, +5 minutes et « Refaire le même ». Le redémarrage réutilise son emplacement avec une nouvelle identité ; une ancienne commande ne peut donc pas modifier son remplaçant. Le glissement pour supprimer reste disponible. Chaque résultat dépend d’une confirmation du cadre, sans attente hors ligne.

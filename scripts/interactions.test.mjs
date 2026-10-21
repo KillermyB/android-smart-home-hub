@@ -8,7 +8,7 @@ const section = (start, end) => app.slice(app.indexOf(start), app.indexOf(end, a
 
 test('idle context shows the next visible calendar appointment beside real weather and never invents an event',()=>{
  let entries=[{date:'2026-10-21',start:'11:00',end:'13:00',source:'work',title:'Ongoing'}, {date:'2026-10-21',start:'12:30',end:'13:00',source:'outlook',title:'Filtered'}, {date:'2026-10-21',start:'13:30',end:'14:00',source:'work',title:'Next meeting'}];
- const context=vm.createContext({Date,state:{weather:{temperature:15,code:1,city:'Moudon',summary:'Clouds'},demo:false,filters:['work']},events:()=>entries,dateKey:()=> '2026-10-21',timeText:()=> '12:00',shiftDay:()=> '2026-10-22',dateText:()=> 'Jeu. 22',sourceStyles:{work:{color:'#f90'}},icon:()=>'',weatherIcon:()=>'',esc:String});
+ const context=vm.createContext({preferences:{standby:{weather:true,appointment:true}},Date,state:{weather:{temperature:15,code:1,city:'Moudon',summary:'Clouds'},demo:false,filters:['work']},events:()=>entries,dateKey:()=> '2026-10-21',timeText:()=> '12:00',shiftDay:()=> '2026-10-22',dateText:()=> 'Jeu. 22',sourceStyles:{work:{color:'#f90'}},icon:()=>'',weatherIcon:()=>'',esc:String});
  vm.runInContext(section('  function sleepWeather()', '  function renderOverlay()'),context);
  let markup=context.sleepContext();assert.match(markup,/13:30/);assert.match(markup,/Next meeting/);assert.doesNotMatch(markup,/Filtered|Ongoing/);assert.match(markup,/data-with-weather/);
  entries=[];markup=context.sleepContext();assert.doesNotMatch(markup,/sleep-appointment/);assert.match(markup,/15°/);
@@ -55,6 +55,7 @@ test('personal setup hides samples without deleting user tasks, recipes or favor
     read: (key, fallback) => key in stored ? structuredClone(stored[key]) : fallback,
     save: (key, value) => { stored[key] = value; }
   });
+  for(const name of ['preferences','remote-targets','connection-health'])vm.runInContext(readFileSync(new URL('../dist/'+name+'.js',import.meta.url),'utf8'),context);
   vm.runInContext(section('  var state = {', '  var quoteBrowsePage='), context);
   assert.equal(context.state.demo, false);
   assert.equal(stored.personalSetup, 1);
@@ -128,7 +129,7 @@ test('page rendering preserves the shell, navigation, and an open modal', () => 
   let overlays = 0, themeUpdates = 0;
   const button = { dataset: { action: 'nav:calendar' }, active: false, classList: { toggle(name, value) { button.active = value; } }, setAttribute() {} };
   const context = vm.createContext({
-    state: { page: 'home', recipeId: null, demo: true, modal: 'settings' }, inputMode: 'pointer', mainDirty: true,
+    paintConnectionHealth(){}, state: { page: 'home', recipeId: null, demo: true, modal: 'settings' }, inputMode: 'pointer', mainDirty: true,
     document: { activeElement: null, querySelectorAll: () => [button] },
     $: selector => ({ '#main': main, '.modal': modal, '.footer [data-action="settings"]': footer })[selector] || null,
     HubMusicOrbit:{mount(){}}, applyTheme: () => themeUpdates++, renderOverlay: () => overlays++, renderTimer() {}, nativeFullscreen() {}, reportActivity() {}, updateClock() {}, updateKeptFields() {}, serviceRendered() {}, lyricsLifecycle() {}, houseUpdate() {}
@@ -218,6 +219,7 @@ test('HA command feedback uses a temporary notification while errors remain dist
 
 test('standby player shows only an active track with its elapsed perimeter and compact metadata',()=>{
  const context=vm.createContext({music:{data:{is_playing:true,item:{name:'Track',artists:[{name:'Artist'}],duration_ms:10000,album:{images:[]}},device:{name:'Home'}}},HubTools:{safeURL:s=>s},esc:String,icon:()=>'<icon>',musicOrbit:()=>'<svg data-tile-progress></svg>'});
+ context.preferences={standby:{music:true}};
  vm.runInContext(section('  function sleepMusic()', '  var sleepMusicKey='),context);
  const html=context.sleepMusic();assert.match(html,/Track/);assert.match(html,/Artist · Home/);assert.match(html,/data-tile-progress/);assert.doesNotMatch(html,/sleep-music-device/);
  context.music.data.is_playing=false;assert.equal(context.sleepMusic(),'');context.music.data=null;assert.equal(context.sleepMusic(),'');

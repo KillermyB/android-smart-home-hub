@@ -434,3 +434,14 @@ Carte centrée de 360 px, réduite à 272 px sur un écran de 320 px. Contour bl
 - Six rendus contrôlés dans la bibliothèque et en veille à 1280 × 800 et 320 × 800 : cas La Fontaine, long extrait de Vauvenargues et Éluard ; texte exact, pas de débordement horizontal ni erreur JS.
 
 - v0.26.4 installée sur le cadre après contrôle d’identité : empreintes et manifeste HTTP validés, onglet existant actualisé, veille réelle en plein écran constatée.
+
+
+## v0.27.0 — Personnalisation, sauvegarde et télécommande
+
+- Syntaxe et 187 tests réussis. Ajouts : normalisation de l’ordre des tuiles, horloge ancrée, suivi de synchronisation, liens locaux sans identifiants, export limité aux réglages autorisés, fusion et annulation d’une restauration en échec de stockage, durées et identité des minuteurs. Les tests de rendu existants chargent leurs nouvelles dépendances.
+- Navigateur isolé à 1280 × 800, 375 et 320 px : réglages des connexions, +30 s / +5 min / répétition, masquage et déplacement de tuiles, persistance après rechargement, informations de veille, export réellement téléchargé, aperçu avant restauration, conservation de la session Spotify simulée et retour à la composition par défaut. Aucune erreur JavaScript ni débordement horizontal. La grille des contributions personnalisée reste contenue dans sa carte.
+- Télécommande simulée à 375 et 320 px : Domotique en premier, sélecteur salon/miroir avec liens dédiés, commandes de minuteur et suppression après renouvellement d’identité, tâches conservées. Boutons d’ajustement de 44 px minimum. Aucun appareil réel commandé par ces contrôles.
+- Les télécommandes ScreenK réelles ont répondu HTTP 200 au contrôle de lecture. Leur protection SAMEORIGIN est conservée : elles s’ouvrent séparément. Ceci ne prouve pas encore l’unification directe de leurs commandes.
+
+- Panne Spotify simulée puis rétablissement : heure de la dernière réussite conservée, badge retiré après réussite suivante. Thème sombre et animations réduites contrôlés.
+- v0.27.0 installée sur le cadre identifié : 85 empreintes statiques correspondent aux sources locales, manifeste HTTP vérifié, nouveaux réglages et plein écran constatés. Le déploiement automatique a d’abord annulé son activation car un ancien processus HTTP était absent du fichier PID ; l’ancien serveur Hub a été identifié, arrêté seul, puis la version contrôlée activée.

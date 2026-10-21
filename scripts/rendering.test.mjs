@@ -26,7 +26,7 @@ function services(){
     music:{data:{is_playing:true,progress_ms:100,item:{id:'one',name:'Track',duration_ms:10000,artists:[{name:'Artist'}],album:{name:'Album',images:[]}},device:{id:'home',name:'Home',supports_volume:true,volume_percent:30}},error:'',devicesBusy:false},
     spotify:{connected:()=>true},shop:{project:'courses',active:[],completed:[],sections:[],loaded:true},daily:{items:[],loaded:true,error:''},
     document:{hidden:false,activeElement:{tagName:'BODY'},querySelectorAll:()=>[]},$:selector=>selector==='.dash-music'||selector==='.dash-tasks'?tile:null,
-    renderSleepMusic(){},musicTile:()=>'<music>',dashboardTasks:()=>'<tasks>',HubMusicOrbit:{mount(){orbitMounts++;}},render(){renders++;ctx.serviceRendered();}
+    paintConnectionHealth(){},rememberSync(){},renderSleepMusic(){},musicTile:()=>'<music>',dashboardTasks:()=>'<tasks>',HubMusicOrbit:{mount(){orbitMounts++;}},render(){renders++;ctx.serviceRendered();}
   });
   vm.runInContext(section('  var serviceKeys=', '  async function refreshShopping()'),ctx);
   ctx.serviceRendered();return {ctx,counts:()=>({renders,tileWrites,orbitMounts})};
@@ -93,7 +93,7 @@ test('the actual focus player renders with and without a controllable volume',()
 
 test('home automation ignores unrelated sensors but still updates displayed state and controls',()=>{
   let writes=0;const devices={contains:()=>false,querySelector:()=>null,set innerHTML(_){writes++;}};
-  const ctx=vm.createContext({state:{page:'house'},house:{status:'connected',pending:'',entities:[{entity_id:'light.lamp',state:'off',attributes:{friendly_name:'Lamp',supported_features:0}}]},HubHA:{group:item=>item.entity_id.startsWith('light.')?'lighting':''},document:{hidden:false,activeElement:{},querySelectorAll:()=>[]},$:s=>s==='#ha-devices'?devices:null,houseDevices:()=>'<lights>',houseStatus:()=>'',houseRestoreFocus(){}});
+  const ctx=vm.createContext({paintConnectionHealth(){},state:{page:'house'},house:{status:'connected',pending:'',entities:[{entity_id:'light.lamp',state:'off',attributes:{friendly_name:'Lamp',supported_features:0}}]},HubHA:{group:item=>item.entity_id.startsWith('light.')?'lighting':''},document:{hidden:false,activeElement:{},querySelectorAll:()=>[]},$:s=>s==='#ha-devices'?devices:null,houseDevices:()=>'<lights>',houseStatus:()=>'',houseRestoreFocus(){}});
   vm.runInContext(section('  function houseViewKey()', '  function housePage()'),ctx);vm.runInContext(section('  function houseUpdate()', "  document.addEventListener('visibilitychange',function(){if(!document.hidden){houseUpdate()"),ctx);
   devices.hubViewKey=ctx.houseViewKey();ctx.houseUpdate();assert.equal(writes,0);
   ctx.house.entities.push({entity_id:'sensor.temperature',state:'22',attributes:{}});ctx.houseUpdate();assert.equal(writes,0);

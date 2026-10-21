@@ -66,14 +66,24 @@
   // Three independent, persisted countdowns. IDs are their stable numbered slots.
   function timerRestore(values,legacy){
     var list=Array.isArray(values)?values:legacy?[legacy]:[],used=new Set(),result=[];
-    list.slice(0,3).forEach(function(t,i){if(!t||!Number.isFinite(t.end)||t.paused&&(!Number.isFinite(t.remaining)||t.remaining<0||t.remaining>86400))return;var id=String(t.id||i+1);if(!/^[123]$/.test(id)||used.has(id))return;used.add(id);result.push({id:id,instance:typeof t.instance==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(t.instance)?t.instance:'legacy-'+String(Math.abs(t.end)),end:t.end,label:String(t.label||'Minuteur').slice(0,80),tag:String(t.tag||'').slice(0,40),paused:!!t.paused,remaining:Math.min(86400,Math.max(0,Number(t.remaining)||0)),notified:!!t.notified});});return result;
+    list.slice(0,3).forEach(function(t,i){if(!t||!Number.isFinite(t.end)||t.paused&&(!Number.isFinite(t.remaining)||t.remaining<0||t.remaining>86400))return;var id=String(t.id||i+1);if(!/^[123]$/.test(id)||used.has(id))return;used.add(id);result.push({id:id,instance:typeof t.instance==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(t.instance)?t.instance:'legacy-'+String(Math.abs(t.end)),end:t.end,label:String(t.label||'Minuteur').slice(0,80),tag:String(t.tag||'').slice(0,40),duration:Number.isInteger(t.duration)&&t.duration>=1&&t.duration<=86400?t.duration:Math.max(1,Math.min(86400,Math.ceil(Number(t.remaining)||60))),paused:!!t.paused,remaining:Math.min(86400,Math.max(0,Number(t.remaining)||0)),notified:!!t.notified});});return result;
   }
   function timerStart(values,seconds,label,tag,now){
     if(!Number.isInteger(seconds)||seconds<1||seconds>86400)throw Error('Choisis une durée entre 1 seconde et 24 heures.');
     var list=timerRestore(values);if(list.length===3)throw Error('Les trois minuteurs sont occupés. Termine-en un pour libérer sa place.');
-    var id=['1','2','3'].find(function(id){return !list.some(function(t){return t.id===id;});});list.push({id:id,instance:'timer-'+now.toString(36)+'-'+Math.random().toString(36).slice(2,12),end:now+seconds*1000,label:String(label||'Minuteur').trim().slice(0,80)||'Minuteur',tag:String(tag||'').trim().slice(0,40),paused:false,remaining:seconds,notified:false});return list;
+    var id=['1','2','3'].find(function(id){return !list.some(function(t){return t.id===id;});});list.push({id:id,instance:'timer-'+now.toString(36)+'-'+Math.random().toString(36).slice(2,12),end:now+seconds*1000,label:String(label||'Minuteur').trim().slice(0,80)||'Minuteur',tag:String(tag||'').trim().slice(0,40),duration:seconds,paused:false,remaining:seconds,notified:false});return list;
   }
-  function timerChange(values,id,command,now){return timerRestore(values).filter(function(t){return command!=='stop'||t.id!==String(id);}).map(function(t){if(t.id!==String(id))return t;var left=remaining(t,now);if(command==='toggle'&&left){t.paused=!t.paused;t.remaining=left;if(!t.paused)t.end=now+left*1000;}if(command==='add'){t.remaining=Math.min(86400,left+60);t.end=now+t.remaining*1000;t.notified=false;}return t;});}
+  function timerChange(values,id,command,now,seconds){
+    var delta=seconds===undefined?60:seconds;if(command==='add'&&![30,60,300].includes(delta))throw Error('Ajoute 30 secondes, 1 minute ou 5 minutes.');
+    return timerRestore(values).filter(function(t){return command!=='stop'||t.id!==String(id);}).map(function(t){
+      if(t.id!==String(id))return t;var left=remaining(t,now);
+      if(command==='toggle'&&left){t.paused=!t.paused;t.remaining=left;if(!t.paused)t.end=now+left*1000;}
+      if(command==='add'){t.remaining=Math.min(86400,left+delta);t.duration=Math.min(86400,t.duration+delta);t.end=now+t.remaining*1000;t.notified=false;}
+      if(command==='restart'){t.instance='timer-'+now.toString(36)+'-'+Math.random().toString(36).slice(2,12);t.remaining=t.duration;t.end=now+t.duration*1000;t.paused=false;t.notified=false;}
+      return t;
+    });
+  }
+
   function alarm(options){
     options=options||{};var Audio=options.AudioContext||root.AudioContext||root.webkitAudioContext,context=null,busyUntil=0;
     async function unlock(){if(!Audio)return false;try{if(!context||context.state==='closed'){context=new Audio();busyUntil=0;}if(context.state==='suspended')await context.resume();return context.state==='running';}catch(_){return false;}}
